@@ -1,0 +1,180 @@
+\documentclass[12pt,lettersize]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{chngcntr}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 104}
+\chead{Homework 2}
+\rhead{Wenhao Pan}
+\cfoot{\thepage}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\subsection*{Q1}
+\begin{enumerate}[(a)]
+	\item We will use proof by contradiction. Suppose $qr\in\Q$, then let $qr=\frac{a}{b}$ where $a,0\neq b\in\Z$. Since $0\neq q\in\Q$, let $q=\frac{c}{d}$ where $0\neq c, 0\neq d\in\Z$. Then we have
+	\begin{align*}
+		qr=\frac{a}{b} &\implies \frac{c}{d}\cdot r=\frac{a}{b}\\
+					   &\implies r=\frac{a}{b}\cdot\frac{d}{c}\\
+					   &\implies r=\frac{ad}{bc}\\
+					   &\implies \text{$r$ is rational}
+	\end{align*}
+	The last implication comes from that $a,0\neq b, 0\neq d,0\neq c\in\Z\implies ad,0\neq bc\in\Z$. However by the condition $r\in\R\backslash\Q$, we have a contradiction. Thus $qr\in\R\backslash\Q$, completing the proof.
+	\item We all know $\sqrt{2}$ is an irrational number. Since $\frac{1}{\sqrt{2}}>0$, $\frac{a}{\sqrt{2}}<\frac{b}{\sqrt{2}}$. Because $\frac{a}{\sqrt{2}},\frac{b}{\sqrt{2}}\in\R$ and by the denseness of $\Q$, there exists $0\neq q\in\Q$ such that $\frac{a}{\sqrt{2}}<q<\frac{b}{\sqrt{2}}$. This implies $a<q\sqrt{2}<b$. By (a), $q\sqrt{2}\in\R\backslash\Q$, completing the proof. 
+\end{enumerate}
+
+\newpage
+
+\subsection*{Q2}
+
+We need to verify two properties of supremum. 
+\begin{enumerate}[(i)]
+	\item $\forall q\in\{r\in\Q: r<a\},\ q<a\implies q\leq a=\sup\{r\in\Q: r<a\}$.
+	\item Consider $a^\prime<a$, then by the denseness of $\Q$, there exists $q\in\Q$ such that $a^\prime<q<a$. This implies $q\in\{r\in\Q: r<a\}$ and $q>a^\prime$. 	
+\end{enumerate}
+We can see that $a$ satisfying both properties of supremum, completing the proof.
+\newpage
+
+\subsection*{Q3}
+\begin{enumerate}[(a)]
+	\item We need to prove both inequalities.
+	\begin{itemize}
+		\item[$\geq$:] By the definition of supremum, we have $\forall a\in A, b\in B,\ ab\leq\sup(AB)$. This implies
+		\begin{align*}
+			\frac{\sup(AB)}{a}\geq b &\implies \frac{\sup(AB)}{a}\geq\sup(B)\\
+									 &\implies \frac{\sup(AB)}{\sup(B)}\geq a\\
+									 &\implies \frac{\sup(AB)}{\sup(B)}\geq \sup(A)\\
+									 &\implies \sup(AB)\geq \sup(A)\cdot\sup(B),
+		\end{align*}
+		completing this part of the proof.
+		\item[$\leq$:] By the definition of supremum, we have $\forall a\in A, b\in B,\ 0<a\leq\sup(A)$ and $0<b\leq\sup (B)$. This implies $\forall a\in A, b\in B,\ ab\leq\sup (A)\cdot b\leq \sup (A)\cdot\sup (B)$. Thus $\sup (A)\cdot\sup (B)$ is an upper bound of $AB$, and $\sup(AB)\leq\sup (A)\cdot\sup (B)$.
+	\end{itemize}
+	\item Let $A=\{-1,1\}$ and $B=\{-3,1\}$, then $AB=\{3,-1,-3,1\}$. Thus $\sup(AB)=3\neq1=1\cdot1=\sup(A)\cdot\sup(B)$.
+\end{enumerate}
+
+\newpage
+
+\subsection*{Q4}
+\begin{enumerate}[(a)]
+	\item If we can show that $a_n\leq s_n\ \text{for all $n$}\implies \lim a_n\leq\lim s_n$, then similarly we will have $\lim s_n\leq\lim b_n$. Now since $s=\lim a_n\leq\lim s_n\leq\lim b_n=s$, all the inequalities actually achieve the equality, so $\lim s_n=\lim a_n=\lim b_n=s$.
+	
+	From $a_n\leq\ s_n$, we have $a_n-s_n\leq 0$. Let $s=\lim a_n-s_n$. Suppose $s>0$, then by the denseness of $\Q$ and the definition of limit, there exists $0<\epsilon<s$ and $N\in\N$, such that $n\geq N$ implies
+	\begin{align*}
+		|a_n-s_n-s|<\epsilon<s &\implies |a_n-s_n-s|<s\\
+							   &\implies -s<a_n-s_n-s<s\\
+							   &\implies 0<a_n-s_n<2s
+	\end{align*}
+	The last implication implies $a_n>s_n$ which is a contradiction to the condition that $a_n\leq s_n$ for all $n\in\N$. Thus $\lim (a_n-s_n)=s\leq 0\implies \lim a_n - \lim s_n\leq 0 \implies \lim a_n\leq\lim s_n$, completing the proof.
+	\item First observe that $|s_n|\leq t_n\implies -t_n\leq s_n\leq t_n$ for all $n$. Since $\lim t_n=0$, we have $\lim(-t_n)=\lim(-1)\cdot(t_n)=-1\cdot\lim t_n=-1\cdot0=0$ from theorem 9.2. Thus by (a) we have $0=\lim(-t_n)\leq\lim s_n\leq\lim t_n=0$, implying $\lim s_n=0$.
+	\item Observe that $|s_n|=|\frac{1}{n}\sin n|=|\frac{1}{n}|\cdot|\sin n|\leq|\frac{1}{n}|\cdot1=\frac{1}{n}$. Since $\lim \frac{1}{n}=0$, by (b) we have $\lim s_n=\lim\frac{1}{n}\sin n=0$.
+\end{enumerate}
+\newpage
+
+\subsection*{Q5}
+We will use proof by contradiction. Suppose $\lim s_n< a$, then $\lim s_n-a<0$. Let $s=\lim s_n-a<0$. Since $-s>0$ and the denseness of $\Q$, there exists $0<\epsilon<-s$. By the definition of limit, there exists $N\in\N$ such that $n\geq N$ implies
+\begin{align*}
+	|s_n-a-s|<\epsilon<-s &\implies |s_n-a-s|<-s\\
+						  &\implies s_n-a-s<-s\\
+						  &\implies s_n-a<0\\
+						  &\implies s_n<a
+\end{align*}
+This is a contradiction to $s_n\geq a$ for all but finitely many $n$ since we can find a $N$ such that for all infinite $n\geq N$, we have $s_n<a$. Thus $\lim s_n\geq a$, completing the proof.
+
+\newpage
+
+\subsection*{Q6}
+Let $s=\lim s_n>a$. By the definition of limit, select $\epsilon=s-a>0$, there exists $N\in\N$ such that
+\begin{align*}
+	n\geq N &\implies |s_n-s|<\epsilon=s-a\\
+			&\implies -(s-a)<s_n-s<s-a\\
+			&\implies -s+a+s<s_n-s+s<s-a+s\\
+			&\implies s_n>a
+\end{align*}
+Thus complete the proof.
+
+\newpage
+
+\subsection*{Q7}
+Observe that
+\begin{align*}
+	\frac{n!}{n^n} &= \frac{n}{n}\cdot\frac{n-1}{n}\cdot\frac{n-2}{n}\cdot\,\cdots\,\cdot\frac{1}{n}\\
+				   &\leq 1\cdot1\cdot1\cdot\,\cdots\,\cdot\frac{1}{n}\\
+				   &= \frac{1}{n}
+\end{align*}
+Since $\frac{n!}{n^n}>0=\lim0$ and $\lim\frac{1}{n}=0$, by Squeeze theorem, we have $0=\lim 0\leq\lim\frac{n!}{n^n}\leq\lim\frac{1}{n}=0$, implying $\lim\frac{n!}{n^n}=0$.
+\newpage
+
+\subsection*{Q8}
+\begin{enumerate}[(a)]
+	\item Since $L<1\implies1-L>0$, by the denseness of $Q$, there exists $0<\epsilon<1-L$. This implies $L+\epsilon<1$. By the definition of limit, there exists $N\in\N$ such that
+	\begin{align*}
+		n\geq N &\implies \Bigg|\left|\frac{s_{n+1}}{s_n}\right|-L\Bigg|<\epsilon\\
+				&\implies \left|\frac{s_{n+1}}{s_n}\right|<L+\epsilon\\
+				&\implies \frac{|s_{n+1}|}{|s_n|}<L+\epsilon\\
+				&\implies |s_{n+1}|<(L+\epsilon)|s_n|\\
+	\end{align*}
+	Since $n$ is an arbitrary integer $\geq N$, the last implication can be also applied to $n+2, n+3,\dots$. For example, $|s_{n+2}|<(L+\epsilon)|s_{n+1}|<(L+\epsilon)(L+\epsilon)|s_n|=(L+\epsilon)^2|s_n|$. Thus we can conclude that for $n>N$, $|s_n|<(L+\epsilon)^{n-N}|s_N|$.
+	
+	Observe that $\lim(L+\epsilon)^{n-N}|s_N|=|s_N|\cdot\lim(L+\epsilon)^{n-N}=|s_N|\cdot0=0$ since $L+\epsilon<1$. Therefore, by Squeeze theorem $0=-1\cdot0=\lim-(L+\epsilon)^{n-N}|s_N|<\lim s_n<\lim(L+\epsilon)^{n-N}|s_N|=0$, implying $\lim s_n=0$.
+	\item let $t_n=\frac{1}{|s_n|}$, then we have 
+	\begin{align*}
+		\lim\bigg|\frac{t_{n+1}}{t_n}\bigg| &= \lim\bigg|\frac{s_n}{s_{n+1}}\bigg|\\
+										  &= \lim\frac{1}{\big|\frac{s_{n+1}}{s_n}\big|}\\
+										  &= \frac{1}{L}\\
+										  &< 1
+	\end{align*}
+	Apply (a) to $\lim\big|\frac{t_{n+1}}{t_n}\big|$ and we get $\lim t_n=0 \implies \lim \frac{1}{t_n}=\lim|s_n|=\infty$, completing the proof.
+	\item Let $s_n=\frac{a^n}{n!}$, then 
+	\begin{align*}
+		\lim\left|\frac{s_{n+1}}{s_n}\right|&=\lim\left|\frac{a^{n+1}}{(n+1)!}\cdot\frac{n!}{a^n}\right|\\
+											&=\lim\left|\frac{a}{n}\right|\\
+											&=|a|\cdot\lim\frac{1}{n}\\
+											&=|a|\cdot0\\
+											&=0
+	\end{align*}
+	Since $L=0<1$, we have $\lim s_n=\lim \frac{a^n}{n!}=0$
+\end{enumerate}
+\newpage
+
+\subsection*{Q9}
+WLOG, consider $m\geq n\geq N$ where $N>1-\log_2\epsilon$, then we have
+\begin{align*}
+	|s_m-s_n| &= |s_m-s_{m-1}+\cdots+s_{n+1}-s_n|\\
+			  &\leq |s_m-s_{m-1}|+|s_{m-1}-s_{m-2}|+\cdots+|s_{n+2}-s_{n+1}|+|s_{n+1}-s_n|\\
+			  &< \sum_{k=n}^{m-1}2^{-k}\quad\text{by the assumption}\\
+			  &< \sum_{k=N}^{n-1}2^{-k}+\sum_{k=n}^{m-1}2^{-k}+\sum_{k=m}^{\infty}2^{-k}\quad\text{since all terms are positive}\\
+			  &= \sum_{k=N}^{\infty}2^{-k}\\
+			  &= 2^{-N+1}\quad\text{by the hint}\\
+			  &< 2^{-(1-\log_2\epsilon)+1}\quad\text{by $N>1-\log_2\epsilon$}\\
+			  &= 2^{\log_2\epsilon}\\
+			  &= \epsilon.
+\end{align*}
+Thus $(s_n)$ is a Cauchy sequence and hence converges.
+\newpage
+
+\subsection*{Q10}
+
+We will use inductive construction.
+\begin{itemize}
+	\item Base case: Since $\sup S-1<\sup S$, there exists $s\in S$ such that $s>\sup S-1$. Because $\sup S\notin S$, $s<\sup S$ instead of $s\leq\sup S$. Let $s_1=s$ and we have $\sup S-1<s_1<\sup S$.
+	\item Induction step: Given $s_1,\dots,s_k\in S$ such that $s_1<\cdots<s_k$ and $\sup S-\frac{1}{j}<s_j<\sup S$ for $j=1,\dots,k$. Since $s_k<\sup S$, there exists $s\in S$ such that $s_k<s<\sup S$. Also since $\sup S-\frac{1}{k+1}<\sup S$, there exists $t\in S$ such that $\sup S-\frac{1}{k+1}<t<\sup S$. Select $s_{k+1}=\max\{s,t\}$, then we have $s_k<s_{k+1}\in S$ and $\sup S-\frac{1}{k+1}<s_{k+1}<\sup S$.
+\end{itemize}
+Thus we inductively construct a strictly increasing sequence such that for each $k\in\N$, $\sup S-\frac{1}{k}<s_k<\sup S$. By Squeeze Lemma, $\lim\sup(S-\frac{1}{k})<\lim s_k<\lim\sup S$, implying $\lim s_k=\sup S$. 
+
+\newpage
+
+\end{document}

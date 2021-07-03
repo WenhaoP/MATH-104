@@ -1,0 +1,125 @@
+\documentclass[12pt,lettersize]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{chngcntr}
+
+\newcommand{\R}{\mathbb{R}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 104}
+\chead{Homework 1}
+\rhead{Wenhao Pan}
+\cfoot{\thepage}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\subsection*{Q1}
+\begin{enumerate}[(a)]
+	\item We need to show both directions:
+	\begin{itemize}
+		\item[$\implies$]:
+		\begin{itemize}
+			\item[Case 1.] If $b\geq0$, then $|b|\leq a\implies b\leq a$ by the definition of absolute value.
+			\item[Case 2.] If $b<0$, then 
+			\begin{align*}
+				|b|\leq a &\implies -b\leq a\quad\text{by the defintion of $|b|$}\\
+					      &\implies -a\leq -(-b)\quad\text{by theorem 3.2(i)}\\
+					      &\implies -a\leq b
+			\end{align*}
+			Thus combining both cases, we have $-a\leq b\leq a$.
+		\end{itemize}
+		\item[$\impliedby$]: 
+			\item[Case 1.] If $b\geq0$, then $b=|b|$ by the definition of absolute value and $a\geq b\geq0$. From the assumption $b\leq a$, we have $|b|\leq a$.
+			\item[Case 2.] If $b<0$, then $-b=|b|$ by the definition of absolute value. From the assumption $-a\leq b$, we have $-b\leq-(-a)=a$ by 3.2(i). Thus $|b|\leq a$.
+			Thus combining both cases, we have $|b|\leq a$.
+	\end{itemize}
+	\item From part (a), we only need to show that $-|a-b|\leq|a|-|b|\leq|a-b|$. Observe that $|a|=|a-b+b|\leq|a-b|+|b|\implies |a|-|b|\leq|a-b|+|b|-|b|=|a-b|$. The second inequality comes from Triangle Inequality 3.7. The implication comes from properties A4\&O4.
+	
+	Also observe that $|b|=|b-a+a|\leq|b-a|+|a|$ by Triangle Inequality. This implies
+	\begin{align*}
+		|b|-|a|\leq|b-a|&\implies-|b-a|\leq-(|b|-|a|)\\
+						&\implies-|-(a-b)|\leq-|b|+|a|\\
+						&\implies-|a-b|\leq|a|-|b|
+	\end{align*}
+	Thus we have $-|a-b|\leq|a|-|b|\leq|a-b|$ which implies $\big||a|-|b|\big|\leq|a-b|$.
+\end{enumerate}
+\newpage
+
+\subsection*{Q2}
+\begin{enumerate}[(a)]
+	\item We have
+	\begin{align*}
+		2(\sqrt{n+1}-\sqrt{n}) &= 2(\sqrt{n+1}-\sqrt{n})\cdot\frac{\sqrt{n+1}+\sqrt{n}}{\sqrt{n+1}+\sqrt{n}}\\
+							   &= \frac{2}{\sqrt{n+1}+\sqrt{n}}\\
+							   &< \frac{2}{\sqrt{n}+\sqrt{n}}\quad\text{by $\sqrt{n+1}>\sqrt{n}$}\\
+							   &= \frac{1}{\sqrt{n}}
+	\end{align*}
+	Thus we prove the first inequality. Again we have
+	\begin{align*}
+		2(\sqrt{n}-\sqrt{n-1}) &= 2(\sqrt{n}-\sqrt{n-1})\cdot\frac{\sqrt{n}+\sqrt{n-1}}{\sqrt{n}+\sqrt{n-1}}\\
+							   &= \frac{2}{\sqrt{n}+\sqrt{n-1}}\\
+							   &> \frac{2}{\sqrt{n}+\sqrt{n}}\quad\text{by $\sqrt{n-1}<\sqrt{n}$}\\
+							   &= \frac{1}{\sqrt{n}}
+	\end{align*}
+	Thus we prove the second inequality, completing the proof.
+	\item We have
+	\begin{align*}
+		\sum_{k=1}^{n}\frac{1}{\sqrt{k}} &> \sum_{k=1}^{n}2(\sqrt{k+1}-\sqrt{k})\quad\text{by assertion (a)}\\
+										 &= 2(\sqrt{2}+\sqrt{3}+\cdots+\sqrt{n+1}-1-\sqrt{2}-\sqrt{3}-\cdots-\sqrt{n})\\
+										 &= 2(\sqrt{n+1}-1)\\
+										 &> 2(\sqrt{n}-1)\\
+										 &= 2\sqrt{n}-2
+	\end{align*}
+	Thus $\sum_{k=1}^{n}\frac{1}{\sqrt{k}}>2\sqrt{n}-2$, completing the proof.
+	\item 
+	\begin{itemize}
+		\item Induction Hypothesis: For all integer $n\geq2$, $\sum_{k=1}^{n}\frac{1}{\sqrt{k}}<2\sqrt{n}-1$.
+		\item Base Case $n=2$: $\sum_{k=1}^{2}\frac{1}{\sqrt{k}}=1+\frac{1}{\sqrt{2}}<2\sqrt{2}-1$. 
+		\item Induction Step $n+1$: \begin{align*}
+			\sum_{k=1}^{n+1}\frac{1}{\sqrt{k}} &= \sum_{k=1}^{n}\frac{1}{\sqrt{k}}+\frac{1}{\sqrt{n+1}}\\
+											   &<2\sqrt{n}-1+\frac{1}{\sqrt{n+1}}\quad\text{by the hypothesis}\\
+											   &<2\sqrt{n}-1+2(\sqrt{n+1}-\sqrt{n})\quad\text{by (a)}\\
+											   &=2\sqrt{n+1}-1	
+		\end{align*}
+	\end{itemize}
+	Thus we have $\sum_{k=1}^{n+1}\frac{1}{\sqrt{k}}<2\sqrt{n+1}-1$, completing the induction step and the proof.
+\end{enumerate}
+\newpage
+
+\subsection*{Q3}
+
+The question can be reformulated to: show that for each $\epsilon>0$, let $b_1=b+\epsilon>b$ with $a,b\in\R$, if $a\leq b_1=b+\epsilon$, then $a\leq b$. Suppose the implication does not hold which is $\exists a\in\R,\ (a\leq b_1=b+\epsilon)\land(a>b)$. Then let $\epsilon=\frac{a-b}{2}$, and we will have
+\begin{align*}
+	 a\leq b+\epsilon &\implies a\leq b+\frac{a-b}{2}\\
+	 				  &\implies \frac{a}{2} \leq \frac{b}{2}\\
+	 				  &\implies a\leq b
+\end{align*}
+The last implication contradicts to the assumption that $a>b$. Thus the implication does hold. 
+\newpage
+
+\subsection*{Q4}
+
+We will use proof by contradiction. Suppose $\sup S>\inf T$. Then by the definition of $\sup S$, $\exists s\in S$ such that $s>\inf T$. Otherwise, $\inf T$ is an upper bound of $S$ smaller than $\sup S$. This implies that there exists $s\in S$ such that $\forall t\in T,\ s>\inf T\geq t\implies s>t$. This contradicts to the condition that $s\leq t$ for all $s\in S$ and $t\in T$. Thus $\sup S\leq \inf T$, completing the proof. 
+
+\newpage
+
+\subsection*{Q5}
+\begin{enumerate}[(a)]
+	\item $A$ does not have a minimum or maximum; $\inf(A)=0$ and $\sup(A)=\infty$.
+	\item $B$ does not have a minimum, but $\max(B)=2$; $\inf(B)=0$ and $\sup(B)=2$.
+	\item $\min(C)=-1$, but $C$ does not have a maximum; $\inf(C)=-1$ and $\sup(C)=\infty$.
+	\item $\min(D)=0$ and $\max(D)=3$; $\inf(D)=0$ and $\sup(D)=3$.
+	\item $\min(E)=2$ but $E$ does not have a maximum; $\inf(E)=2$ and $\sup(E)=\infty$.
+	\item Essentially $F=\{1\}$, so the minimum, maximum, infimum, and supremum of $F$ are all $1$.
+\end{enumerate}
+\newpage
+
+\end{document}
