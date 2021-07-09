@@ -22,6 +22,21 @@
 \newtheorem{eg}[thm]{Example}
 \newtheorem{cor}{Corollary}[thm]
 
+\tcolorboxenvironment{thm}{
+	colframe=cyan, colback=cyan!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{dfn}{
+	colframe=orange, colback=orange!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{lem}{
+	colframe=blue, colback=blue!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{cor}{
+	colframe=blue, colback=blue!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{eg}{
+	colframe=red, colback=red!5, before skip=10pt,after skip=10pt}
+
 \renewcommand\qedsymbol{\hfill $\blacksquare$}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -36,7 +51,7 @@
 
 \title{MATH 104 Cheat Sheet}
 \author{Wenhao Pan}
-\date{May 28, 2021}
+\date{\today}
 
 \begin{document}
 	\maketitle
@@ -48,92 +63,92 @@
 	\chapter{Introduction}
 	\newpage
 	\section{The Set $\N$ of Natural Numbers}
-		We denote the set $\{1,2,3,\dots\}$ of all \emph{positive integers} by $\N$. Each positive integer $n$ has a successor, namely $n+1$. The following is 5 properties of $\N$:
-		\begin{itemize}
-			\item[\textbf{N1.}] $1$ belongs to $\N$.
-			\item[\textbf{N2.}] If $n\in\N$, then its successor $n+1\in\N$.
-			\item[\textbf{N3.}] $1$ is not the successor of any element in $\N$.
-			\item[\textbf{N4.}] If $n$ and $m$ in $\N$ have the same successor, then $n=m$.
-			\item[\textbf{N5.}] A subset of $\N$ which contains $1$, and which contains $n+1$ whenever it contains $n$, must equal $\N$.
-		\end{itemize}
-		Axiom \textbf{N5} is the basis of mathematical induction, which asserts all the statements $P_1,P_2,P_3,\dots$ are true provided
-		\begin{itemize}
-			\item[(\textbf{$I_1$})] $P_1$ is true,
-			\item[(\textbf{$I_2$})] $P_{n+1}$ is true whenever $P_n$ is true.
-		\end{itemize}
-		\newpage
+	We denote the set $\{1,2,3,\dots\}$ of all \emph{positive integers} by $\N$. Each positive integer $n$ has a successor, namely $n+1$. The following is 5 properties of $\N$:
+	\begin{itemize}
+		\item[\textbf{N1.}] $1$ belongs to $\N$.
+		\item[\textbf{N2.}] If $n\in\N$, then its successor $n+1\in\N$.
+		\item[\textbf{N3.}] $1$ is not the successor of any element in $\N$.
+		\item[\textbf{N4.}] If $n$ and $m$ in $\N$ have the same successor, then $n=m$.
+		\item[\textbf{N5.}] A subset of $\N$ which contains $1$, and which contains $n+1$ whenever it contains $n$, must equal $\N$.
+	\end{itemize}
+	Axiom \textbf{N5} is the basis of mathematical induction, which asserts all the statements $P_1,P_2,P_3,\dots$ are true provided
+	\begin{itemize}
+		\item[(\textbf{$I_1$})] $P_1$ is true,
+		\item[(\textbf{$I_2$})] $P_{n+1}$ is true whenever $P_n$ is true.
+	\end{itemize}
+	\newpage
 	\section{The Set $\Q$ of Rational Numbers}
-		\begin{dfn}
+	\begin{dfn}
 		A number is called an \emph{algebraic number} if it satisfies a polynomial equation
 		\begin{displaymath}
 			c_nx^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0=0
 		\end{displaymath}
 		where the coefficients $c_0,c_1,\dots,c_n$ are integers, $c_n\neq0$ and $n\geq1$.
-		\end{dfn}
-		Rational numbers are always algebraic numbers. If $r=\frac{m}{n}$ is a rational number [$m,n\in\Z$ and $n\neq0$], then it satisfies the equation $nx-m=0$.
-		
-		\setcounter{equation}{0}
-		\begin{thm}[Rational Zeros Theorem]\label{thm:2.2}
+	\end{dfn}
+	Rational numbers are always algebraic numbers. If $r=\frac{m}{n}$ is a rational number [$m,n\in\Z$ and $n\neq0$], then it satisfies the equation $nx-m=0$.
+	
+	\setcounter{equation}{0}
+	\begin{thm}[Rational Zeros Theorem]\label{thm:2.2}
 		Suppose $c_0,c_1,\dots,c_n$ are integers and $r$ is a rational number satisfying the polynomial equation
 		\begin{equation}
 			c_nx^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0=0
 		\end{equation}
 		where $n\geq1$, $c_n\neq0$ and $c_0\neq0$. Let $r=\frac{c}{d}$ where $c,d$ are integers having no common factors and $d\neq 0$. Then $c\,|\, c_0$ and $d\,|\,c_n$.
-		\end{thm}
-		In other words, the only rational candidates for solutions of (1) have the form $\frac{c}{d}$ where $c$ divides $c_0$ and $d$ divides $c_n$.
-		\begin{proof}
+	\end{thm}
+	In other words, the only rational candidates for solutions of (1) have the form $\frac{c}{d}$ where $c$ divides $c_0$ and $d$ divides $c_n$.
+	\begin{proof}
 		We are given
 		\begin{displaymath}
 			c_n\left(\frac{c}{d}\right)^n+c_{n-1}\left(\frac{c}{d}\right)^{n-1}+\cdots+c_1\left(\frac{c}{d}\right)+c_0=0
 		\end{displaymath}
-	 	Multiply both sides by $d^n$ and obtain
-	 	\begin{displaymath}
-	 		c_nc^n+c_{n-1}c^{n-1}d+c_{n-2}c^{n-2}d^2+\cdots+c_2c^2d^{n-2}+c_1cd^{n-1}+c_0d^n=0
-	 	\end{displaymath}
- 		Solve for $c_0d^n$ and obtain
- 		\begin{displaymath}
- 			c_0d^n=-c[c_nc^{n-1}+c_{n-1}c^{n-2}d+\cdots+c_2cd^{n-2}+c_1d^{n-1}]
- 		\end{displaymath}
- 		Since $c$ and $d^n$ have no common factors, $c$ divides $c_0$. Do the same thing and solve for $c_nc^n$ and we will see $d$ divides $c_n$.
-		\end{proof}
-		
-		\begin{cor}\label{cor:2.3}
+		Multiply both sides by $d^n$ and obtain
+		\begin{displaymath}
+			c_nc^n+c_{n-1}c^{n-1}d+c_{n-2}c^{n-2}d^2+\cdots+c_2c^2d^{n-2}+c_1cd^{n-1}+c_0d^n=0
+		\end{displaymath}
+		Solve for $c_0d^n$ and obtain
+		\begin{displaymath}
+			c_0d^n=-c[c_nc^{n-1}+c_{n-1}c^{n-2}d+\cdots+c_2cd^{n-2}+c_1d^{n-1}]
+		\end{displaymath}
+		Since $c$ and $d^n$ have no common factors, $c$ divides $c_0$. Do the same thing and solve for $c_nc^n$ and we will see $d$ divides $c_n$.
+	\end{proof}
+	
+	\begin{cor}\label{cor:2.3}
 		Consider the polynomial equation
 		\begin{displaymath}
 			x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0=0
 		\end{displaymath}
 		where the coefficients $c_0,c_1,\dots,c_{n-1}$ are integers and $c_0\neq0$. Any rational solution of this equation
 		must be an integer that divides $c_0$.
-		\end{cor}
-		\begin{proof}
+	\end{cor}
+	\begin{proof}
 		By the Rational Zeros Theorem \ref{thm:2.2}, the denominator of $r$ must divide the coefficient of $x^n$, which is $1$. Thus $r$ is an integer dividing $c_0$.
-		\end{proof}
-		
-		\newpage
+	\end{proof}
+	
+	\newpage
 	\section{The Set $\R$ of Real Numbers}
-		The set $\Q$ of Rational numbers also have the following properties for addition and multiplication:
-		\begin{itemize}
-			\item[\textbf{A1.}] $a+(b+c)=(a+b)+c$ for all $a,b,c$.
-			\item[\textbf{A2.}] $a+b=b+a$ for all $a,b$.
-			\item[\textbf{A3.}] $a+0=a$ for all $a$.
-			\item[\textbf{A4.}] For each $a$, there is an element $-a$ such that $a+(-a)=0$.
-			\item[\textbf{M1.}] $a(bc)=(ab)c$ for all $a,b,c$.
-			\item[\textbf{M2.}] $ab=ba$ for all $a,b$.
-			\item[\textbf{M3.}] $a\cdot1=a$ for all $a$.
-			\item[\textbf{M4.}] For each $a\neq0$, there is an element $a^{-1}$ such that $aa^{-1}=1$.
-			\item[\textbf{DL}] $a(b+c)=ab+ac$ for all $a,b,c$.  
-		\end{itemize}
-		
-		The set $\Q$ also has an order structure $\leq$ satisfying
-		\begin{itemize}
-			\item[\textbf{O1.}] Given $a$ and $b$, either $a\leq b$ or $b\leq a$.
-			\item[\textbf{O2.}] If $a\leq b$ and $b\leq a$, then $a=b$.
-			\item[\textbf{O3.}] If $a\leq b$ and $b\leq c$, then $a\leq c$.
-			\item[\textbf{O4.}] If $a\leq b$, then $a+c\leq b+c$.
-			\item[\textbf{O5.}] If $a\leq b$ and $0\leq c$, then $ac\leq bc$.
-		\end{itemize}
-		
-		\begin{thm}\label{thm:3.1}
+	The set $\Q$ of Rational numbers also have the following properties for addition and multiplication:
+	\begin{itemize}
+		\item[\textbf{A1.}] $a+(b+c)=(a+b)+c$ for all $a,b,c$.
+		\item[\textbf{A2.}] $a+b=b+a$ for all $a,b$.
+		\item[\textbf{A3.}] $a+0=a$ for all $a$.
+		\item[\textbf{A4.}] For each $a$, there is an element $-a$ such that $a+(-a)=0$.
+		\item[\textbf{M1.}] $a(bc)=(ab)c$ for all $a,b,c$.
+		\item[\textbf{M2.}] $ab=ba$ for all $a,b$.
+		\item[\textbf{M3.}] $a\cdot1=a$ for all $a$.
+		\item[\textbf{M4.}] For each $a\neq0$, there is an element $a^{-1}$ such that $aa^{-1}=1$.
+		\item[\textbf{DL}] $a(b+c)=ab+ac$ for all $a,b,c$.  
+	\end{itemize}
+	
+	The set $\Q$ also has an order structure $\leq$ satisfying
+	\begin{itemize}
+		\item[\textbf{O1.}] Given $a$ and $b$, either $a\leq b$ or $b\leq a$.
+		\item[\textbf{O2.}] If $a\leq b$ and $b\leq a$, then $a=b$.
+		\item[\textbf{O3.}] If $a\leq b$ and $b\leq c$, then $a\leq c$.
+		\item[\textbf{O4.}] If $a\leq b$, then $a+c\leq b+c$.
+		\item[\textbf{O5.}] If $a\leq b$ and $0\leq c$, then $ac\leq bc$.
+	\end{itemize}
+	
+	\begin{thm}\label{thm:3.1}
 		The following are consequences of the field properties:
 		\begin{enumerate}[(i)]
 			\item \textcolor{red}{$a+c=b+c\implies a=b$};
@@ -144,9 +159,9 @@
 			\item $ab=0\implies(a=0)\lor(b=0)$ for $a,b,c\in\R$.
 		\end{enumerate}
 		for $a,c,c\in\R$.
-		\end{thm}
-		
-		\begin{thm}\label{thm:3.2}
+	\end{thm}
+	
+	\begin{thm}\label{thm:3.2}
 		The following are consequences of the properties of an ordered field:
 		\begin{enumerate}[(i)]
 			\item $a\leq b\implies-b\leq-a$;
@@ -158,138 +173,138 @@
 			\item $0<a<b\implies0<b^{-1}<a^{-1}$;
 		\end{enumerate}
 		for $a,c,c\in\R$.
-		\end{thm}
-		Note that $a<b$ can be represented as $(a\leq b)\land(a<b)$.
-		
-		\begin{dfn}\label{def:3.3}
+	\end{thm}
+	Note that $a<b$ can be represented as $(a\leq b)\land(a<b)$.
+	
+	\begin{dfn}\label{def:3.3}
 		We define
 		\begin{displaymath}
 			\text{$|a|=a$ if $a\geq0$  and   $|a|=-a$ if $a\leq0$}
 		\end{displaymath}
-		\end{dfn}
+	\end{dfn}
 	
-		An useful fact: $|a|\leq b\iff -b\leq a\leq b$.
-		
-		\begin{dfn}\label{def:3.4}
+	An useful fact: $|a|\leq b\iff -b\leq a\leq b$.
+	
+	\begin{dfn}\label{def:3.4}
 		For numbers $a$ and $b$ we define dist$(a,b)=|a-b|$; dist$(a,b)$ represents the \emph{distance between $a$ and $b$}.
-		\end{dfn}
-		
-		\begin{thm}\label{thm:3.5}
+	\end{dfn}
+	
+	\begin{thm}\label{thm:3.5}
 		\begin{enumerate}[(i)]
 			\item[]
 			\item $|a|\geq0$ for all $a\in\R$.
 			\item $|ab|=|a|\cdot|b|$ for all $a,b\in\R$.
 			\item $|a+b|\leq|a|+|b|$ for all $a,b\in\R$. 
 		\end{enumerate}
-		\end{thm}
-		
-		\begin{cor}\label{cor:3.6}
+	\end{thm}
+	
+	\begin{cor}\label{cor:3.6}
 		dist$(a,c)\leq$ dist$(a,b)+$ dist$(b,c)$ for all $a,b,c\in\R$. This is equivalent to $|a-c|\leq|b-c|+|b-c|$.
-		\end{cor}
-		
-		\begin{thm}[Triangle Inequality]\label{thm:3.7}
+	\end{cor}
+	
+	\begin{thm}[Triangle Inequality]\label{thm:3.7}
 		$|a+b|\leq|a|+|b|$ for all $a,b$.
-		\end{thm}
-		\begin{cor}[Reverse Triangular Inequality]\label{cor: reverse triangular}
+	\end{thm}
+	\begin{cor}[Reverse Triangular Inequality]\label{cor: reverse triangular}
 		\textcolor{red}{$\big||a|-|b|\big|\leq|a-b|$ for all $a,b\in\R$.}	
-		\end{cor}
+	\end{cor}
 	
-		\begin{tcolorbox}
-			\textcolor{red}{Here is one of the most important techniques in real analysis}.
-			\begin{enumerate}[(a)]
-				\item If $a\leq b+\epsilon$ for any $\epsilon>0$, then $a\leq b$.
-				\item If $a\geq b-\epsilon$ for any $\epsilon>0$, then $a\geq b$.
-				\item If $|a-b|<\epsilon$ for any $\epsilon>0$, then $|a-b|=0$.
-			\end{enumerate}
-		\end{tcolorbox}
+	\begin{tcolorbox}
+		\textcolor{red}{Here is one of the most important techniques in real analysis}.
+		\begin{enumerate}[(a)]
+			\item If $a\leq b+\epsilon$ for any $\epsilon>0$, then $a\leq b$.
+			\item If $a\geq b-\epsilon$ for any $\epsilon>0$, then $a\geq b$.
+			\item If $|a-b|<\epsilon$ for any $\epsilon>0$, then $|a-b|=0$.
+		\end{enumerate}
+	\end{tcolorbox}
 	
-		\newpage
+	\newpage
 	\section{The Completeness Axiom}
-		The completeness axiom for $\R$ ensure us $\R$ has no "gaps".
-		\begin{dfn}\label{def:4.1}
+	The completeness axiom for $\R$ ensure us $\R$ has no "gaps".
+	\begin{dfn}\label{def:4.1}
 		Let $S$ be a nonempty subset of $\R$.
 		\begin{enumerate}[(a)]
 			\item If $S$ contains a largest element $s_0$ [that is, $s_0\in S$ and $\forall s\in S,\ s\leq s_0$], then we call $s_0$ the \emph{maximum} of $S$ and write $s_0=\max S$.
 			\item If $S$ contains a smallest element $s_0$ [that is, $s_0\in S$ and $\forall s\in S,\ s\geq s_0$], then we call $s_0$ the \emph{minimum} of $S$ and write $s_0=\min S$. 
 		\end{enumerate}
-		\end{dfn}
-		Open intervals like $(a,b)=\{x\in\R: a<x\leq b\}$ have no minimum or maximum since the endpoints $a$ and $b$ is not in the interval.
-		
-		\begin{dfn}\label{def:4.2}
+	\end{dfn}
+	Open intervals like $(a,b)=\{x\in\R: a<x\leq b\}$ have no minimum or maximum since the endpoints $a$ and $b$ is not in the interval.
+	
+	\begin{dfn}\label{def:4.2}
 		Let $S$ be a nonempty subset of $\R$.
 		\begin{enumerate}[(a)]
 			\item If a real number $M$ satisfies $s\leq M$ for all $s\in S$, then $M$ is called an \emph{upper bound} of $S$ and the set $S$ is said to be \emph{bounded above}.
 			\item If a real number $m$ satisfies $m\leq s$ for all $s\in S$, then $m$ is called an \emph{lower bound} of $S$ and the set $S$ is said to be \emph{bounded below}.
 			\item The set $S$ is said to be \emph{bounded} if it is bounded above and bounded below. Thus $S$ is bounded if there exist real numbers $m$ and $M$ such that $S\subseteq[m,M]$.
 		\end{enumerate}
-		\end{dfn}
-		The maximum of a set is always an upper bound for the set. Likewise, the minimum of a set is always a lower bound for the set.
+	\end{dfn}
+	The maximum of a set is always an upper bound for the set. Likewise, the minimum of a set is always a lower bound for the set.
 	
-		\begin{dfn}
+	\begin{dfn}
 		Least Upper Bound Property (LUBP)\newline
 		An ordered set $S$ has the LUBP if every nonempty subset $\mathcal{A}\subset S$ that has an upper bound has a least upper bound in $S$.
-		\end{dfn}
-		Note that the set $\Q$ of rational number does not satisfy the LUBP but $\R$ does. e.g. $\mathcal(A)=\{q\in\Q: q^2<2\}$.
-			
-		\begin{dfn}\label{def:4.3}
+	\end{dfn}
+	Note that the set $\Q$ of rational number does not satisfy the LUBP but $\R$ does. e.g. $\mathcal(A)=\{q\in\Q: q^2<2\}$.
+	
+	\begin{dfn}\label{def:4.3}
 		Let $S$ be a nonempty subset of $\R$.
 		\begin{enumerate}[(a)]
 			\item If $S$ is bounded above and $S$ has a least upper bound, then we will call it the \emph{supremum} of $S$ and denote it by $\sup S$.
 			\item If $S$ is bounded below and $S$ has a greatest lower bound, then we will call it the \emph{infimum} of $S$ and denote it by $\inf S$.
 		\end{enumerate}
-		\end{dfn}
-		If $S$ is bounded above, then $M=\sup S$ if and only if (i) $s\leq M$ for all $s\in S$, and (ii) whenever $M_1<M$, there exists $s_1\in S$ such that $s_1>M_1$. Or for each $\epsilon>0$, there exists $s\in S$ such that $s>\sup S-\epsilon$.
-		
-		Note that for a positive set $S=\{s: s>0\}$, its infimum is not always positive. Example: $\{\frac{1}{n}: n\in\N\}$. Each element is positive but the infimum is $0$.
-		
-		Here are some basic facts:
-		\begin{itemize}
-			\item If a set $S$ has finitely many elements, then $\max S$ exists.
-			\item If $\max S$ exists, then $\sup S=\max S$.
-			\item For any set $S\neq\emptyset$, $\inf S\leq \sup S$
-		\end{itemize}
-		
-		\begin{thm}[Completeness Axiom]\label{thm:4.4}
+	\end{dfn}
+	If $S$ is bounded above, then $M=\sup S$ if and only if (i) $s\leq M$ for all $s\in S$, and (ii) whenever $M_1<M$, there exists $s_1\in S$ such that $s_1>M_1$. Or for each $\epsilon>0$, there exists $s\in S$ such that $s>\sup S-\epsilon$.
+	
+	Note that for a positive set $S=\{s: s>0\}$, its infimum is not always positive. Example: $\{\frac{1}{n}: n\in\N\}$. Each element is positive but the infimum is $0$.
+	
+	Here are some basic facts:
+	\begin{itemize}
+		\item If a set $S$ has finitely many elements, then $\max S$ exists.
+		\item If $\max S$ exists, then $\sup S=\max S$.
+		\item For any set $S\neq\emptyset$, $\inf S\leq \sup S$
+	\end{itemize}
+	
+	\begin{thm}[Completeness Axiom]\label{thm:4.4}
 		Every nonempty subset $S$ of $\R$ that is bounded above has a least upper bound. In other words, $\sup S$ exists and is a real number.
-		\end{thm}
-		Note that the completeness axiom does not hold for $\Q$. 
-		\begin{cor}
+	\end{thm}
+	Note that the completeness axiom does not hold for $\Q$. 
+	\begin{cor}
 		Every nonempty subset $S$ of $\R$ that is bounded below has a greatest lower bound. In other words, $\inf S$ exists and is a real number.
-		\end{cor}
-		
-		\begin{thm}[Archimedean Property]\label{thm:4.6}
+	\end{cor}
+	
+	\begin{thm}[Archimedean Property]\label{thm:4.6}
 		If $a>0$ and $b>0$, then for some positive integer $n$, we have $na>b$.
-		\end{thm}
-	 	\begin{cor}
-	 	(Set $a=1$). For any $b>0$, there exists $n\in\N$ such that $n>b$
-	 	\end{cor}
- 		\begin{cor}
- 		(Set $b=1$). For any $a>0$, there exists $n\in\N$ such that $na>1\implies \frac{1}{n}<a$.
- 		\end{cor}
-		
-		\begin{lem}\label{lem:4.7}
+	\end{thm}
+	\begin{cor}
+		(Set $a=1$). For any $b>0$, there exists $n\in\N$ such that $n>b$
+	\end{cor}
+	\begin{cor}
+		(Set $b=1$). For any $a>0$, there exists $n\in\N$ such that $na>1\implies \frac{1}{n}<a$.
+	\end{cor}
+	
+	\begin{lem}\label{lem:4.7}
 		If $x,y\in\R$ such that $y-x>1$, then there exists $m\in\Z$ such that $x<m<y$.
-		\end{lem}
-
-		
-		\begin{thm}[Denseness of $\Q$]\label{thm:4.7}
+	\end{lem}
+	
+	
+	\begin{thm}[Denseness of $\Q$]\label{thm:4.7}
 		If $a,b\in\R$ and $a<b$, then there is a rational $r\in\Q$ such that $a<r<b$.
-		\end{thm}
-
-		\newpage
+	\end{thm}
+	
+	\newpage
 	\section{The Symbols $+\infty$ and $-\infty$}
-		The symbols $+\infty$ and $-\infty$ are extremely useful even though they are \textbf{not} real numbers. So for each real number a, $-\infty<a<\infty$. If a set $S$ is not bounded above, we define $\sup S=+\infty$. Likewise, if $S$ is not bounded below, then we define $\inf S=-\infty$.
-		
-		We can extend real numbers to $\R\cup\{-\infty,\infty\}$. Notice that this is not a \textbf{field}, so it does not satisfy all field properties.
-		
-		For emphasis, we recapitulate:
-		
-		Let $S$ be any nonempty subset of $\R$. The \emph{symbols} $\sup S$ and $\inf S$ always make sense. If $S$ is not bounded above, then $\sup S$ is a \emph{real} number; otherwise $\sup S=+\infty$. If $S$ is bounded below, then $\inf S$ is a \emph{real} number; otherwise $\inf S=-\infty$. Moreover, we have $\inf S\leq\sup S$.
-		
+	The symbols $+\infty$ and $-\infty$ are extremely useful even though they are \textbf{not} real numbers. So for each real number a, $-\infty<a<\infty$. If a set $S$ is not bounded above, we define $\sup S=+\infty$. Likewise, if $S$ is not bounded below, then we define $\inf S=-\infty$.
+	
+	We can extend real numbers to $\R\cup\{-\infty,\infty\}$. Notice that this is not a \textbf{field}, so it does not satisfy all field properties.
+	
+	For emphasis, we recapitulate:
+	
+	Let $S$ be any nonempty subset of $\R$. The \emph{symbols} $\sup S$ and $\inf S$ always make sense. If $S$ is not bounded above, then $\sup S$ is a \emph{real} number; otherwise $\sup S=+\infty$. If $S$ is bounded below, then $\inf S$ is a \emph{real} number; otherwise $\inf S=-\infty$. Moreover, we have $\inf S\leq\sup S$.
+	
 	\chapter{Sequences}
 	\newpage
 	\section{Limits of Sequences}		
-		\begin{dfn}\label{def:limit}
+	\begin{dfn}\label{def:limit}
 		A sequence $(s_n)$ of real numbers is said to \textbf{converge} to the real number \emph{$s$} provided that
 		\begin{displaymath}
 			\forall \epsilon > 0,\ \exists N,\ n > N \Rightarrow |s_n-s| < \epsilon.
@@ -297,69 +312,60 @@
 		If $(s_n)$ converges to $s$, we write $\lim_{n\rightarrow \infty}s_n=s$ or $s_n\rightarrow s$. $s$ is the \emph{limit} of the sequence $(s_n)$.
 		A sequence that does not converge (i.e. it has no \emph{limit}) is said to \emph{diverge}.\\
 		Notice that in the definition, instead of simple $\epsilon$, we can also use some other complicated forms with some extra constants like $M\epsilon,\ \frac{\epsilon}{c},\ a^2\epsilon$ and so on.
-		\end{dfn}
+	\end{dfn}
 	
-		Intuitively, the definition means that no matter how small you pick $\epsilon>0$, \textbf{eventually} the sequence will stay within $\epsilon$ of $s$ at some point (the threshold $N$) and forever after.
+	Intuitively, the definition means that no matter how small you pick $\epsilon>0$, \textbf{eventually} the sequence will stay within $\epsilon$ of $s$ at some point (the threshold $N$) and forever after.
 	
-		\begin{thm}
+	\begin{thm}
 		The limit of a sequence $(s_n)$ is unique. i.e. $(\lim s_n=s) \land (lim s_n=t) \Rightarrow s=t$.
-		\end{thm}
-		
-		\begin{thm}
+	\end{thm}
+	
+	\begin{thm}
 		\textcolor{red}{
-		\begin{itemize}
-			\item If $s_n\geq a$ for all but finitely many $n$, then $\lim s_n\geq a$.
-			\item If $s_n\leq b$ for all but finitely many $n$, then $\lim s_n\leq b$.
+			\begin{itemize}
+				\item If $s_n\geq a$ for all but finitely many $n$, then $\lim s_n\geq a$.
+				\item If $s_n\leq b$ for all but finitely many $n$, then $\lim s_n\leq b$.
 		\end{itemize}}
-		\end{thm}
-		
-		\begin{thm}[Squeeze Lemma]\label{lem: squeeze}
-			\textcolor{red}{If $a_n\leq s_n\leq b_n$ for all $n$ and $\lim a_n=\lim b_n=s$, then $\lim s_n=s$.}
-		\end{thm}
-		
-		\newpage
+	\end{thm}
+	
+	\begin{thm}[Squeeze Lemma]\label{lem: squeeze}
+		\textcolor{red}{If $a_n\leq s_n\leq b_n$ for all $n$ and $\lim a_n=\lim b_n=s$, then $\lim s_n=s$.}
+	\end{thm}
+	
+	\newpage
 	
 	\section{A Discussion about Proofs}
-		This section gives several examples of proofs with some discussion using the definition of the limit of a sequence.
-		\begin{eg}
+	This section gives several examples of proofs with some discussion using the definition of the limit of a sequence.
+	\begin{eg}
 		Prove $\lim \frac{1}{n^2}=0$.
-		\end{eg}
-		\emph{Discussion}. According to the definition of the limit, we need to consider an $\epsilon >0$ such that $|\frac{1}{n^2}-0|<\epsilon$ for $n>\text{some}N$.
-		$|\frac{1}{n^2}-0|<\epsilon$ implies that $\frac{1}{\epsilon}<n^2 \text{or} \frac{1}{\sqrt{\epsilon}}<n$.
-		Thus we can suppose $N=\frac{1}{\sqrt{\epsilon}}$ and check if we reverse our reasoning into proof, it still makes sense. 
-		\begin{proof}
-		Let $\epsilon>0$ and $N=\frac{1}{\sqrt{\epsilon}}$, then
-		\begin{align*}
-			n>N &\Rightarrow \epsilon > \frac{1}{n^2}\\
-				&\Rightarrow \frac{1}{n^2}-0 < \epsilon -0\\
-				&\Rightarrow \abs{\frac{1}{n^2}-0}<\epsilon
-		\end{align*}
-		This proofs $\lim \frac{1}{n^2}=0$ according to the definition of the limit \ref{def:limit}.
-		\end{proof}
-		
-		\begin{eg}
+	\end{eg}
+	\emph{Discussion}. According to the definition of the limit, we need to consider an $\epsilon >0$ such that $|\frac{1}{n^2}-0|<\epsilon$ for $n>\text{some}N$.
+	$|\frac{1}{n^2}-0|<\epsilon$ implies that $\frac{1}{\epsilon}<n^2 \text{or} \frac{1}{\sqrt{\epsilon}}<n$.
+	Thus we can suppose $N=\frac{1}{\sqrt{\epsilon}}$ and check if we reverse our reasoning into proof, it still makes sense. 
+	
+	\begin{eg}
 		Prove $\lim \frac{3n+1}{7n-4}=\frac{3}{7}$
-		\end{eg}
-		\emph{Discussion}. Just like the last example, we can start from the definition \ref{def:limit} to get a suitable $N$.
-		\begin{proof}
-			Let $\epsilon>0$ and $N=\frac{19}{49\epsilon}+\frac{4}{7}$, then
+	\end{eg}
+	\emph{Discussion}. Just like the last example, we can start from the definition \ref{def:limit} to get a suitable $N$.
+	\begin{proof}
+		Let $\epsilon>0$ and $N=\frac{19}{49\epsilon}+\frac{4}{7}$, then
 		\begin{align*}
 			n>N &\Rightarrow 7n>\frac{19}{7\epsilon}+4\\
-				&\Rightarrow \frac{19}{7(7n-4)}<\epsilon\\
-				&\Rightarrow \frac{3n+1}{7n-4} - \frac{3}{7}<\epsilon\\
-				&\Rightarrow \abs{\frac{3n+1}{7n-4} - \frac{3}{7}}<\epsilon\qquad \text{since}\ n>0
+			&\Rightarrow \frac{19}{7(7n-4)}<\epsilon\\
+			&\Rightarrow \frac{3n+1}{7n-4} - \frac{3}{7}<\epsilon\\
+			&\Rightarrow \abs{\frac{3n+1}{7n-4} - \frac{3}{7}}<\epsilon\qquad \text{since}\ n>0
 		\end{align*}
 		This proofs $\lim \frac{3n+1}{7n-4}=\frac{3}{7}$ according to the definition of the limit \ref{def:limit}.
-		\end{proof}
-		
-		\begin{eg}
-			Prove $\lim\frac{4n^3+3n}{n^3-6}=4$
-		\end{eg}
-		\emph{Discussion}. Since $\frac{4n^3+3n}{n^3-6}-4 = \frac{3n+24}{n^3-6}$, when $n>1$, we can find an upper bound for
-		$\frac{3n+24}{n^3-6}$ so that the bound $<\epsilon \Rightarrow \abs{\frac{3n+24}{n^3-6}}<\epsilon$. Finding an upper bound for a fraction is equivalent to finding a upper bound for its numerator and a lower bound for its denominator.
-		We know $3n+24\leq27n$ for $n>1$. Also we note $n^3-6\geq\frac{n^3}{2} \Rightarrow n>2$. Thus we can have $\frac{3n+24}{n^3-6}<\frac{27n}{n^3/2}<\epsilon \Rightarrow n>\sqrt{\frac{54}{\epsilon}},\ \text{provided}\ n>2$.
-		\begin{proof}
-			Let $\epsilon>0$ and $N=\max\{2,\sqrt{\frac{54}{\epsilon}}\}$, then
+	\end{proof}
+	
+	\begin{eg}
+		Prove $\lim\frac{4n^3+3n}{n^3-6}=4$
+	\end{eg}
+	\emph{Discussion}. Since $\frac{4n^3+3n}{n^3-6}-4 = \frac{3n+24}{n^3-6}$, when $n>1$, we can find an upper bound for
+	$\frac{3n+24}{n^3-6}$ so that the bound $<\epsilon \Rightarrow \abs{\frac{3n+24}{n^3-6}}<\epsilon$. Finding an upper bound for a fraction is equivalent to finding a upper bound for its numerator and a lower bound for its denominator.
+	We know $3n+24\leq27n$ for $n>1$. Also we note $n^3-6\geq\frac{n^3}{2} \Rightarrow n>2$. Thus we can have $\frac{3n+24}{n^3-6}<\frac{27n}{n^3/2}<\epsilon \Rightarrow n>\sqrt{\frac{54}{\epsilon}},\ \text{provided}\ n>2$.
+	\begin{proof}
+		Let $\epsilon>0$ and $N=\max\{2,\sqrt{\frac{54}{\epsilon}}\}$, then
 		\begin{align*}
 			n>N &\Rightarrow (n>\sqrt{\frac{54}{\epsilon}})\land(n>2)\\
 			&\Rightarrow (\frac{27n}{n^3/2}<\epsilon)\land(\frac{n^3}{2}\leq n^3-6)\land(27n\geq3n+24)\\
@@ -367,22 +373,22 @@
 			&\Rightarrow \abs{\frac{4n^3+3n}{n^3-6}-4} < \epsilon
 		\end{align*}
 		This proofs $\lim\frac{4n^3+3n}{n^3-6}=4$ according to the definition of the limit \ref{def:limit}.
-		\end{proof}
-		
-		\begin{eg}
+	\end{proof}
+	
+	\begin{eg}
 		Show that $a_n=(-1)^n$ does not converge.
-		\end{eg}
-		\emph{Discussion}. Assume $\lim(-1)^n=a$, and we can see that no matter what $a$ is, either $1$ or $-1$ is at least
-		$1$ from $a$, so it means $\abs{(-1)^n-a}<1$ will not hold for all large $n$.
-		\begin{proof}
+	\end{eg}
+	\emph{Discussion}. Assume $\lim(-1)^n=a$, and we can see that no matter what $a$ is, either $1$ or $-1$ is at least
+	$1$ from $a$, so it means $\abs{(-1)^n-a}<1$ will not hold for all large $n$.
+	\begin{proof}
 		Suppose $\lim(-1)^n=a$ and $\epsilon = 1$. By \ref{def:limit}, $\abs{(-1)^n-a}<1 \Rightarrow (|1-a|<1)\land(|-1-a|<1)$.
 		Now by \ref{def:tri-ineq}, $2=|1-a+a-(-1)|\leq|1-a|+|a-(-1)|<1+1=2$, which is a contradiction. 
-		\end{proof}
-		
-		\begin{eg}
+	\end{proof}
+	
+	\begin{eg}
 		Let $(s_n)$ be a sequence of nonnegative real numbers and suppose $s=\lim s_n$. Note $s\geq0$. Prove $\lim\sqrt{s_n}=\sqrt{s}$
-		\end{eg}
-		\begin{proof}
+	\end{eg}
+	\begin{proof}
 		There are two cases.
 		\begin{enumerate}
 			\item $s>0$: Let $\epsilon>0$. $\lim s_n=s \Rightarrow (\exists N,\ n>N \Rightarrow |s_n-s|<\sqrt{s}\epsilon)$.
@@ -392,13 +398,13 @@
 			\end{displaymath}
 			\item $s=0$: EXERCISE 8.3 
 		\end{enumerate}
-		\end{proof}
+	\end{proof}
 	
-		\begin{eg}
+	\begin{eg}
 		Let $(s_n)$ be a convergent sequence of real numbers such that $s_n\neq0$ for all $n\in \mathbb{N}$ and $\lim s_n=s
 		\neq0$. Prove $\inf\{|s_n|: n\in\mathbb{N}\}>0$
-		\end{eg}
-		\begin{proof}
+	\end{eg}
+	\begin{proof}
 		Let $\epsilon=\frac{|s|}{2}$. Since $\lim s_n=s$,
 		\begin{displaymath}
 			n>N \Rightarrow |s_n-s|<\frac{|s|}{2} \Rightarrow |s_n|\geq\frac{|s|}{2}
@@ -409,50 +415,50 @@
 		\end{displaymath}
 		which is a contradiction. Now if we set $m=\min\{\frac{|s|}{2},|s_1|,|s_2|,\dots,|s_N|\}$, then clearly we have
 		$m>0$ since and $|s_n|\geq m$ for all $n\in \mathbb{N}$. Thus $\inf\{|s_n|: n\in\mathbb{N}\}\geq m>0$\textbf{WHY???} 
-		\end{proof}
-		\newpage
-		
+	\end{proof}
+	\newpage
+	
 	\section{Limit Theorems for Sequences}
-		\begin{dfn}\label{def:bound}
+	\begin{dfn}\label{def:bound}
 		A sequence $(s_n)$ is said to be \emph{bounded} if $\exists M,\ \forall n,\ \text{such that}\ |s_n|\leq M$
-		\end{dfn}
-		
-		\begin{thm}\label{def:convergence is bounded}
+	\end{dfn}
+	
+	\begin{thm}\label{def:convergence is bounded}
 		Convergent sequences are bounded.
-		\end{thm}
-		
-		\begin{thm}
+	\end{thm}
+	
+	\begin{thm}
 		If the sequence $(s_n)$ converges to $s$ and $k\in\mathbb{R}$, then $(ks_n)$ converges to $ks$. i.e. $\lim(ks_n)=k\cdot\lim s_n$.
-		\end{thm}
-		
-		\begin{thm}\label{def:addition}
+	\end{thm}
+	
+	\begin{thm}\label{def:addition}
 		If $(s_n)$ and $(t_n)$ converge to $s$ and $t$, then $(s_n+t_n)$ converges to $s+t$. That is,
 		\begin{displaymath}
 			\lim(s_n+t_n)=\lim s_n+\lim t_n.
 		\end{displaymath} 
-		\end{thm}
+	\end{thm}
 	
-		\begin{thm}\label{def:multiplication}
+	\begin{thm}\label{def:multiplication}
 		If $(s_n)$ and $(t_n)$ converge to $s$ and $t$, then $(s_nt_n)$ converges to $st$. That is,
 		\begin{displaymath}
 			\lim(s_nt_n)=(\lim s_n)(\lim t_n)
 		\end{displaymath} 
-		\end{thm}
-		
-		\begin{lem}
-		If $(s_n)\rightarrow s\neq0$ and $s_n\neq0$ and  for all $n$, then $\inf{|s_n|: n\in\N}>0$.
-		\end{lem}
-		
-		\begin{lem}\label{def:reciprocal}
-		If $(s_n)$ converges to $s$, $s_n\neq 0$ for all $n$, and $s\neq 0$, then $(1/s_n)$ converges to $1/s$.
-		\end{lem}
-
+	\end{thm}
 	
-		\begin{thm}
+	\begin{lem}
+		If $(s_n)\rightarrow s\neq0$ and $s_n\neq0$ and  for all $n$, then $\inf{|s_n|: n\in\N}>0$.
+	\end{lem}
+	
+	\begin{lem}\label{def:reciprocal}
+		If $(s_n)$ converges to $s$, $s_n\neq 0$ for all $n$, and $s\neq 0$, then $(1/s_n)$ converges to $1/s$.
+	\end{lem}
+	
+	
+	\begin{thm}
 		Suppose $(s_n)$ and $(t_n)$ converge to $s$ and $t$. If $s\neq 0$ and $s_n\neq 0$ for all $n$, then $(t_n/s_n)$ converges to t/s.
-		\end{thm}
-		
-		\begin{thm}
+	\end{thm}
+	
+	\begin{thm}
 		\begin{enumerate}[(a)]
 			\item[]
 			\item $\lim_{n\rightarrow\infty}(\frac{1}{n^p})=0$ for $p>0$.
@@ -460,196 +466,101 @@
 			\item $\lim(n^{1/n})=1$.
 			\item $\lim_{n\rightarrow\infty}a^{1/n}=1$ for $a>0$.
 		\end{enumerate}
-		\end{thm}
-		
-		\begin{dfn}
+	\end{thm}
+	
+	\begin{dfn}
 		For a $(s_n)$, we write $\lim s_n=+\infty$ provided for each $M>0$ there is a number $N$ wuch that $n>N\Rightarrow s_n>M$. Similarly, we write $\lim s_n=-\infty$ provided for each $M<0$ there is a number $N$ wuch that $n>N\Rightarrow s_n<M$.
-		\end{dfn}
-		This implies that if $\lim s_n>-\infty$, $\exists T,\ \forall n, s_n>T$. $\lim s_n<\infty$, $\exists T,\ \forall n, s_n<T$. 
-		Be careful that we say $\lim s_n=+\infty$ as $(s_n)$ \textbf{diverges} to $\infty$, \textbf{not converge} to $\infty$.
-
-		
-		\begin{thm}
+	\end{dfn}
+	This implies that if $\lim s_n>-\infty$, $\exists T,\ \forall n, s_n>T$. $\lim s_n<\infty$, $\exists T,\ \forall n, s_n<T$. 
+	Be careful that we say $\lim s_n=+\infty$ as $(s_n)$ \textbf{diverges} to $\infty$, \textbf{not converge} to $\infty$.
+	
+	
+	\begin{thm}
 		Let $\lim s_n=+\infty$ and $\lim t_n>0$. Then $\lim s_nt_n=+\infty$.
-		\end{thm}
-
-		
-		\begin{thm}
+	\end{thm}
+	
+	
+	\begin{thm}
 		For a $(s_n)$ of \emph{positive} real numbers, we have $\lim s_n=+\infty$ if and only if $\lim(\frac{1}{s_n})=0$.
-		\end{thm}
-
-		\newpage
+	\end{thm}
+	
+	\begin{thm}
+		Assume all $s_n\neq0$ and that the limit $L=\lim\left|\frac{s_{n+1}}{s_n}\right|$ exists.
+		\begin{enumerate}[(a)]
+			\item If $L<1$, then $\lim s_n=0$.
+			\item If $L>1$, then $\lim |s_n|=+\infty$.
+		\end{enumerate} 
+	\end{thm}
+	
+	\newpage
 	\section{Monotone Sequences and Cauchy Sequence}
-		\begin{dfn}
+	\begin{dfn}
 		$(s_n)$ is called an \emph{increasing sequence (or nondecreasing)} if $\forall n,\ s_n\leq s_{n+1}$ and $s_n\leq s_m\ \text{whenever}\ n<m$.
 		Similarly, $(s_n)$ is called an \emph{decreasing sequence (or nonincreasing)} if $\forall n,\ s_n\geq s_{n+1}$. An increasing or decreasing sequence is called \emph{monotone} or \emph{monotonic} sequence.
-		\end{dfn}
+	\end{dfn}
 	
-		\begin{thm}\label{def:bounded monotone seq}
+	\begin{thm}\label{def:bounded monotone seq}
 		All bounded monotone sequences converge.
-		\end{thm}
-		\begin{proof}
-		Let $(s_n)$ be a bounded increasing sequence, $S=\{s_n: n\in \mathbb{N}\}$. We can say $u=\sup S$ since $(s_n)$ is bounded by \ref{thm:4.4}. 
-		Since $u-\epsilon<u$, there exists $N$ such that $s_N>u-\epsilon \Rightarrow \forall n>N,\ s_n>u-\epsilon$. Since $u$ is the supremum, $u-\epsilon<s_n\leq u \Rightarrow |s_n-u|<\epsilon$.
-		The proof for decreasing sequence is in exercise 10.2.
-		\end{proof}
-		
-		From the proof procedure above, we can see that bounded monotone sequences \textbf{converge to its infimum or supremum}
-		
-		\subsection*{Discussion of Decimals}
-		Notice that real numbers are simply decimal expansions. For a decimal expansion like $K.d_1d_2d_3d_4\cdots$, we can define a sequence by
-		\begin{displaymath}
-			s_n=K+\frac{d_1}{10}+\frac{d_2}{10^2}+\cdots+\frac{d_n}{10^n}
-		\end{displaymath} 
-		where $K$ is an nonnegative integer and each $d_j\in\{0,1,2,3,4,5,6,7,8,9\}$. When trying to $\lim s_n$, the formula
-		of geometric series could help:
-		\begin{displaymath}
-			\lim\limits_{n\rightarrow\infty}a(1+r+r^2+\cdots+r^n)=\frac{a}{1-r}\quad \text{for}\quad |r|<1;
-		\end{displaymath}
-		
-		There are two important reversible facts:
-		\begin{enumerate}
-			\item Different decimal expansions can represent the same real number.
-			\item Every nonnegative real number has at least one decimal expansion
-		\end{enumerate}
-
-
-		\begin{thm}\label{def:unbounded monotone seq}
+	\end{thm}
+	
+	From the proof procedure above, we can see that bounded monotone sequences \textbf{converge to its infimum or supremum}
+	
+	
+	\begin{thm}\label{def:unbounded monotone seq}
 		\begin{enumerate}[(i)]
 			\item[]
 			\item If $(s_n)$ is an unbounded increasing sequence, then $\lim s_n=+\infty$.
 			\item If $(s_n)$ is an unbounded decreasing sequence, then $\lim s_n=-\infty$.
 		\end{enumerate}
-		\end{thm}
-		\begin{proof}
-		\begin{enumerate}[(i)]
-			\item[]
-			\item Let $M>0$. Since $\{s_n: n\in\mathbb{N}\}$ is unbounded and bounded by $s_1$, it must be unbounded above.
-			Thus there must be some $N\in\mathbb{N}$ so that $s_N>M$. Since $s_n$ is increasing, we have $n>N\Rightarrow s_n\geq s_N>M$, so $\lim s_n=+\infty$. 
-			\item Exercise 10.5
-		\end{enumerate}
-		\end{proof}
-		\begin{cor}
+	\end{thm}
+	\begin{cor}
 		If $(s_n)$ is monotone, then $\lim s_n$ is always meaningful. i.e. $\lim s_n=s,\ +\infty,\ \text{or}\ -\infty$.
-		\end{cor}
+	\end{cor}
 	
-		Suppose $(s_n)$ is bounded. Define $u_n=\inf\{s_m: m\geq n\}$ and $v_n=\sup{s_m: m\geq n}$. Then observe that $(u_n)$ is nondecreasing and $(v_n)$ is nonincreasing since as $n$ increases, the set has fewer elements. i.e. we have fewer choices for infimum and supremum. In general, if $A\subseteq B$, then $\inf A\geq \inf B$ and $\sup A\leq \sup B$.
-		
-		\begin{dfn}
+	Suppose $(s_n)$ is bounded. Define $u_n=\inf\{s_m: m\geq n\}$ and $v_n=\sup{s_m: m\geq n}$. Then observe that $(u_n)$ is nondecreasing and $(v_n)$ is nonincreasing since as $n$ increases, the set has fewer elements. i.e. we have fewer choices for infimum and supremum. In general, if $A\subseteq B$, then $\inf A\geq \inf B$ and $\sup A\leq \sup B$.
+	
+	\begin{dfn}
 		Let $(s_n)$ be a sequence in $\mathbb{R}$, define
 		\begin{itemize}
 			\item $\lim\sup s_n=\lim\limits_{N\rightarrow\infty}\sup\{s_n: n>N\}$
 			\item $\lim\inf s_n=\lim\limits_{N\rightarrow\infty}\inf\{s_n: n>N\}$
 		\end{itemize}
-		\end{dfn}
-		If $(s_n)$ is not bounded above. $\sup\{s_n: n>N\}=+\infty$ for all $N$ and we decree $\lim\sup s_n=+\infty$.
-		Likewise, if $(s_n)$ is not bounded below. $\inf\{s_n: n>N\}=-\infty$ for all $N$ and we decree $\lim\inf s_n=-\infty$.
-		
-		Notice that $\lim\sup s_n$ need not equal to $\sup\{s_n: n>N\}$, but $\lim\sup s_n\leq\sup\{s_n: n>N\}$
-		
-		
-		\begin{thm}\label{def:condition for limit}
+	\end{dfn}
+	If $(s_n)$ is not bounded above. $\sup\{s_n: n>N\}=+\infty$ for all $N$ and we decree $\lim\sup s_n=+\infty$.
+	Likewise, if $(s_n)$ is not bounded below. $\inf\{s_n: n>N\}=-\infty$ for all $N$ and we decree $\lim\inf s_n=-\infty$.
+	
+	Notice that $\lim\sup s_n$ need not equal to $\sup\{s_n: n>N\}$, but $\lim\sup s_n\leq\sup\{s_n: n>N\}$
+	
+	
+	\begin{thm}\label{def:condition for limit}
 		Let $(s_n)$ be a sequence in $\mathbb{R}$.
 		\begin{enumerate}[(i)]
 			\item If $\lim s_n$ is defined, then $\lim\inf s_n=\lim s_n=\lim\sup s_n$.
 			\item If $\lim\inf s_n=\lim\sup s_n$, then $\lim s_n$ is defined and $\lim s_n=\lim\inf s_n=\lim\sup s_n$.
 		\end{enumerate}
-		\end{thm}
-		\begin{proof}
-		We use the notation $u_N=\inf\{s_n: n>N\},\ v_N=\sup \{s_n: n>N\},\ u=\lim u_N=\lim\inf s_n\ \text{and}\ v=\lim v_N=\lim\sup s_n$.
-		\begin{enumerate}[(i)]
-			\item \begin{itemize}
-					  \item $\lim s_n=+\infty$: Let $M>0$ then there is a $N$ so that $n>N\Rightarrow s_n>M$. Then
-					  $u_N=\inf\{s_n: n>N\}\geq M$. This means $m>N\Rightarrow u_m\geq M\Rightarrow\lim u_N=\lim\inf s_n=+\infty$.
-					  \item $\lim s_n=-\infty$: It is similar to the previous proof.
-					  \item $\lim s_n=s$: Let $\epsilon>0$ then $n>N\Rightarrow |s_n-s|<\epsilon$, so
-					  \begin{displaymath}
-					  	v_N=\sup\{s_n: n>N\}\leq s+\epsilon.
-					  \end{displaymath}
-				  	  Also $m>N\Rightarrow v_m\leq s+\epsilon$, so 
-				  	  \begin{displaymath}
-				  	  	\lim\sup s_n=\lim v_m\leq s+\epsilon\Rightarrow\lim\sup s_n\leq s=\lim s_n.
-				  	  \end{displaymath}
-			  	  	  A similar argument shows $\lim s_n\leq\lim\inf s_n$. Since $\lim\inf s_n\leq\lim\sup s_n$ we get
-			  	  	  \begin{displaymath}
-			  	  	  	\lim\inf s_n=\lim s_n=\lim\sup s_n
-			  	  	  \end{displaymath}
-				  \end{itemize}
-			\item \begin{itemize}
-					  \item If $\lim\inf s_n=\lim\sup s_n=s$, then we have
-					  \begin{displaymath}
-					  	\abs{s-\sup{s_n:n>N_0}}<\epsilon
-					  \end{displaymath}
-				  	  which implies $\sup\{s_n: n>N_0\}<s+\epsilon\Rightarrow\forall n>N_0,\ s_n<s+\epsilon$.
-				  	  Similarly, we have 
-				  	  \begin{displaymath}
-				  	  	\abs{s-\inf{s_n:n>N_1}}<\epsilon
-				  	  \end{displaymath}
-			  	  	  which implies $\inf\{s_n: n>N_1\}>s-\epsilon\Rightarrow\forall n>N_1,\ s_n>s-\epsilon$.
-			  	  	  Therefore,
-			  	  	  \begin{displaymath}
-			  	  	  	\forall n>\max\{N_0,N_1\},\ s-\epsilon<s_n<s+\epsilon\Rightarrow |s_n-s|<\epsilon	
-			  	  	  \end{displaymath}
-		  	  	  	  \item If $\lim\inf s_n=\lim\sup s_n=+\infty$, then
-		  	  	  	  \begin{displaymath}
-		  	  	  	  	\lim\inf s_n=+\infty\Rightarrow \forall M>0,\ \inf\{s_n:n>N_0\}>M\Rightarrow n>N_0,\ s_n>M.
-		  	  	  	  \end{displaymath}
-	  	  	  	  	  \item If $\lim\inf s_n=\lim\sup s_n=-\infty$, then
-	  	  	  	  	  \begin{displaymath}
-	  	  	  	  	  	\lim\sup s_n=-\infty\Rightarrow \forall M<0,\ \sup\{s_n:n>N_0\}<M\Rightarrow n>N_0,\ s_n<M.
-	  	  	  	  	  \end{displaymath}
-				  \end{itemize}
-		\end{enumerate}
-		\end{proof}
-		
-		\begin{dfn}\label{def:cauchy-seq}
+	\end{thm}
+	
+	\begin{dfn}\label{def:cauchy-seq}
 		A $(s_n)$ is called a \emph{Cauchy sequence} if 
 		\begin{displaymath}
 			\forall\epsilon>0,\ \exists N\ \text{such that}\ m,n>N\Rightarrow|s_n-s_m|<\epsilon
 		\end{displaymath}
-		\end{dfn}
-		\begin{lem}
+	\end{dfn}
+	\begin{lem}
 		Convergent sequences are Cauchy sequences.
-		\end{lem}
-		\begin{proof}
-		Suppose $\lim s_n=s$. Let $\epsilon>0$ then
-		\begin{align*}
-			n,m>N &\Rightarrow |s_n-s|<\frac{\epsilon}{2}\ \text{and}\ |s_m-s|<\frac{\epsilon}{2}\\
-				  &\Rightarrow |s_n-s_m|=|s_n-s+s-s_m|\leq|s_n-s|+|s-s_m|<\epsilon.
-		\end{align*}
-		\end{proof}
-		
-		\begin{lem}
-		Cauchy sequences are bounded.
-		\end{lem}
-		\begin{proof}
-		By \ref{def:cauchy-seq} and set $\epsilon=1$ we have
-		\begin{displaymath}
-			m,n>N\Rightarrow|s_n-s_m|<1
-		\end{displaymath}
-		In particular $n>N\Rightarrow |s_n|-|s_{N+1}|\leq|s_n-s_{N+1}|<1$. Let $M=\max\{|s_{N+1}|+1,|s_1|,|s_2|,\dots,|s_N|\}$ then $|s_n|\leq M$.
-		\end{proof}
+	\end{lem}
 	
-		\begin{thm}\label{def:cauchy iff convergent}
+	\begin{lem}
+		Cauchy sequences are bounded.
+	\end{lem}
+	
+	\begin{thm}\label{def:cauchy iff convergent}
 		A sequence is a convergent sequence if and only if it is a Cauchy sequence.
-		\end{thm}
-		\begin{proof}
-		We've already proved the right direction so we only need to proved the left direction by showing $\lim\inf s_n=\lim\sup s_n$ from \ref{def:condition for limit}.
-		Let $\epsilon>0$ and since $(s_n)$ is a Cauchy sequence, there exists $N$ such that
-		\begin{displaymath}
-			m,n<N \Rightarrow |s_n-s_m|<\epsilon\Rightarrow \forall m>N,\ v_N=\sup\{s_n: n>N\}\leq s_m+\epsilon
-		\end{displaymath}
-		Now $v_N-\epsilon$ becomes a lower bound for $\{s_m: m>N\}$ so $v_N-\epsilon\leq\inf\{s_m: m>N\}=u_N$.
-		Thus
-		\begin{displaymath}
-			\lim\sup s_n\leq v_N\leq u_N+\epsilon\leq\lim\inf s_n+\epsilon
-		\end{displaymath}
-		Since this is true for all $\epsilon>0$, $\lim\sup s_n$ cannot be greater than $\lim\inf s_n$ (imagine $\epsilon$ is extremely small, then $\lim\sup s_n>\lim\inf s_n+\epsilon$). Thus we have $\lim\inf s_n\geq\lim\sup s_n$. $\lim\inf s_n\leq\lim\sup s_n$ is obviously true, so we have the equality.
-		\end{proof}
-		\newpage
-		
+	\end{thm}
+	\newpage
+	
 	\section{Subsequences}
-		\begin{dfn}
+	\begin{dfn}
 		Suppose $(s_n)_{n\in\mathbb{N}}$ is a sequence. A \emph{subsequence} of this sequence is $(t_k)_{k\in\mathbb{N}}$ where for each $k$ there is a positive integer $n_k$ such that
 		\begin{equation*}
 			n_1<n_2<\cdots<n_k<n_{k+1}<\cdots
@@ -659,15 +570,21 @@
 			t_k=s_{n_k}.
 		\end{equation*}
 		Thus $(t_k)$ is just a selection of some [possibly all] of the $s_n$'s taken in order.
-		\end{dfn}
-		For the subset $\{n_1,n_2,\dots\}$ there is a natural function $\sigma$ given by $\sigma(k)=n_k$ for $k\in\mathbb{N}$. The function $\sigma$ "selects" an infinite subset of $\mathbb{N}$ in order. Then
-		the subsequence of $s$ corresponding to $\sigma$ is simply the composite function $t=s\circ\sigma$. That is
-		\begin{displaymath}
-			t_k=t(k)=s\circ\sigma(k)=s(\sigma(k))=s(n_k)=s_{n_k}\quad\text{for}\quad k\in N.
-		\end{displaymath}
-		Notice that $\sigma$ needs to be an \emph{increasing} function. 
-		
-		\begin{thm}\label{def:limit-subseq}
+	\end{dfn}
+	For the subset $\{n_1,n_2,\dots\}$ there is a natural function $\sigma$ given by $\sigma(k)=n_k$ for $k\in\mathbb{N}$. The function $\sigma$ "selects" an infinite subset of $\mathbb{N}$ in order. Then
+	the subsequence of $s$ corresponding to $\sigma$ is simply the composite function $t=s\circ\sigma$. That is
+	\begin{displaymath}
+		t_k=t(k)=s\circ\sigma(k)=s(\sigma(k))=s(n_k)=s_{n_k}\quad\text{for}\quad k\in N.
+	\end{displaymath}
+	Notice that $\sigma$ needs to be an \emph{increasing} function.
+	 
+	Recall that the set $\Q$ of rational numbers is \emph{countable}: there is a bijection from $\N$ to $\Q$. Therefore we have a sequence $(q_n)=(q_1,q_2,q_3,\dots)$ such that $\{q_n: n\in\N\}=\Q$. Then we have the following proposition:
+	\begin{thm}
+		Let $(q_n)$ be an enumeration of $\Q$. Then for any $a\in\R$, there exists a subsequence $(q_{n_k})$ of $(q_n)$ such that $q_{n_k}\rightarrow a$.
+	\end{thm}
+
+	\setcounter{equation}{0}
+	\begin{thm}\label{def:limit-subseq}
 		Let $(s_n)$ be a sequence.
 		\begin{enumerate}[(i)]
 			\item If $t$ is in $\mathbb{R}$ then there is a subsequence of $(s_n)$ converging to $t$ if and only if
@@ -676,165 +593,56 @@
 			\item If $(s_n)$ is unbounded below, it has a subsequence with limit $-\infty$.
 		\end{enumerate}
 		In each case, the subsequence can be taken to be \emph{monotonic}.
-		\end{thm}
-		\begin{proof}
-		The forward implications are easy to check. Let's check these backward implications:
-		\begin{enumerate}[(i)]
-			\item First suppose $\{n\in\mathbb{N}: s_n=t\}$ is infinite. Then we can simply create a subsequence $(s_{n_k})_{k\in\mathbb{N}}$ such that $s_{n_k}=t$ for all $k$.
-			
-			Otherwise, suppose $\{n\in\mathbb{N}: s_n=t\}$ is finite. Then
-			\begin{displaymath}
-				\{n\in\mathbb{N}: 0<|s_n-t|<\epsilon\}\quad\text{is infinite for all}\quad\epsilon>0.
-			\end{displaymath}
-			Since these sets are equal to
-			\begin{displaymath}
-				\{n\in\mathbb{N}: t-\epsilon<s_n<t\}\cup\{n\in\mathbb{N}: t<s_n<t+\epsilon\}
-			\end{displaymath}
-			and these sets get smaller as $\epsilon\rightarrow0$ we have
-			\begin{equation}
-				\{n\in\mathbb{N}: t-\epsilon<s_n<t\}\quad\text{is infinite for all}\quad\epsilon>0
-			\end{equation}
-			or
-			\begin{equation}
-				\{n\in\mathbb{N}: t<s_n<t+\epsilon\}\quad\text{is infinite for all}\quad\epsilon>0
-			\end{equation}
-			otherwise for sufficiently small $\epsilon>0$ the sets in both (1) and (2) would be finite.
-			
-			Assume (1) holds, now we want to construct a $(s_{n_k})_{k\in\mathbb{N}}$ satisfying
-			\begin{equation}
-				t-1<s_{n_1}<t\quad\text{and}\quad\max\{s_{n_{k-1}},t-\frac{1}{k}\}\leq s_{n_k}<t\quad\text{for}\quad k\geq2
-			\end{equation}
-			Assume $n_1,\dots,n_{k-1}$ have been selected satisfying (3) and show how to select $n_k$. This is called "inductive definition" or "definition by induction". A subsequence satisfying (3) is a monotone increasing sequence and by Squeeze Formula $\lim_ks_{n_k}=t$. Here is the construction:
-			By (1) we can select $n_1$ such that $t-1<s_{n_1}<t$. Suppose we've selected $n_1,\dots,n_{k-1}$ so that $n_1<n_2,\cdots<n_{k-1}$ and
-			\begin{equation}
-				\max\{s_{n_{j-1}},t-\frac{1}{j}\}\leq s_{n_j}<t\quad\text{for}\quad j=2,\dots,k-1
-			\end{equation}
-			By using (1) with $\epsilon=max\{s_{n_{k-1}},t-\frac{1}{k}\}$, we can select $n_k>n_{k-1}$ satisfying (4) for $j=k$, so (3) also holds for $k$. 
-			\item Given $n_1=1$ and $n_1<\cdots<n_{k-1}$, select $n_k>n_{k-1}$ so that $s_{n_k}>\max\{s_{n_{k-1}},k\}$. This is possible since $(s_n)$ is unbounded above. Then the subsequence will be monotonically unbounded above thereby have limit $+\infty$.
-		\end{enumerate}
-		\end{proof}
-		
-		\begin{thm}
-			Enumeration of $\Q$
-		\end{thm}
-		
-		\begin{thm}\label{def:subsequence converges to the same limit}
-		If $(s_n)$ converges, then every subsequence converges to the same limit.
-		\end{thm}
-		\begin{proof}
-		Let $(s_{n_k})$ denote a subsequence of $(s_n)$. Note that $n_k\geq k$ for all k. Let $s=\lim s_n$ and $\epsilon>0$. There exists $N$ so that $n>N\Rightarrow|s_n-s|<\epsilon$. Since $n_k\geq k>N$, $|s_{n_k}-s|<\epsilon$. Thus
-		\begin{displaymath}
-			\lim\limits_{k\rightarrow\infty}s_{n_k}=s.
-		\end{displaymath}
-		\end{proof}
-		
-		\begin{thm}
+	\end{thm}
+	
+	\begin{thm}\label{def:subsequence converges to the same limit}
+		If $(s_n)$ converges, then every subsequence converges to the same limit.If there are two subsequences of $(s_n)$ with different limits, $(s_n)$ does not converge.
+	\end{thm}
+	
+	\begin{thm}
 		Every sequence $(s_n)$ has a monotonic subsequence.
-		\end{thm}
-		\setcounter{equation}{0}
-		\begin{proof}
-		Define $n$-th term is \emph{dominant} if it is greater than every term which follows it
-		\begin{equation}
-			s_m<s_n\quad\text{for all}\quad m>n
-		\end{equation}
-		\begin{itemize}
-			\item Case 1: Suppose there are infinitely many dominant terms, then we can easily construct a monotone decreasing subsequence.
-			\item Case 2: Suppose there are only finitely many dominant terms. Select $n_1$ so that $s_{n_1}$ is beyond
-			all the dominant terms of the sequence. Then
-			\begin{equation}
-				\text{given}\,N\geq n_1\,\text{there exists}\,m>N\,\text{such that}\quad s_m\geq s_N. 
-			\end{equation}
-		Suppose $n_1,\dots,n_{k-1}$ have been selected so that
-		\begin{equation}
-			n_1<n_2<\cdots<n_{k-1}
-		\end{equation}
-		and
-		\begin{equation}
-			s_{n_1}\leq\cdots\leq s_{n_{l-1}}
-		\end{equation}
-		Apply (2) with $N=n_{k-1}$ we can select $n_k>n_{k-1}$ such that $s_{n_k}\geq s_{n_{k-1}}$. Then the procedure continues by induction and we obtain an increasing subsequence.
-		\end{itemize}
-		\end{proof}
-		
-		\begin{thm}[Bolzano-Weierstrass Theorem]\label{def:B-W}
-			Every bounded sequence has a convergent subsequence.
-		\end{thm}
-		\begin{proof}
-			If $(s_n)$ is a bounded sequence, it has a bounded monotonic subsequence which converges. 
-		\end{proof}
-		
-		\begin{dfn}
+	\end{thm}
+	\setcounter{equation}{0}
+	
+	\begin{thm}[Bolzano-Weierstrass Theorem]\label{def:B-W}
+		Every bounded sequence has a convergent subsequence.
+	\end{thm}
+	
+	\begin{dfn}
 		Let $(s_n)$ be a sequence in $\mathbb{R}$. A \emph{subsequential limit} is any real number or symbol $+\infty$ or $-\infty$ that is the limit of some subsequence of $(s_n)$.
-		\end{dfn}
-		
-		\setcounter{equation}{0}
-		\begin{thm}\label{def:subsequence with limit limsup or liminf}
+	\end{dfn}
+	
+	\setcounter{equation}{0}
+	\begin{thm}\label{def:subsequence with limit limsup or liminf}
 		Let $(s_n)$ be any sequence. There exists a monotonic subsequence whose limit is $\lim\sup s_n$, and there exists a monotonic subsequence whose limit is $\lim\inf s_n$.
-		\end{thm}
-		\begin{proof}
-			If $(s_n)$ is not bounded above, then by \ref{def:limit-subseq}(ii) there is a monotonic subsequence with limit $+\infty=\lim\sup s_n$. The proof for not bounded below is similar.
-			
-			Now if $(s_n)$ is bounded above, then let $t=\lim\sup s_n$, and consider $\epsilon>0$. There exists $N_0$ so that
-			\begin{displaymath}
-				\sup\{s_n: n>N\}<t+\epsilon\quad\text{for}\quad N\geq N_0.
-			\end{displaymath}
-			In particular, $s_n<t+\epsilon$ for all $n>N_0$. We now claim
-			\begin{equation}
-				\{n\in\mathbb{N}: t-\epsilon<s_n<t+\epsilon\}\quad\text{is infinite.}
-			\end{equation}
-			Otherwise, there exists $N_1>N_0$ so that $s_n\leq t-\epsilon$ for $n>N_1$(WHY???). Then $\sup\{s_n: n>N\}\leq t-\epsilon$ for $N\geq N_1$, so that $\lim\sup s_n<t$, a contradiction. Since (1) holds true for all $\epsilon>0$, \ref{def:limit-subseq}(i) shows that there is a monotonic subsequence verges to $t=\lim\sup s_n$.
-		\end{proof}
-		
-		\begin{thm}\label{def:subsequential limit condition}
+	\end{thm}
+	
+	\begin{thm}\label{def:subsequential limit condition}
 		Let $(s_n)$ be any sequence in $\mathbb{R}$, and let $S$ denote the set of subsequential limits of $(s_n)$.
 		\begin{enumerate}[(i)]
 			\item S is nonempty.
 			\item $\sup S=\lim\sup s_n$ and $\inf S=\lim\inf s_n$.
 			\item $\lim s_n$ exists if and only if $S$ has exactly one element, namely $\lim s_n$.
+			\item $\lim\sup s_n\in S$ and $\lim\inf s_n\in S$.
 		\end{enumerate}
-		\end{thm}
-		\begin{proof}
-		\begin{enumerate}[(i)]
-			\item[] 
-			\item By the last theorem.
-			\item Consider any limit $t$ os a subsequence $(s_{n_k})$ of $(s_n)$. By \ref{def:condition for limit} $t=\lim\inf_ks_{n_k}=\lim\sup_ks_{n_k}$. Since $n_k>k$ for all $k$, we have $\{s_{n_k}: k>N\}\subseteq\{s_n: n>N\}$ for each $N\in\mathbb{N}$. Therefore
-			\begin{displaymath}
-				\lim\limits_{n}\inf s_n\leq\lim\limits_{k}\inf s_{n_k}=t=\lim\limits_{k}\sup s_{n_k}\leq	\lim\limits_{n}\sup s_n
-			\end{displaymath}
-			The inequality below holds true for all $t$ in $S$, so
-			\begin{displaymath}
-				\lim\inf s_n\leq\inf S\leq\sup S\leq\lim\sup s_n
-			\end{displaymath}
-			By the last theorem we know both $\lim\inf s_n$ and $\lim\sup s_n$ is in $S$, so (ii) holds.
-			\item This is simply a reformulation of \ref{def:condition for limit}.
-		\end{enumerate}
-		\end{proof}
-		
-		\begin{thm}
+	\end{thm}
+	
+	\begin{thm}
 		Let $S$ denote the set of subsequential limits of a sequence $(s_n)$. Suppose $(t_n)$is a sequence in $S\cap\mathbb{R}$ and that $t=\lim t_n$. Then $t$ belongs to $S$.
-		\end{thm}
-		\begin{proof}
-		Suppose $t$ is finite, then some $t_N$ is in $(t-\epsilon,t+\epsilon)$. Let $\delta=\min\{t+\epsilon-t_N,t_N-t+\epsilon\}$, so that
-		\begin{displaymath}
-			(t_N-\delta, t_N+\delta)\subseteq(t-\epsilon,t+\epsilon)
-		\end{displaymath}
-		Since $t_N$ is a subsequential limit, the set $\{n\in\mathbb{N}: s_n\in(t_N-\delta, t_N+\delta)\}$ is infinite,
-		so the set $\{n\in\mathbb{N}: s_n\in(t-\epsilon, t+\epsilon)\}$ is also infinite. Thus by \ref{def:condition for limit} $t$ itself is a subsequential limit of $(s_n)$. 
-		
-		If $t=+\infty$, then clearly the sequence $(s_n)$ is unbounded above, so a subsequence of $(s_n)$ has limit $+\infty$ by \ref{def:condition for limit}. Thus $+\infty$ is also in $S$. A similar argument applies if $t=-\infty$.
-		\end{proof}
-		\newpage
-		
+	\end{thm}
+
+	\newpage
+	
 	\section{lim sup's and lim inf's}
-		\setcounter{equation}{0}
-		\begin{thm}\label{thm:12.1}
+	\setcounter{equation}{0}
+	\begin{thm}\label{thm:12.1}
 		If $(s_n)$ converges to a positive real number $s$ and $(t_n)$ is any sequence, then
 		\begin{displaymath}
 			\lim\sup s_nt_n=s\cdot\lim\sup t_n.
 		\end{displaymath}
 		Here we allow the conventions $s\cdot(+\infty)=+\infty$ and $s\cdot(-\infty)=-\infty$ for $s>0$.
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		We first want to show
 		\begin{equation}
 			\lim\sup s_nt_n\geq s\cdot\lim\sup t_n.
@@ -856,59 +664,59 @@
 			\lim\sup s_nt_n\leq s\cdot\lim\sup t_n
 		\end{displaymath}
 		Therefore we have $\lim\sup s_nt_n=s\cdot\lim\sup t_n$.
-		\end{proof}
-		
-		\setcounter{equation}{0}
-		\begin{thm}\label{thm:12.2}
+	\end{proof}
+	
+	\setcounter{equation}{0}
+	\begin{thm}\label{thm:12.2}
 		Let $(s_n)$ be any sequence of nonzero real numbers. Then we have
 		\begin{displaymath}
 			\lim\inf\abs{\frac{s_{n+1}}{s_n}}\leq\lim\inf|s_n|^{1/n}\leq\lim\sup|s_n|^{1/n}\leq\lim\sup\abs{\frac{s_{n+1}}{s_n}}
 		\end{displaymath}
-		\end{thm}
-		\begin{proof}
-			The middle inequality is obvious. The first and third inequalities have similar proofs. We will prove the third
-			inequality as below:
-			
-			Let $\alpha=\lim\sup|s_n|^{1/n}$ and $L=\lim\sup\abs{\frac{s_{n+1}}{s_n}}$. Assume $L<+\infty$. To prove $\alpha\leq L$ it suffices to show
-			\begin{equation}
-				a\leq L_1\quad\text{for any}\quad L_1>L
-			\end{equation}
-			because if $\exists L_1>L,\ \alpha>L_1$, then $\alpha>L_1>L\Rightarrow\alpha>L$
-			Since
-			\begin{displaymath}
-				L=\lim\sup\abs{\frac{s_{n+1}}{s_n}}=\lim\limits_{N\rightarrow\infty}\sup \left\{ \abs{\frac{s_{n+1}}{s_n}}: n>N \right\} <L_1
-			\end{displaymath}
-			there exists a positive integer $N$ such that
-			\begin{displaymath}
-				\sup\left\{\abs{\frac{s_{n+1}}{s_n}}: n\geq N\right\}<N_1
-			\end{displaymath}
-			Thus
-			\begin{equation}
-				\abs{\frac{s_{n+1}}{s_n}}<L_1\quad\text{for}\quad n\geq N
-			\end{equation}
-			Now for $n>N$ we can write
-			\begin{displaymath}
-				|s_n|=\abs{\frac{s_n}{s_{n-1}}}\cdot\frac{s_{n-1}}{s_{n-2}}\cdots\abs{\frac{s_{N+1}}{s_N}}\cdot|s_N|.
-			\end{displaymath}
-			Apply (2) we see that
-			\begin{align*}
-				|s_n|&<L_1^{n-N}|s_N|\quad\text{for}\quad n>N\\
-				|s_n|&<L_1^na\quad\text{for}\quad n>N.\qquad \text{for}\ a=L_1^{-N}|s_N|\\
-				|s_n|^{1/n}&<L_1a^{1/n}\quad\text{for}\quad n>N
-			\end{align*}
-			Since $\lim_{n\rightarrow\infty}a^{1/n}=1$ we conclude $\alpha=\lim\sup|s_n|^{1/n}\leq L_1$
-		\end{proof}
+	\end{thm}
+	\begin{proof}
+		The middle inequality is obvious. The first and third inequalities have similar proofs. We will prove the third
+		inequality as below:
 		
-		\begin{cor}\label{def:12.3}
+		Let $\alpha=\lim\sup|s_n|^{1/n}$ and $L=\lim\sup\abs{\frac{s_{n+1}}{s_n}}$. Assume $L<+\infty$. To prove $\alpha\leq L$ it suffices to show
+		\begin{equation}
+			a\leq L_1\quad\text{for any}\quad L_1>L
+		\end{equation}
+		because if $\exists L_1>L,\ \alpha>L_1$, then $\alpha>L_1>L\Rightarrow\alpha>L$
+		Since
+		\begin{displaymath}
+			L=\lim\sup\abs{\frac{s_{n+1}}{s_n}}=\lim\limits_{N\rightarrow\infty}\sup \left\{ \abs{\frac{s_{n+1}}{s_n}}: n>N \right\} <L_1
+		\end{displaymath}
+		there exists a positive integer $N$ such that
+		\begin{displaymath}
+			\sup\left\{\abs{\frac{s_{n+1}}{s_n}}: n\geq N\right\}<N_1
+		\end{displaymath}
+		Thus
+		\begin{equation}
+			\abs{\frac{s_{n+1}}{s_n}}<L_1\quad\text{for}\quad n\geq N
+		\end{equation}
+		Now for $n>N$ we can write
+		\begin{displaymath}
+			|s_n|=\abs{\frac{s_n}{s_{n-1}}}\cdot\frac{s_{n-1}}{s_{n-2}}\cdots\abs{\frac{s_{N+1}}{s_N}}\cdot|s_N|.
+		\end{displaymath}
+		Apply (2) we see that
+		\begin{align*}
+			|s_n|&<L_1^{n-N}|s_N|\quad\text{for}\quad n>N\\
+			|s_n|&<L_1^na\quad\text{for}\quad n>N.\qquad \text{for}\ a=L_1^{-N}|s_N|\\
+			|s_n|^{1/n}&<L_1a^{1/n}\quad\text{for}\quad n>N
+		\end{align*}
+		Since $\lim_{n\rightarrow\infty}a^{1/n}=1$ we conclude $\alpha=\lim\sup|s_n|^{1/n}\leq L_1$
+	\end{proof}
+	
+	\begin{cor}\label{def:12.3}
 		If $\lim\abs{\frac{s_{n+1}}{s_n}}$ exists [and equals L], then $\lim|s_n|^{1/n}$ exists [and equals L].
-		\end{cor}
-		\begin{proof}
+	\end{cor}
+	\begin{proof}
 		If $\lim\abs{\frac{s_{n+1}}{s_n}}=L$, then all four values in the last theorem are equal to $L$. Hence
 		$\lim|s_n|^{1/n}=L$ by \ref{def:condition for limit}.
-		\end{proof}
-		\newpage
+	\end{proof}
+	\newpage
 	\section{Some Topological Concepts in Metric Spaces}
-		\begin{dfn}
+	\begin{dfn}
 		Let $S$ be a set, and suppose $d$ is a function defined for all pairs $(x,y)$ of elements from $S$ satisfying
 		\begin{enumerate}
 			\item $d(x,x)=0$ for all $x\in S$ and $d(x,y)>0$ for distinct $x,y\in S$.
@@ -916,26 +724,26 @@
 			\item $d(x,z)\leq d(x,y)+d(y,z)$ for all $x,y,z\in S$.
 		\end{enumerate}
 		Such a function $d$ is called a \emph{distance function} or a \emph{metric} on $S$.
-		\end{dfn}
-		A \emph{metric space} $S$ is a set $S$ together with a metric on it.
-		
-		\begin{dfn}
+	\end{dfn}
+	A \emph{metric space} $S$ is a set $S$ together with a metric on it.
+	
+	\begin{dfn}
 		A sequence $(s_n)$ in a metric space $(S,d)$ converges to $s$ in $S$ if $\lim_{n\rightarrow\infty}d(s_n,s)=0$.\\ 
 		A sequence $(s_n)$ in $S$ is a \emph{Cauchy sequence} if for each $\epsilon>0$ there exists an $N$ such that
 		\begin{displaymath}
 			m,n>N\Rightarrow d(s_m,s_n)<\epsilon.
 		\end{displaymath}
 		$(S,d)$ is said to be \emph{complete} if every Cauchy sequence in $S$ converges to some element in $S$.
-		\end{dfn}
-		
-		\setcounter{equation}{0}
-		\begin{lem}\label{def:sequence in R^k}
+	\end{dfn}
+	
+	\setcounter{equation}{0}
+	\begin{lem}\label{def:sequence in R^k}
 		A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ converges if and only if for each $j=1,2\dots,k$, the sequence
 		$(x_j^{(n)})$ converges in $\mathbb{R}$.\\
 		A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$
 		is a Cauchy sequence in $\mathbb{R}$.
-		\end{lem}
-		\begin{proof}
+	\end{lem}
+	\begin{proof}
 		For the second assertion, we first observe for $\textbf{x,y}\in\mathbb{R}^k$ and $j=1,\dots,k$,
 		\begin{equation}
 			|x_j-y_j|\leq d(\textbf{x,y})\leq \sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}
@@ -960,64 +768,64 @@
 			\end{displaymath}
 			i.e. $(\textbf{x}^{(n)})$ is a Cauchy sequence.
 		\end{itemize}
-		\end{proof}
-		
-		\begin{thm}
-		Euclidean k-space $\mathbb{R}^k$ is complete.
-		\end{thm}
-		\begin{proof}
-		Consider a Cauchy sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$. By \ref{def:sequence in R^k}, each $(x_j^{(n)})$ is a Cauchy sequence. By \ref{def:cauchy iff convergent} each $(x_j^{(n)})$ converges. Thus by \ref{def:sequence in R^k} $(\textbf{x}^{(n)})$ converges.
-		\end{proof}
+	\end{proof}
 	
-		\begin{thm}
+	\begin{thm}
+		Euclidean k-space $\mathbb{R}^k$ is complete.
+	\end{thm}
+	\begin{proof}
+		Consider a Cauchy sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$. By \ref{def:sequence in R^k}, each $(x_j^{(n)})$ is a Cauchy sequence. By \ref{def:cauchy iff convergent} each $(x_j^{(n)})$ converges. Thus by \ref{def:sequence in R^k} $(\textbf{x}^{(n)})$ converges.
+	\end{proof}
+	
+	\begin{thm}
 		Every bounded sequence in $\mathbb{R}^k$ has a convergent subsequence.
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		Since $(\textbf{x}^{(n)})$ is bounded, then each $(x_j^{(n)})$ is bounded in $\mathbb{R}$. By \ref{def:B-W}, we
 		could replace $(\textbf{x}^{(n)})$ by one of its subsequence, say $(\bar{\mathbf{x}}^{(n)})$, whose $(x_1^{(n)})$
 		converges. By \ref{def:B-W} again, we may replace $(\textbf{x}^{(n)})$ by a subsequence of $(\textbf{x}^{(n)})$ such
 		that both $(x_1^{(n)})$ and $(x_2^{(n)})$ converge. $(x_1^{(n)})$ still converges because \ref{def:subsequence converges to the same limit}. Repeating this argument by $k$ times, we obtain a new sequence $(\textbf{x}^{(n)})$ where each $(x_j^{(n)})$ converges, $j=1,\dots,k$, which is a subsequence of the original sequence, and it converges by \ref{def:sequence in R^k}. 
-		\end{proof}
-		
-		\begin{dfn}
+	\end{proof}
+	
+	\begin{dfn}
 		Let $(S,d)$ be a metric space. Let $E$ be a subset of $S$. An element $s_0\in E$ is \emph{interior} to $E$ if for some $r>0$ we have
 		\begin{displaymath}
 			\{s\in S: d(s,s_0)<r\}\subseteq E
 		\end{displaymath}
 		We write $E^\circ$ for the set of points in $E$ that are interior to $E$. The set $E$ is \emph{open} in $S$ if every point in $E$ is interior to $E$, i.e., if $E=E^\circ$.
-		\end{dfn}
-		We can show that
-		\begin{enumerate}
-			\item $S$ is open in $S$.
-			\item The empty set $\emptyset$ is open in $S$.
-			\item The union of \emph{any} collection of open sets is open.
-			\item The intersection of \emph{finitely many} open sets is again an open set.
-		\end{enumerate}
-		
-		\begin{dfn}
+	\end{dfn}
+	We can show that
+	\begin{enumerate}
+		\item $S$ is open in $S$.
+		\item The empty set $\emptyset$ is open in $S$.
+		\item The union of \emph{any} collection of open sets is open.
+		\item The intersection of \emph{finitely many} open sets is again an open set.
+	\end{enumerate}
+	
+	\begin{dfn}
 		Let $(S,d)$ be a metric space. A subset $E$ of $S$ is \emph{closed} if its complement $S\backslash E$ is an open set.
 		
 		The intersection of any collection of closed sets is closed. The \emph{closure} $E^-$ of a set $E$ is the intersection of all closed sets containing $E$.
 		The \emph{boundary} of $E$ is the set $E^-\backslash E^\circ$; points in this set are called \emph{boundary points}.
-		\end{dfn}
-		\begin{thm}
-			Let $E$ be a subset of a metric space $(S,d)$.
-			\begin{enumerate}
-				\item $E$ is closed $\iff$ $E=E^-$.
-				\item $E$ is closed $\iff$ $E$ contains the limit of every convergent sequence of points in $E$.
-				\item An element is in $E^-$ $\iff$ it is the limit of some sequence of points in $E$.
-				\item A point is in the boundary of $E$ $\iff$ it belongs to the closure of both $E$ and its complement.
-			\end{enumerate}
-		\end{thm}
-		
-		\begin{thm}
-		Let $(F_n)$ be a decreasing sequence [i.e., $F_1\supseteq F_2\supseteq\cdots$] of closed bounded nonempty sets in $\mathbb{R}^k$. Then $F=\cap_{n=1}^\infty F_n$ is also closed, bounded and nonempty.
-		\end{thm}
-		\begin{proof}
-			TODO
-		\end{proof}
+	\end{dfn}
+	\begin{thm}
+		Let $E$ be a subset of a metric space $(S,d)$.
+		\begin{enumerate}
+			\item $E$ is closed $\iff$ $E=E^-$.
+			\item $E$ is closed $\iff$ $E$ contains the limit of every convergent sequence of points in $E$.
+			\item An element is in $E^-$ $\iff$ it is the limit of some sequence of points in $E$.
+			\item A point is in the boundary of $E$ $\iff$ it belongs to the closure of both $E$ and its complement.
+		\end{enumerate}
+	\end{thm}
 	
-		\begin{dfn}
+	\begin{thm}
+		Let $(F_n)$ be a decreasing sequence [i.e., $F_1\supseteq F_2\supseteq\cdots$] of closed bounded nonempty sets in $\mathbb{R}^k$. Then $F=\cap_{n=1}^\infty F_n$ is also closed, bounded and nonempty.
+	\end{thm}
+	\begin{proof}
+		TODO
+	\end{proof}
+	
+	\begin{dfn}
 		Let $(S,d)$ be a metric space. A family $\mathcal{U}$ of open sets is said to be an \emph{open cover} for a set
 		$E$ if each point of $E$ belongs to at least one set in $\mathcal{U}$, i.e.,
 		\begin{displaymath}
@@ -1027,43 +835,43 @@
 		if \emph{finite} if it contains only finitely many sets; the sets themselves may be infinite.
 		
 		A set $E$ is \emph{compact} if every oper cover of $E$ has a finite subcover of $E$.
-		\end{dfn}
-		
-		\begin{thm}
-		A subset $E$ of $\mathbb{R}^k$ is compact if and only if it is closed and bounded.
-		\end{thm}
-		\begin{proof}
-		TODO
-		\end{proof}
+	\end{dfn}
 	
-		WHAT IS A \emph{K-CELL}
-		
-		\begin{thm}
-		Every k-cell $F$ in $\mathbb{R}^k$ is compact.
-		\end{thm}
-		\begin{proof}
+	\begin{thm}
+		A subset $E$ of $\mathbb{R}^k$ is compact if and only if it is closed and bounded.
+	\end{thm}
+	\begin{proof}
 		TODO
-		\end{proof}
-		\newpage
+	\end{proof}
+	
+	WHAT IS A \emph{K-CELL}
+	
+	\begin{thm}
+		Every k-cell $F$ in $\mathbb{R}^k$ is compact.
+	\end{thm}
+	\begin{proof}
+		TODO
+	\end{proof}
+	\newpage
 	\section{Series}
-		For an infinite series $\sum_{n=m}^{\infty}a_n$, we say it \emph{converge} provided the sequence $(s_n)$ of 
-		partial sums
-		\begin{displaymath}
-			s_n=a_m+a_{m+1}+\cdots+a_n=\sum_{k=m}^{n}a_k
-		\end{displaymath}
-		also converges to a real number $S$. i.e.
-		\begin{displaymath}
-			\sum_{n=m}^{\infty}a_n=S\quad\text{means}\quad\lim s_n=S\quad\text{or}\quad\lim\limits_{n\rightarrow\infty}\left(\sum_{k=m}^{n}a_k\right)=S
-		\end{displaymath}
-		A series that does not converge is said to \emph{diverge}, so $\sum_{n=m}^{\infty}a_n$ \emph{diverge} to $+\infty$
-		, $\sum_{n=m}^{\infty}a_n=+\infty$, provided $\lim s_n=+\infty$. Similar for diverging to $-\infty$.
-		
-		If the terms in $\sum a_n$ are all nonnegative, then the corresponding partial sums $(s_n)$ form an increasing sequence, so $\sum a_n$ either converges or diverges to $+\infty$ by \ref{def:bounded monotone seq} and \ref{def:unbounded monotone seq}. In particular, $\sum |a_n|$ is meaningful for any $(s_n)$ whatever. The series
-		$\sum a_n$ is said to \emph{converge absolutely} or to be \emph{absolutely convergent} if $\sum |a_n|$ converges.
-		
-		We use $\sum a_n$ to represent $\sum_{n=m}^{\infty}a_n$
-		
-		\begin{eg}[Geometric Series]
+	For an infinite series $\sum_{n=m}^{\infty}a_n$, we say it \emph{converge} provided the sequence $(s_n)$ of 
+	partial sums
+	\begin{displaymath}
+		s_n=a_m+a_{m+1}+\cdots+a_n=\sum_{k=m}^{n}a_k
+	\end{displaymath}
+	also converges to a real number $S$. i.e.
+	\begin{displaymath}
+		\sum_{n=m}^{\infty}a_n=S\quad\text{means}\quad\lim s_n=S\quad\text{or}\quad\lim\limits_{n\rightarrow\infty}\left(\sum_{k=m}^{n}a_k\right)=S
+	\end{displaymath}
+	A series that does not converge is said to \emph{diverge}, so $\sum_{n=m}^{\infty}a_n$ \emph{diverge} to $+\infty$
+	, $\sum_{n=m}^{\infty}a_n=+\infty$, provided $\lim s_n=+\infty$. Similar for diverging to $-\infty$.
+	
+	If the terms in $\sum a_n$ are all nonnegative, then the corresponding partial sums $(s_n)$ form an increasing sequence, so $\sum a_n$ either converges or diverges to $+\infty$ by \ref{def:bounded monotone seq} and \ref{def:unbounded monotone seq}. In particular, $\sum |a_n|$ is meaningful for any $(s_n)$ whatever. The series
+	$\sum a_n$ is said to \emph{converge absolutely} or to be \emph{absolutely convergent} if $\sum |a_n|$ converges.
+	
+	We use $\sum a_n$ to represent $\sum_{n=m}^{\infty}a_n$
+	
+	\begin{eg}[Geometric Series]
 		A series of the form $\sum_{n=0}^{\infty}ar^n$ for constants $a$ and $r$ is called a geometric series. For $r\neq1$,
 		the partial sums $s_n$ are given by
 		\begin{displaymath}
@@ -1074,17 +882,17 @@
 			\sum_{n=0}^{\infty}ar^n=\frac{a}{1-r}
 		\end{displaymath}
 		If $a\neq0$ and $|r|\geq1$, then $(ar^n)$ does not converge to $0$, so $\sum ar^n$ diverges.
-		\end{eg}
-		
-		\begin{eg}
+	\end{eg}
+	
+	\begin{eg}
 		\begin{displaymath}
 			\sum_{n=1}^{\infty}\frac{1}{n^p}\quad \text{converges if and only if}\quad p>1
 		\end{displaymath}
 		If $p\leq1$, $\sum1/n^p=+\infty$
-		\end{eg}
-		
-		\setcounter{equation}{0}
-		\begin{dfn}\label{def:cauchy criterion}
+	\end{eg}
+	
+	\setcounter{equation}{0}
+	\begin{dfn}\label{def:cauchy criterion}
 		We say a series $\sum a_n$ satisfies the \emph{Cauchy criterion} if its sequence $(s_n)$ of partial sums is a
 		Cauchy sequence which is:
 		\begin{equation}
@@ -1098,34 +906,34 @@
 		\begin{equation}
 			\forall\epsilon>0,\ \exists N,\ n\geq m>N\Rightarrow\left|\sum_{k=m}^{n}a_k\right|<\epsilon
 		\end{equation}
-		\end{dfn}
-		
-		\begin{thm}
+	\end{dfn}
+	
+	\begin{thm}
 		A series converges $\iff$ it satisfies the Cauchy criterion. 
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		By \ref{def:cauchy iff convergent}, we know its partial sum converges, so the series also converges.
-		\end{proof}
-		\begin{cor}\label{def:If a_n converges then lim(a_n)=0}
+	\end{proof}
+	\begin{cor}\label{def:If a_n converges then lim(a_n)=0}
 		If a series $\sum a_n$ converges, then $\lim a_n=0$
-		\end{cor}
-		\begin{proof}
+	\end{cor}
+	\begin{proof}
 		By setting $n=m$ in the condition of \ref{def:cauchy criterion}, we get
 		\begin{displaymath}
 			\left(\forall\epsilon>0,\ \exists N,\ n>N\Rightarrow\left|a_n\right|<\epsilon\right)\Rightarrow\lim a_n=0
 		\end{displaymath}
-		\end{proof}
-		A useful contrapositive of this corollary is "If $\lim a_n\neq0$, then $\sum a_n$ does not converge."
-		
-		\setcounter{equation}{0}
-		\begin{thm}[Comparison Test]\label{def:Comparison Test}
+	\end{proof}
+	A useful contrapositive of this corollary is "If $\lim a_n\neq0$, then $\sum a_n$ does not converge."
+	
+	\setcounter{equation}{0}
+	\begin{thm}[Comparison Test]\label{def:Comparison Test}
 		Let $\sum a_n$ be a series where $a_n\geq0$ for all $n$.
 		\begin{enumerate}[(i)]
 			\item If $\sum a_n$ converges and $|b_n|\leq a_n$ for all $n$, then $\sum b_n$ converges.
 			\item If $\sum a_n=+\infty$ and $b_n\geq a_n$ for all $n$, then $\sum b_n=+\infty$
 		\end{enumerate}
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		\begin{enumerate}[(i)]
 			\item[]
 			\item For $n\geq m$ we have
@@ -1136,24 +944,24 @@
 			also satisfies the Cauchy criterion in \ref{def:cauchy criterion}(3), and hence $\sum b_n$ converges.
 			\item Since $b_n\geq a_n$ for all $n$, obviously we have $\sum_{k=m}^{n}b_k\geq\sum_{k=m}^{n}a_k$. Since $\lim\sum_{k=m}^{n}b_k=+\infty$, $\lim\sum_{k=m}^{n}a_k=+\infty$.			
 		\end{enumerate}
-		\end{proof}
-		\begin{cor}
+	\end{proof}
+	\begin{cor}
 		Absolutely convergent series are convergent.
-		\end{cor}
-		\begin{proof}
+	\end{cor}
+	\begin{proof}
 		Suppose $\sum b_n$ is absolutely convergent. This means $\sum a_n$ converges where $a_n=|b_n|$ for all $n$. Then
 		$|b_n|\leq a_n$ and $\sum b_n$ converges trivially from \ref{def:Comparison Test}.
-		\end{proof}
-		
-		\begin{thm}[Root Test]\label{def:Root Test}
+	\end{proof}
+	
+	\begin{thm}[Root Test]\label{def:Root Test}
 		Let	$\sum a_n$ be a series and let $\alpha=\lim\sup|a_n|^{1/n}$. The series $\sum a_n$
 		\begin{enumerate}[(i)]
 			\item converges absolutely if $\alpha<1$
 			\item diverges if $\alpha>1$
 			\item Otherwise the test does not provide any useful information.
 		\end{enumerate}
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		\begin{enumerate}[(i)]
 			\item Suppose $\alpha<1$, and select $\epsilon>0$ so that $\alpha+\epsilon<1$. Then
 			\begin{displaymath}
@@ -1168,40 +976,40 @@
 			cannot possibly converge to $0$, so $\sum a_n$ cannot converge by the contrapositive of \ref{def:If a_n converges then lim(a_n)=0}.
 			\item Example: $\sum\frac{1}{n}$ diverges but $\sum\frac{1}{n^2}$ converges.
 		\end{enumerate}
-		\end{proof}
+	\end{proof}
 	
-		\begin{thm}[Ratio Test]\label{def:Ratio Test}
- 		A series $\sum a_n$ of nonzero terms
- 		\begin{enumerate}[(i)]
- 			\item converges absolutely if $\lim\sup\left|\frac{a_{n+1}}{a_n}\right|<1$,
- 			\item diverges if $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|>1$.
- 			\item Otherwise $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|\leq1\leq\lim\sup\left|\frac{a_{n+1}}{a_n}\right|$ and
- 			the test gives no information.
- 		\end{enumerate}
-	 	\end{thm}
-	 	\begin{proof}
-	 	let $\alpha=\lim\sup|a_n|^{1/n}$. By \ref{def:12.2} we have
-	 	\begin{displaymath}
-	 		\lim\inf\left|\frac{a_{n+1}}{a_n}\right|\leq\alpha\leq\lim\sup\left|\frac{a_{n+1}}{a_n}\right|.
-	 	\end{displaymath}
- 		\begin{enumerate}[(i)]
- 			\item If $\lim\sup\left|\frac{a_{n+1}}{a_n}\right|<1$, then $\alpha<1$ and the series converges by \ref{def:Root Test}.
- 			\item If $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|>1$, then $\alpha>1$ and the series diverges by \ref{def:Root Test}.
- 			\item If $\alpha=1$, then same reasoning as the proof in \ref{def:Root Test}(iii).
- 		\end{enumerate}
-	 	\end{proof}
- 		\bigskip
-		If the terms $a^n$ are nonzero and if $\lim\left|\frac{a_{n+1}}{a_n}\right|=1$, then $\alpha=\lim\sup|a_n|^{1/n}=1$
-		by \ref{def:12.3}, so neither the Ratio Test nor the Root Test gives information about the convergence of $\sum a_n$.
-		\newpage
-		
+	\begin{thm}[Ratio Test]\label{def:Ratio Test}
+		A series $\sum a_n$ of nonzero terms
+		\begin{enumerate}[(i)]
+			\item converges absolutely if $\lim\sup\left|\frac{a_{n+1}}{a_n}\right|<1$,
+			\item diverges if $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|>1$.
+			\item Otherwise $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|\leq1\leq\lim\sup\left|\frac{a_{n+1}}{a_n}\right|$ and
+			the test gives no information.
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		let $\alpha=\lim\sup|a_n|^{1/n}$. By \ref{def:12.2} we have
+		\begin{displaymath}
+			\lim\inf\left|\frac{a_{n+1}}{a_n}\right|\leq\alpha\leq\lim\sup\left|\frac{a_{n+1}}{a_n}\right|.
+		\end{displaymath}
+		\begin{enumerate}[(i)]
+			\item If $\lim\sup\left|\frac{a_{n+1}}{a_n}\right|<1$, then $\alpha<1$ and the series converges by \ref{def:Root Test}.
+			\item If $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|>1$, then $\alpha>1$ and the series diverges by \ref{def:Root Test}.
+			\item If $\alpha=1$, then same reasoning as the proof in \ref{def:Root Test}(iii).
+		\end{enumerate}
+	\end{proof}
+	\bigskip
+	If the terms $a^n$ are nonzero and if $\lim\left|\frac{a_{n+1}}{a_n}\right|=1$, then $\alpha=\lim\sup|a_n|^{1/n}=1$
+	by \ref{def:12.3}, so neither the Ratio Test nor the Root Test gives information about the convergence of $\sum a_n$.
+	\newpage
+	
 	\section{Alternating Series and Integral Tests}
-		Sometimes we can try to check convergence or divergence of series by comparing the partial sums with familiar
-		integrals. By drawing the function $a^n$ and the of rectangles corresponding to the series on a same picture and comparing the areas under the function and the sum of areas of these rectangles, we may get the information about the convergence of the series. For example, if all rectangles are below the function and the integral of the function is finite, then the series converge.
-		\begin{thm}
+	Sometimes we can try to check convergence or divergence of series by comparing the partial sums with familiar
+	integrals. By drawing the function $a^n$ and the of rectangles corresponding to the series on a same picture and comparing the areas under the function and the sum of areas of these rectangles, we may get the information about the convergence of the series. For example, if all rectangles are below the function and the integral of the function is finite, then the series converge.
+	\begin{thm}
 		$\sum\frac{1}{n^p}$ converges $\iff$ $p>1$.
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		By drawing the function $\frac{1}{n^p}$ and the of rectangles corresponding to the series on a same picture, we can
 		get
 		\begin{displaymath}
@@ -1210,9 +1018,9 @@
 		Thus $\sum_{n=1}^{\infty}\frac{1}{n^p}\leq\frac{p}{p-1}<+\infty$
 		
 		Suppose $0<p\leq1$. Then $\frac{1}{n^p}\geq\frac{1}{n}$ for all n, so $\sum\frac{1}{n^p}$ diverges when $\sum\frac{1}{n}$ diverges by \ref{def:Comparison Test}.
-		\end{proof}
-		
-		\begin{thm}
+	\end{proof}
+	
+	\begin{thm}
 		Here are the conditions under which an integral test is advisable:
 		\begin{enumerate}[(a)]
 			\item All comparison, root, and ratio tests do not apply.
@@ -1221,13 +1029,13 @@
 			\item The integral of $f$ is easy to calculate or estimate.
 		\end{enumerate}
 		If $\lim_{n\rightarrow\infty}\int_{1}^{n}f(x)dx=+\infty$, then the series diverges. If $\lim_{n\rightarrow\infty}\int_{1}^{n}f(x)dx<+\infty$, then the series will converge.
-		\end{thm}
-		
-		\begin{thm}[Alternating Series Theorem]\label{def:alternating series}
+	\end{thm}
+	
+	\begin{thm}[Alternating Series Theorem]\label{def:alternating series}
 		If $a_1\geq a_2\geq\cdots\geq a_n\geq\cdots\geq0$ and $\lim a_n=0$, then the alternating series $\sum(-1)^{n+1}a_n$
 		converges. Moreover, the partial sums $s_n=\sum_{k=1}^{n}(-1)^{k+1}a_k$ satisfy $|s-s_n|\leq a_n$ for all $n$.
-		\end{thm}
-		\begin{proof}
+	\end{thm}
+	\begin{proof}
 		To prove the series converge we need to show the partial sum $(s_n)$ also converges. Note that the subsequence
 		$(s_{2n})$ is increasing (accumulative sum of positive $a_n$) and the subsequence $(s_{2n-1})$ is decreasing (accumulative sum of negative $a_n$). We claim
 		\begin{equation}
@@ -1246,844 +1054,844 @@
 		
 		To check the last claim, note that $s_{2k}\leq s\leq s_{2k+1}$, so both $s_{2k+1}-s$ and $s-s_{2k}$ are bounded by
 		$s_{2k+1}-s_{2k}=a_{2k+1}\leq a_{2k}$ (\textbf{WHY????}). So whether $n$ is even or odd, we have $|s-s_n|\leq a_n$. 
-		\end{proof}
+	\end{proof}
 	
 	\chapter{Continuity}
-		\newpage
-		\section{Continuous Functions}
-			In this book/note, we will be concerned with functions $f$ such that $\dom(f)\subseteq\R$ and such that $f$ is
-			a real-valued function. We consider the \emph{natural domain} as "the largest subset of $\R$ on which the function is a well defined real-valued function. 
-			
-			\begin{dfn}\label{def:continuous}
-			The function $f$ is \emph{continuous} at $x_0$ in $\dom(f)$ if, for every sequence $(x_n)$ in $\dom(f)$ converging to $x_0$, we have $\lim_nf(x_n)=f(x_0)$. If $f$ is continuous at each point of a set $S\subseteq\dom(f)$, then $f$ is said to be \emph{continuous} on $S$. The function $f$ is said to be
-			\emph{continuous} if it is continuous on $\dom(f)$.
-			\end{dfn}
+	\newpage
+	\section{Continuous Functions}
+	In this book/note, we will be concerned with functions $f$ such that $\dom(f)\subseteq\R$ and such that $f$ is
+	a real-valued function. We consider the \emph{natural domain} as "the largest subset of $\R$ on which the function is a well defined real-valued function. 
+	
+	\begin{dfn}\label{def:continuous}
+		The function $f$ is \emph{continuous} at $x_0$ in $\dom(f)$ if, for every sequence $(x_n)$ in $\dom(f)$ converging to $x_0$, we have $\lim_nf(x_n)=f(x_0)$. If $f$ is continuous at each point of a set $S\subseteq\dom(f)$, then $f$ is said to be \emph{continuous} on $S$. The function $f$ is said to be
+		\emph{continuous} if it is continuous on $\dom(f)$.
+	\end{dfn}
+	
+	\setcounter{equation}{0}
+	\begin{thm}\label{def:delta-epsilon property}
+		$f$ is continuous at $x_0$ in $\dom(f)$ if and only if
+		\begin{equation}
+			\forall\epsilon>0,\ \exists\delta>0\quad\text{such that}\quad(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
+		\end{equation}
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}
+			\item[]
+			\item[$\implies$]: Suppose $f$ is continuous at $x_0$ but (1) does not hold. In other words, there exists
+			$\epsilon>0$ so that
+			\begin{displaymath}
+				(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
+			\end{displaymath}
+			fails for each $\delta>0$. In particular the implication
+			\begin{displaymath}
+				(x\in\dom(f))\land(|x-x_0|<\frac{1}{n})\implies|f(x)-f(x_0)|<\epsilon
+			\end{displaymath}
+			fails for each $n\in\N$. Thus for each $n\in\N$ there exists $x_n$ in $\dom(f)$ such that $|x_n-x_0|<\frac{1}{n}$ and yet $|f(x_0)-f(x_n)|\geq\epsilon$. Hence we have $|f(x_0)-f(x_n)|\geq\epsilon\implies\lim f(x_n)\neq f(x_0)$. This contradicts to the definition of continuity \ref{def:continuous}.								
+			\item[$\impliedby$]: Suppose (1) holds and consider a $(x_n)$ in $\dom(f)$ such that $\lim x_n=x_0$. Let
+			$\epsilon>0$. By (1) there exists $\delta>0$ such that
+			\begin{displaymath}
+				(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
+			\end{displaymath}
+			Since $\lim x_n=x_0$ we have
+			\begin{displaymath}
+				n>N\implies|x_n-x_0|<\delta\implies|f(x_n)-f(x_0)|<\epsilon
+			\end{displaymath}
+			Thus $\lim f(x_n)=f(x_0)$
+		\end{itemize}
+	\end{proof}
+	The condition $(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon$ in the book is a little bit
+	confusing. In other words, it means
+	\begin{displaymath}
+		\forall x\in\dom(f),\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<\epsilon
+	\end{displaymath}
+	
+	To use $\epsilon\text{-}\delta$ property to prove the discontinuity, we need to show that
+	\begin{displaymath}
+		\exists\epsilon>0\quad\text{such that}\quad\forall\delta>0,\ \exists x\in\dom(f)\quad\text{such that}\quad |x-x_0|<\delta\quad\text{but}\quad|f(x)-f(x_0)|\geq\epsilon
+	\end{displaymath}
+	
+	
+	\begin{thm}\label{def:17.3}
+		If $f$ is continuous at $x_0$ in $\dom(f)$, then $|f|$ and $kf$, for $k\in\R$, are continuous at $x_0$.
+	\end{thm}
+	\begin{proof}
+		Since $f$ is continuous at $x_0$, we have $\lim f(x_n)=f(x_0)$. Since $\lim kf(x_n)=k\lim f(x_n)=kf(x_0)$, this
+		proves $kf$ is continuous at $x_0$.
+		Since $\lim f(x_n)=f(x_0)$, we have 
+		\begin{displaymath}
+			n>N\implies|f(x_n)-f(x_0)|<\epsilon
+		\end{displaymath}
+		Since $\abs{\abs{f(x_n)}-\abs{f(x_0)}}\leq\abs{f(x_n)-f(x_0)}$, we have 
+		\begin{displaymath}
+			n>N\implies\big|\abs{f(x_n)}-\abs{f(x_0)}\big|\leq\abs{f(x_n)-f(x_0)}<\epsilon
+		\end{displaymath}
+		so $\lim \abs{f(x_n)}=\abs{f(x_0)}$
+	\end{proof}
+	
+	\begin{thm}\label{def:17.4}
+		Let $f$ and $g$ be real-valued fucntions that are continuous at $x_0$ in $\R$. Then
+		\begin{enumerate}[(i)]
+			\item $f+g$ is continuous at $x_0$;
+			\item $fg$ is continuous at $x_0$;
+			\item $f/g$ is continuous ar $x_0$ if $g(x_0)\neq0$.
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		We use the basic definition of continuity \ref{def:continuous} and the basic theorems of limit.
+	\end{proof}
+	
+	\begin{thm}\label{def:17.5}
+		If $f$ is continuous at $x_0$ and $g$ is continuous at $f(x_0)$, then the composite function $g\circ f$ is
+		continuous at $x_0$.
+	\end{thm}
+	\begin{proof}
+		Given that $x_0\in\dom(f)$ and $f(x_0)\in\dom(g)$, let $(x_n)$ be a sequence in $\{x\in\dom(f): f(x)\in\dom(g)\}$
+		converging to $x_0$. Since $f$ is continuous at $x_0$, we have $\lim f(x_n)=f(x_0)$. Since the sequence $(f(x_n))$ converges to $f(x_0)$ and $g$ is continuous at $f(x_0)$, we also have $\lim g(f(x_n))=g(f(x_0))$ which
+		is $\lim g\circ f(x_n)=g\circ f(x_0)$.
+	\end{proof}
+	\newpage
+	\section{Properties of Continuous Functions}
+	A real-valued function $f$ is said to be \emph{bounded} if $\{f(x): x\in\dom(f)\}$ is a bounded set. i.e. if
+	there exists a real number $M$ such that $|f(x)|\leq M$ for all $x\in\dom(f)$.
+	
+	\begin{thm}\label{def:18.1}
+		Let $f$ be a continuous real-valued function on a \emph{closed} interval $[a,b]$. Then $f$ is a bounded function.
+		Moreover, $f$ assume its maximum and minimum values on $[a,b]$; that is there exist $x_0,y_0$ in $[a,b]$
+		such that $f(x_0)\leq f(x)\leq f(y_0)$ for all $x\in[a,b]$.
+	\end{thm}
+	\begin{proof}
+		First assume $f$ is not bounded on $[a,b]$. Then for each $n\in\N$ there corresponds an $x_n\in[a,b]$ such that
+		$|f(x_n)|>n \implies \lim_{k\rightarrow\infty}|f(x_{n_k})|=+\infty$. By \ref{def:B-W}, since $(x_n)$ is bounded by $[a,b]$ it has a subsequence $(x_{n_k})$ that
+		converges to some real number $x_0\in[a,b]$. Since $f$ is continuous, we have $\lim f(x_{n_k})=f(x_0)<\infty$,
+		which is a contradiction. Thus, $f$ is bounded.
 		
-			\setcounter{equation}{0}
-			\begin{thm}\label{def:delta-epsilon property}
-				$f$ is continuous at $x_0$ in $\dom(f)$ if and only if
-				\begin{equation}
-					\forall\epsilon>0,\ \exists\delta>0\quad\text{such that}\quad(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
-				\end{equation}
-			\end{thm}
-			\begin{proof}
-			\begin{itemize}
-				\item[]
-				\item[$\implies$]: Suppose $f$ is continuous at $x_0$ but (1) does not hold. In other words, there exists
-				$\epsilon>0$ so that
-				\begin{displaymath}
-					(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
-				\end{displaymath}
-				fails for each $\delta>0$. In particular the implication
-				\begin{displaymath}
-					(x\in\dom(f))\land(|x-x_0|<\frac{1}{n})\implies|f(x)-f(x_0)|<\epsilon
-				\end{displaymath}
-				fails for each $n\in\N$. Thus for each $n\in\N$ there exists $x_n$ in $\dom(f)$ such that $|x_n-x_0|<\frac{1}{n}$ and yet $|f(x_0)-f(x_n)|\geq\epsilon$. Hence we have $|f(x_0)-f(x_n)|\geq\epsilon\implies\lim f(x_n)\neq f(x_0)$. This contradicts to the definition of continuity \ref{def:continuous}.								
-				\item[$\impliedby$]: Suppose (1) holds and consider a $(x_n)$ in $\dom(f)$ such that $\lim x_n=x_0$. Let
-				$\epsilon>0$. By (1) there exists $\delta>0$ such that
-				\begin{displaymath}
-					(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
-				\end{displaymath}
-				Since $\lim x_n=x_0$ we have
-				\begin{displaymath}
-					n>N\implies|x_n-x_0|<\delta\implies|f(x_n)-f(x_0)|<\epsilon
-				\end{displaymath}
-				Thus $\lim f(x_n)=f(x_0)$
-			\end{itemize}
-			\end{proof}
-			The condition $(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon$ in the book is a little bit
-			confusing. In other words, it means
-			\begin{displaymath}
-				\forall x\in\dom(f),\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<\epsilon
-			\end{displaymath}
-			
-			To use $\epsilon\text{-}\delta$ property to prove the discontinuity, we need to show that
-			\begin{displaymath}
-				\exists\epsilon>0\quad\text{such that}\quad\forall\delta>0,\ \exists x\in\dom(f)\quad\text{such that}\quad |x-x_0|<\delta\quad\text{but}\quad|f(x)-f(x_0)|\geq\epsilon
-			\end{displaymath}
-			
-			
-			\begin{thm}\label{def:17.3}
-			If $f$ is continuous at $x_0$ in $\dom(f)$, then $|f|$ and $kf$, for $k\in\R$, are continuous at $x_0$.
-			\end{thm}
-			\begin{proof}
-			Since $f$ is continuous at $x_0$, we have $\lim f(x_n)=f(x_0)$. Since $\lim kf(x_n)=k\lim f(x_n)=kf(x_0)$, this
-			proves $kf$ is continuous at $x_0$.
-			Since $\lim f(x_n)=f(x_0)$, we have 
-			\begin{displaymath}
-				n>N\implies|f(x_n)-f(x_0)|<\epsilon
-			\end{displaymath}
-			Since $\abs{\abs{f(x_n)}-\abs{f(x_0)}}\leq\abs{f(x_n)-f(x_0)}$, we have 
-			\begin{displaymath}
-				n>N\implies\big|\abs{f(x_n)}-\abs{f(x_0)}\big|\leq\abs{f(x_n)-f(x_0)}<\epsilon
-			\end{displaymath}
-			so $\lim \abs{f(x_n)}=\abs{f(x_0)}$
-			\end{proof}
-			
-			\begin{thm}\label{def:17.4}
-			Let $f$ and $g$ be real-valued fucntions that are continuous at $x_0$ in $\R$. Then
-			\begin{enumerate}[(i)]
-				\item $f+g$ is continuous at $x_0$;
-				\item $fg$ is continuous at $x_0$;
-				\item $f/g$ is continuous ar $x_0$ if $g(x_0)\neq0$.
-			\end{enumerate}
-			\end{thm}
-			\begin{proof}
-			We use the basic definition of continuity \ref{def:continuous} and the basic theorems of limit.
-			\end{proof}
-			
-			\begin{thm}\label{def:17.5}
-			If $f$ is continuous at $x_0$ and $g$ is continuous at $f(x_0)$, then the composite function $g\circ f$ is
-			continuous at $x_0$.
-			\end{thm}
-			\begin{proof}
-			Given that $x_0\in\dom(f)$ and $f(x_0)\in\dom(g)$, let $(x_n)$ be a sequence in $\{x\in\dom(f): f(x)\in\dom(g)\}$
-			converging to $x_0$. Since $f$ is continuous at $x_0$, we have $\lim f(x_n)=f(x_0)$. Since the sequence $(f(x_n))$ converges to $f(x_0)$ and $g$ is continuous at $f(x_0)$, we also have $\lim g(f(x_n))=g(f(x_0))$ which
-			is $\lim g\circ f(x_n)=g\circ f(x_0)$.
-			\end{proof}
-			\newpage
-		\section{Properties of Continuous Functions}
-			A real-valued function $f$ is said to be \emph{bounded} if $\{f(x): x\in\dom(f)\}$ is a bounded set. i.e. if
-			there exists a real number $M$ such that $|f(x)|\leq M$ for all $x\in\dom(f)$.
-			
-			\begin{thm}\label{def:18.1}
-			Let $f$ be a continuous real-valued function on a \emph{closed} interval $[a,b]$. Then $f$ is a bounded function.
-			Moreover, $f$ assume its maximum and minimum values on $[a,b]$; that is there exist $x_0,y_0$ in $[a,b]$
-			such that $f(x_0)\leq f(x)\leq f(y_0)$ for all $x\in[a,b]$.
-			\end{thm}
-			\begin{proof}
-			First assume $f$ is not bounded on $[a,b]$. Then for each $n\in\N$ there corresponds an $x_n\in[a,b]$ such that
-			$|f(x_n)|>n \implies \lim_{k\rightarrow\infty}|f(x_{n_k})|=+\infty$. By \ref{def:B-W}, since $(x_n)$ is bounded by $[a,b]$ it has a subsequence $(x_{n_k})$ that
-			converges to some real number $x_0\in[a,b]$. Since $f$ is continuous, we have $\lim f(x_{n_k})=f(x_0)<\infty$,
-			which is a contradiction. Thus, $f$ is bounded.
-			
-			Not since $f$ is bounded, $M=\sup\{f(x): x\in[a,b]\}$ is finite. For each $n\in\N$ there exists $y_n\in[a,b]$
-			such that $M-\frac{1}{n}<f(y_n)\leq M$. Hence we have $\lim f(y_n)=M$ by Squezze formula. By \ref{def:B-W} there
-			is a subsequence $(y_{n_k})$ of $(y_n)$ converging to some limit $y_0\in[a,b]$. Since $y$ is continuous at $y_0$, we have $\lim_{k\rightarrow\infty}f(y_{n_k})=f(y_0)$. Since $(f(y_{n_k}))$ is also a subsequence
-			of $(f(y_n))$, by \ref{def:subsequence converges to the same limit} $\lim_{k\rightarrow\infty}f(y_{n_k})=
-			\lim_{n\rightarrow\infty}f(y_n)=M$. Thus $f(y_0)=M$ meaning that $f$ achieves its maximum at $y_0$.
-			
-			Apply the same method to $-f$, and we get $-f$ achieves its maximum at some $x_0\in[a,b]$. In other words, $f$
-			achieves its minimum at $x_0$.
-			\end{proof}
-			
-			\begin{thm}[Intermediate Value Theorem]\label{def:18.2}
-			If $f$ is a continuous real-valued function on an interval $I$, then $f$ has the intermediate value property on I: Whenever $a,b\in I$, if $a<b$ and $y$ lies between $f(a)$ and $f(b)$ [i.e. $f(a)<y<f(b)$ or $f(b)<y<f(a)$], then there exists at least one $x$ in
-			$(a,b)$ such that $f(x)=y$.
-			\end{thm}
-			\begin{proof}
-			Let's focus on the case that $f(a)<y<f(b)$ since the other case is similar. Let $S=\{x\in[a,b]: f(x)<y\}$. Since
-			$a\in S$ the set $S$ is nonempty, and $x_0=\sup S$ represents a number in $[a,b]$. For each $n\in\N$, $x_0-\frac{1}{n}$ is not an upper bound for $S$, so there exists $s_n\in S$ such that $x_0-\frac{1}{n}<s_n\leq x_0$. Thus $\lim s_n=x_0$ and since $f(s_n)<y$ for all $n$, we have 
-			\begin{displaymath}
-				f(x_0)=\lim f(s_n)\leq y
-			\end{displaymath} 
-			because $f$ is continuous at $x_0$. Let $t_n=\min\{b, x_0+\frac{1}{n}\}$. Since $x_0<t_n\leq x_0+\frac{1}{n}$ we have $\lim t_n=x_0$. Each $t_n$ belongs to $[a,b]$ but not to $S$, so $f(t_n)\geq y$ for all $n$. Therefore,
-			\begin{displaymath}
-				f(x_0)=\lim f(t_n)\geq y
-			\end{displaymath}
-			because $f$ is continuous at $x_0$. Thus $f(x_0)=y$. 
-			\end{proof}
-			
-			\begin{cor}\label{def:18.3}
-			If $f$ is a continuous real-valued function on an interval $I$, then the set $f(I)=\{f(x): x\in I\}$ is also
-			an interval or a single point.
-			\end{cor}
-			\begin{proof}
-			By \ref{def:18.2} the set $J=f(I)$ has the property:
-			\begin{displaymath}
-				(y_0,y_1\in J\quad\text{and}\quad y_0<y<y_1)\implies y\in J
-			\end{displaymath}
-			If $\inf J<\sup J$, then such a set $J$ will be an interval. Consider $\inf J<y<\sup J$. Then there exist $y_0,y_1\in J$ so that $y_0<y<y_1$, so $y\in J$ by the above property. We showed that
-			\begin{displaymath}
-				\inf J<y<\sup J \implies y\in J
-			\end{displaymath}
-			so $J$ is an interval with endpoints $\inf J$ and $\sup J$
-			\end{proof}
-					
-			\begin{thm}\label{def:18.5}
-			Let $g$ be a strictly increasing function on an interval $J$ such that $g(J)$ is an interval $I$. Then $g$ is
-			continuous on $J$.
-			\end{thm}
-			\begin{proof}
-			Consider an non-endpoint $x_0$ of $J$. Since $g$ is strictly increasing, $g(x_0)$ is also not an endpoint of $I$, so $\exists \epsilon_0>0$ such that $(g(x_0)-\epsilon_0,g(x_0)+\epsilon_0)\subseteq I$.
-			
-			Let $\epsilon>0$ and we can assume $\epsilon<\epsilon_0$ (\textbf{WHY???}). Then $\exists x_1,x_1\in J$ such that $g(x_1)=g(x_0)-\epsilon$ and $g(x_2)=g(x_0)+\epsilon$. This means $x_1<x_0<x_2$ because $g$ is increasing.
-			Also if $x_1<x<x_2$, then $g(x_1)<g(x)<g(x_2)$, hence $g(x_0)-\epsilon<g(x)<g(x_0)+\epsilon$, and hence
-			$|g(x)-g(0)|<\epsilon$. Now set $\delta=\min\{x_2-x_0,x_0-x_1\}$, then 
-			\begin{displaymath}
-				|x-x_0|<\delta\implies x_1<x<x_2\implies|g(x)-g(x_0)|<\epsilon
-			\end{displaymath}
-			Thus $g$ is continuous on $J$.
-			\end{proof}
+		Not since $f$ is bounded, $M=\sup\{f(x): x\in[a,b]\}$ is finite. For each $n\in\N$ there exists $y_n\in[a,b]$
+		such that $M-\frac{1}{n}<f(y_n)\leq M$. Hence we have $\lim f(y_n)=M$ by Squezze formula. By \ref{def:B-W} there
+		is a subsequence $(y_{n_k})$ of $(y_n)$ converging to some limit $y_0\in[a,b]$. Since $y$ is continuous at $y_0$, we have $\lim_{k\rightarrow\infty}f(y_{n_k})=f(y_0)$. Since $(f(y_{n_k}))$ is also a subsequence
+		of $(f(y_n))$, by \ref{def:subsequence converges to the same limit} $\lim_{k\rightarrow\infty}f(y_{n_k})=
+		\lim_{n\rightarrow\infty}f(y_n)=M$. Thus $f(y_0)=M$ meaning that $f$ achieves its maximum at $y_0$.
 		
-			\begin{thm}\label{def:18.4}
-			Let $f$ be a continuous strictly increasing function on some interval $I$. Then $f(I)$ is an interval $J$ by \ref{def:18.3} and $f^{-1}$ represents a function with domain $J$. The function $f^{-1}$ is a continuous strictly increasing function on $J$.
-			\end{thm}
-			\begin{proof}
-			Obviously $f^{-1}$ is still strictly increasing. Since $f^{-1}$ maps $J$ onto $I$, by \ref{def:18.5} $f^{-1}$ is continuous.
-			\end{proof}
-			
-			\setcounter{equation}{0}
-			\begin{thm}
-			Let $f$ be a \emph{one-to-one} continuous function on an interval $I$. Then $f$ is strictly increasing or strictly decreasing.
-			\end{thm}
-			\begin{proof}
-			Firstly we want to show that
+		Apply the same method to $-f$, and we get $-f$ achieves its maximum at some $x_0\in[a,b]$. In other words, $f$
+		achieves its minimum at $x_0$.
+	\end{proof}
+	
+	\begin{thm}[Intermediate Value Theorem]\label{def:18.2}
+		If $f$ is a continuous real-valued function on an interval $I$, then $f$ has the intermediate value property on I: Whenever $a,b\in I$, if $a<b$ and $y$ lies between $f(a)$ and $f(b)$ [i.e. $f(a)<y<f(b)$ or $f(b)<y<f(a)$], then there exists at least one $x$ in
+		$(a,b)$ such that $f(x)=y$.
+	\end{thm}
+	\begin{proof}
+		Let's focus on the case that $f(a)<y<f(b)$ since the other case is similar. Let $S=\{x\in[a,b]: f(x)<y\}$. Since
+		$a\in S$ the set $S$ is nonempty, and $x_0=\sup S$ represents a number in $[a,b]$. For each $n\in\N$, $x_0-\frac{1}{n}$ is not an upper bound for $S$, so there exists $s_n\in S$ such that $x_0-\frac{1}{n}<s_n\leq x_0$. Thus $\lim s_n=x_0$ and since $f(s_n)<y$ for all $n$, we have 
+		\begin{displaymath}
+			f(x_0)=\lim f(s_n)\leq y
+		\end{displaymath} 
+		because $f$ is continuous at $x_0$. Let $t_n=\min\{b, x_0+\frac{1}{n}\}$. Since $x_0<t_n\leq x_0+\frac{1}{n}$ we have $\lim t_n=x_0$. Each $t_n$ belongs to $[a,b]$ but not to $S$, so $f(t_n)\geq y$ for all $n$. Therefore,
+		\begin{displaymath}
+			f(x_0)=\lim f(t_n)\geq y
+		\end{displaymath}
+		because $f$ is continuous at $x_0$. Thus $f(x_0)=y$. 
+	\end{proof}
+	
+	\begin{cor}\label{def:18.3}
+		If $f$ is a continuous real-valued function on an interval $I$, then the set $f(I)=\{f(x): x\in I\}$ is also
+		an interval or a single point.
+	\end{cor}
+	\begin{proof}
+		By \ref{def:18.2} the set $J=f(I)$ has the property:
+		\begin{displaymath}
+			(y_0,y_1\in J\quad\text{and}\quad y_0<y<y_1)\implies y\in J
+		\end{displaymath}
+		If $\inf J<\sup J$, then such a set $J$ will be an interval. Consider $\inf J<y<\sup J$. Then there exist $y_0,y_1\in J$ so that $y_0<y<y_1$, so $y\in J$ by the above property. We showed that
+		\begin{displaymath}
+			\inf J<y<\sup J \implies y\in J
+		\end{displaymath}
+		so $J$ is an interval with endpoints $\inf J$ and $\sup J$
+	\end{proof}
+	
+	\begin{thm}\label{def:18.5}
+		Let $g$ be a strictly increasing function on an interval $J$ such that $g(J)$ is an interval $I$. Then $g$ is
+		continuous on $J$.
+	\end{thm}
+	\begin{proof}
+		Consider an non-endpoint $x_0$ of $J$. Since $g$ is strictly increasing, $g(x_0)$ is also not an endpoint of $I$, so $\exists \epsilon_0>0$ such that $(g(x_0)-\epsilon_0,g(x_0)+\epsilon_0)\subseteq I$.
+		
+		Let $\epsilon>0$ and we can assume $\epsilon<\epsilon_0$ (\textbf{WHY???}). Then $\exists x_1,x_1\in J$ such that $g(x_1)=g(x_0)-\epsilon$ and $g(x_2)=g(x_0)+\epsilon$. This means $x_1<x_0<x_2$ because $g$ is increasing.
+		Also if $x_1<x<x_2$, then $g(x_1)<g(x)<g(x_2)$, hence $g(x_0)-\epsilon<g(x)<g(x_0)+\epsilon$, and hence
+		$|g(x)-g(0)|<\epsilon$. Now set $\delta=\min\{x_2-x_0,x_0-x_1\}$, then 
+		\begin{displaymath}
+			|x-x_0|<\delta\implies x_1<x<x_2\implies|g(x)-g(x_0)|<\epsilon
+		\end{displaymath}
+		Thus $g$ is continuous on $J$.
+	\end{proof}
+	
+	\begin{thm}\label{def:18.4}
+		Let $f$ be a continuous strictly increasing function on some interval $I$. Then $f(I)$ is an interval $J$ by \ref{def:18.3} and $f^{-1}$ represents a function with domain $J$. The function $f^{-1}$ is a continuous strictly increasing function on $J$.
+	\end{thm}
+	\begin{proof}
+		Obviously $f^{-1}$ is still strictly increasing. Since $f^{-1}$ maps $J$ onto $I$, by \ref{def:18.5} $f^{-1}$ is continuous.
+	\end{proof}
+	
+	\setcounter{equation}{0}
+	\begin{thm}
+		Let $f$ be a \emph{one-to-one} continuous function on an interval $I$. Then $f$ is strictly increasing or strictly decreasing.
+	\end{thm}
+	\begin{proof}
+		Firstly we want to show that
+		\begin{equation}
+			\text{if $a<b<c$ in $I$, then $f(b)$ lies between $f(a)$ and $f(c)$}
+		\end{equation}
+		Assume it's false so $f(b)>\max\{f(a),f(c)\}$. Select $y$ so that $f(b)>y>\max\{f(a),f(c)\}$. By \ref{def:18.2} applied to $[a,b]$ and $[b,c]$, $\exists x_1\in(a,b)$ and $x_2\in(b,c)$ such that $f(x_1)=f(x_2)=y$. This contradicts to the one-to-one property of $f$. 
+		
+		Now select any $a_0<b_0$ in $I$ and suppose, say, that $f(a_0)<f(b_0)$. We need to show $f$ is strictly increasing on $I$. By (1) we have
+		\begin{align*}
+			f(x)<f(a_0)\quad&\text{for}\quad x<a_0\\
+			f(a_0)<f(x)<f(b_0)\quad&\text{for}\quad a_0<x<b_0\\
+			f(b_0)<f(x)\quad&\text{for}\quad x>b_0
+		\end{align*}
+		In particular,
+		\begin{align}
+			f(x)<f(a_0)\quad&\text{for all}\quad x<a_0\\
+			f(a_0)<f(x)\quad&\text{for all}\quad x>a_0
+		\end{align}
+		Now consider any $x_1<x_2$ in $I$.
+		\begin{align*}
+			x_1\leq a_0\leq x_2 &\implies f(x_1)<f(x_2)\quad\text{by (2) and (3)}\\
+			x_1<x_2<a_0&\implies f(x_1)<f(a_0)\quad\text{by (2)} \implies f(x_1)<f(x_2)\quad\text{by (1)}\\
+			a_0<x_1<x_2&\implies f(a_0)<f(x_2)\quad\text{by (2)} \implies f(x_1)<f(x_2)\quad\text{by (1)}
+		\end{align*}
+	\end{proof}
+	\newpage
+	\section{Uniform Continuity}
+	Sometimes we want to know when the $\delta$ in \ref{def:delta-epsilon property} can be chosen to depend only on
+	$\epsilon>0$ and $S$, so that $\delta$ does not depend on the particular point $x_0$.
+	\begin{dfn}
+		Let $f$ be a real-valued function defined on a set $S\subseteq\R$. Then $f$ is uniformly ocntinuous on $S$ if
+		\begin{displaymath}
+			\text{for each $\epsilon>0$ there exists $\delta>0$ such that $\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.$}
+		\end{displaymath}
+		We will say $f$ is uniformly continuous if $f$ is uniformly continuous on $\dom f$.
+	\end{dfn}
+	
+	\begin{thm}\label{def:19.2}
+		If $f$ is continuous on a closed interval $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
+	\end{thm}
+	\begin{proof}
+		Assume $f$ is not uniformly continuous on $[a,b]$, then there exists $\epsilon>0$ such that for each $\delta>0$,
+		there exists $x,y\in[a,b]$ such that $|x-y|<\delta$ but $|f(x)-f(y)|\geq\epsilon$. Thus for each $n\in\N$, since
+		$\frac{1}{n}>0$, there exist $x_n,y_n\in[a,b]$ such that $|x_n-y_n|<\frac{1}{n}$ but $|f(x_n)\geq f(y_n)|\geq\epsilon$. By \ref{def:B-W}, since $(x_n)$ is bounded in $[a,b]$, it has a subsequence $(x_{n_k})$
+		converging to $x_0\in[a,b]$. Clearly we can also have a subsequence $(y_{n_k})$ converging to $x_0$. Because $f$
+		is continuous at $x_0$, we have 
+		\begin{displaymath}
+			f(x_0)=\lim\limits_{x\rightarrow\infty}f(x_{n_k})=\lim_{k\rightarrow\infty}f(y_{n_k})
+		\end{displaymath}
+		so
+		\begin{displaymath}
+			\lim_{k\rightarrow\infty}[f(x_{n_k})-f(y_{n_k})]=0
+		\end{displaymath} 
+		However, since $|f(x_{n_k})-f(y_{n_k})|\geq\epsilon>0$ for all $k$, we have a contradiction.
+	\end{proof}
+	
+	\begin{thm}\label{def:19.4}
+		If $f$ is uniformly continuous on a set $S$ and $(s_n)$ is a Cauchy sequence in $S$, then $(f(s_n))$ is a 
+		Cauchy sequence.
+	\end{thm}
+	\begin{proof}
+		Let $(s_n)$ be a Cauchy sequence in $S$ and let $\epsilon>0$. Since $f$ is uniformly continuous on $S$, there
+		exists $\delta>0$ so that
+		\begin{displaymath}
+			\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.
+		\end{displaymath}
+		Since $(s_n)$ is a Cauchy sequence, there exists $N$ so that
+		\begin{displaymath}
+			m,n>N\implies|s_n-s_m|<\delta\implies|f(s_n)-f(s_m)|<\epsilon.
+		\end{displaymath}
+		Thus $(f(s_n))$ is indeed a Cauchy sequence.
+	\end{proof}
+	The contrapositive of the above them is that "If $(s_n)$ is a Cauchy sequence in $S$, but $(f(s_n))$ is not a Cauchy sequence, then $f$ is not uniformly continuous on a set $S$.
+	
+	\setcounter{equation}{0}
+	\begin{thm}\label{def:19.5}
+		A real-valued function $f$ on $(a,b)$ is uniformly continuous on $(a,b)$ if and only if it can be extended to
+		a continuous function $\tilde{f}$ on $[a,b]$.
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}
+			\item[]
+			\item[$\implies$]: Suppose $(s_n)$ is a sequence in $(a,b)$ converging to $a$, then $(s_n)$ is a Cauchy
+			sequence by \ref{def:cauchy iff convergent}, so $(f(s_n))$ is also a Cauchy sequence by \ref{def:19.4} and 
+			converging again by \ref{def:cauchy iff convergent}. Hence we have the following claim:
 			\begin{equation}
-				\text{if $a<b<c$ in $I$, then $f(b)$ lies between $f(a)$ and $f(c)$}
+				\text{if $(s_n)$ is a sequence in $(a,b)$ converging to $a$, then $(f(s_n))$ converges}
 			\end{equation}
-			Assume it's false so $f(b)>\max\{f(a),f(c)\}$. Select $y$ so that $f(b)>y>\max\{f(a),f(c)\}$. By \ref{def:18.2} applied to $[a,b]$ and $[b,c]$, $\exists x_1\in(a,b)$ and $x_2\in(b,c)$ such that $f(x_1)=f(x_2)=y$. This contradicts to the one-to-one property of $f$. 
 			
-			Now select any $a_0<b_0$ in $I$ and suppose, say, that $f(a_0)<f(b_0)$. We need to show $f$ is strictly increasing on $I$. By (1) we have
-			\begin{align*}
-				f(x)<f(a_0)\quad&\text{for}\quad x<a_0\\
-				f(a_0)<f(x)<f(b_0)\quad&\text{for}\quad a_0<x<b_0\\
-				f(b_0)<f(x)\quad&\text{for}\quad x>b_0
-			\end{align*}
-			In particular,
-			\begin{align}
-				f(x)<f(a_0)\quad&\text{for all}\quad x<a_0\\
-				f(a_0)<f(x)\quad&\text{for all}\quad x>a_0
-			\end{align}
-			Now consider any $x_1<x_2$ in $I$.
-			\begin{align*}
-				x_1\leq a_0\leq x_2 &\implies f(x_1)<f(x_2)\quad\text{by (2) and (3)}\\
-				x_1<x_2<a_0&\implies f(x_1)<f(a_0)\quad\text{by (2)} \implies f(x_1)<f(x_2)\quad\text{by (1)}\\
-				a_0<x_1<x_2&\implies f(a_0)<f(x_2)\quad\text{by (2)} \implies f(x_1)<f(x_2)\quad\text{by (1)}
-			\end{align*}
-			\end{proof}
-			\newpage
-		\section{Uniform Continuity}
-			Sometimes we want to know when the $\delta$ in \ref{def:delta-epsilon property} can be chosen to depend only on
-			$\epsilon>0$ and $S$, so that $\delta$ does not depend on the particular point $x_0$.
-			\begin{dfn}
-			Let $f$ be a real-valued function defined on a set $S\subseteq\R$. Then $f$ is uniformly ocntinuous on $S$ if
-			\begin{displaymath}
-				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.$}
-			\end{displaymath}
-			We will say $f$ is uniformly continuous if $f$ is uniformly continuous on $\dom f$.
-			\end{dfn}
-			
-			\begin{thm}\label{def:19.2}
-			If $f$ is continuous on a closed interval $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
-			\end{thm}
-			\begin{proof}
-			Assume $f$ is not uniformly continuous on $[a,b]$, then there exists $\epsilon>0$ such that for each $\delta>0$,
-			there exists $x,y\in[a,b]$ such that $|x-y|<\delta$ but $|f(x)-f(y)|\geq\epsilon$. Thus for each $n\in\N$, since
-			$\frac{1}{n}>0$, there exist $x_n,y_n\in[a,b]$ such that $|x_n-y_n|<\frac{1}{n}$ but $|f(x_n)\geq f(y_n)|\geq\epsilon$. By \ref{def:B-W}, since $(x_n)$ is bounded in $[a,b]$, it has a subsequence $(x_{n_k})$
-			converging to $x_0\in[a,b]$. Clearly we can also have a subsequence $(y_{n_k})$ converging to $x_0$. Because $f$
-			is continuous at $x_0$, we have 
-			\begin{displaymath}
-				f(x_0)=\lim\limits_{x\rightarrow\infty}f(x_{n_k})=\lim_{k\rightarrow\infty}f(y_{n_k})
-			\end{displaymath}
-			so
-			\begin{displaymath}
-				\lim_{k\rightarrow\infty}[f(x_{n_k})-f(y_{n_k})]=0
-			\end{displaymath} 
-			However, since $|f(x_{n_k})-f(y_{n_k})|\geq\epsilon>0$ for all $k$, we have a contradiction.
-			\end{proof}
-			
-			\begin{thm}\label{def:19.4}
-			If $f$ is uniformly continuous on a set $S$ and $(s_n)$ is a Cauchy sequence in $S$, then $(f(s_n))$ is a 
-			Cauchy sequence.
-			\end{thm}
-			\begin{proof}
-			Let $(s_n)$ be a Cauchy sequence in $S$ and let $\epsilon>0$. Since $f$ is uniformly continuous on $S$, there
-			exists $\delta>0$ so that
-			\begin{displaymath}
-				\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.
-			\end{displaymath}
-			Since $(s_n)$ is a Cauchy sequence, there exists $N$ so that
-			\begin{displaymath}
-				m,n>N\implies|s_n-s_m|<\delta\implies|f(s_n)-f(s_m)|<\epsilon.
-			\end{displaymath}
-			Thus $(f(s_n))$ is indeed a Cauchy sequence.
-			\end{proof}
-			The contrapositive of the above them is that "If $(s_n)$ is a Cauchy sequence in $S$, but $(f(s_n))$ is not a Cauchy sequence, then $f$ is not uniformly continuous on a set $S$.
-			
-			\setcounter{equation}{0}
-			\begin{thm}\label{def:19.5}
-			A real-valued function $f$ on $(a,b)$ is uniformly continuous on $(a,b)$ if and only if it can be extended to
-			a continuous function $\tilde{f}$ on $[a,b]$.
-			\end{thm}
-			\begin{proof}
-			\begin{itemize}
-				\item[]
-				\item[$\implies$]: Suppose $(s_n)$ is a sequence in $(a,b)$ converging to $a$, then $(s_n)$ is a Cauchy
-				sequence by \ref{def:cauchy iff convergent}, so $(f(s_n))$ is also a Cauchy sequence by \ref{def:19.4} and 
-				converging again by \ref{def:cauchy iff convergent}. Hence we have the following claim:
-				\begin{equation}
-					\text{if $(s_n)$ is a sequence in $(a,b)$ converging to $a$, then $(f(s_n))$ converges}
-				\end{equation}
-			
-				Create a sequence $(u_n)=(s_1, t_1,s_2,t_2,\dots)$ where $(t_n)$ is also a sequence converging to $a$.
-				Clearly $\lim u_n=a$ and $\lim f(u_n)$ exists due to (1). Therefore, $(f(s_n))$ and $(f(t_n))$ are 
-				subsequences of $(f(u_n))$ both converge to $\lim f(u_n)$ by \ref{def:subsequence converges to the same limit}, so $\lim f(s_n)=\lim f(t_n)$. Hence we have the following claim:
-				\begin{equation}
-					\text{if $(s_n)$ and $(t_n)$ are sequences in $(a,b)$ converging to $a$, then $\lim f(s_n)=\lim f(t_n)$}
-				\end{equation}
-				Now we define
-				\begin{equation}
-					\text{$\tilde{f}(a)=\lim f(s_n)$ for any sequence $(s_n)$ in $(a,b)$ converging to $a$}
-				\end{equation}
-				(1) guarantees $\lim f(s_n)$ exists, and (2) guarantees $\tilde{f}(a)$ is not ambiguous. Thus, $\tilde{f}$
-				is continuous at $a$. Similar method for $\tilde{f}(b)$.
-				\item[$\impliedby$]: Since $\tilde{f}$ is continuous on $[a,b]$, $\tilde{f}$ is also uniformly continuous
-				on $[a,b]$ by \ref{def:19.2}, so clearly $f$ is uniformly continuous on $(a,b)$.
-			\end{itemize}
-			\end{proof}
-			
-			\begin{thm}
-			Let $f$ be a continuous function on an interval $I$ [$I$ may be bounded or unbounded]. Let $I^\circ$ be the
-			interval obtained by removing from $I$ any endpoints that happen to be in $I$. If $f$ is differentiable on
-			$I^\circ$ and if $f^\prime$ is bounded on $I^\circ$, then $f$ is uniformly continuous on $I$.
-			\end{thm}
-			\newpage
-		\section{Limits of Functions}
-			\begin{dfn}
-			Let $S\subset\R$ and $a\in\R$ or a symbol $\infty$ or $-\infty$ that is the limit of some sequence in $S$, and let $L$ be a real number or symbol $+\infty$ or $-\infty$. We write $\lim_{x\rightarrow a^S} f(x)=L$ if
-			\begin{displaymath}
-				\text{$f$ is a function defined on $S$,}
-			\end{displaymath}
-			and
-			\begin{displaymath}
-				\text{for every sequence $(x_n)$ in $S$ with limit $a$, we have $\lim_{n\rightarrow\infty}f(x_n)=L$}.
-			\end{displaymath}
-			\end{dfn}
-			Recall the definition of continuity, now we can say that a function $f$ is continuous at $a$ in $\dom(f)=S \iff \lim_{x\rightarrow a^S} f(x)=f(a)$. Also notice that when limits exist, they are unique. In other words, there
-			is only one $L$ equals to $\lim_{x\rightarrow a^S} f(x)$.  
-			
-			Now let's define the various standard limit concepts for functions.
-			\begin{dfn}
-			\begin{enumerate}[(a)]
-				\item[]
-				\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some set $S=J\backslash\{a\}$ where $J$ is an open interval containing $a$. Such a limit 
-				$\lim_{x\rightarrow a^S}$ is called the \emph{[two-sided]} limit of $f$ at $a$. Note that neither $f(a)$ needs to be defined or $\lim_{x\rightarrow a}f(x)$ needs to be equal $f(a)$, unless we want to say $f$ is continuous at $a$.
-				\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a^+}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some open interval $S=(a,b)$. This is called the \emph{[right-hand]} limit. Again $f$ need not
-				be defined at $a$.
-				\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a^-}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some open interval $S=(c,a)$. This is called the \emph{[left-hand]} limit.
-				\item For a function $f$ we write $\lim_{x\rightarrow\infty}f(x)=L$ provided $\lim_{x\rightarrow\infty^S}f(x)=L$ for some interval $S=(c,\infty)$. Likewise, For a function $f$ we write $\lim_{x\rightarrow-\infty}f(x)=L$ provided $\lim_{x\rightarrow-\infty^S}f(x)=L$ for some interval $S=(-\infty,b)$
-			\end{enumerate} 
-			\end{dfn}
-			
-			\begin{thm}\label{def:20.4}
-			Let $f_1$ and $f_2$ be functions for which the limits $L_1=\lim_{x\rightarrow a^S}f_1(x)$ and $L_2=\lim_{x\rightarrow a^S}f_2(x)$ exist and are finite. Then
-			\begin{enumerate}[(i)]
-				\item $\lim_{x\rightarrow a^S}(f_1+f_2)(x)$ exists and equals $L_1+L_2$;
-				\item $\lim_{x\rightarrow a^S}(f_1f_2)(x)$ exists and equals $L_1L_2$;
-				\item $\lim_{x\rightarrow a^S}(f_1/f_2)(x)$ exists and equals $L_1/L_2$ provided $L_2\neq0$ and $f_2(x)\neq0$ for $x\in S$.
-			\end{enumerate}
-			\end{thm}
-			\begin{proof}
-			By the assumption since both $f_1$ and $f_2$ are defined on $S$ and $a$ is the limit of some sequence in $S$,
-			clearly the functions $f_1+f_2$ and $f_1f_2$ are defined on$S$ and so is $f_1/f_2$ if $f_2(x)\neq0$ for $x\in S$.
-			
-			By the assumption, for every sequence $(x_n)$ in $S$ with limit $a$, we have $L_1=\lim_{n\rightarrow\infty}f_1(x_n)$ and $L_2=\lim_{n\rightarrow\infty}f_2(x_n)$. Now by the basic theorems of the limits, we have
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}(f_1+f_2)(x_n)=	\lim\limits_{n\rightarrow\infty}f_1(x_n) + \lim\limits_{n\rightarrow\infty}f_2(x_n) = L_1+L_2
-			\end{displaymath}
-			and
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}(f_1f_2)(x_n)=\left[\lim\limits_{n\rightarrow\infty}f_1(x_n)\right] \cdot \left[\lim\limits_{n\rightarrow\infty}f_2(x_n)\right] = L_1L_2
-			\end{displaymath}
-		    Similar proof for (iii).
-			\end{proof}
-			
-			\begin{thm}\label{def:20.5}
-				Let $f$ be a function for which the limit $L=\lim_{x\rightarrow a^S}f(x)$ exists and is finite. If $g$ is a function defined on $\{f(x): x\in S\}\cup\{L\}$ that is continuous at $L$, then $\lim_{x\rightarrow a^S} g\circ f(x)$ exists and equals $g(L)$.
-			\end{thm}
-			\begin{proof}
-			First note that $g\circ f$ is defined on $S$ by our assumptions. Consider a sequence $(x_n)$ in $S$ with limit
-			$a$. Then we have $L=\lim_{n\rightarrow \infty}f(x_n)$. Since $g$ is continuous at $L$, it follows that
-			\begin{displaymath}
-				g(L)=\lim_{n\rightarrow\infty}g(f(x_n))=\lim_{n\rightarrow\infty}g\circ f(x_n)
-			\end{displaymath}
-			Hence $\lim_{n\rightarrow a^S}g\circ f(x_n)=g(L)$.
-			\end{proof}
-			Be careful that for this theorem to work, $g$ needs to be \textbf{continuous} at $L$.
-			
-			\setcounter{equation}{0}	
-			\begin{thm}\label{def:20.6}
-			Let $f$ be a function defined on a subset $S$ of $\R$, let a be a real number that is the limit of some sequence
-			in $S$, and let $L$ be a real number, then $\lim_{x\rightarrow a^S}f(x)=L$ if and only if
+			Create a sequence $(u_n)=(s_1, t_1,s_2,t_2,\dots)$ where $(t_n)$ is also a sequence converging to $a$.
+			Clearly $\lim u_n=a$ and $\lim f(u_n)$ exists due to (1). Therefore, $(f(s_n))$ and $(f(t_n))$ are 
+			subsequences of $(f(u_n))$ both converge to $\lim f(u_n)$ by \ref{def:subsequence converges to the same limit}, so $\lim f(s_n)=\lim f(t_n)$. Hence we have the following claim:
 			\begin{equation}
-				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $x\in S$ and $|x-a|<\delta$ imply $|f(x)-L|<\epsilon$}
+				\text{if $(s_n)$ and $(t_n)$ are sequences in $(a,b)$ converging to $a$, then $\lim f(s_n)=\lim f(t_n)$}
 			\end{equation}
-			\end{thm}
-			\begin{proof}
-			\begin{itemize}
-				\item[]
-				\item[$\implies$]: Suppose $\lim_{n\rightarrow a^S}f(x)=L$ but (1) does not hold. This means there exists
-				$\epsilon>0$ such that for each $\delta>0$ and $n\in\N$\textbf{WHY???}, there exists $x_n\in S$ such that $|x_n-a|<\delta$ but $|f(x)-L|\geq\epsilon$. Hence $x_n$ is a sequence in $S$ with limit $a$ but $\lim_{n\rightarrow\infty}f(x_n)=L$ fails. This is a contradiction.
-				\item[$\impliedby$]: Consider an arbitrary sequence $(x_n)$ in $S$ such that $\lim_{n\rightarrow \infty}x_n=a$. Thus, choose $\epsilon=\delta$ and there exists $N$ such that 
-				\begin{displaymath}
+			Now we define
+			\begin{equation}
+				\text{$\tilde{f}(a)=\lim f(s_n)$ for any sequence $(s_n)$ in $(a,b)$ converging to $a$}
+			\end{equation}
+			(1) guarantees $\lim f(s_n)$ exists, and (2) guarantees $\tilde{f}(a)$ is not ambiguous. Thus, $\tilde{f}$
+			is continuous at $a$. Similar method for $\tilde{f}(b)$.
+			\item[$\impliedby$]: Since $\tilde{f}$ is continuous on $[a,b]$, $\tilde{f}$ is also uniformly continuous
+			on $[a,b]$ by \ref{def:19.2}, so clearly $f$ is uniformly continuous on $(a,b)$.
+		\end{itemize}
+	\end{proof}
+	
+	\begin{thm}
+		Let $f$ be a continuous function on an interval $I$ [$I$ may be bounded or unbounded]. Let $I^\circ$ be the
+		interval obtained by removing from $I$ any endpoints that happen to be in $I$. If $f$ is differentiable on
+		$I^\circ$ and if $f^\prime$ is bounded on $I^\circ$, then $f$ is uniformly continuous on $I$.
+	\end{thm}
+	\newpage
+	\section{Limits of Functions}
+	\begin{dfn}
+		Let $S\subset\R$ and $a\in\R$ or a symbol $\infty$ or $-\infty$ that is the limit of some sequence in $S$, and let $L$ be a real number or symbol $+\infty$ or $-\infty$. We write $\lim_{x\rightarrow a^S} f(x)=L$ if
+		\begin{displaymath}
+			\text{$f$ is a function defined on $S$,}
+		\end{displaymath}
+		and
+		\begin{displaymath}
+			\text{for every sequence $(x_n)$ in $S$ with limit $a$, we have $\lim_{n\rightarrow\infty}f(x_n)=L$}.
+		\end{displaymath}
+	\end{dfn}
+	Recall the definition of continuity, now we can say that a function $f$ is continuous at $a$ in $\dom(f)=S \iff \lim_{x\rightarrow a^S} f(x)=f(a)$. Also notice that when limits exist, they are unique. In other words, there
+	is only one $L$ equals to $\lim_{x\rightarrow a^S} f(x)$.  
+	
+	Now let's define the various standard limit concepts for functions.
+	\begin{dfn}
+		\begin{enumerate}[(a)]
+			\item[]
+			\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some set $S=J\backslash\{a\}$ where $J$ is an open interval containing $a$. Such a limit 
+			$\lim_{x\rightarrow a^S}$ is called the \emph{[two-sided]} limit of $f$ at $a$. Note that neither $f(a)$ needs to be defined or $\lim_{x\rightarrow a}f(x)$ needs to be equal $f(a)$, unless we want to say $f$ is continuous at $a$.
+			\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a^+}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some open interval $S=(a,b)$. This is called the \emph{[right-hand]} limit. Again $f$ need not
+			be defined at $a$.
+			\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a^-}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some open interval $S=(c,a)$. This is called the \emph{[left-hand]} limit.
+			\item For a function $f$ we write $\lim_{x\rightarrow\infty}f(x)=L$ provided $\lim_{x\rightarrow\infty^S}f(x)=L$ for some interval $S=(c,\infty)$. Likewise, For a function $f$ we write $\lim_{x\rightarrow-\infty}f(x)=L$ provided $\lim_{x\rightarrow-\infty^S}f(x)=L$ for some interval $S=(-\infty,b)$
+		\end{enumerate} 
+	\end{dfn}
+	
+	\begin{thm}\label{def:20.4}
+		Let $f_1$ and $f_2$ be functions for which the limits $L_1=\lim_{x\rightarrow a^S}f_1(x)$ and $L_2=\lim_{x\rightarrow a^S}f_2(x)$ exist and are finite. Then
+		\begin{enumerate}[(i)]
+			\item $\lim_{x\rightarrow a^S}(f_1+f_2)(x)$ exists and equals $L_1+L_2$;
+			\item $\lim_{x\rightarrow a^S}(f_1f_2)(x)$ exists and equals $L_1L_2$;
+			\item $\lim_{x\rightarrow a^S}(f_1/f_2)(x)$ exists and equals $L_1/L_2$ provided $L_2\neq0$ and $f_2(x)\neq0$ for $x\in S$.
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		By the assumption since both $f_1$ and $f_2$ are defined on $S$ and $a$ is the limit of some sequence in $S$,
+		clearly the functions $f_1+f_2$ and $f_1f_2$ are defined on$S$ and so is $f_1/f_2$ if $f_2(x)\neq0$ for $x\in S$.
+		
+		By the assumption, for every sequence $(x_n)$ in $S$ with limit $a$, we have $L_1=\lim_{n\rightarrow\infty}f_1(x_n)$ and $L_2=\lim_{n\rightarrow\infty}f_2(x_n)$. Now by the basic theorems of the limits, we have
+		\begin{displaymath}
+			\lim\limits_{n\rightarrow\infty}(f_1+f_2)(x_n)=	\lim\limits_{n\rightarrow\infty}f_1(x_n) + \lim\limits_{n\rightarrow\infty}f_2(x_n) = L_1+L_2
+		\end{displaymath}
+		and
+		\begin{displaymath}
+			\lim\limits_{n\rightarrow\infty}(f_1f_2)(x_n)=\left[\lim\limits_{n\rightarrow\infty}f_1(x_n)\right] \cdot \left[\lim\limits_{n\rightarrow\infty}f_2(x_n)\right] = L_1L_2
+		\end{displaymath}
+		Similar proof for (iii).
+	\end{proof}
+	
+	\begin{thm}\label{def:20.5}
+		Let $f$ be a function for which the limit $L=\lim_{x\rightarrow a^S}f(x)$ exists and is finite. If $g$ is a function defined on $\{f(x): x\in S\}\cup\{L\}$ that is continuous at $L$, then $\lim_{x\rightarrow a^S} g\circ f(x)$ exists and equals $g(L)$.
+	\end{thm}
+	\begin{proof}
+		First note that $g\circ f$ is defined on $S$ by our assumptions. Consider a sequence $(x_n)$ in $S$ with limit
+		$a$. Then we have $L=\lim_{n\rightarrow \infty}f(x_n)$. Since $g$ is continuous at $L$, it follows that
+		\begin{displaymath}
+			g(L)=\lim_{n\rightarrow\infty}g(f(x_n))=\lim_{n\rightarrow\infty}g\circ f(x_n)
+		\end{displaymath}
+		Hence $\lim_{n\rightarrow a^S}g\circ f(x_n)=g(L)$.
+	\end{proof}
+	Be careful that for this theorem to work, $g$ needs to be \textbf{continuous} at $L$.
+	
+	\setcounter{equation}{0}	
+	\begin{thm}\label{def:20.6}
+		Let $f$ be a function defined on a subset $S$ of $\R$, let a be a real number that is the limit of some sequence
+		in $S$, and let $L$ be a real number, then $\lim_{x\rightarrow a^S}f(x)=L$ if and only if
+		\begin{equation}
+			\text{for each $\epsilon>0$ there exists $\delta>0$ such that $x\in S$ and $|x-a|<\delta$ imply $|f(x)-L|<\epsilon$}
+		\end{equation}
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}
+			\item[]
+			\item[$\implies$]: Suppose $\lim_{n\rightarrow a^S}f(x)=L$ but (1) does not hold. This means there exists
+			$\epsilon>0$ such that for each $\delta>0$ and $n\in\N$\textbf{WHY???}, there exists $x_n\in S$ such that $|x_n-a|<\delta$ but $|f(x)-L|\geq\epsilon$. Hence $x_n$ is a sequence in $S$ with limit $a$ but $\lim_{n\rightarrow\infty}f(x_n)=L$ fails. This is a contradiction.
+			\item[$\impliedby$]: Consider an arbitrary sequence $(x_n)$ in $S$ such that $\lim_{n\rightarrow \infty}x_n=a$. Thus, choose $\epsilon=\delta$ and there exists $N$ such that 
+			\begin{displaymath}
 				n>N\implies|x_n-a|<\delta\implies|f(x_n)-L|<\epsilon.
-				\end{displaymath}  
-				The last implication comes from the assumption, so $\lim_{n\rightarrow a^S}f(x)=L$.
-			\end{itemize}
-			\end{proof}
-
-			\setcounter{equation}{0}			
-			\begin{cor}\label{def:20.7}
-			Let $f$ be a function defined on $J\backslash\{a\}$ for some open interval $J$ containing $a$, and let $L$ be a
-			real number. Then  $\lim_{x\rightarrow a^S}f(x)=L$ if and only if
+			\end{displaymath}  
+			The last implication comes from the assumption, so $\lim_{n\rightarrow a^S}f(x)=L$.
+		\end{itemize}
+	\end{proof}
+	
+	\setcounter{equation}{0}			
+	\begin{cor}\label{def:20.7}
+		Let $f$ be a function defined on $J\backslash\{a\}$ for some open interval $J$ containing $a$, and let $L$ be a
+		real number. Then  $\lim_{x\rightarrow a^S}f(x)=L$ if and only if
+		\begin{equation}
+			\text{for each $\epsilon>0$ there exists $\delta>0$ such that $0<|x-a|<\delta\implies|f(x)-L|<\epsilon$}
+		\end{equation}
+	\end{cor}
+	
+	\setcounter{equation}{0}			
+	\begin{cor}\label{def:20.8}
+		Let $f$ be a function defined on some interval $(a,b)$, and let $L$ be a real number. Then $\lim_{x\rightarrow a^+}f(x)=L$ if and only if
+		\begin{equation}
+			\text{for each $\epsilon>0$ there exists $\delta>0$ such that $a<x<a+\delta\implies|f(x)-L|<\epsilon$}
+		\end{equation} 
+	\end{cor}
+	
+	Now let's give some general conditions for the limit of function in different situations: $\lim_{x\rightarrow s}f(x)=L \iff$
+	\begin{itemize}
+		\item $L$ is finite:
+		\begin{itemize}
+			\item $s=a$: for each $\epsilon>0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $|f(x)-L|<\epsilon$.
+			\item $s=a^+$: for each $\epsilon>0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $|f(x)-L|<\epsilon$.
+			\item $s=a^-$: for each $\epsilon>0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $|f(x)-L|<\epsilon$.
+			\item $s=\infty$: for each $\epsilon>0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $|f(x)-L|<\epsilon$.
+			\item $s=-\infty$: for each $\epsilon>0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $|f(x)-L|<\epsilon$.
+		\end{itemize}
+		\item $L=+\infty$:
+		\begin{itemize}
+			\item $s=a$: for each $M>0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)>M$.
+			\item $s=a^+$: for each $M>0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $f(x)>M$.
+			\item $s=a^-$: for each $M>0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $f(x)>M$.
+			\item $s=\infty$: for each $M>0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $f(x)>M$.
+			\item $s=-\infty$: for each $M>0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $f(x)>M$.
+		\end{itemize}
+		\item $L=-\infty$:
+		\begin{itemize}
+			\item $s=a$: for each $M<0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)<M$.
+			\item $s=a^+$: for each $M<0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $f(x)<M$.
+			\item $s=a^-$: for each $M<0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $f(x)<M$.
+			\item $s=\infty$: for each $N<0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $f(x)<N$.
+			\item $s=-\infty$: for each $N<0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $f(x)<N$. 
+		\end{itemize}
+	\end{itemize}
+	
+	\begin{thm}\label{def:20.10}
+		Let $f$ be a function defined on $J\backslash\{a\}$ for some open interval $J$ containing $a$. Then $\lim_{x\rightarrow a}f(x)$ exists $\iff$ the limits $\lim_{x\rightarrow a^+}f(x)$ and $\lim_{x\rightarrow a^-}f(x)$ both exist and are equal to each other, thereby all three limits are equal.
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}
+			\item[]
+			\item[$\implies$]: Suppose $L$ is finite. Since $\lim_{x\rightarrow a}f(x)=L$, (1) in \ref{def:20.7} holds, and then (1) in \ref{def:20.8} also holds. Thus we have $\lim_{x\rightarrow a^+}f(x)=L$; similarly for $\lim_{x\rightarrow a^-}f(x)=L$.
+			
+			If $L$ is infinite, say $+\infty$, then consider an arbitrary $M>0$, there exists $\delta>0$ such that
 			\begin{equation}
-				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $0<|x-a|<\delta\implies|f(x)-L|<\epsilon$}
+				0<|x-a|<\delta\implies f(x)>M
 			\end{equation}
-			\end{cor}
-
-			\setcounter{equation}{0}			
-			\begin{cor}\label{def:20.8}
-			Let $f$ be a function defined on some interval $(a,b)$, and let $L$ be a real number. Then $\lim_{x\rightarrow a^+}f(x)=L$ if and only if
+			Then clearly
 			\begin{equation}
-				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $a<x<a+\delta\implies|f(x)-L|<\epsilon$}
-			\end{equation} 
-			\end{cor}
+				a<x<a+\delta\implies f(x)>M
+			\end{equation}
+			and
+			\begin{equation}
+				a-\delta<x<a\implies f(x)>M
+			\end{equation}
+			so $\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)=+\infty$.
+			\item[$\impliedby$]: Suppose $L$ is finite and $\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)=L$. Consider $\epsilon>0$, then we apply \ref{def:20.8} and its analogue for $a^-$ to
+			get $\delta_1>0$ and $\delta_2>0$ such that
+			\begin{displaymath}
+				a<x<a+\delta_1\implies|f(x)-L|<\epsilon
+			\end{displaymath}
+			and
+			\begin{displaymath}
+				a-\delta_2<x<a\implies|f(x)-L|<\epsilon.
+			\end{displaymath}
+			If $\delta=\min\{\delta_1,\delta_2\}$, then
+			\begin{displaymath}
+				0<|x-a|<\delta\implies|f(x)-L|<\epsilon,
+			\end{displaymath}
+			so $\lim_{x\rightarrow a}f(x)=L$ by \ref{def:20.7}.
 			
-			Now let's give some general conditions for the limit of function in different situations: $\lim_{x\rightarrow s}f(x)=L \iff$
-			\begin{itemize}
-				\item $L$ is finite:
-				\begin{itemize}
-					\item $s=a$: for each $\epsilon>0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $|f(x)-L|<\epsilon$.
-					\item $s=a^+$: for each $\epsilon>0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $|f(x)-L|<\epsilon$.
-					\item $s=a^-$: for each $\epsilon>0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $|f(x)-L|<\epsilon$.
-					\item $s=\infty$: for each $\epsilon>0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $|f(x)-L|<\epsilon$.
-					\item $s=-\infty$: for each $\epsilon>0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $|f(x)-L|<\epsilon$.
-				\end{itemize}
-				\item $L=+\infty$:
-				\begin{itemize}
-					\item $s=a$: for each $M>0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)>M$.
-					\item $s=a^+$: for each $M>0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $f(x)>M$.
-					\item $s=a^-$: for each $M>0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $f(x)>M$.
-					\item $s=\infty$: for each $M>0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $f(x)>M$.
-					\item $s=-\infty$: for each $M>0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $f(x)>M$.
-				\end{itemize}
-				\item $L=-\infty$:
-				\begin{itemize}
-					\item $s=a$: for each $M<0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)<M$.
-					\item $s=a^+$: for each $M<0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $f(x)<M$.
-					\item $s=a^-$: for each $M<0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $f(x)<M$.
-					\item $s=\infty$: for each $N<0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $f(x)<N$.
-					\item $s=-\infty$: for each $N<0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $f(x)<N$. 
-				\end{itemize}
-			\end{itemize}
-			
-			\begin{thm}\label{def:20.10}
-			Let $f$ be a function defined on $J\backslash\{a\}$ for some open interval $J$ containing $a$. Then $\lim_{x\rightarrow a}f(x)$ exists $\iff$ the limits $\lim_{x\rightarrow a^+}f(x)$ and $\lim_{x\rightarrow a^-}f(x)$ both exist and are equal to each other, thereby all three limits are equal.
-			\end{thm}
-			\begin{proof}
-			\begin{itemize}
-				\item[]
-				\item[$\implies$]: Suppose $L$ is finite. Since $\lim_{x\rightarrow a}f(x)=L$, (1) in \ref{def:20.7} holds, and then (1) in \ref{def:20.8} also holds. Thus we have $\lim_{x\rightarrow a^+}f(x)=L$; similarly for $\lim_{x\rightarrow a^-}f(x)=L$.
-				
-				If $L$ is infinite, say $+\infty$, then consider an arbitrary $M>0$, there exists $\delta>0$ such that
-				\begin{equation}
-					0<|x-a|<\delta\implies f(x)>M
-				\end{equation}
-				Then clearly
-				\begin{equation}
-					a<x<a+\delta\implies f(x)>M
-				\end{equation}
-				and
-				\begin{equation}
-					a-\delta<x<a\implies f(x)>M
-				\end{equation}
-				so $\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)=+\infty$.
-				\item[$\impliedby$]: Suppose $L$ is finite and $\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)=L$. Consider $\epsilon>0$, then we apply \ref{def:20.8} and its analogue for $a^-$ to
-				get $\delta_1>0$ and $\delta_2>0$ such that
-				\begin{displaymath}
-					a<x<a+\delta_1\implies|f(x)-L|<\epsilon
-				\end{displaymath}
-				and
-				\begin{displaymath}
-					a-\delta_2<x<a\implies|f(x)-L|<\epsilon.
-				\end{displaymath}
-				If $\delta=\min\{\delta_1,\delta_2\}$, then
-				\begin{displaymath}
-					0<|x-a|<\delta\implies|f(x)-L|<\epsilon,
-				\end{displaymath}
-				so $\lim_{x\rightarrow a}f(x)=L$ by \ref{def:20.7}.
-				
-				If $L$ is infinite, say $+\infty$, so $\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)=+\infty$ then for each $M>0$ there exists $\delta_1>0$ such that (2) holds, and there exists $\delta_2>0$ so that (3) holds. Then $(1)$ holds with $\delta=\min\{\delta_1,\delta_2\}$. We conclude $\lim_{x\rightarrow a}f(x)=+\infty$. 
-			\end{itemize}	
-			\end{proof}
+			If $L$ is infinite, say $+\infty$, so $\lim_{x\rightarrow a^+}f(x)=\lim_{x\rightarrow a^-}f(x)=+\infty$ then for each $M>0$ there exists $\delta_1>0$ such that (2) holds, and there exists $\delta_2>0$ so that (3) holds. Then $(1)$ holds with $\delta=\min\{\delta_1,\delta_2\}$. We conclude $\lim_{x\rightarrow a}f(x)=+\infty$. 
+		\end{itemize}	
+	\end{proof}
 	\chapter{Sequences and Series of Functions}
-		\newpage
-		\section{Power Series}
-			\begin{dfn}
-			Given a sequence $(a_n)_{n=0}^{\infty}$ of real numbers, the series $\sum_{n=0}^{\infty}a_nx^n$ is called 
-			a power series, which is a function of $x$ provided it converges for some or all $x$. One of the following
-			holds for a power series with coefficients $(a_n)$:
-			\begin{enumerate}[(a)]
-				\item The power series converge for all $x\in\R$;
-				\item The power series converges only for $x=0$;
-				\item The power series converges for all $x$ in some bounded interval centered at $0$; the interval may be
-				open, half-open, or closed.
-			\end{enumerate}
-			\end{dfn}
-			
-			\begin{thm}\label{def:23.1}
-			For the power series $\sum a_nx^n$, let
-			\begin{displaymath}
-				\beta=\lim\sup |a_n|^{1/n}\quad\text{and}\quad R=\frac{1}{\beta}
-			\end{displaymath}
-			[If $\beta=0$ we set $R=+\infty$, and if $\beta=+\infty$ we set $R=0$.] Then
-			\begin{enumerate}[(i)]
-				\item The power series converges for $|x|<R$;
-				\item The power series diverges for $|x|>R$. 
-			\end{enumerate}
-			We call $R$ the \emph{radius of convergence} for the power series. For $|x|=R$ we need some extra care.
-			\end{thm}
-			\begin{proof}
-			The proof follows easily from the Root Test \ref{def:Root Test}. Define $\alpha_x=\lim\sup|a_nx^n|^{1/n}$, then
-			we have 
-			\begin{displaymath}
-				\alpha_x=\lim\sup|a_nx^n|^{1/n}=\lim\sup|x||a_n|^{1/n}=|x|\cdot\lim\sup|a_n|^{1/n}=\beta|x|
-			\end{displaymath}
-			Now we need to consider three different cases:
-			\begin{enumerate}
-				\item Suppose $0<R<+\infty$. Then $\alpha_x=\frac{|x|}{R}$. If $|x|<R$, then $\alpha_x<1$, so the series
-				converge by the root test. Likewise, if $|x|>R$, then $\alpha_x>1$ and the series diverges.
-				\item Suppose $R=+\infty$. Then $\beta=0$ and $\alpha_x=0$ no matter what $x$ is. Hence the power series
-				converges for all $x$.
-				\item Suppose $R=0$. Then $\beta=+\infty$ and $\alpha_x=+\infty$ for $x\neq0$. Thus the series diverges for
-				$x\neq0$ by the root test.
-			\end{enumerate}
-			\end{proof}
-			Note that if $\lim\left|\frac{a_{n+1}}{a_n}\right|$ exists, then it equals $\beta$ by \ref{def:12.3}. This limit
-			is often easier to calculate than $\lim\sup|a_n|^{1/n}$.
-			\newpage
-		\section{Uniform Convergence}
-			\begin{dfn}
-			Let $(f_n)$ be a sequence of real-valued functions defined on a set $S\subseteq\R$. The sequence $(f_n)$ \emph{converges pointwise} to a function $f$ defined on $S$ if
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}f_n(x)=f(x)\quad\text{for all}\quad x\in S.
-			\end{displaymath}
-			We often write $\lim f_n=f$ \emph{pointwise [on S]} or $f_n\rightarrow f$ \emph{pointwise [on S]}
-			\end{dfn}
-			Observe that saying $f_n\rightarrow f$ \emph{pointwise [on S]} is equivalent to the following:
-			\begin{displaymath}
-				\text{for each $\epsilon>0$ and $x$ in $S$ there exists $N$ such that $|f_n(x)-f(x)|<\epsilon$ for $n>N$.}
-			\end{displaymath}
-			
-			\begin{dfn}
-			Let $(f_n)$ be a sequence of real-valued functions defined on a set $S\subseteq\R$. The sequence $(f_n)$ \emph{converges uniformly} on $S$ to a function $f$ defined on $S$ if
-			\begin{align*}
-				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
-				\text{$|f_n(x)-f(x)|<\epsilon$ for all $x\in S$ and all $n>N$.}
-			\end{align*}
-			We write $\lim f_n=f$ \emph{uniformly [on S]} or $f_n\rightarrow f$ \emph{uniformly [on S]}
-			\end{dfn}
-			
-			\setcounter{equation}{0}
-			\begin{thm}\label{thm:24.3}
-			The uniform limit of continuous functions is continuous. More precisely, let $(f_n)$ be a sequence of functions
-			on a set $S\subseteq\R$, suppose $f_n\rightarrow f$ uniformly on $S$, and suppose $S=\dom(f)$. If each $f_n$ is
-			continuous at $x_0$ in $S$, then $f$ is continuous at $x_0$. [so if each $f_n$ is continuous on $S$, then $f$ is continuous on $S$.]
-			\end{thm}
-			\begin{proof}
-			The critical inequality for this proof is
-			\begin{equation}
-				|f(x)-f(x_0)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(x_0)|+|f_n(x_0)-f(x_0)|
-			\end{equation}
-			Let $\epsilon>0$. There exists $N\in\N$ such that
-			\begin{displaymath}
-				n>N\implies \forall x\in S,\ |f_n(x)-f(x)|<\frac{\epsilon}{3}
-			\end{displaymath}
-			since $f_n\rightarrow f$ uniformly on $S$. In particular,
-			\begin{equation}
-				\forall x\in S,\ |f_{N+1}(x)-f(x)|<\frac{\epsilon}{3}
-			\end{equation}
-			Since $f_{N+1}$ is continuous at $x_0$ there is a $\delta>0$ such that
-			\begin{equation}
-				\forall x\in S,\ |x-x_0|<\delta\implies|f_{N+1}(x)-f_{N+1}(x_0)|<\frac{\epsilon}{3};
-			\end{equation}
-			Now apply (1) with $n=N+1$, (2) twice and (3) once to conclude
-			\begin{displaymath}
-				\forall x\in S,\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<3\cdot\frac{\epsilon}{3}=\epsilon;
-			\end{displaymath}
-		 	Thus $f$ is continuous at $x_0$.
-			\end{proof}
-			The contrapositive of this theorem is useful to show $f_n$ does not uniformly converge to $f$ on $S$:
-			If $f$ is not continuous at $x_0\in S$ but $f_n$ is continuous at $x_0$, then the statement that "$f_n\rightarrow f$ uniformly on $S$" is \textbf{incorrect}.
-		
-			It is worthy to mention that the uniform convergence can be reformulated as follows: \emph{A sequence $(f_n)$ of functions on a set $\subseteq\R$ converges uniformly to a function $f$ on $S$ $\iff$}
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}\sup\{|f(x)-f_n(x)|: x\in S\}=0
-			\end{displaymath}
-			Thus we can decide whether a sequence $(f_n)$ converges uniformly to $f$ by calculating $\sup\{|f(x)-f_n(x)|: x\in S\}$ for each $n$. If $f-f_n$ is differentiable, we may use calculus to find these suprema.
-			\newpage
-		\section{More on Uniform Convergence}
-			Here are two important facts about integration
-			\begin{enumerate}
-				\item If $g$ and $h$ are integrable on $[a,b]$ and if $g(x)\leq h(x)$ for all $x\in[a,b]$, then $\int_{a}^{b}g(x)dx\leq\int_{a}^{b}h(x)dx$.
-				\item If $g$ is integrable on $[a,b]$, then
-				\begin{displaymath}
-					\abs{\int_{a}^{b}g(x)dx}\leq\int_{a}^{b}\abs{g(x)}dx.
-				\end{displaymath}
-			\end{enumerate}
-			Also continuous functions on closed intervals are integrable.
-			
-			\begin{thm}\label{thm:25.2}
-			Let $(f_n)$ be a sequence of continuous functions on $[a,b]$, and suppose $f_n\rightarrow f$ uniformly on $[a,b]$. Then
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}\int_{a}^{b}f_n(x)dx=\int_{a}^{b}f(x)dx.
-			\end{displaymath}
-			\begin{proof}
+	\newpage
+	\section{Power Series}
+	\begin{dfn}
+		Given a sequence $(a_n)_{n=0}^{\infty}$ of real numbers, the series $\sum_{n=0}^{\infty}a_nx^n$ is called 
+		a power series, which is a function of $x$ provided it converges for some or all $x$. One of the following
+		holds for a power series with coefficients $(a_n)$:
+		\begin{enumerate}[(a)]
+			\item The power series converge for all $x\in\R$;
+			\item The power series converges only for $x=0$;
+			\item The power series converges for all $x$ in some bounded interval centered at $0$; the interval may be
+			open, half-open, or closed.
+		\end{enumerate}
+	\end{dfn}
+	
+	\begin{thm}\label{def:23.1}
+		For the power series $\sum a_nx^n$, let
+		\begin{displaymath}
+			\beta=\lim\sup |a_n|^{1/n}\quad\text{and}\quad R=\frac{1}{\beta}
+		\end{displaymath}
+		[If $\beta=0$ we set $R=+\infty$, and if $\beta=+\infty$ we set $R=0$.] Then
+		\begin{enumerate}[(i)]
+			\item The power series converges for $|x|<R$;
+			\item The power series diverges for $|x|>R$. 
+		\end{enumerate}
+		We call $R$ the \emph{radius of convergence} for the power series. For $|x|=R$ we need some extra care.
+	\end{thm}
+	\begin{proof}
+		The proof follows easily from the Root Test \ref{def:Root Test}. Define $\alpha_x=\lim\sup|a_nx^n|^{1/n}$, then
+		we have 
+		\begin{displaymath}
+			\alpha_x=\lim\sup|a_nx^n|^{1/n}=\lim\sup|x||a_n|^{1/n}=|x|\cdot\lim\sup|a_n|^{1/n}=\beta|x|
+		\end{displaymath}
+		Now we need to consider three different cases:
+		\begin{enumerate}
+			\item Suppose $0<R<+\infty$. Then $\alpha_x=\frac{|x|}{R}$. If $|x|<R$, then $\alpha_x<1$, so the series
+			converge by the root test. Likewise, if $|x|>R$, then $\alpha_x>1$ and the series diverges.
+			\item Suppose $R=+\infty$. Then $\beta=0$ and $\alpha_x=0$ no matter what $x$ is. Hence the power series
+			converges for all $x$.
+			\item Suppose $R=0$. Then $\beta=+\infty$ and $\alpha_x=+\infty$ for $x\neq0$. Thus the series diverges for
+			$x\neq0$ by the root test.
+		\end{enumerate}
+	\end{proof}
+	Note that if $\lim\left|\frac{a_{n+1}}{a_n}\right|$ exists, then it equals $\beta$ by \ref{def:12.3}. This limit
+	is often easier to calculate than $\lim\sup|a_n|^{1/n}$.
+	\newpage
+	\section{Uniform Convergence}
+	\begin{dfn}
+		Let $(f_n)$ be a sequence of real-valued functions defined on a set $S\subseteq\R$. The sequence $(f_n)$ \emph{converges pointwise} to a function $f$ defined on $S$ if
+		\begin{displaymath}
+			\lim\limits_{n\rightarrow\infty}f_n(x)=f(x)\quad\text{for all}\quad x\in S.
+		\end{displaymath}
+		We often write $\lim f_n=f$ \emph{pointwise [on S]} or $f_n\rightarrow f$ \emph{pointwise [on S]}
+	\end{dfn}
+	Observe that saying $f_n\rightarrow f$ \emph{pointwise [on S]} is equivalent to the following:
+	\begin{displaymath}
+		\text{for each $\epsilon>0$ and $x$ in $S$ there exists $N$ such that $|f_n(x)-f(x)|<\epsilon$ for $n>N$.}
+	\end{displaymath}
+	
+	\begin{dfn}
+		Let $(f_n)$ be a sequence of real-valued functions defined on a set $S\subseteq\R$. The sequence $(f_n)$ \emph{converges uniformly} on $S$ to a function $f$ defined on $S$ if
+		\begin{align*}
+			\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
+			\text{$|f_n(x)-f(x)|<\epsilon$ for all $x\in S$ and all $n>N$.}
+		\end{align*}
+		We write $\lim f_n=f$ \emph{uniformly [on S]} or $f_n\rightarrow f$ \emph{uniformly [on S]}
+	\end{dfn}
+	
+	\setcounter{equation}{0}
+	\begin{thm}\label{thm:24.3}
+		The uniform limit of continuous functions is continuous. More precisely, let $(f_n)$ be a sequence of functions
+		on a set $S\subseteq\R$, suppose $f_n\rightarrow f$ uniformly on $S$, and suppose $S=\dom(f)$. If each $f_n$ is
+		continuous at $x_0$ in $S$, then $f$ is continuous at $x_0$. [so if each $f_n$ is continuous on $S$, then $f$ is continuous on $S$.]
+	\end{thm}
+	\begin{proof}
+		The critical inequality for this proof is
+		\begin{equation}
+			|f(x)-f(x_0)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(x_0)|+|f_n(x_0)-f(x_0)|
+		\end{equation}
+		Let $\epsilon>0$. There exists $N\in\N$ such that
+		\begin{displaymath}
+			n>N\implies \forall x\in S,\ |f_n(x)-f(x)|<\frac{\epsilon}{3}
+		\end{displaymath}
+		since $f_n\rightarrow f$ uniformly on $S$. In particular,
+		\begin{equation}
+			\forall x\in S,\ |f_{N+1}(x)-f(x)|<\frac{\epsilon}{3}
+		\end{equation}
+		Since $f_{N+1}$ is continuous at $x_0$ there is a $\delta>0$ such that
+		\begin{equation}
+			\forall x\in S,\ |x-x_0|<\delta\implies|f_{N+1}(x)-f_{N+1}(x_0)|<\frac{\epsilon}{3};
+		\end{equation}
+		Now apply (1) with $n=N+1$, (2) twice and (3) once to conclude
+		\begin{displaymath}
+			\forall x\in S,\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<3\cdot\frac{\epsilon}{3}=\epsilon;
+		\end{displaymath}
+		Thus $f$ is continuous at $x_0$.
+	\end{proof}
+	The contrapositive of this theorem is useful to show $f_n$ does not uniformly converge to $f$ on $S$:
+	If $f$ is not continuous at $x_0\in S$ but $f_n$ is continuous at $x_0$, then the statement that "$f_n\rightarrow f$ uniformly on $S$" is \textbf{incorrect}.
+	
+	It is worthy to mention that the uniform convergence can be reformulated as follows: \emph{A sequence $(f_n)$ of functions on a set $\subseteq\R$ converges uniformly to a function $f$ on $S$ $\iff$}
+	\begin{displaymath}
+		\lim\limits_{n\rightarrow\infty}\sup\{|f(x)-f_n(x)|: x\in S\}=0
+	\end{displaymath}
+	Thus we can decide whether a sequence $(f_n)$ converges uniformly to $f$ by calculating $\sup\{|f(x)-f_n(x)|: x\in S\}$ for each $n$. If $f-f_n$ is differentiable, we may use calculus to find these suprema.
+	\newpage
+	\section{More on Uniform Convergence}
+	Here are two important facts about integration
+	\begin{enumerate}
+		\item If $g$ and $h$ are integrable on $[a,b]$ and if $g(x)\leq h(x)$ for all $x\in[a,b]$, then $\int_{a}^{b}g(x)dx\leq\int_{a}^{b}h(x)dx$.
+		\item If $g$ is integrable on $[a,b]$, then
+		\begin{displaymath}
+			\abs{\int_{a}^{b}g(x)dx}\leq\int_{a}^{b}\abs{g(x)}dx.
+		\end{displaymath}
+	\end{enumerate}
+	Also continuous functions on closed intervals are integrable.
+	
+	\begin{thm}\label{thm:25.2}
+		Let $(f_n)$ be a sequence of continuous functions on $[a,b]$, and suppose $f_n\rightarrow f$ uniformly on $[a,b]$. Then
+		\begin{displaymath}
+			\lim\limits_{n\rightarrow\infty}\int_{a}^{b}f_n(x)dx=\int_{a}^{b}f(x)dx.
+		\end{displaymath}
+		\begin{proof}
 			By \ref{def:24.3} $f$is continuous, so $f_n-f$ are all integrable on $[a,b]$. Let $\epsilon>0$. Since $f_n\rightarrow f$ uniformly on $[a,b]$, there exists $N$ such that $\abs{f_n(x)-f(x)}<\frac{\epsilon}{b-a}$ for all $x\in[a,b]$ and all $n>N$. Consequently $n>N$ implies
 			\begin{align*}
 				\abs{\int_{a}^{b}f_n(x)dx-\int_{a}^{b}f(x)dx}&=\abs{\int_{a}^{b}[f_n(x)-f(x)]dx}\\
-															 &\leq\int_{a}^{b}\abs{f_n(x)-f(x)}dx\\
-															 &\leq\int_{a}^{b}\frac{\epsilon}{b-a}dx\\
-															 &=\epsilon
+				&\leq\int_{a}^{b}\abs{f_n(x)-f(x)}dx\\
+				&\leq\int_{a}^{b}\frac{\epsilon}{b-a}dx\\
+				&=\epsilon
 			\end{align*}
 			Thus $\lim\limits_{n\rightarrow\infty}\int_{a}^{b}f_n(x)dx=\int_{a}^{b}f(x)dx$.
-			\end{proof}
-			\end{thm}
+		\end{proof}
+	\end{thm}
+	
+	\begin{dfn}
+		A sequence $(f_n)$ of functions defined on a set $S\subseteq\R$ is \emph{uniformly Cauchy on S} if
+		\begin{align*}
+			\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
+			\text{$\abs{f_n(x)-f_m(x)}<\epsilon$ for all $x\in S$ and all $m,n>N$.}
+		\end{align*}
+	\end{dfn}
+	Notice that uniformly convergent sequences of functions are uniformly Cauchy.
+	
+	\setcounter{equation}{0}
+	\begin{thm}\label{thm:25.4}
+		Let $(f_n)$ be a sequence of functions defined and uniformly Cauchy on a set $S\subseteq\R$. Then there exists a function $f$ on $S$ such that $f_n\rightarrow f$ uniformly on $S$.
+	\end{thm}
+	\begin{proof}
+		Since $(f_n)$ is uniformly Cauchy, $(f_n(x_0))$ is a Cauchy sequence for each $x_0\in S$. Now for each $x\in S$, define $f(x)=\lim_{n\rightarrow\infty}f_n(x)$. This defines a function $f$ on $S$ such that $f_n\rightarrow f$ pointwise on $S$.
+		
+		Let $\epsilon>0$. Since $(f_n)$ is uniformly Cauchy, there is a number $N$ such that 
+		\begin{equation}
+			\abs{f_n(x)-f_m(x)}<\frac{\epsilon}{2}\quad\text{for all}\quad x\in S\quad\text{and all}\quad m,n<N
+		\end{equation}
+		Consider $m>N$ and $x\in S$. (1) tells us that $f_n(x)$ lies in $(f_m(x)-\frac{\epsilon}{2},f_m(x)+\frac{\epsilon}{2})$ for all $n>N$. Therefore, $f(x)=\lim_{n\rightarrow \infty}f_n(x)$ lies in $[f_m(x)-\frac{\epsilon}{2},f_m(x)+\frac{\epsilon}{2}]$. In other words,
+		\begin{displaymath}
+			\abs{f(x)-f_m(x)}\leq\frac{\epsilon}{2}\quad\text{for all}\quad x\in S\quad\text{and}\quad m>N
+		\end{displaymath}
+		Then of course
+		\begin{displaymath}
+			\abs{f(x)-f_m(x)}\leq\epsilon\quad\text{for all}\quad x\in S\quad\text{and}\quad m>N
+		\end{displaymath}
+		Thus $f_m\rightarrow f$ uniformly on $S$, as desired.
+	\end{proof}
+	
+	A \emph{series of functions} is an expression $\sum_{k=0}^{\infty}g_k$ or $\sum_{k=0}^{\infty}g_k(x)$ which makes sense provided the sequence of partial sums $\sum_{k=0}^{n}g_k$ converges, or diverges to $+\infty$ or $-\infty$ pointwise. If the sequence of partial sums converges uniformly on a set $S$ to $\sum_{k=0}^{\infty}$, then we say the \emph{series is uniformly convergent} on $S$.
+	
+	\begin{thm}\label{thm:25.5}
+		Consider a series $\sum_{k=0}^{\infty}g_k$ of functions on a set $S\subseteq\R$. Suppose each $g_k$ is continuous on $S$ and the series converges uniformly on $S$. Then the series $\sum_{k=0}^{\infty}g_k$ represents a continuous function on $S$.
+	\end{thm}
+	\begin{proof}
+		Each partial sum $f_n=\sum_{k=1}^{n}g_k$ is continuous and the sequence $(f_n)$ converges uniformly on $S$. Hence the limit function is continuous by \ref{def:24.3}.
+	\end{proof}
+	There is an analogue between the Cauchy criterion for a normal series $\sum a_k$ and the one for a series of functions $\sum g_k$: \emph{The sequence of partial sums of a series $\sum_{k=0}^{\infty}g_k$ of functions is uniformly Cauchy on a set $S$ $\iff$ the series satisfies the \emph{Cauchy criterion}[uniformly on $S$]}:
+	\begin{align*}
+		\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
+		\text{$n\geq m>N$ implies $\abs{\sum_{k=m}^{n}g_k(x)}<\epsilon$ for all $x\in S$.}
+	\end{align*}
+	
+	\begin{thm}\label{thm:25.6}
+		If a series $\sum_{k=0}^{\infty}g_k$ of functions satisfies the Cauchy criterion uniformly on a set $S$, then the
+		series converges uniformly on $S$.
+	\end{thm}
+	\begin{proof}
+		Let $f_n=\sum_{k=0}^{n}g_k$. The sequence $(f_n)$ of partial sums is uniformly Cauchy on $S$, so $(f_n)$ converges uniformly on $S$ by \ref{def:25.4}.
+	\end{proof}
+	
+	\begin{thm}[Weierstrass M-test]\label{thm:25.7}
+		Let $(M_k)$ be a sequence of nonnegative real numbers where $\sum M_k<\infty$. If $|g_k(x)|\leq M_k$ for all $x$ in a set $S$, then $\sum g_k$ converges uniformly on $S$.
+	\end{thm}
+	\begin{proof}
+		We want to verify the Cauchy criterion of such $\sum g_k$ on $S$. Let $\epsilon>0$. Since the series $\sum M_k$ converges, it satisfies the Cauchy criterion in \ref{def:cauchy criterion}. So there exists a number $N$ such that
+		\begin{displaymath}
+			n\geq m>N\implies\sum_{k=m}^{n}M_k<\epsilon.
+		\end{displaymath}
+		Hence if $n\geq m>N$ and $x$ is in $S$, then
+		\begin{displaymath}
+			\abs{\sum_{k=m}^{n}g_k(x)}\leq\sum_{k=m}^{n}\abs{g_k(x)}\leq\sum_{k=m}^{n}M_k<\epsilon. 
+		\end{displaymath}
+		Thus the series $\sum g_k$ satisfies the Cauchy criterion uniformly on $S$, and \ref{def:25.6} shows that it converges uniformly on $S$.
+	\end{proof}
+	
+	If the series $\sum g_n$ converges uniformly on a set $S$, then
+	\begin{displaymath}
+		\lim\limits_{n\rightarrow\infty}\sup\{|g_n(x)|: x\in S\}=0.
+	\end{displaymath}
+	\newpage
+	\section{Differentiation and Integration of Power Series}
+	\begin{thm}\label{thm:26.1}
+		Let $\sum_{n=0}^{\infty}a_nx^n$ be a power series with radius of convergence $R>0$ [possibly $R=+\infty$]. If $0<R_1<R$, then the power series converges uniformly on $[-R_1, R_1]$ to a continuous function.
+	\end{thm}
+	\begin{proof}
+		Consider $0<R_1<R$. First observe that the series $\sum a_nx^n$ and $\sum|a_n|x^n$ have the same radius of convergence. Since $|R_1|<R$, we have $\sum a_nR_1^n<\infty$. Clearly we have $|a_nx^n|\leq|a_n|R_1^n$ for all $x\in[-R_1,R_1]$, so the series $\sum a_nx^n$ converges uniformly on $[-R_1,R_1]$ by \ref{thm:25.7}. Then by \ref{def:25.5} since each $a_nx^n$ is continuous, the limit of the series of the functions is also continuous.
+	\end{proof}
+	
+	\begin{cor}\label{cor:26.2}
+		The power series $\sum a_nx^n$ converges to a continuous function on the open interval $(-R,R)$.
+	\end{cor}
+	\begin{proof}
+		If $x_0\in(-R,R)$, then $x_0\in(-R_1,R_1)$ for some $R_1<R$. The theorem shows the limit of the series is continuous at $x_0$. 
+	\end{proof}
+	
+	\begin{lem}\label{lem:26.3}
+		If the power series $\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, then the power series
+		\begin{displaymath}
+			\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{and}\quad\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}
+		\end{displaymath} 
+		also have radius of convergence $R$.
+	\end{lem}
+	\begin{proof}
+		First observe the series $\sum na_nx^{n-1}$ and $\sum na_nx^n$ have the same radius of convergence. Same for $\sum\frac{a_n}{n+1}x^{n+1}$ and $\sum\frac{a_n}{n+1}x^n$. It is because one is $x$ multiple of the other.
+		
+		For the series $\sum na_nx^n$, because $\lim\sup(n|a_n|)^{1/n}=\lim\sup n^{1/n}|a_n|^{1/n}$ and $\lim n^{1/n}=1$, so $\lim\sup(n|a_n|)^{1/n}=\lim\sup|a_n|^{1/n}=\beta$. Hence $\sum na_nx^n$ has radius of convergence $R$.
+		
+		Similarly, for the series $\sum\frac{a_n}{n+1}x^n$, because $\lim\sup(\frac{|a_n|}{n+1})^{1/n}=\lim\sup(\frac{1}{n+1})^{1/n}\cdots|a_n|^{1/n}=1\cdot\lim\sup|a_n|^{1/n}=\beta$ by \ref{thm:12.1}, so the series $\sum\frac{a_n}{n+1}x^n$ has radius of convergence $R$.
+	\end{proof}
+	
+	\begin{thm}\label{thm:26.4}
+		Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R>0$. Then
+		\begin{displaymath}
+			\int_{0}^{x}f(t)dx=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}\quad\text{for}\quad |x|<R
+		\end{displaymath}
+	\end{thm}
+	\begin{proof}
+		Fix $x<0$. The case $x>0$ is similar. On the interval $[x,0]$, the sequence of partial sums $\sum_{k=0}^{n}a_kt^k$ converges uniformly to $f(t)$ by \ref{thm:26.1}. Consequently, by \ref{thm:25.2} we have
+		\begin{align*}
+			\int_{x}^{0}f(t)dt&=\lim_{n\rightarrow \infty}\int_{x}^{0}\left(\sum_{k=0}^{n}a_kt^k\right)dt\\
+			&=\lim_{n\rightarrow \infty}\sum_{k=0}^{n}a_k\int_{x}^{0}t^kdt\\
+			&=\lim_{n\rightarrow \infty}\sum_{k=0}^{n}a_k\left[\frac{0^{k+1}-x^{k+1}}{k+1}\right]\\
+			&=-\left(\sum_{k=0}^{\infty}\frac{a_k}{k+1}x^{k+1}\right)\\
+			&=-\left(\int_{0}^{x}f(t)dt\right)
+		\end{align*}
+	\end{proof}
+	The last theorem shows that a power series can be integrated term-by-term inside its interval of convergence. The next theorem shows that term-by-term differentiation is also legal
+	
+	\begin{thm}\label{thm:26.5}
+		Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ have radius of convergence $R>0$. Then $f$ is differentiable on $(-R,R)$ and \begin{displaymath}
+			f^\prime(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|<R
+		\end{displaymath}
+	\end{thm}
+	\begin{proof}
+		We begin with the series $g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}$ and observe this series converges for $|x|<R$ by \ref{lem:26.3}. By \ref{thm:26.4}, we can integrate $g(x)$ term-by-term:
+		\begin{displaymath}
+			\int_{0}^{x}g(t)dt=\sum_{n=1}^{\infty}a_nx^n=f(x)-a_0\quad\text{for}\quad|x|<R.
+		\end{displaymath}
+		Thus if $0<R_1<R$, then
+		\begin{displaymath}
+			f(x)=\int_{-R_1}^{x}g(t)dt+k\quad\text{for}\quad|x|\leq R_1
+		\end{displaymath}
+		where $k=a_0-\int_{-R_1}^{0}g(t)dt$. Since $g$ is continuous, the Fundamental Theorem of Calculus shows $f$ is differentiable and $f^\prime(x)=g(x)$. Thus
+		\begin{displaymath}
+			f^\prime(x)=g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|\leq R_1
+		\end{displaymath}
+	\end{proof}
+	
+	\setcounter{equation}{0}
+	\begin{thm}[Abel's Theorem]\label{thm:26.6}
+		Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ be a power series with finite positive radius of convergence $R$. If the series converges at $x=R$, then $f$ is continuous at $x=R$; if the series converges at $x=-R$, then $f$ is continuous at $x=-R$.
+	\end{thm}
+	\begin{proof}
+		\begin{itemize}
+			\item[]
+			\item[Case] 1. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $1$ and the series converges at $x=1$. We will prove $f$ is continuous on $[0,1]$. We need to show that $f$ is continuous on $[0,1]$. By subtracting a constant from $f$, we may assume $f(1)=\sum_{n=0}^{\infty}a_n=0$. Let $f_n(x)=\sum_{k=0}^{n}a_kx^k$ and $s_n=\sum_{k=0}^{n}a_k=f_n(1)$ for $n=0,1,2,\dots.$. Since $f_n(x)\rightarrow f(x)$ pointwise on $[0,1]$ and each $f_n$ is continuous, by \ref{thm:24.3} it suffices to show $f_n\rightarrow f$ uniformly on $[0,1]$. By \ref{thm:25.4} it suffices to show the convergence is uniformly Cauchy.
 			
-			\begin{dfn}
-			A sequence $(f_n)$ of functions defined on a set $S\subseteq\R$ is \emph{uniformly Cauchy on S} if
+			For $m<n$, we have
 			\begin{align*}
-				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
-				\text{$\abs{f_n(x)-f_m(x)}<\epsilon$ for all $x\in S$ and all $m,n>N$.}
+				f_n(x)-f_m(x)&=\sum_{k=m+1}^{n}a_kx^k\\
+				&=\sum_{k=m+1}^{n}(s_k-s_{k-1})x^k\\
+				&=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m+1}^{n}s_{k-1}x^{k-1}\\
+				&=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m}^{n-1}s_kx^{k}
 			\end{align*}
-			\end{dfn}
-			Notice that uniformly convergent sequences of functions are uniformly Cauchy.
-			
-			\setcounter{equation}{0}
-			\begin{thm}\label{thm:25.4}
-			Let $(f_n)$ be a sequence of functions defined and uniformly Cauchy on a set $S\subseteq\R$. Then there exists a function $f$ on $S$ such that $f_n\rightarrow f$ uniformly on $S$.
-			\end{thm}
-			\begin{proof}
-			Since $(f_n)$ is uniformly Cauchy, $(f_n(x_0))$ is a Cauchy sequence for each $x_0\in S$. Now for each $x\in S$, define $f(x)=\lim_{n\rightarrow\infty}f_n(x)$. This defines a function $f$ on $S$ such that $f_n\rightarrow f$ pointwise on $S$.
-			
-			Let $\epsilon>0$. Since $(f_n)$ is uniformly Cauchy, there is a number $N$ such that 
+			and therefore
 			\begin{equation}
-				\abs{f_n(x)-f_m(x)}<\frac{\epsilon}{2}\quad\text{for all}\quad x\in S\quad\text{and all}\quad m,n<N
+				f_n(x)-f_m(x)=s_nx^n-s_mx^{n+1}+(1-x)\sum_{k=m+1}^{n-1}s_kx^k
 			\end{equation}
-			Consider $m>N$ and $x\in S$. (1) tells us that $f_n(x)$ lies in $(f_m(x)-\frac{\epsilon}{2},f_m(x)+\frac{\epsilon}{2})$ for all $n>N$. Therefore, $f(x)=\lim_{n\rightarrow \infty}f_n(x)$ lies in $[f_m(x)-\frac{\epsilon}{2},f_m(x)+\frac{\epsilon}{2}]$. In other words,
+			By the definition of $s_n$, we have $\lim s_n=\sum_{k=0}^{\infty}a_k=f(1)=0$. Given $\epsilon>0$, there is an integer $N$ so that $|s_n|<\frac{\epsilon}{3}$ for all $n\geq N$. Then for $n>m\geq N$ and $x\in[0,1)$,
+			we have
+			\begin{align}
+				\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|&\leq\frac{\epsilon}{3}(1-x)\sum_{k=m+1}^{n-1}x^k\notag\\
+				&=\frac{\epsilon}{3}(1-x)x^{m+1}\frac{1-x^{n-m-1}}{1-x}\notag\\
+				&<\frac{\epsilon}{3}
+			\end{align}
+			Since $\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|<\frac{\epsilon}{3}$ for $x=1$, combining (1) and (2), for $n>m\geq N$ and $x\in[0,1]$,
 			\begin{displaymath}
-				\abs{f(x)-f_m(x)}\leq\frac{\epsilon}{2}\quad\text{for all}\quad x\in S\quad\text{and}\quad m>N
+				|f_n(x)-f_m(x)|\leq|s_n|x^n+|s_m|x^{m+1}+\frac{\epsilon}{3}<\frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon.
 			\end{displaymath}
-			Then of course
+			Thus the sequence $(f_n)$ is uniformly Cauchy on $[0,1]$, and its limit $f$ is continuous.
+			\item[Case] 2. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=R$. Let $g(x)=f(Rx)$ and note that 
 			\begin{displaymath}
-				\abs{f(x)-f_m(x)}\leq\epsilon\quad\text{for all}\quad x\in S\quad\text{and}\quad m>N
+				g(x)=\sum_{n=0}^{\infty}a_nR^nx^n\quad\text{for}\quad|x|<1.
 			\end{displaymath}
-			Thus $f_m\rightarrow f$ uniformly on $S$, as desired.
-			\end{proof}
-			
-			A \emph{series of functions} is an expression $\sum_{k=0}^{\infty}g_k$ or $\sum_{k=0}^{\infty}g_k(x)$ which makes sense provided the sequence of partial sums $\sum_{k=0}^{n}g_k$ converges, or diverges to $+\infty$ or $-\infty$ pointwise. If the sequence of partial sums converges uniformly on a set $S$ to $\sum_{k=0}^{\infty}$, then we say the \emph{series is uniformly convergent} on $S$.
-			
-			\begin{thm}\label{thm:25.5}
-			Consider a series $\sum_{k=0}^{\infty}g_k$ of functions on a set $S\subseteq\R$. Suppose each $g_k$ is continuous on $S$ and the series converges uniformly on $S$. Then the series $\sum_{k=0}^{\infty}g_k$ represents a continuous function on $S$.
-			\end{thm}
-			\begin{proof}
-			Each partial sum $f_n=\sum_{k=1}^{n}g_k$ is continuous and the sequence $(f_n)$ converges uniformly on $S$. Hence the limit function is continuous by \ref{def:24.3}.
-			\end{proof}
-			There is an analogue between the Cauchy criterion for a normal series $\sum a_k$ and the one for a series of functions $\sum g_k$: \emph{The sequence of partial sums of a series $\sum_{k=0}^{\infty}g_k$ of functions is uniformly Cauchy on a set $S$ $\iff$ the series satisfies the \emph{Cauchy criterion}[uniformly on $S$]}:
-			\begin{align*}
-				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
-				\text{$n\geq m>N$ implies $\abs{\sum_{k=m}^{n}g_k(x)}<\epsilon$ for all $x\in S$.}
-			\end{align*}
-			
-			\begin{thm}\label{thm:25.6}
-			If a series $\sum_{k=0}^{\infty}g_k$ of functions satisfies the Cauchy criterion uniformly on a set $S$, then the
-			series converges uniformly on $S$.
-			\end{thm}
-			\begin{proof}
-			Let $f_n=\sum_{k=0}^{n}g_k$. The sequence $(f_n)$ of partial sums is uniformly Cauchy on $S$, so $(f_n)$ converges uniformly on $S$ by \ref{def:25.4}.
-			\end{proof}
-			
-			\begin{thm}[Weierstrass M-test]\label{thm:25.7}
-			Let $(M_k)$ be a sequence of nonnegative real numbers where $\sum M_k<\infty$. If $|g_k(x)|\leq M_k$ for all $x$ in a set $S$, then $\sum g_k$ converges uniformly on $S$.
-			\end{thm}
-			\begin{proof}
-			We want to verify the Cauchy criterion of such $\sum g_k$ on $S$. Let $\epsilon>0$. Since the series $\sum M_k$ converges, it satisfies the Cauchy criterion in \ref{def:cauchy criterion}. So there exists a number $N$ such that
+			This series has radius of convergence $1$, and it converges at $x=1$. By Case 1, $g$ is continuous at $x=1$. Since $f(x)=g(\frac{x}{R})$, it follows that $f$ is continuous at $x=R$.
+			\item[Case] 3. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=-R$. Let $h(x)=f(-x)$ and note that 
 			\begin{displaymath}
-				n\geq m>N\implies\sum_{k=m}^{n}M_k<\epsilon.
+				h(x)=\sum_{n=0}^{\infty}(-1)^na_nx^n\quad\text{for}\quad|x|<R.
 			\end{displaymath}
-			Hence if $n\geq m>N$ and $x$ is in $S$, then
-			\begin{displaymath}
-				\abs{\sum_{k=m}^{n}g_k(x)}\leq\sum_{k=m}^{n}\abs{g_k(x)}\leq\sum_{k=m}^{n}M_k<\epsilon. 
-			\end{displaymath}
-			Thus the series $\sum g_k$ satisfies the Cauchy criterion uniformly on $S$, and \ref{def:25.6} shows that it converges uniformly on $S$.
-			\end{proof}
-			
-			If the series $\sum g_n$ converges uniformly on a set $S$, then
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}\sup\{|g_n(x)|: x\in S\}=0.
-			\end{displaymath}
-			\newpage
-		\section{Differentiation and Integration of Power Series}
-			\begin{thm}\label{thm:26.1}
-			Let $\sum_{n=0}^{\infty}a_nx^n$ be a power series with radius of convergence $R>0$ [possibly $R=+\infty$]. If $0<R_1<R$, then the power series converges uniformly on $[-R_1, R_1]$ to a continuous function.
-			\end{thm}
-			\begin{proof}
-			Consider $0<R_1<R$. First observe that the series $\sum a_nx^n$ and $\sum|a_n|x^n$ have the same radius of convergence. Since $|R_1|<R$, we have $\sum a_nR_1^n<\infty$. Clearly we have $|a_nx^n|\leq|a_n|R_1^n$ for all $x\in[-R_1,R_1]$, so the series $\sum a_nx^n$ converges uniformly on $[-R_1,R_1]$ by \ref{thm:25.7}. Then by \ref{def:25.5} since each $a_nx^n$ is continuous, the limit of the series of the functions is also continuous.
-			\end{proof}
-			
-			\begin{cor}\label{cor:26.2}
-			The power series $\sum a_nx^n$ converges to a continuous function on the open interval $(-R,R)$.
-			\end{cor}
-			\begin{proof}
-			If $x_0\in(-R,R)$, then $x_0\in(-R_1,R_1)$ for some $R_1<R$. The theorem shows the limit of the series is continuous at $x_0$. 
-			\end{proof}
-			
-			\begin{lem}\label{lem:26.3}
-			If the power series $\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, then the power series
-			\begin{displaymath}
-				\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{and}\quad\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}
-			\end{displaymath} 
-			also have radius of convergence $R$.
-			\end{lem}
-			\begin{proof}
-			First observe the series $\sum na_nx^{n-1}$ and $\sum na_nx^n$ have the same radius of convergence. Same for $\sum\frac{a_n}{n+1}x^{n+1}$ and $\sum\frac{a_n}{n+1}x^n$. It is because one is $x$ multiple of the other.
-			
-			For the series $\sum na_nx^n$, because $\lim\sup(n|a_n|)^{1/n}=\lim\sup n^{1/n}|a_n|^{1/n}$ and $\lim n^{1/n}=1$, so $\lim\sup(n|a_n|)^{1/n}=\lim\sup|a_n|^{1/n}=\beta$. Hence $\sum na_nx^n$ has radius of convergence $R$.
-			
-			Similarly, for the series $\sum\frac{a_n}{n+1}x^n$, because $\lim\sup(\frac{|a_n|}{n+1})^{1/n}=\lim\sup(\frac{1}{n+1})^{1/n}\cdots|a_n|^{1/n}=1\cdot\lim\sup|a_n|^{1/n}=\beta$ by \ref{thm:12.1}, so the series $\sum\frac{a_n}{n+1}x^n$ has radius of convergence $R$.
-			\end{proof}
-			
-			\begin{thm}\label{thm:26.4}
-			Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R>0$. Then
-			\begin{displaymath}
-				\int_{0}^{x}f(t)dx=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}\quad\text{for}\quad |x|<R
-			\end{displaymath}
-			\end{thm}
-			\begin{proof}
-			Fix $x<0$. The case $x>0$ is similar. On the interval $[x,0]$, the sequence of partial sums $\sum_{k=0}^{n}a_kt^k$ converges uniformly to $f(t)$ by \ref{thm:26.1}. Consequently, by \ref{thm:25.2} we have
-			\begin{align*}
-				\int_{x}^{0}f(t)dt&=\lim_{n\rightarrow \infty}\int_{x}^{0}\left(\sum_{k=0}^{n}a_kt^k\right)dt\\
-								  &=\lim_{n\rightarrow \infty}\sum_{k=0}^{n}a_k\int_{x}^{0}t^kdt\\
-								  &=\lim_{n\rightarrow \infty}\sum_{k=0}^{n}a_k\left[\frac{0^{k+1}-x^{k+1}}{k+1}\right]\\
-								  &=-\left(\sum_{k=0}^{\infty}\frac{a_k}{k+1}x^{k+1}\right)\\
-								  &=-\left(\int_{0}^{x}f(t)dt\right)
-			\end{align*}
-			\end{proof}
-			The last theorem shows that a power series can be integrated term-by-term inside its interval of convergence. The next theorem shows that term-by-term differentiation is also legal
-			
-			\begin{thm}\label{thm:26.5}
-			Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ have radius of convergence $R>0$. Then $f$ is differentiable on $(-R,R)$ and \begin{displaymath}
-				f^\prime(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|<R
-			\end{displaymath}
-			\end{thm}
-			\begin{proof}
-			We begin with the series $g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}$ and observe this series converges for $|x|<R$ by \ref{lem:26.3}. By \ref{thm:26.4}, we can integrate $g(x)$ term-by-term:
-			\begin{displaymath}
-				\int_{0}^{x}g(t)dt=\sum_{n=1}^{\infty}a_nx^n=f(x)-a_0\quad\text{for}\quad|x|<R.
-			\end{displaymath}
-			Thus if $0<R_1<R$, then
-			\begin{displaymath}
-				f(x)=\int_{-R_1}^{x}g(t)dt+k\quad\text{for}\quad|x|\leq R_1
-			\end{displaymath}
-			where $k=a_0-\int_{-R_1}^{0}g(t)dt$. Since $g$ is continuous, the Fundamental Theorem of Calculus shows $f$ is differentiable and $f^\prime(x)=g(x)$. Thus
-			\begin{displaymath}
-				f^\prime(x)=g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|\leq R_1
-			\end{displaymath}
-			\end{proof}
-			
-			\setcounter{equation}{0}
-			\begin{thm}[Abel's Theorem]\label{thm:26.6}
-			Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ be a power series with finite positive radius of convergence $R$. If the series converges at $x=R$, then $f$ is continuous at $x=R$; if the series converges at $x=-R$, then $f$ is continuous at $x=-R$.
-			\end{thm}
-			\begin{proof}
-			\begin{itemize}
-				\item[]
-				\item[Case] 1. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $1$ and the series converges at $x=1$. We will prove $f$ is continuous on $[0,1]$. We need to show that $f$ is continuous on $[0,1]$. By subtracting a constant from $f$, we may assume $f(1)=\sum_{n=0}^{\infty}a_n=0$. Let $f_n(x)=\sum_{k=0}^{n}a_kx^k$ and $s_n=\sum_{k=0}^{n}a_k=f_n(1)$ for $n=0,1,2,\dots.$. Since $f_n(x)\rightarrow f(x)$ pointwise on $[0,1]$ and each $f_n$ is continuous, by \ref{thm:24.3} it suffices to show $f_n\rightarrow f$ uniformly on $[0,1]$. By \ref{thm:25.4} it suffices to show the convergence is uniformly Cauchy.
-				
-				For $m<n$, we have
-				\begin{align*}
-					f_n(x)-f_m(x)&=\sum_{k=m+1}^{n}a_kx^k\\
-								 &=\sum_{k=m+1}^{n}(s_k-s_{k-1})x^k\\
-								 &=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m+1}^{n}s_{k-1}x^{k-1}\\
-								 &=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m}^{n-1}s_kx^{k}
-				\end{align*}
-				and therefore
-				\begin{equation}
-					f_n(x)-f_m(x)=s_nx^n-s_mx^{n+1}+(1-x)\sum_{k=m+1}^{n-1}s_kx^k
-				\end{equation}
-				By the definition of $s_n$, we have $\lim s_n=\sum_{k=0}^{\infty}a_k=f(1)=0$. Given $\epsilon>0$, there is an integer $N$ so that $|s_n|<\frac{\epsilon}{3}$ for all $n\geq N$. Then for $n>m\geq N$ and $x\in[0,1)$,
-				we have
-				\begin{align}
-					\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|&\leq\frac{\epsilon}{3}(1-x)\sum_{k=m+1}^{n-1}x^k\notag\\
-															  &=\frac{\epsilon}{3}(1-x)x^{m+1}\frac{1-x^{n-m-1}}{1-x}\notag\\
-															  &<\frac{\epsilon}{3}
-				\end{align}
-				Since $\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|<\frac{\epsilon}{3}$ for $x=1$, combining (1) and (2), for $n>m\geq N$ and $x\in[0,1]$,
-				\begin{displaymath}
-					|f_n(x)-f_m(x)|\leq|s_n|x^n+|s_m|x^{m+1}+\frac{\epsilon}{3}<\frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon.
-				\end{displaymath}
-				Thus the sequence $(f_n)$ is uniformly Cauchy on $[0,1]$, and its limit $f$ is continuous.
-				\item[Case] 2. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=R$. Let $g(x)=f(Rx)$ and note that 
-				\begin{displaymath}
-					g(x)=\sum_{n=0}^{\infty}a_nR^nx^n\quad\text{for}\quad|x|<1.
-				\end{displaymath}
-			 	This series has radius of convergence $1$, and it converges at $x=1$. By Case 1, $g$ is continuous at $x=1$. Since $f(x)=g(\frac{x}{R})$, it follows that $f$ is continuous at $x=R$.
-			 	\item[Case] 3. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=-R$. Let $h(x)=f(-x)$ and note that 
-			 	\begin{displaymath}
-			 		h(x)=\sum_{n=0}^{\infty}(-1)^na_nx^n\quad\text{for}\quad|x|<R.
-			 	\end{displaymath}
-			 	This series for $h$ converges at $x=R$, so $h$ is continuous at $x=R$ by Case 2. It follows that $f(x)=h(-x)$ is continuous at $x=-R$.
-			\end{itemize}
-			\end{proof}
+			This series for $h$ converges at $x=R$, so $h$ is continuous at $x=R$ by Case 2. It follows that $f(x)=h(-x)$ is continuous at $x=-R$.
+		\end{itemize}
+	\end{proof}
 	\chapter{Differentiation}
-		\newpage
-		\section{Basic Properties of the Derivative}
-			\begin{dfn}\label{def:28.1}
-			Let $f$ be a real-valued function defined on an open interval containing a point $a$. We say $f$ is \emph{differentiable} at $a$, or $f$ has a derivative at $a$, if the limit
+	\newpage
+	\section{Basic Properties of the Derivative}
+	\begin{dfn}\label{def:28.1}
+		Let $f$ be a real-valued function defined on an open interval containing a point $a$. We say $f$ is \emph{differentiable} at $a$, or $f$ has a derivative at $a$, if the limit
+		\begin{displaymath}
+			\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}
+		\end{displaymath}
+		exists and is finite. We will write $f^\prime(a)$ for the derivative of $f$ at $a$:
+		\begin{displaymath}
+			f^\prime(a)=\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}
+		\end{displaymath}
+		whenever this limit exists and is finite.
+	\end{dfn}
+	The domain of $f^\prime$ is the set of points at which $f$ is differentiable; thus $\dom(f^\prime)\subseteq\dom(f)$.
+	
+	\begin{thm}\label{thm:28.2}
+		If $f$ is differentiable at a point $a$, then $f$ is continuous at $a$.
+	\end{thm}
+	\begin{proof}
+		We are given $f^\prime(a)=\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}$, and we need to prove $\lim_{x\rightarrow a}f(x)=f(x)$. We have 
+		\begin{displaymath}
+			f(x)=(x-a)\frac{f(x)-f(a)}{x-a}+f(a)
+		\end{displaymath}
+		for $x\in\dom(f), x\neq a$. Since $\lim_{x\rightarrow a}(x-a)=0$ and $\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}$ exists and is finite, by \ref{def:20.4}(ii), $\lim (x-a)\frac{f(x)-f(a)}{x-a}=0$. Thus $\lim_{x\rightarrow a}f(x)=f(a)$.
+	\end{proof}
+	
+	\begin{thm}\label{def:28.3}
+		Let $f$ and $g$ be functions that are differentiable at the point $a$. Each of the functions $cf$, $f+g$, $fg$, and $f/g$ is also differentiable at $a$, except $f/g$ is $g(a)=0$ since $f/g$ is not defined at $a$ in this case.
+		The formulas are:
+		\begin{enumerate}[(i)]
+			\item $(cf)^\prime(a)=c\cdot f^\prime(a)$;
+			\item $(f+g)^\prime(a)=f\prime(a)+g^\prime(a)$;
+			\item Product rule: $(fg)^\prime(a)=f(a)g^\prime(a)+f^\prime(a)g(a)$;
+			\item Quotient rule: $(f/g)^\prime(a)=\frac{[g(a)f^\prime(a)-f(a)g^\prime(a)]}{g^2(a)}$ if $g(a)\neq0$.
+		\end{enumerate}
+	\end{thm}
+	\begin{proof}
+		\begin{enumerate}[(i)]
+			\item[]
+			\item
 			\begin{displaymath}
-				\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}
-			\end{displaymath}
-			exists and is finite. We will write $f^\prime(a)$ for the derivative of $f$ at $a$:
+				(cf)^\prime(a)=\lim_{x\rightarrow a}\frac{(cf)(x)-(cf)(a)}{x-a}=\lim_{x\rightarrow a}c\cdot\frac{f(x)-f(a)}{x-a}=c\cdot f^\prime(a)
+			\end{displaymath} 
+			\item
 			\begin{displaymath}
-				f^\prime(a)=\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}
+				\frac{(f+g)(x)-(f+g)(a)}{x-a}=\frac{f(x)-f(a)}{x-a}+\frac{g(x)-g(a)}{x-a}
 			\end{displaymath}
-			whenever this limit exists and is finite.
-			\end{dfn}
-			The domain of $f^\prime$ is the set of points at which $f$ is differentiable; thus $\dom(f^\prime)\subseteq\dom(f)$.
-			
-			\begin{thm}\label{thm:28.2}
-			If $f$ is differentiable at a point $a$, then $f$ is continuous at $a$.
-			\end{thm}
-			\begin{proof}
-			We are given $f^\prime(a)=\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}$, and we need to prove $\lim_{x\rightarrow a}f(x)=f(x)$. We have 
-			\begin{displaymath}
-				f(x)=(x-a)\frac{f(x)-f(a)}{x-a}+f(a)
-			\end{displaymath}
-			for $x\in\dom(f), x\neq a$. Since $\lim_{x\rightarrow a}(x-a)=0$ and $\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}$ exists and is finite, by \ref{def:20.4}(ii), $\lim (x-a)\frac{f(x)-f(a)}{x-a}=0$. Thus $\lim_{x\rightarrow a}f(x)=f(a)$.
-			\end{proof}
-			
-			\begin{thm}\label{def:28.3}
-			Let $f$ and $g$ be functions that are differentiable at the point $a$. Each of the functions $cf$, $f+g$, $fg$, and $f/g$ is also differentiable at $a$, except $f/g$ is $g(a)=0$ since $f/g$ is not defined at $a$ in this case.
-			The formulas are:
-			\begin{enumerate}[(i)]
-				\item $(cf)^\prime(a)=c\cdot f^\prime(a)$;
-				\item $(f+g)^\prime(a)=f\prime(a)+g^\prime(a)$;
-				\item Product rule: $(fg)^\prime(a)=f(a)g^\prime(a)+f^\prime(a)g(a)$;
-				\item Quotient rule: $(f/g)^\prime(a)=\frac{[g(a)f^\prime(a)-f(a)g^\prime(a)]}{g^2(a)}$ if $g(a)\neq0$.
-			\end{enumerate}
-			\end{thm}
-			\begin{proof}
-			\begin{enumerate}[(i)]
-				\item[]
-				\item
-				\begin{displaymath}
-					(cf)^\prime(a)=\lim_{x\rightarrow a}\frac{(cf)(x)-(cf)(a)}{x-a}=\lim_{x\rightarrow a}c\cdot\frac{f(x)-f(a)}{x-a}=c\cdot f^\prime(a)
-				\end{displaymath} 
-				\item
-				\begin{displaymath}
-					\frac{(f+g)(x)-(f+g)(a)}{x-a}=\frac{f(x)-f(a)}{x-a}+\frac{g(x)-g(a)}{x-a}
-				\end{displaymath}
-				\item See the textbook.
-				\item See the textbook.
-			\end{enumerate}
-			\end{proof}
-			
-			\begin{thm}[Chain Rule]\label{def:28.4}
-			If $f$ is differentiable at $a$ and $g$ is differentiable at $f(a)$, then the composite function $g\circ f$ is differentiable at $a$ and we have $(g\circ f)^\prime(a)=g^\prime(f(a))\cdot f^\prime(a)$.
-			\end{thm}
-			If $f$ is differentiable on an interval $I$ and if $g$ is differentiable on $\{f(x): x\in I\}$, then $(g\circ f)^\prime$ is exactly $(g^\prime\circ f)\cdot f^\prime$ on $I$.
-			
+			\item See the textbook.
+			\item See the textbook.
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{thm}[Chain Rule]\label{def:28.4}
+		If $f$ is differentiable at $a$ and $g$ is differentiable at $f(a)$, then the composite function $g\circ f$ is differentiable at $a$ and we have $(g\circ f)^\prime(a)=g^\prime(f(a))\cdot f^\prime(a)$.
+	\end{thm}
+	If $f$ is differentiable on an interval $I$ and if $g$ is differentiable on $\{f(x): x\in I\}$, then $(g\circ f)^\prime$ is exactly $(g^\prime\circ f)\cdot f^\prime$ on $I$.
+	
 	\chapter{Useful Tricks}
 	\begin{enumerate}
 		\item 8.5
@@ -2091,6 +1899,6 @@
 		\item 9.9
 		\item 9.12
 		\item The set $\mathbb{Q}$ of rational number can be listed as a sequence $(r_n)$. Given any real number $a$ there exists a subsequence $(r_{n_k})$ of $(r_n)$ converging to $a$.
-  	\end{enumerate}
-		
+	\end{enumerate}
+	
 \end{document}

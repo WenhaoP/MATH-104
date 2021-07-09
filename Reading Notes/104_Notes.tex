@@ -15,12 +15,33 @@
 
 
 % Theorem declaration
+\theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
-\newtheorem{dfn}[thm]{Definition}
 \newtheorem{nte}[thm]{Notation}
 \newtheorem{lem}[thm]{Lemma}
-\newtheorem{eg}[thm]{Example}
 \newtheorem{cor}{Corollary}[thm]
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{eg}[thm]{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+\tcolorboxenvironment{thm}{
+	colframe=cyan, colback=cyan!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{dfn}{
+	colframe=orange, colback=orange!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{lem}{
+	colframe=blue, colback=blue!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{cor}{
+	colframe=blue, colback=blue!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{eg}{
+	colframe=red, colback=red!5, before skip=10pt,after skip=10pt}
 
 \renewcommand\qedsymbol{\hfill $\blacksquare$}
 \newcommand{\R}{\mathbb{R}}
@@ -624,6 +645,17 @@
 			\end{displaymath} 
 		\end{itemize}
 		\end{proof}
+		
+		\begin{thm}
+		Assume all $s_n\neq0$ and that the limit $L=\lim\left|\frac{s_{n+1}}{s_n}\right|$ exists.
+		\begin{enumerate}[(a)]
+			\item If $L<1$, then $\lim s_n=0$.
+			\item If $L>1$, then $\lim |s_n|=+\infty$.
+		\end{enumerate} 
+		\end{thm}
+		\begin{proof}
+		See exercise 9.12 and HW2 Q8.
+		\end{proof}
 		\newpage
 	\section{Monotone Sequences and Cauchy Sequence}
 		\begin{dfn}
@@ -657,8 +689,7 @@
 		\begin{enumerate}
 			\item Different decimal expansions can represent the same real number.
 			\item Every nonnegative real number has at least one decimal expansion
-		\end{enumerate}
-
+		\end{enumerate}\bigskip
 
 		\begin{thm}\label{def:unbounded monotone seq}
 		\begin{enumerate}[(i)]
@@ -675,9 +706,16 @@
 			\item Exercise 10.5
 		\end{enumerate}
 		\end{proof}
+		\begin{thm}
+		\begin{itemize}
+			\item[]
+			\item If $(s_n)$ is a bounded and nonincreasing sequence, then $\lim s_n=\inf\{s_n: n\in\N\}$.
+			\item If $(s_n)$ is a bounded and nondecreasing sequence, then $\lim s_n=\sup\{s_n: n\in\N\}$.
+		\end{itemize}
+		\end{thm}
 		\begin{cor}
 		If $(s_n)$ is monotone, then $\lim s_n$ is always meaningful. i.e. $\lim s_n=s,\ +\infty,\ \text{or}\ -\infty$.
-		\end{cor}
+		\end{cor}\bigskip
 	
 		Suppose $(s_n)$ is bounded. Define $u_n=\inf\{s_m: m\geq n\}$ and $v_n=\sup{s_m: m\geq n}$. Then observe that $(u_n)$ is nondecreasing and $(v_n)$ is nonincreasing since as $n$ increases, the set has fewer elements. i.e. we have fewer choices for infimum and supremum. In general, if $A\subseteq B$, then $\inf A\geq \inf B$ and $\sup A\leq \sup B$.
 		
@@ -712,7 +750,7 @@
 					  \begin{displaymath}
 					  	v_N=\sup\{s_n: n>N\}\leq s+\epsilon.
 					  \end{displaymath}
-				  	  Also $m>N\Rightarrow v_m\leq s+\epsilon$, so 
+				  	  Also $m>N\Rightarrow v_m\leq s+\epsilon$ since $v_n$ is nonincreasing, so 
 				  	  \begin{displaymath}
 				  	  	\lim\sup s_n=\lim v_m\leq s+\epsilon\Rightarrow\lim\sup s_n\leq s=\lim s_n.
 				  	  \end{displaymath}
@@ -813,6 +851,19 @@
 		\end{displaymath}
 		Notice that $\sigma$ needs to be an \emph{increasing} function. 
 		
+		Recall that the set $\Q$ of rational numbers is \emph{countable}: there is a bijection from $\N$ to $\Q$. Therefore we have a sequence $(q_n)=(q_1,q_2,q_3,\dots)$ such that $\{q_n: n\in\N\}=\Q$. Then we have the following proposition:
+		\begin{thm}
+		Let $(q_n)$ be an enumeration of $\Q$. Then for any $a\in\R$, there exists a subsequence $(q_{n_k})$ of $(q_n)$ such that $q_{n_k}\rightarrow a$.
+		\end{thm}
+		\begin{proof}
+		First there exists $r_1\in\Q$ such that $a-1<r_1<a+1$ by the denseness of $\Q$. Since $(q_n)$ is an enumeration of $\Q$, there exists $n_1\in\N$ such that $q_{n_1}=r_1$.
+		
+		Given that we've already constructed $n_1,\dots,n_k$ such that $a-\frac{1}{j}<q_{n_j}<a+\frac{1}{j}$ for $j=1,\dots,k$. Since there are infinitely many rational numbers between $a-\frac{1}{k+1}$ and $a+\frac{1}{k+1}$, and only finite many of them have been selected as $q_{n_1},\dots,q_{n_k}$, we are able to find $n_{k+1}>n_k$ such that $a-\frac{1}{k+1}<q_{n_{k+1}}<a+\frac{1}{k+1}$. 
+		
+		Now we have $(q_{n_k})$ such that $a-\frac{1}{k}<q_{n_k}<a+\frac{1}{k}$ for each $k\in\N$. Thus by Squeeze Lemma, $\lim_k q_{n_k}=a$.
+		\end{proof}
+	
+		\setcounter{equation}{0}
 		\begin{thm}\label{def:limit-subseq}
 		Let $(s_n)$ be a sequence.
 		\begin{enumerate}[(i)]
@@ -860,10 +911,6 @@
 		\end{enumerate}
 		\end{proof}
 		
-		\begin{thm}
-			Enumeration of $\Q$
-		\end{thm}
-		
 		\begin{thm}\label{def:subsequence converges to the same limit}
 		If $(s_n)$ converges, then every subsequence converges to the same limit.
 		\end{thm}
@@ -873,6 +920,7 @@
 			\lim\limits_{k\rightarrow\infty}s_{n_k}=s.
 		\end{displaymath}
 		\end{proof}
+		In the other way, if there are two subsequences of $(s_n)$ with different limits, $(s_n)$ does not converge.
 		
 		\begin{thm}
 		Every sequence $(s_n)$ has a monotonic subsequence.
@@ -914,7 +962,7 @@
 		\end{dfn}
 		
 		\setcounter{equation}{0}
-		\begin{thm}\label{def:subsequence with limit limsup or liminf}
+		\begin{thm}\label{thm:subsequence with limit limsup or liminf}
 		Let $(s_n)$ be any sequence. There exists a monotonic subsequence whose limit is $\lim\sup s_n$, and there exists a monotonic subsequence whose limit is $\lim\inf s_n$.
 		\end{thm}
 		\begin{proof}
@@ -937,6 +985,7 @@
 			\item S is nonempty.
 			\item $\sup S=\lim\sup s_n$ and $\inf S=\lim\inf s_n$.
 			\item $\lim s_n$ exists if and only if $S$ has exactly one element, namely $\lim s_n$.
+			\item $\lim\sup s_n\in S$ and $\lim\inf s_n\in S$.
 		\end{enumerate}
 		\end{thm}
 		\begin{proof}
@@ -953,6 +1002,7 @@
 			\end{displaymath}
 			By the last theorem we know both $\lim\inf s_n$ and $\lim\sup s_n$ is in $S$, so (ii) holds.
 			\item This is simply a reformulation of \ref{def:condition for limit}.
+			\item This is from \ref{thm:subsequence with limit limsup or liminf}
 		\end{enumerate}
 		\end{proof}
 		
@@ -1055,33 +1105,127 @@
 		\newpage
 	\section{Some Topological Concepts in Metric Spaces}
 		\begin{dfn}
-		Let $S$ be a set, and suppose $d$ is a function defined for all pairs $(x,y)$ of elements from $S$ satisfying
+		Let $S$ be a set, and suppose $d$ is a function $d: X\times X\rightarrow[0,\infty]$ defined for all pairs $(x,y)$ of elements from $S$ satisfying
 		\begin{enumerate}
-			\item $d(x,x)=0$ for all $x\in S$ and $d(x,y)>0$ for distinct $x,y\in S$.
-			\item $d(x,y)=d(y,x)$ for all $x,y\in S$.
-			\item $d(x,z)\leq d(x,y)+d(y,z)$ for all $x,y,z\in S$.
+			\item $d(x,x)=0$ for all $x\in S$ and $d(x,y)>0$ for distinct $x,y\in S$. (Positive Definiteness)
+			\item $d(x,y)=d(y,x)$ for all $x,y\in S$. (Symmetry)
+			\item $d(x,z)\leq d(x,y)+d(y,z)$ for all $x,y,z\in S$. (Triangle Inequality)
 		\end{enumerate}
 		Such a function $d$ is called a \emph{distance function} or a \emph{metric} on $S$.
 		\end{dfn}
 		A \emph{metric space} $S$ is a set $S$ together with a metric on it.
+		\begin{rem}
+		The positive definiteness can be also expressed as $\forall x,y\in S\ d(x,y)\geq 0$ and $d(x,y)=0\iff x=y$. The distance function cannot be $+\infty$.
+		\end{rem}
 		
 		\begin{dfn}
-		A sequence $(s_n)$ in a metric space $(S,d)$ converges to $s$ in $S$ if $\lim_{n\rightarrow\infty}d(s_n,s)=0$.\\ 
-		A sequence $(s_n)$ in $S$ is a \emph{Cauchy sequence} if for each $\epsilon>0$ there exists an $N$ such that
-		\begin{displaymath}
-			m,n>N\Rightarrow d(s_m,s_n)<\epsilon.
-		\end{displaymath}
-		$(S,d)$ is said to be \emph{complete} if every Cauchy sequence in $S$ converges to some element in $S$.
+		\begin{itemize}
+			\item[]
+			\item A sequence $(s_n)$ in a metric space $(S,d)$ converges to $s$ in $S$ if $\lim_{n\rightarrow\infty}d(s_n,s)=0$.
+			\item A sequence $(s_n)$ in $S$ is a \emph{Cauchy sequence} if for each $\epsilon>0$ there exists an $N$ such that
+			\begin{displaymath}
+				m,n>N\Rightarrow d(s_m,s_n)<\epsilon.
+			\end{displaymath}
+			\item $(S,d)$ is said to be \emph{complete} if every Cauchy sequence in $S$ converges to some element in $S$.
+		\end{itemize}
 		\end{dfn}
+		
+		\begin{dfn}[Open Ball]
+			Let $(X,d)$ be a metrc space. For $x\in X$ and $r>0$, the open ball of radius $r$ centered at $x$ is the set
+			\begin{displaymath}
+				B_r(x)=\{y\in X: d(y,x)<r\}
+			\end{displaymath}
+		\end{dfn}
+		
+		\begin{dfn}[Interior Point]
+			Let $(X,d)$ be a metric space. Let $E$ be a subset of $X$. An element $x\in E$ is \emph{interior} to $E$ if for some $r>0$ we have
+			\begin{displaymath}
+				B_r(x)\subseteq E
+			\end{displaymath}
+			We write $E^\circ$ for the set of points in $E$ that are interior to $E$.
+		\end{dfn}
+		\begin{rem}
+			The relationship between $E$ and $X$ may affect whether a point in $E$ is interior to $E$. For example, for $E=[0,1]\subset[-1,2]=X$, $0$ is not interior to $[0,1]$. However if $E=[0,1]\subset[0,1]=X$, then $0$ is interior to $0$ since there is not point on the left of $0$.
+		\end{rem}
+		
+		\begin{dfn}[Open Set]
+			A set $E\subseteq X$ is \emph{open} if every point $x\in E$ is an interior point of $E$.	
+		\end{dfn}
+		The set $E$ is \emph{open} in $X$ if every point in $E$ is interior to $E$, i.e., if $E=E^\circ$.
+		
+		\begin{tcolorbox}
+			We can show that
+			\begin{enumerate}
+				\item $S$ is open in $S$.
+				\item The empty set $\emptyset$ is open in $S$.
+				\item The union of \emph{any} collection of open sets is open.
+				\item The intersection of \emph{finitely many} open sets is again an open set.
+			\end{enumerate}
+		\end{tcolorbox}
+		
+		\begin{dfn}[Complement]
+			For a set $E\subseteq X$, the \emph{complement} of $E$ is the set $E^C=X\backslash E=\{x\in X: x\notin E\}$.
+		\end{dfn}
+		
+		\begin{dfn}[Limit Point]
+			For a set $E\subseteq X$, a point $x\in X$ is a \emph{limit point} of $E$ if for any $r>0$, we have that $(B_r(x)\backslash\{x\})\cap E\neq\emptyset$.\smallskip
+			
+			$E^\prime:=$ set of all limit points of $E$.
+		\end{dfn}
+		\begin{rem}
+			In other words, $x$ is a limit point of $E$ if for any (small) radius $r$, there is some element of $E$ which sits in $B_r(x)$, other than $x$ itself.
+		\end{rem}
+		
+		\begin{dfn}[Isolated Point]
+			For a set $E\subseteq X$, $x\in E$ is called an \emph{isolated point} if $x$ is not a limit point of $E$
+		\end{dfn}\smallskip
+		
+		\begin{dfn}[Closed Set]
+			A set is \emph{closed} if $E^\prime\subseteq E$.
+		\end{dfn}
+		\begin{eg}
+			\begin{itemize}
+				\item In $\R$, $[0,1]$ is closed. $[a,\infty),(-\infty,a]$ are closed.
+				\item In $\R$, the set $\{\frac{1}{n}: n\in\N\}$ is not closed, but $\{\frac{1}{n}: n\in\N\}\cup\{0\}$ is closed.
+				\item In any metric space, $X$ and $\emptyset$ are closed.
+			\end{itemize}
+		\end{eg}\smallskip
+		
+		\begin{dfn}[Bounded Set]
+			A set $E\subseteq X$ is bounded if for some $x\in X$ and $M>0$ such that $d(x,y)\leq M$ for all $y\in E$.
+		\end{dfn}
+		\begin{eg}
+			In $\R$, $E$ is bounded if there exists $M$ such that $|x|\leq M$ for all $x\in E$.
+		\end{eg}\smallskip
+		\begin{dfn}[Closure]
+			The \emph{closure} of $E$ in $X$ is $\bar{E}=E\cup E^\prime$.
+		\end{dfn}
+		
+		\begin{dfn}[Dense Set]
+			A set $E\subseteq X$ is \emph{dense} in $X$ if $\bar{E}=X$.
+		\end{dfn}
+		
+		\begin{dfn}[Closed Set]
+			Let $(S,d)$ be a metric space. A subset $E$ of $S$ is \emph{closed} if its complement $S\backslash E$ is an open set.\smallskip
+			
+			The intersection of any collection of closed sets is closed. The \emph{closure} $E^-$ of a set $E$ is the intersection of all closed sets containing $E$.\smallskip
+			
+			The \emph{boundary} of $E$ is the set $E^-\backslash E^\circ$; points in this set are called \emph{boundary points}.\smallskip
+		\end{dfn}
+		\begin{rem}
+			Equivalence of two definitions: TODO
+		\end{rem}
 		
 		\setcounter{equation}{0}
 		\begin{lem}\label{def:sequence in R^k}
-		A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ converges if and only if for each $j=1,2\dots,k$, the sequence
-		$(x_j^{(n)})$ converges in $\mathbb{R}$.\\
-		A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$
-		is a Cauchy sequence in $\mathbb{R}$.
+		\begin{itemize}
+			\item[]
+			\item A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ converges if and only if for each $j=1,2\dots,k$, the sequence $(x_j^{(n)})$ converges in $\mathbb{R}$.
+			\item A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$ is a Cauchy sequence in $\mathbb{R}$.
+		\end{itemize}	
 		\end{lem}
 		\begin{proof}
+		First assertion: TODO.
 		For the second assertion, we first observe for $\textbf{x,y}\in\mathbb{R}^k$ and $j=1,\dots,k$,
 		\begin{equation}
 			|x_j-y_j|\leq d(\textbf{x,y})\leq \sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}
@@ -1124,28 +1268,7 @@
 		converges. By \ref{def:B-W} again, we may replace $(\textbf{x}^{(n)})$ by a subsequence of $(\textbf{x}^{(n)})$ such
 		that both $(x_1^{(n)})$ and $(x_2^{(n)})$ converge. $(x_1^{(n)})$ still converges because \ref{def:subsequence converges to the same limit}. Repeating this argument by $k$ times, we obtain a new sequence $(\textbf{x}^{(n)})$ where each $(x_j^{(n)})$ converges, $j=1,\dots,k$, which is a subsequence of the original sequence, and it converges by \ref{def:sequence in R^k}. 
 		\end{proof}
-		
-		\begin{dfn}
-		Let $(S,d)$ be a metric space. Let $E$ be a subset of $S$. An element $s_0\in E$ is \emph{interior} to $E$ if for some $r>0$ we have
-		\begin{displaymath}
-			\{s\in S: d(s,s_0)<r\}\subseteq E
-		\end{displaymath}
-		We write $E^\circ$ for the set of points in $E$ that are interior to $E$. The set $E$ is \emph{open} in $S$ if every point in $E$ is interior to $E$, i.e., if $E=E^\circ$.
-		\end{dfn}
-		We can show that
-		\begin{enumerate}
-			\item $S$ is open in $S$.
-			\item The empty set $\emptyset$ is open in $S$.
-			\item The union of \emph{any} collection of open sets is open.
-			\item The intersection of \emph{finitely many} open sets is again an open set.
-		\end{enumerate}
-		
-		\begin{dfn}
-		Let $(S,d)$ be a metric space. A subset $E$ of $S$ is \emph{closed} if its complement $S\backslash E$ is an open set.
-		
-		The intersection of any collection of closed sets is closed. The \emph{closure} $E^-$ of a set $E$ is the intersection of all closed sets containing $E$.
-		The \emph{boundary} of $E$ is the set $E^-\backslash E^\circ$; points in this set are called \emph{boundary points}.
-		\end{dfn}
+	
 		\begin{thm}
 			Let $E$ be a subset of a metric space $(S,d)$.
 			\begin{enumerate}

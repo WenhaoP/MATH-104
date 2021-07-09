@@ -24,6 +24,7 @@
 \newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
 \newcommand{\R}{\mathbf{R}}
 \newcommand{\C}{\mathbf{C}}
+\newcommand{\N}{\mathbf{N}}
 \newcommand{\LL}{\mathcal{L}}
 \newcommand{\PP}{\mathcal{P}}
 \newcommand{\MM}{\mathcal{M}}
@@ -32,18 +33,105 @@
 \newcommand{\RG}{\text{range}\,}
 \newcommand{\SP}{\text{span}\,}
 
+\newcommand{\lline}{\noindent\rule{\textwidth}{1pt}}
 
-\title{MATH 110 Exercise Solutions}
+\title{MATH 104 Exercise Solutions}
 \author{Wenhao Pan}
-\date{May 28, 2021}
+\date{July 3rd, 2021}
 
 \begin{document}
 	
 	\maketitle
 	
 	\section*{Introduction}
-	This note is a collection of the solutions to the recommended exercises of \textit{Linear Algebra Done Right}.	
+	This note is a collection of the solutions to the recommended exercises of \textit{Elementary Analysis} by Kenneth A. Ross.	
 	
+	\lline
+	
+	\section*{Chapter 9}
+	\subsection*{Q4}
+	\begin{enumerate}[(a)]
+		\item $s_1=1, s_2=\sqrt{2}, s_3=\sqrt{\sqrt{2}+1}, s_4=\sqrt{\sqrt{\sqrt{2}+1}+1}$.
+		\item Since $(s_n)$ converges, $\lim (s_n)=\lim (s_{n+1})=s$ which implies
+		\begin{align*}
+			\lim s_n=\lim\sqrt{s_n+1} &= s\\
+					 \lim s_n+1 &= s^2\\
+					 \lim s_n &= s^2-1\\
+					 s &= s^2-1
+		\end{align*}
+		Thus solve the last equation for $s$ to get $s=\frac{1+\sqrt{5}}{2}$ since $s_n>0$ for all $n$.
+	\end{enumerate}
+	
+	\lline
+	
+	\subsection*{Q9}
+	\begin{enumerate}
+		\item[(c):] Let $s=\lim(s_n-t_n)$. Suppose $s>0$, then $\exists N_1\ n>N_1\implies |s_n-t_n-s|<s\implies s_n>t_n$. This contradicts to the condition that there exists $N_0$ such that $n>N_0\implies s_n\leq t_n$.  
+	\end{enumerate}
+	
+	\lline
+	
+	\subsection*{Q10}
+	\begin{enumerate}[(a)]
+		\item Since $\lim s_n=+\infty$ and $k<0$, for each $\frac{M}{k}>0$, there exists $N$ such that $n>N\implies s_n>\frac{M}{k}$. Thus for each $M>0$, $n>N\implies ks_n>k\cdot\frac{M}{k}=M$, so $\lim ks_n=+\infty$.
+	\end{enumerate}
+
+	\lline
+	
+	\subsection*{Q11}
+	\begin{enumerate}[(a)]
+		\item Suppose $\inf\{t_n: n\in\N\}=m$. For each $M>0$, consider two cases of $M-m$:
+		\begin{itemize}
+			\item[Case 1:] If $M-m\leq0$ then $M>M-m$. Thus we have there exists $N_1$ such that $n>N_1\implies s_n>M-m\implies s_n+m>M\implies s_n+t_n\geq s_n+m>M$, so $\lim(s_n+t_n)=+\infty$.
+			\item[Case 2:] If $M-m>0$, then there exists $N_1$ such that $n>N_1\implies s_n>M-m\implies s_n+m>M\implies s_n+t_n\geq s_n+m>M$, so $\lim(s_n+t_n)=+\infty$.  
+		\end{itemize}
+		\item We want to show that $\lim t_n>-\infty\implies \inf\{t_n: n\in\N\}>-\infty$. Since $\lim t_n\neq-\infty$, there exists $M$ with $-\infty<M<0$ such that $\forall N\in\N\ \exists n>N\ t_n>M$. This implies $\inf\{t_n: n\in \N\}\geq M>-\infty$. Then we can apply (a).
+		\item Since $(t_n)$ is bounded, $\exists M\in\R$ such that $\forall n\in\N\ |t_n|\leq M$. This implies for all $n$, $t_n\geq -M\implies -M\leq\inf\{t_n: n\in\N\}\implies \inf{t_n: n\in\N}>-\infty$. Then we can apply (a).
+	\end{enumerate}
+	
+	\lline
+	
+	\subsection*{Q18}
+	\begin{enumerate}[(a)]
+		\item Let $S=1+a+a^2+\cdots+a^n$, then $a\cdot S=a+a^2+a^3+\cdots+a^{n+1}$. Then subtract $aS$ from $S$ to get $S-aS=1-a^{n+1}\implies S=\frac{1-a^{n+1}}{1-a}$.
+		\item $\lim_n(1+a+a^2+\cdots+a^n)=\lim_n\frac{1-a^{n+1}}{1-a}=\frac{1}{1-a}\lim(1-a^{n+1})=\frac{1}{1-a}(1-\lim a^{n})=\frac{1}{1-a}(1-0)=\frac{1}{1-a}$ when $|a|<1$.
+		\item $\frac{1}{1-1/3}=\frac{3}{2}$.
+		\item If $a\geq1$, then $\lim_n(1+a+a^2+\cdots+a^n)\geq\lim(1+1+1+\cdots+1)=\lim n=+\infty$. Thus $\lim_n(1+a+a^2+\cdots+a^n)=\infty$.
+	\end{enumerate}
+	
+	\lline
+	\section*{Chapter 10}
+	
+	\subsection*{Q9}
+	\begin{enumerate}[(a)]
+		\item $s_2 = (\frac{1}{2})\cdot1^2=\frac{1}{2}$; $s_3=(\frac{2}{3})\cdot(\frac{1}{2})^2=\frac{1}{2\cdot3}$; $s_4=\frac{3}{4}\cdot(\frac{1}{2\cdot3})^2=\frac{1}{2^2\cdot3\cdot4}$
+		\item Observe that $s_n$ is nonincreasing(monotone) and bounded by 1, so $s_n$ converges and hence $\lim s_n$ exists.
+		\item Since $\lim s_n$ exists, assume $\lim s_n=s$. Then $s=\lim s_{n+1}=\lim(\frac{n}{n+1})s_n^2=\lim(\frac{n}{n+1})s^2=s^2$. Then solve the equation for $s$ to get $s=1$ or $s=0$. Since $s_2<1$ and $s_n$ is strictly decreasing, $s=0$.
+	\end{enumerate}
+	\lline
+	
+	\section*{Chapter 11}
+	\subsection*{Q8}
+	First we want to show that $\inf\{s_n: n>N\}=-\sup\{-s_n: n>N\}$:
+	\begin{itemize}
+		\item[$\leq$:] Let $\inf\{s_n: n>N\}=m$, then we have
+		\begin{align*}
+			\forall n>N\ s_n\geq m &\implies \forall n>N\ -s_n\geq -m\\
+								   &\implies \sup\{-s_n: n>N\}\leq -m\\
+								   &\implies m \leq -\sup\{-s_n: n>N\}.
+		\end{align*}
+		Thus $\inf\{s_n: n>N\}\leq-\sup\{-s_n: n>N\}$.
+		\item[$\geq$:] Let $-\sup\{-s_n: n>N\}=M$, then we have
+		\begin{align*}
+			\sup\{-s_n: n>N\}=-M &\implies \forall n>N\ -s_n\leq -M\\
+							   &\implies \forall n>N\ M\leq s_n\\
+							   &\implies M\leq\inf\{s_n: n>N\}.
+		\end{align*}
+		Thus $\inf\{s_n: n>N\}\geq-\sup\{-s_n: n>N\}$.
+	\end{itemize}
+	Thus $\inf\{s_n: n>N\}=-\sup\{-s_n: n>N\}$. Then $\lim_N\inf\{s_n: n>N\}=\lim_N(-\sup\{-s_n: n>N\})=-\lim_N\sup\{-s_n: n>N\}=-\lim_N\sup(-s_n)$.
+	
+	\lline
 
 	
 \end{document}
