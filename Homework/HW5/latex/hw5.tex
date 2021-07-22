@@ -1,0 +1,155 @@
+\documentclass[12pt,lettersize]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,physics}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{chngcntr}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 104}
+\chead{Homework 5}
+\rhead{Wenhao Pan}
+\cfoot{\thepage}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+	
+	\subsection*{Q1}
+	\begin{enumerate}[(a)]
+		\item 
+		\begin{itemize}
+			\item Positive Definiteness: $\forall (x_1,y_1),(x_2,y_2)\in(X\times Y)\ d_X(x_1,x_2)\geq 0\text{ and }d_Y(y_1,y_2)\geq 0\implies d((x_1,y_1),(x_2,y_2))=\max\{d_X(x_1,x_2),d_Y(y_1,y_2)\}\geq 0$ since $d_X$ and $d_Y$ are proper metrics. Also because
+			\begin{align*}
+				\max\{d_X(x_1,x_2),d_Y(y_1,y_2)\}=0 &\iff 0\leq d_X(x_1,x_2)\leq0\text{ and }0\leq d_Y(y_1,y_2)\leq0\\
+													&\iff d_X(x_1,x_2)=0\text{ and }d_Y(y_1,y_2)=0\\
+													&\iff x_1=x_2\text{ and }y_1=y_2\\
+													&\iff (x_1,y_1)=(x_2,y_2)
+			\end{align*} 
+			$d$ is positive definite.
+			\item Symmetry: Since $d_X$ and $d_Y$ are proper metrics, it is clear that 
+			\begin{displaymath}
+				\max\{d_X(x_1,x_2),d_Y(y_1,y_2)\}=\max\{d_X(x_2,x_1),d_Y(y_2,y_1)\}.
+			\end{displaymath}
+			Thus $d$ is symmetric.
+			\item Triangular Inequality: Since $d_X$ and $d_Y$ are proper metrics, it is clear that for each $(x_1,y_1),(x_2,y_2),(x_3,y_3)\in(X\times Y)$ we have
+			\begin{align*}
+				d_X(x_1,x_2) &\leq d_X(x_1,x_3)+d_X(x_3,x_2),\\
+				d_Y(y_1,y_2) &\leq d_Y(y_1,y_3)+d_Y(y_3,y_2).\\
+			\end{align*}
+			If $d_X(x_1,x_2)\leq d_Y(y_1,y_2)$, then
+			\begin{align*}
+				\max\{d_X(x_1,x_2),d_Y(y_1,y_2)\}&=d_Y(y_1,y_2)\\
+												 &\leq d_Y(y_1,y_3)+d_Y(y_3,y_2)\\
+											     &\leq \max\{d_X(x_1,x_3),d_Y(y_1,y_3)\}+\max\{d_X(x_3,x_2),d_Y(y_3,y_2)\}.
+			\end{align*}
+			If $d_X(x_1,x_2)> d_Y(y_1,y_2)$, then
+			\begin{align*}
+				\max\{d_X(x_1,x_2),d_Y(y_1,y_2)\}&=d_X(x_1,x_2)\\
+				&\leq d_X(x_1,x_3)+d_X(x_3,x_2)\\
+				&\leq \max\{d_X(x_1,x_3),d_Y(y_1,y_3)\}+\max\{d_X(x_3,x_2),d_Y(y_3,y_2)\}.
+			\end{align*}
+			Thus combining two cases, we have
+			\begin{displaymath}
+				d((x_1,y_1),(x_2,y_2))\leq d((x_1,y_1),(x_3,y_3))+d((x_3,y_3),(x_2,y_2)),
+			\end{displaymath}
+			completing the proof.
+		\end{itemize}
+	
+		\item Consider an arbitrary sequence $(x_n,y_n)$ in $E\times F$. Note that $(x_n)\in E$ and $(y_n)\in F$. Since $E$ is compact, $(x_n)$ has a subsequence $(x_{n_k})$ converging to $x_0$ in $E$. Moreover, since $F$ is compact, $(y_{n_k})$ has a subsequence $(y_{n_{k_l}})$ converging to $y_0$ in $F$. Now $(x_n,y_n)$ has a subsequence $(x_{n_{k_l}},y_{n_{k_l}})$ converging to $(x_0,y_0)$ in $E\times F$, so $E\times F$ is compact.
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q2}
+	Since $\sum a_n$ is convergent, $\lim a_n=0$. i.e. Let $\epsilon=1\ \exists N_1\in\N\ n\geq N_1\implies |a_n|<1\implies \abs{\frac{1}{a_n}}=\frac{1}{|a_n|}>1$. Thus $\lim\frac{1}{n}\neq 0$, implying that $\sum \frac{1}{a_n}$ does not converge, and hence diverges.
+	\newpage
+	
+	\subsection*{Q3}
+	Since $\sum(a_n+b_n)=\sum a_n+\sum b_n$, it is clear that $\sum(a_n+b_n)$ converges when both $\sum a_n$ and $\sum b_n$ converge. Observe that when for each $n\in N$ $a_n$ and $b_n$ are nonnegative, we have
+	\begin{align*}
+		\abs{\sqrt{a_nb_n}}=\sqrt{a_nb_n}\leq\sqrt{2a_nb_n}\leq\sqrt{a_n^2+b_n^2+2a_nb_n}=\sqrt{(a_n+b_n)^2}=a_n+b_n.
+	\end{align*}
+	By comparison test, $\sum\sqrt{a_nb_n}$ converges.
+	\newpage
+	
+	\subsection*{Q4}
+	Since $\lim\inf|a_n|=0$, there exists a subsequence $|a_{n_k}|$ such that $\lim|a_{n_k}|=0$, i.e. $\forall\epsilon>0\ \exists K\in\N\ k\geq K\implies \abs{a_{n_k}}<\epsilon$. Thus select $\epsilon=1$ and according to the definition of limit, we can select $n_{k_1}$ such that $\abs{a_{n_{k_1}}}<1$. Having already found $n_{k_1}<n_{k_2}<\cdots<n_{k_l}$ such that $\abs{a_{n_{k_l}}}<\frac{1}{l^2}$, we can choose $n_{k_{l+1}}>n_{k_1}$ such that $\abs{a_{n_{k_{l+1}}}}<\frac{1}{(l+1)^2}$ since we have infinitely many terms smaller than $\frac{1}{(l+1)^2}$.\smallskip
+	
+	Now we have a series $\sum a_{n_{k_{l+1}}}$ such that $\abs{a_{n_{k_l}}}<\frac{1}{l^2}$. Then by comparison test, since $\sum\frac{1}{l^2}$ converges, $\sum a_{n_{k_l}}$ also converges. Note $(a_{n_{k_l}})$ is a subsequence of $(a_n)$.
+	\newpage
+	
+	\subsection*{Q5}
+	Let $\sum a_n=\sum\frac{(-1)^n}{\sqrt{n}}$. It is an alternating series because 
+	\begin{displaymath}
+		1>\frac{1}{\sqrt{2}}>\frac{1}{\sqrt{3}}>\cdots>0\text{ and }\lim\frac{1}{\sqrt{n}}=0.
+	\end{displaymath}
+	Thus $\sum a_n$ converges. Then $\sum a_n^2=\sum(\frac{(-1)^n}{\sqrt{n}})^2=\sum \frac{1}{n}$is the harmonic series and hence $\sum a_n^2$ diverges.
+	\newpage
+	
+	\subsection*{Q6}
+	Since $\sum a_n$ converges, it satisfies the Cauchy Criterion, i.e.
+	\begin{displaymath}
+		\forall\epsilon>0\ \exists N\in\N\ n\geq m\geq N\implies \abs{\sum_{k=m}^{n}a_n}<\frac{\epsilon}{2}.
+	\end{displaymath}
+	Let $m=N$, then we have 
+	\begin{align*}
+		\frac{\epsilon}{2} &> \abs{a_N+a_{N+1}+\cdots+a_n}\\
+				 &\geq (n-N+1)\abs{a_n}\quad\text{since $(a_n)$ is nonincreasing.}
+	\end{align*}
+	If $n\geq 2N$, then $n\leq 2(n-N)<2(n-N+1)$. Thus
+	\begin{align*}
+		|na_n|=n|a_n|<2(n-N+1)|a_n|<2\cdot\frac{\epsilon}{2}=\epsilon.
+	\end{align*}
+	i.e. $\lim na_n=0$.
+	\newpage
+	
+	\subsection*{Q7}
+	\begin{enumerate}[(a)]
+		\item First observe that all terms are nonzero. Using ratio test, we have
+		\begin{displaymath}
+			\lim\abs{\frac{a_{n+1}}{a_n}}=\abs{\frac{n+1}{(n+2)!}\cdot\frac{(n+1)!}{n}}=\lim\abs{\frac{n+1}{n^2-2n}}=0.
+		\end{displaymath}
+		Thus $\lim\sup\abs{\frac{a_{n+1}}{a_n}}=0<1$, and hence the series converges (absolutely). 
+		\item If $a=0$, then the series converges trivially. If $a\neq 0$, first observe all terms are nonzero, and then we have
+		\begin{displaymath}
+			\lim\abs{\frac{a_{n+1}}{a_n}}=\lim\abs{\frac{a^{n+1}}{(n+1)!}\cdot\frac{n!}{a^n}}=\lim\abs{\frac{a}{n+1}}=0.
+		\end{displaymath}
+		Thus $\lim\sup\abs{\frac{a_{n+1}}{a_n}}=0<1$, and hence the series converges (absolutely) by the ratio test.
+		\item Let $(a_n)=\frac{1}{\sqrt{n}}$. Note that we have
+		\begin{displaymath}
+			\frac{1}{\sqrt{1}}>\frac{1}{\sqrt{2}}>\frac{1}{\sqrt{3}}>\cdots>0\text{ and }\lim\frac{1}{\sqrt{n}}=0.
+		\end{displaymath}
+		Thus by alternating series test, the series converges.
+		\item Observe that
+		\begin{displaymath}
+			\sum_{n=2}^{\infty}\frac{1}{n\log n}>\int_{2}^{\infty}\frac{1}{n\log n}\ dn=\infty.
+		\end{displaymath}
+		Thus by the integral test, the series diverges.
+	
+			
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q8}
+
+	\newpage
+	
+	\subsection*{Q9}
+	
+	\newpage
+	
+	\subsection*{Q10}
+	
+	\newpage
+	
+\end{document}

@@ -1,0 +1,127 @@
+\documentclass[12pt,lettersize]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{chngcntr}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\com}{\mathsf{C}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 104}
+\chead{Homework 4}
+\rhead{Wenhao Pan}
+\cfoot{\thepage}
+
+\setlength\parindent{0pt}
+\setlength\parskip{5pt}
+
+\begin{document}
+	
+	\subsection*{Q1}
+	We will use proof by contradiction. Consider $y\in\left(C_r(x)\right)^\prime$ and suppose $y\in\left(C_r(x)\right)^\com$. Then we have $d(x,y)>r\implies d(x,y)-r>0$. Take $s$ with $0<s<d(x,y)-r$. $\forall z\in B_s(y)$ by triangular inequality of $d$ we have
+	\begin{align*}
+		d(x,z) &\geq d(x,y)-d(y,z)\\
+			   &> d(x,y)-s\\
+			   &> d(x,y)-(d(x,y)-r)\\
+			   &= r.
+	\end{align*} 
+	Thus $z\in (C_r(x))^\com\implies B_s(y)\subseteq (C_r(x))^\com \implies B_s(y)\cap C_r(x)=\emptyset.$ This is a contradiction to our assumption that $y$ is a limit point of $C_r(x)$. Thus $y\in C_r(x)$, and hence $C_r(x)$ is closed by definition.
+	\newpage
+	
+	\subsection*{Q2}
+	We will use proof by contradiction for both $\sup E$ and $\inf E$. Because $E$ is compact in $\R$, $E$ is closed and bounded. Thus both $\sup E$ and $\inf E$ exist.
+	
+	Suppose $\sup E\notin E$, then $\forall r>0\ \exists x\in E\ \sup E-r<x<\sup E<\sup E+r$. Thus $x\in(\sup E-r,\sup E+r)=B_r(\sup E)\implies (B_r(\sup E)\backslash\{\sup E\})\cap E\neq\emptyset$ since $x\neq\sup E$. By the definition $\sup E\in E^\prime\subseteq E$ because $E$ is closed. Then we have $\sup E\in E$ which is a contradiction. Thus $\sup E\in E$.
+	
+	Suppose $\inf E\notin E$, then $\forall r>0\ \exists x\in E\ \inf E-r<\inf E<x<\inf E+r$. Thus $x\in(\inf E-r,\inf E+r)=B_r(\inf E)\implies (B_r(\inf E)\backslash\{\inf E\})\cap E\neq\emptyset$ since $x\neq\inf E$. By the definition $\inf E\in E^\prime\subseteq E$ because $E$ is closed. Then we have $\inf E\in E$ which is a contradiction. Thus $\inf E\in E$.
+	\newpage
+	
+	\subsection*{Q3}
+	Suppose $\forall x,y\in E\ d(x,y)\neq\delta$. By HW 2.10, we can construct a pair of sequences $(x_n)$ and $(y_n)$ in $E$ such that $\forall n\in\N\ \max\{\delta-\frac{1}{n}, d(x_{n-1},y_{n-1})\}<d(x_n,y_n)<\delta$. By the construction, it is clear than $(d(x_n,y_n))\rightarrow\delta$ and $(d(x_n,y_n))$ is increasing. Since $E$ is compact, $(x_n)$ has a convergent subsequence $(x_{n_k})\rightarrow x_0\in E$. Moreover, $(d(x_{n_k},y_{n_k}))\rightarrow\delta$ because $(d(x_n,y_n))\rightarrow\delta$. Again, by the compactness of $E$, $(y_{n_k})$ has a convergent subsequence $(y_{n_{k_l}})\rightarrow y_0\in E$, and hence $(x_{n_{k_l}})\rightarrow x_0$ and  $(d(x_{n_{k_l}},y_{n_{k_l}}))\rightarrow\delta$.\smallskip
+	
+	Now by trapezoid inequality, $\forall l\in\N$
+	\begin{displaymath}
+		d(x_{n_{k_l}},y_{n_{k_l}})\leq d(x_{n_{k_l}},x_0)+d(x_0,y_0)+d(y_0,y_{n_{k_l}}).
+	\end{displaymath}
+	i.e.
+	\begin{equation}
+		d(x_0,y_0)\geq d(x_{n_{k_l}},y_{n_{k_l}})-d(x_{n_{k_l}},x_0)-d(y_0,y_{n_{k_l}}).
+	\end{equation}
+	For each $\epsilon>0$, there exists $L_1\in\N\ l\geq L_1\implies d(x_{n_{k_l}},x_0)<\frac{\epsilon}{3}$; there exists $L_2\in\N\ l\geq L_2\implies d(y_0,y_{n_{k_l}})<\frac{\epsilon}{3}$; there exists $L_3\in\N\ d(x_{n_{k_{L_3}}},y_{n_{k_{L_3}}})>\delta-\frac{\epsilon}{3}$. By the previous construction of $d((x_n),(y_n))$, $l\geq L_3\implies d(x_{n_{k_{l}}},y_{n_{k_{l}}})\geq d(x_{n_{k_{L_3}}},y_{n_{k_{L_3}}})>\delta-\frac{\epsilon}{3}$. Take $L=\max\{L_1,L_2,L_3\}$, and hence with (1) $l\geq L$ implies
+	\begin{align*}
+		d(x_0,y_0)&>\delta-\frac{\epsilon}{3}-d(x_{n_{k_l}},x_0)-d(y_0,y_{n_{k_l}})\\
+				  &>\delta-\frac{\epsilon}{3}-\frac{\epsilon}{3}-\frac{\epsilon}{3}\\
+				  &=\delta-\epsilon.
+	\end{align*}
+	Thus $\delta\leq d(x_0,y_0)\leq\delta\implies d(x_0,y_0)=\delta$. Since $x_0,y_0\in E$, we have a contradiction, so $\exists x_0,y_0\in E\ d(x_0,y_0)=\delta$.
+	\newpage
+	
+	\setcounter{equation}{0}
+	\subsection*{Q4}
+	If $x\in E$, then it is trivially true.\smallskip
+	
+	If $x\in X\backslash E$, then suppose $\forall y\in E\ d(x,y)\neq d(x,E)$.i.e. $\forall y\in E\ d(x,E)<d(x,y)$. By similar argument in HW 2.10 and Q3, we can construct a $(y_n)\in E$ such that $\forall n\in\N\ d(x,E)<d(x,y_n)<\min\{d(x,E)+\frac{1}{n}, d(x,y_{n-1})\}$. Thus $(d(x,y_n))\rightarrow d(x,E)$ and $(d(x,y_n))$ is decreasing. Since $E$ is compact, $(y_n)$ has a convergent subsequence $(y_{n_k})\rightarrow y_0\in E$, and hence $(d(x,y_{n_k}))\rightarrow d(x,E)$. 
+	
+	For each $\epsilon>0$, there exists $K_1\in\N\ k\geq K_1\implies d(y_{n_{K_1}},y_0)<\frac{\epsilon}{2}$; there exists $K_2\in\N\ d(x,y_{n_{K_2}})<d(x,E)+\frac{\epsilon}{2}$. By the previous construction, $k\geq K_2\implies (d(x,y_{n_k}))\leq d(x,y_{n_{K_2}})<d(x,E)+\frac{\epsilon}{2}$. Take $K=\max\{K_1,K_2\}$, then by triangular inequality $k\geq K$ implies
+	\begin{align}
+		d(x,y_0) &\leq d(x,y_{n_k})+d(y_{n_k})\\
+				 &<d(x,E)+\frac{\epsilon}{2}+\frac{\epsilon}{2}\\
+				 &=d(x,E)+\epsilon.
+	\end{align}
+	Thus when $y_0\in E$, $d(x,E)\leq d(x,y_0)\leq d(x,E)\implies d(x,y_0)=E$, which is a contradiction. Thus $\exists y_0\in E\ d(x,y_0)=d(x,E)$.
+	\newpage
+	
+	\subsection*{Q5}
+	\begin{itemize}
+		\item Consider $x\in E^\prime$. Then there exists a sequence $(x_n)$ of points in $E\backslash\{x\}$ such that $x_n\rightarrow x$. Since we are dealing with set $\Q$, $x\in\Q$. Suppose $x\leq\sqrt{2}$, or actually $x<\sqrt{2}$ since $\sqrt{2}$ is irrational, then $\exists x<r<\sqrt{2}$. Obviously $(B_{r-x}(x)\backslash\{x\})\cap E=\emptyset\implies$ x is not a limit point of $E$, which is a contradiction. Thus $x>\sqrt{2}$.
+		
+		Similarly, suppose $x\geq\sqrt{3}$, or actually $x>\sqrt{3}$ since $\sqrt{3}$ is irrational, then $\exists\sqrt{3}<r<x$. Obviously $(B_{x-r}(x)\backslash\{x\})\cap E=\emptyset\implies$ x is not a limit point of $E$, which is a contradiction. Thus $x<\sqrt{3}$. 
+		
+		Now we have $\sqrt{2}<x<\sqrt{3}\implies x\in E$, so $E$ is closed.
+		\item Let $x=0$, then $\forall y\in E\ d(x,y)<\sqrt{3}$, so $E$ is bounded.
+		\item Consider an open cover $\{(\sqrt{2},r)\}_{r\in(\sqrt{2},\sqrt{3})}$ of $E$. It does not have a finite subcover since for any finite subcover $\{(\sqrt{2},r_i)\}_{i=1}^{n}$, there is always a rational number exclusively between $\max\{r_i:j=1,\dots,n\}$ and $\sqrt{3}$ that is not covered by $\{(\sqrt{2},r)\}_{i=1}^{n}$. Thus $E$ is not compact.
+	\end{itemize}
+	\newpage
+	
+	\subsection*{Q6}
+	Given an open cover $\{\U_\alpha\}_{\alpha\in\A}$ of $X$, we have
+	\begin{displaymath}
+		\bigcup_{\alpha\in\A}\U_\alpha=X\implies \bigcap_{\alpha\in\A}\U_{\alpha}^{\com}=\left(\bigcup_{\alpha\in\A}\U_\alpha\right)^\com=X^\com=\emptyset.
+	\end{displaymath}
+	Since each $\U_\alpha$ is open, its complement $\U_\alpha^\com$ is closed. Observe that the collection of closed sets $\{\U_{\alpha}^{\com}\}_{\alpha\in\A}$ does not have the finite intersection property, and hence there exists a finite subfamily $\B$ of $\A$ such that 
+	\begin{displaymath}
+		\bigcap_{\alpha\in\B}\U_{\alpha}^{\com}=\emptyset.
+	\end{displaymath}
+	i.e. 
+	\begin{displaymath}
+		\bigcup_{\alpha\in\B}\U_{\alpha}=\left(\bigcap_{\alpha\in\B}\U_{\alpha}^{\com}\right)^\com=\emptyset^\com=X.
+	\end{displaymath}
+	Thus $\{\U_\alpha\}_{\alpha\in\A}$ has a finite subcover $\{\U_\alpha\}_{\alpha\in\B}$, and hence $X$ is compact.
+	\newpage
+	
+	\subsection*{Q7}
+	Denote $E=\{(s_n)\in X: |s_n|\leq 1\text{ for all $n$}\}$. Let $(t_n)=0$. It is in $X$ because it is bounded by $0$. Then $\forall (s_n)\in E\ d((s_n),(t_n))=\sup\{|s_n|: n\in\N\}\leq 1$, so $E$ is bounded.\smallskip
+	
+	Consider $(s_n)\in E^\prime$. Then $\forall r>0\ (B_r((s_n)))\backslash\{(s_n)\})\cap E\neq\emptyset$. In other words, 
+	\begin{displaymath}
+		\forall r>0\ \exists(s_n)\neq(t_n)\in X\ \forall n\in\N\ |t_n-s_n|<r\text{ and }|t_n|\leq 1.
+	\end{displaymath}
+	For the purpose of contradiction, suppose $\exists N\in\N\ |s_N|>1$. If $s_N>1$, then let $r=\frac{s_{N}-1}{2}$. It follows $|t_N-s_N|<\frac{s_N-1}{2}\implies t_N>1$, which is a contradiction. If $s_N<-1$, then let $r=\frac{-1-s_N}{2}$. It follows $|t_N-s_N|<\frac{-1-s_N}{2}\implies t_N<-1$, which is a contradiction. Thus $\forall n\in\N\ |s_n|\leq1\implies (s_n)\in E$, and hence $E$ is closed.\smallskip
+	
+	For each $(s_n)\in E$, define an open set $\U_{(s_n)}=\{(x_n)\in X: d((x_n),(s_n))<1\}$. Then $\{\U_{(s_n)}\}_{(s_n)\in E}$ is an open cover of $E$ trivially. Now consider sequences in $E$: $(x_n^{(1)})=(1,-1,-1,\dots)$, $(x_n^{(2)})=(-1,1,-1,\dots)$, $(x_n^{(3)})=(-1,-1,1,\dots)$. For each $j=1,2,\dots$, all terms in $(x_n^{(j)})$ are $-1$ except $x_j^{(j)}=1$. Observe that for any $i\neq j$, $d((x_n^{(i)}),(x_n^{(j)}))=2$. By the construction, any distinct sequences $(x_n^{(j)})$ cannot belong to the same open set $\U_{s_n}$ because otherwise, $d((x_n^{(i)}),(x_n^{(j)}))\leq d((x_n^{(i)}),(s_n))+d((s_n),(x_n^{(j)}))<1+1=2$, which is a contradiction. Thus, any finite subcover of $\{\U_{(s_n)}\}_{(s_n)\in E}$ cannot cover all such sequences $(x_n^{(j)})$, so $E$ is not compact.
+	
+\end{document}

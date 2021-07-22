@@ -1,0 +1,588 @@
+\documentclass[12pt, lettersize]{article}
+
+% format setting
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{chngcntr}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+
+% Theorem declaration
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{nte}[thm]{Notation}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}{Corollary}[thm]
+
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{eg}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+\tcolorboxenvironment{thm}{
+	colframe=cyan, colback=cyan!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{dfn}{
+	colframe=orange, colback=orange!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{lem}{
+	colframe=blue, colback=blue!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{cor}{
+	colframe=blue, colback=blue!5, before skip=10pt,after skip=10pt}
+
+\tcolorboxenvironment{eg}{
+	colframe=red, colback=red!5, before skip=10pt,after skip=10pt}
+
+\renewcommand\qedsymbol{\hfill $\blacksquare$}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\dom}{\text{dom}\,}
+\newcommand{\com}{\mathsf{C}}
+\newcommand{\lline}{\noindent\rule{\textwidth}{1pt}}
+
+\counterwithout{equation}{section}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\title{Introduction to metric space}
+\author{Wenhao Pan}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{dfn}
+	Let $X$ be a set, and suppose $d$ is a function $d: X\times X\rightarrow[0,\infty]$ defined for all pairs $(x,y)$ of elements from $X$ satisfying
+	\begin{enumerate}
+		\item $d(x,x)=0$ for all $x\in S$ and $d(x,y)>0$ for distinct $x,y\in X$. (Positive Definiteness)
+		\item $d(x,y)=d(y,x)$ for all $x,y\in X$. (Symmetry)
+		\item $d(x,z)\leq d(x,y)+d(y,z)$ for all $x,y,z\in X$. (Triangle Inequality)
+	\end{enumerate}
+	Such a function $d$ is called a \emph{distance function} or a \emph{metric} on $X$. A \emph{metric space} $X$ is a set $X$ together with a metric on it.
+\end{dfn}
+\begin{rem}
+	The positive definiteness can be also expressed as $\forall x,y\in X\ d(x,y)\geq 0$ and $d(x,y)=0\iff x=y$. The distance function cannot be $+\infty$.
+\end{rem}
+\begin{eg}[Discrete Metric Space]
+	Discrete metric space is defined as
+	\begin{displaymath}
+		\text{For any set $X$ with metric or distance function as}\begin{cases}
+			1\quad\text{$x\neq y$}\\ 0\quad\text{$x=y$}.
+		\end{cases}
+	\end{displaymath}
+	Notice that all sets in discrete metric space are both open and closed.
+\end{eg}
+\begin{rem}
+\begin{itemize}
+	\item Discrete metric space is complete but not compact.
+	\item Any set in discrete metric space is open because for each element there is an open ball only contains itself, so the open ball is just the element and hence trivially contained in the set.
+	\item Any set in discrete metric space is closed because it does not have any limit point. Then the set of limit points is empty and trivially contained in the set.
+\end{itemize}
+\end{rem}
+
+\begin{dfn}[Convergence]
+	A sequence $(x_n)$ in a metric space $(X,d)$ converges to $x$ in $X$ if $\lim_{n\rightarrow\infty}d(x_n,x)=0$.
+\end{dfn}
+\begin{rem}
+\begin{itemize}
+	\item In other words, a sequence $(x_n)$ converges to $x$ if for any $\epsilon>0$, there exists $N\in\N$ such that $n\geq N\implies d(x_n,x)<\epsilon$.
+	\item Convergent sequence is Cauchy.
+\end{itemize}
+\end{rem}
+
+\begin{dfn}[Cauchy]
+	A sequence $(x_n)$ in $X$ is a \emph{Cauchy} if for any $\epsilon>0$ there exists an $N\in\N$ such that
+	\begin{displaymath}
+		m,n\geq\implies d(x_m,x_n)<\epsilon.
+	\end{displaymath}
+\end{dfn}
+
+\begin{dfn}[Complete]
+	A metric space $(X,d)$ is \emph{complete} if every Cauchy sequence in $X$ converges.
+\end{dfn}
+\begin{rem}
+\begin{itemize}
+	\item Every convergent sequence $(x_n)$ in $X$ is Cauchy.
+	\item $\Q$ is not complete. 
+\end{itemize}
+\end{rem}
+
+\begin{dfn}[Open Ball]
+	Let $(X,d)$ be a metrc space. For $x\in X$ and $r>0$, the open ball of radius $r$ centered at $x$ is the set
+	\begin{displaymath}
+		B_r(x)=\{y\in X: d(y,x)<r\}
+	\end{displaymath}
+\end{dfn}
+
+\begin{dfn}[Interior Point]
+	Let $(X,d)$ be a metric space. Let $E$ be a subset of $X$. An element $x\in E$ is \emph{interior} to $E$ if for some $r>0$ we have
+	\begin{displaymath}
+		B_r(x)\subseteq E
+	\end{displaymath}
+	We write $E^\circ$ for the set of points in $E$ that are interior to $E$.
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item The relationship between $E$ and $X$ may affect whether a point in $E$ is interior to $E$. For example, for $E=[0,1]\subset[-1,2]=X$, $0$ is not interior to $[0,1]$. However if $E=[0,1]\subset[0,1]=X$, then $0$ is interior to $0$ since there is not point in $X$ beyond the left of $0$.
+		\item $E^\circ$ is open.
+		\item $E=E^\circ$ if and only if $E$ is open.
+		\item If $F$ is an open set such that $F\subseteq E$, then $F\subseteq E^\circ$.
+	\end{itemize}		
+\end{rem}
+
+\begin{dfn}[Open Set]
+	A set $E\subseteq X$ is \emph{open} if every point $x\in E$ is an interior point of $E$. i.e., if $E=E^\circ$.	
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item[]
+		
+		\item A set being open does \textbf{not} mean it is \textbf{not} closed. e.g. $[0,1)$ is neither open nor closed.
+	\end{itemize}
+\end{rem}
+\begin{eg}
+	\begin{itemize}
+		\item[]
+		\item $(a,b),(a,\infty),(-\infty,a)$ are open sets.
+		\item In $\R$, $\Q$ is \emph{not} open since $B_r(q)$ may contain irrational numbers in $\R$ so $B_r(q)\nsubseteq\Q$.
+		\item In any metric space $(X,d)$, $X$ and $\emptyset$ are open trivially.
+	\end{itemize}
+\end{eg}
+
+\begin{thm}[Open ball is open]
+	Let $(X,d)$ be a metric space. Given $x\in X$ and $r>0$, $B_r(x)$ is an open set in $X$.
+\end{thm}
+\begin{proof}
+	Consider arbitrary $y\in B_r(x)$ and let $s=r-d(x,y)$. It is easy to show that $B_x(y)\subseteq B_r(x)$. Thus $y$ is an interior point of $B_r(x)$. Since $y$ is arbitrary, by the definition $B_r(x)$ is open.
+\end{proof}
+
+\begin{thm}[Union and intersection of open sets]\label{thm: Union and intersection of open sets}
+	Let $(X,d)$ be a metric space.
+	\begin{enumerate}[(i)]
+		\item If $\{\mathcal{U}_\alpha\}_{\alpha\in \mathcal{A}}$ is any collection of open sets in $X$, then $\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$ is open. i.e. the union of \emph{any} collection of open sets is open.
+		\item If $\{\mathcal{U}_1,\dots,\mathcal{U}_n\}$ is a finite collection of open sets in $X$, then $\bigcap_{i=1}^{n}\mathcal{U}_i$ is open.
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Consider $x\in\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$, then $\exists \beta\in\mathcal{A}$ such that $x\in\mathcal{U}_\beta$. Since $\mathcal{U}_\beta$ is open, $\exists r>0$ such that $B_r(x)\subseteq\mathcal{U}_\beta\subseteq\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$. Thus $x$ is interior to $\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$, completing the proof.
+		\item Consider $x\in\bigcap_{i=1}^{n}\mathcal{U}_i$. Since $x\in\mathcal{U}_i$ for $i=1,\dots,n$, $\exists r_i>0$ such that $B_{r_i}(x)\subseteq\mathcal{U}_i$. Take $r=\min\{r_1,\dots,r_n\}$, then clearly $B_r(x)\subseteq\bigcap_{i=1}^{n}\mathcal{U}_i$.
+	\end{enumerate}
+\end{proof}
+\begin{rem}
+	The examples for infinite collection in (ii) is $\bigcap_{n=1}^{\infty}(1-\frac{1}{n}, 1+\frac{1}{n})=\{1\}$ in $\R$. Since any open ball of $1$ in $\R$ will contain points other than $1$, $1$ is not an interior point of $\{1\}$ in $\R$.  
+\end{rem}
+
+\begin{dfn}[Complement]
+	For a set $E\subseteq X$, the \emph{complement} of $E$ is the set $E^C=X\backslash E=\{x\in X: x\notin E\}$.
+\end{dfn}
+
+\begin{dfn}[Limit Point]
+	For a set $E\subseteq X$, a point $x\in X$ is a \emph{limit point} of $E$ if for any $r>0$, we have that $(B_r(x)\backslash\{x\})\cap E\neq\emptyset$.\smallskip
+	
+	$E^\prime$ denotes the set of all limit points of $E$.
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item[]
+		\item In other words, for any radius $r>0$, no matter how small is $r$, there is some element of $E$ which sits in $B_r(x)$ other than $x$ itself. 
+		\item If $E\subseteq F$, then $E^\prime\subseteq F^\prime$.
+		\item $(E\cup F)^\prime=E^\prime\cup F^\prime$.
+	\end{itemize}
+\end{rem}
+\begin{eg}
+	\begin{itemize}
+		\item[]
+		\item In $\R$, the set of limit points of $(0,1)$ is $[0,1]$.
+		\item In $\R$, the only limit point of $\{\frac{1}{n}: n\in\N\}$ is $0$.
+		\item In $\R$, the set of limit point of $\Q$ is $\R$. 
+	\end{itemize}
+\end{eg}
+
+\begin{thm}
+	A point $x$ is a limit point of a set $E\subseteq X$ if and only if $x=\lim x_n$ for some sequence $x_n$ of points in $E\backslash\{x\}$. 
+\end{thm}
+\begin{proof}
+	See homework 3.7.
+\end{proof}
+
+\begin{dfn}[Isolated Point]
+	For a set $E\subseteq X$, $x\in E$ is called an \emph{isolated point} if $x$ is not a limit point of $E$
+\end{dfn}
+\begin{rem}
+	In other words, $x$ is an isolated point or not a limit point of $E$ if there exists a radius $r$ such that $B_r(x)$ does not contain any element of $E$ except $x$ itself.
+\end{rem}
+\begin{eg}
+	\begin{itemize}
+		\item[]
+		\item In $\R$, every integer is an isolated point of $\mathbb{Z}$.
+		\item In $\R$, the set $\Q$ has no isolated point.
+		\item In $\R$, every element of $\{\frac{1}{n}: n\in\N\}$ is an isolated point. 
+	\end{itemize}
+\end{eg}
+
+\begin{dfn}[Closed Set]
+	A set is \emph{closed} if $E^\prime\subseteq E$.
+\end{dfn}
+\begin{dfn}[Closed Set]
+	Let $(X,d)$ be a metric space. A subset $E$ of $X$ is \emph{closed} if its complement $E^\com$ is an open set.
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item[]
+		\item The above two definitions are equivalent.
+		\item In other words, $E$ contains all of its limit points, or every limit point of $E$ is in $E$.
+		\item In any metric space $(X,d)$, $X$ and $\emptyset$ are closed.
+		\item A set being closed does \textbf{not} mean it is \textbf{not} open. e.g. $[0,1)$ is neither open nor closed.
+	\end{itemize}
+\end{rem}
+\begin{eg}
+	\begin{itemize}
+		\item In $\R$, $[0,1]$ is closed. $[a,\infty),(-\infty,a]$ are closed.
+		\item In $\R$, the set $\{\frac{1}{n}: n\in\N\}$ is not closed, but $\{\frac{1}{n}: n\in\N\}\cup\{0\}$ is closed.
+		\item In any metric space, $X$ and $\emptyset$ are closed.
+		\item All finite sets do not have limit point, so they are trivially closed.
+	\end{itemize}
+\end{eg}
+
+\begin{thm}
+	A set $E\subseteq \R$ is closed if and only if every Cauchy sequence contained in $E$ has a limit that is also an element of $E$.
+\end{thm}
+
+\begin{thm}[The set of limit points is closed]
+	Let $(X,d)$ be a metric space. Let $E\subseteq X$, then $E^\prime$, (the set of limit points of $E$), is closed.
+\end{thm}
+\begin{proof}
+	We need to show for any limit point $x$ of $E^\prime$, $x$ is in $E^\prime$. Since $x$ is a limit point of $E^\prime$, $\forall r>0$, $(B_r(x)\backslash\{x\})\cap E^\prime\neq\emptyset$. i.e. there exists $y\in E^\prime$ such that $y\neq x$ and $y\in B_r(x)$. Take $s=\min\{r-d(x,y), d(x,y)\}$. Since $y\in E^\prime$, $(B_s(y)\backslash\{y\})\cap E\neq\emptyset$. i.e. $\exists z\in(B_s(y)\backslash\{y\})\cap E\neq\emptyset$.\smallskip
+	
+	Now since $s<r-d(x,y)$, $d(x,z)\leq d(x,y)+d(y,z)<d(x,y)+(r-d(x,y))=r\implies z\in B_r(x)$. Also since $s<d(x,y)$, $z\neq x$. Thus $z\in(B_r(x)\backslash\{x\})\cap E\implies (B_r(x)\backslash\{x\})\cap E\neq\emptyset$, which implies $x$ is a limit point of $E$. i.e. $x\in E^\prime$, completing the proof. 
+\end{proof}
+
+\begin{thm}[Union and intersection of closed sets]
+	\begin{enumerate}[(i)]
+		\item[]
+		\item If $\{\mathcal{E}_\alpha\}_{\alpha\in\mathcal{A}}$ is any collection of closed set, then $\bigcap_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha$ is closed.
+		\item If $\{\mathcal{E}_1,\dots,\mathcal{E}_n\}$ is a finite collection of closed sets in $X$, then $\bigcup_{i=1}^{n}\mathcal{E}_i$ is closed.
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	\begin{enumerate}[(i)]
+		\item[]
+		\item Observe that $\left(\bigcap_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha\right)^\com=\bigcup_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha^\com$. Since $\mathcal{E}_\alpha$ is closed, $\mathcal{E}_\alpha^\com$ is open. By \ref{thm: Union and intersection of open sets}, the union of open sets $\bigcup_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha^\com$ is open, completing the proof.
+		\item Observe that $\left(\bigcup_{i=1}^{n}\mathcal{E}_i\right)^\com=\bigcap_{i=1}^{n}\mathcal{E}_i^\com$. Since $\mathcal{E}_i$ is closed, $\mathcal{E}_i^\com$ is open. By \ref{thm: Union and intersection of open sets}, the intersection of finite open sets $\bigcap_{i=1}^{n}\mathcal{E}_i^\com$ is open, completing the proof.
+	\end{enumerate}
+\end{proof}
+\begin{rem}
+	$\bigcup_{x\in(0,1)}\{x\}=(0,1)$ is an example to the union of infinite closed sets is open in (ii).
+\end{rem}
+\newpage
+
+The proof above uses one of DeMorgan's Laws for sets.
+\setcounter{equation}{0}
+\begin{tcolorbox}[title=\textbf{DeMorgan's Laws for sets}]
+	Suppose a metric space $(X,d)$ and let $\forall\alpha\in\mathcal{A}\ U_\alpha\in X$. Then $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}=\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$.
+	\tcblower
+	\begin{proof}
+		We want to show both directions.
+		\begin{itemize}
+			\item[$\subseteq$:] Consider $u\in\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}$, then we have
+			\begin{align}
+				\forall\alpha\in\mathcal{A}\ u\in\mathcal{U}_{\alpha}^{\com}&\implies\forall\alpha\in\mathcal{A}\ u\notin\mathcal{U}_{\alpha}\\
+				&\implies u\notin \bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\\
+				&\implies u\in\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com.
+			\end{align}
+			(1) $\implies$ (2) because
+			\begin{displaymath}
+				\left(\neg\left(u\in\mathcal{U}_1\right)\right)\land\left(\neg\left(u\in\mathcal{U}_2\right)\right)\land\cdots=\neg\left((u\in\mathcal{U}_1\lor(u\in\mathcal{U}_2)\lor\cdots\right)=\neg\left(u\in\bigcup\mathcal{U}_i\right)
+			\end{displaymath} 
+			Thus $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}\subseteq\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$.
+			\item[$\supseteq$:] Consider $u\in\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$, then we have
+			\begin{align*}
+				u\notin\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha &\implies\forall\alpha\in\mathcal{A}\ u\notin\mathcal{U}_\alpha\\
+				&\implies\forall\alpha\in\mathcal{A}\ u\in\mathcal{U}_{\alpha}^{\com}\\
+				&\implies u\in\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}
+			\end{align*}
+			Thus $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}\supseteq\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$, and hence $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}=\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$.
+		\end{itemize}
+	\end{proof}
+\end{tcolorbox}\medskip
+
+\begin{dfn}[Bounded Set]
+	A set $E\subseteq X$ is bounded if for some $x\in X$ and $M>0$ such that $d(x,y)\leq M$ for all $y\in E$.
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item[]
+		\item In $\R^k$, $X\subseteq\R^k$ is bounded if there exists $M>0$ such that $\forall\mathbf{x}\in X\ d(\mathbf{x},\mathbf{0})=\sqrt{x_1^2+\cdots+x_k^2}\leq M$.
+		\item Finite union of bounded sets is bounded.
+		\item Intersection of bounded sets is bounded.
+		\item A set is bounded if it is contained in some open ball.
+	\end{itemize}
+\end{rem}
+
+\begin{thm}
+	In $R$, any closed and bounded sets always have maximum and minimum.
+\end{thm}
+
+\begin{dfn}[Closure]
+	The \emph{closure} of $E$ in $X$ is $\bar{E}=E\cup E^\prime$.
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item[]
+		\item $\bar{E}$ is the intersection of all closed sets containing $E$.
+		\item $\bar{E}$ is closed.
+		\item $E=\bar{E}$ if and only if $E$ is closed.
+		\item If $F$ is a closed set such that $E\subseteq F$, then $\bar{E}\subseteq F$.
+		\item The union of closures of finite sets is equal to the closure of unions of the sets. i.e. $\overline{A\cup B}=\overline{A}\cup\overline{B}$.
+	\end{itemize}
+\end{rem}
+
+\begin{thm}
+	For any $E\subseteq X$, its closure $\bar{E}=E\cup E^\prime$ is closed and is the smallest closed set containing $A$.
+\end{thm}
+
+\begin{dfn}[Dense Set]
+	A set $E\subseteq X$ is \emph{dense} in $X$ if $\bar{E}=X$.
+\end{dfn}
+\begin{eg}
+	\begin{itemize}
+		\item[]
+		\item $\Q$ is dense in $\R$.
+		\item In any metric space $(X,d)$, $X$ is dense in $X$. 
+	\end{itemize}
+\end{eg}
+
+\begin{dfn}[Dense Set]
+	A set $E\subseteq X$ is dense in $X$ if and only if for any $x\in X$ and $r>0$.
+	\begin{displaymath}
+		B_r(x)\cap E\neq\emptyset.
+	\end{displaymath} 
+\end{dfn}
+
+\setcounter{equation}{0}
+\begin{lem}\label{def:sequence in R^k}
+	\begin{itemize}
+		\item[]
+		\item A sequence $(\mathbf{x}^{(n)})$ in $\mathbb{R}^k$ converges to $\mathbf{x}=(x_1,\dots,x_k)$ if and only if for each $j=1,2\dots,k$, the sequence $(x_j^{(n)})$ converges in $\mathbb{R}$.
+		\item A sequence $(\mathbf{x}^{(n)})$ in $\mathbb{R}^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$ is a Cauchy sequence in $\mathbb{R}$.
+	\end{itemize}	
+\end{lem}
+\begin{proof}
+	First observe for $\textbf{x,y}\in\mathbb{R}^k$ and $j=1,\dots,k$
+	\begin{align}
+		|x_j-y_j|=\sqrt{(x_j-y_j)^2}\leq\sqrt{(x_1-y_1)^2+\cdots+(x_k-y_k)^2}&=d(\textbf{x,y})\notag\\
+		&\leq \sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}
+	\end{align}
+	First assertion: 
+	\begin{itemize}
+		\item[$\implies$:] Given that $(\textbf{x}^{(n)})$ converges to $\mathbf{x}$. For each $epsilon>0$ there exists $N\in\N$ such that $n\geq N\implies d(\textbf{x}^{(n)},\mathbf{x})<\epsilon$. Then by (1) for $j=1,\dots,k$
+		\begin{displaymath}
+			n\geq N\implies |x_j^{(n)}-x_j|\leq d(\textbf{x}^{(n)},\mathbf{x})<\epsilon,
+		\end{displaymath}
+		so $x_j^{(n)}\rightarrow x_j$.
+		\item[$\impliedby$:] For $j=1,\dots,k$, $\forall \epsilon>0$, there exists $N_j\in\N$ such that 
+		\begin{displaymath}
+			n\geq N_j\implies |x_j^{(n)}-x_j|<\frac{\epsilon}{\sqrt{k}}.
+		\end{displaymath}
+		Take $N=\max\{N_1,\dots,N_k\}$, then by (1) we have
+		\begin{displaymath}
+			n\geq N\implies d(\textbf{x}^{(n)},\mathbf{x})\leq\sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}<\sqrt{k}\cdot\frac{\epsilon}{\sqrt{k}}=\epsilon.
+		\end{displaymath}
+		Thus $(\textbf{x}^{(n)})\rightarrow\mathbf{x}$
+	\end{itemize}
+	Second assertion:	
+	\begin{itemize}
+		\item[$\Rightarrow$]: Suppose $(\textbf{x}^{(n)})$ is a Cauchy sequence, from the definition we know
+		\begin{displaymath}
+			m,n>N\Rightarrow d(\textbf{x}^{(m)},\textbf{x}^{(n)})<\epsilon
+		\end{displaymath}
+		From (1) we see
+		\begin{displaymath}
+			m,n>N\Rightarrow|x_j^{(m)}-x_j^{(n)}|<\epsilon
+		\end{displaymath}
+		so $(x_j^{(n)})$ is a Cauchy sequence.
+		\item[$\Leftarrow$]: Suppose $(x_j^{(n)})$ is a Cauchy sequence, then for $j=1,\dots,k$
+		\begin{displaymath}
+			m,n>N_j\Rightarrow|x_j^{(m)}-x_j^{(n)}|<\frac{\epsilon}{\sqrt{k}}.
+		\end{displaymath}
+		If $N=\max\{N_1,N_2,\dots,N_k\}$, then by (1)
+		\begin{displaymath}
+			m,n>N\Rightarrow d(\textbf{x}^{(m)},\textbf{y}^{(n)})<\epsilon
+		\end{displaymath}
+		i.e. $(\textbf{x}^{(n)})$ is a Cauchy sequence.
+	\end{itemize}
+\end{proof}
+
+\begin{thm}
+	Euclidean k-space $\mathbb{R}^k$ is complete.
+\end{thm}
+\begin{proof}
+	Consider a Cauchy sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$. By \ref{def:sequence in R^k}, each $(x_j^{(n)})$ is a Cauchy sequence. By \ref{def:cauchy iff convergent} each $(x_j^{(n)})$ converges. Thus by \ref{def:sequence in R^k} $(\textbf{x}^{(n)})$ converges.
+\end{proof}
+
+\begin{thm}[Bolzano-Weierstrass in $\R^k$]
+	Every bounded sequence in $\mathbb{R}^k$ has a convergent subsequence.
+\end{thm}
+\begin{proof}
+	Since $(\textbf{x}^{(n)})$ is bounded, then each $(x_j^{(n)})$ is bounded in $\mathbb{R}$. By \ref{def:B-W}, we
+	could replace $(\textbf{x}^{(n)})$ by one of its subsequence, say $(\bar{\mathbf{x}}^{(n)})$, whose $(x_1^{(n)})$
+	converges. By \ref{def:B-W} again, we may replace $(\textbf{x}^{(n)})$ by a subsequence of $(\textbf{x}^{(n)})$ such
+	that both $(x_1^{(n)})$ and $(x_2^{(n)})$ converge. $(x_1^{(n)})$ still converges because \ref{def:subsequence converges to the same limit}. Repeating this argument by $k$ times, we obtain a new sequence $(\textbf{x}^{(n)})$ where each $(x_j^{(n)})$ converges, $j=1,\dots,k$, which is a subsequence of the original sequence, and it converges by \ref{def:sequence in R^k}. 
+\end{proof}
+\begin{rem}
+	In any general metric space $(X,d)$, it is not true that any bounded sequence has a convergent subsequence. E.g. $(\Q,d)$ and infinite discrete metric space.
+\end{rem}
+
+\begin{thm}
+	Let $E$ be a subset of a metric space $(S,d)$.
+	\begin{enumerate}
+		\item $E$ is closed $\iff$ $E=E^-$.
+		\item $E$ is closed $\iff$ $E$ contains the limit of every convergent sequence of points in $E$.
+		\item An element is in $E^-$ $\iff$ it is the limit of some sequence of points in $E$.
+		\item A point is in the boundary of $E$ $\iff$ it belongs to the closure of both $E$ and its complement.
+	\end{enumerate}
+\end{thm}
+
+\noindent\rule{\textwidth}{1pt}
+\subsection*{Compactness}
+
+\begin{dfn}[Open Cover]
+	Let $(X,d)$ be a metric space and $E\subseteq X$. An open cover of $E$ is a collection of open sets $\{\mathcal{U}_\alpha\}_{\alpha\in\mathcal{A}}$ such that $E\subseteq\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha$. An open cover is finite if it contains finitely many sets.
+\end{dfn}
+
+\begin{dfn}[Subcover]
+	A subcover of an open cover $\{\mathcal{U}_\alpha\}_{\alpha\in\mathcal{A}}$ of $E$ is an \emph{open cover} $\{\mathcal{U}_\alpha\}_{\alpha\in\mathcal{B}}$ such that $\mathcal{B}\subseteq\mathcal{A}$.
+\end{dfn}
+
+\begin{dfn}[Compact Set]
+	A set $E\subseteq X$ is compact if every open cover of $E$ has a \emph{finite} subcover.
+\end{dfn}
+\begin{eg}
+	\begin{itemize}
+		\item[]
+		\item Every finite set is compact.
+		\item Infinite discrete metric space is not compact.
+		\item $\R$ is not compact: $\{(-n,n)\}_{n\in\N}$ is an open cover of $\R$ but does not have a finite subcover.
+		\item $(0,1)$ is not compact: $\{(0,r)\}_{r\in(0,1)} $ is an open cover of $(0,1)$ but does not have a finite subcover.
+		\item Closed interval in $R$ is compact.
+	\end{itemize}
+\end{eg}
+
+\begin{thm}
+	Compact sets are closed in any metric space.
+\end{thm}
+\begin{proof}
+	Let $E\subseteq X$ be compact. To show $E$ is closed, we can show $E^\com$ is open. Consider $x\in E^\com$. For each $y\in E$, let $r_y:=\frac{1}{2}d(x,y)$. Clearly $\{B_{r_y}(y)\}_{y\in E}$ is an open cover of $E$ because each point in $E$ is a center of an open ball. By the assumption, $E$ is compact, so there is a finite subcover $\{B_{r_{y_1}}(y_1),\dots,B_{r_{y_n}}(y_n)\}$ such that $E\subseteq\bigcup_{i=1}^{n}B_{r_{y_i}}(y_i)$. 
+	
+	Now take $r=\min\{r_{y_1},\dots,r_{y_n}\}$, and hence $B_r(x)\cap(\bigcup_{i=1}^{n}B_{r_{y_i}}(y_i))=\emptyset$. Since $E\subseteq\bigcup_{i=1}^{n}B_{r_{y_i}}(y_i)$, $B_r(x)\cap E=\emptyset\implies B_r(x)\subseteq E^\com$. Thus $x$ is an interior point of $E^\com$, completing the proof.
+\end{proof}
+\begin{rem}
+	Non-closed sets are not compact in any metric space. Notice open set does not mean non-closed.
+\end{rem}
+
+\begin{thm}
+	Closed subsets of compact sets are compact.
+\end{thm}
+\begin{proof}
+	See worksheet 7.
+\end{proof}
+\begin{cor}
+	If $\{K_\alpha\}_{\alpha\in A}$ is a collection of compact sets, then $\bigcap_{\alpha\in\mathcal{A}}K_\alpha$ is compact.
+\end{cor}
+\begin{proof}
+	Since compact sets are closed, $\bigcap_{\alpha\in\mathcal{A}}K_\alpha$ is the intersection of closed sets, which is also closed. Since $\bigcap_{\alpha\in\mathcal{A}}K_\alpha$ is a subset of compact sets $U_\alpha$, it is compact.
+\end{proof}
+\begin{rem}
+	Finite union of compact sets in $X$ is compact.
+\end{rem}
+
+\begin{thm}
+	Every sequence in a compact set has a convergent subsequence.
+\end{thm}
+\begin{proof}
+	See worksheet 7.
+\end{proof}
+
+\begin{thm}[Compact Set]
+	A set $E\subseteq X$ is compact if and only if every sequence in $E$ has a convergent subsequence converging to a point in $E$.
+\end{thm}
+\begin{rem}
+	By this definition, $\Q$ and infinite discrete metric space are not compact. In $\Q$, there exists a sequence converging to an irrational number, then all of its subsequences converging to irrational number which is not in $\Q$. In infinite discrete metric space, make a sequence with all distinct terms, then all of its subsequences have distinct terms. Thus all subsequences are not Cauchy and hence not convergent.
+\end{rem}
+
+\begin{thm}[Nested Compact Sets Property]
+	Let $(F_n)$ be a sequence of closed, bounded, nonempty sets in $\R^k$ such that $F_1\supseteq F_2\supseteq\cdots$, then $F=\bigcap_{n=1}^{\infty}F_n\neq\emptyset$ and $F$ is closed and bounded.
+\end{thm}
+
+\begin{thm}
+	Suppose $\{E_\alpha\}_{\alpha\in\mathcal{A}}$ is a collection of compact sets such that $\bigcap_{\alpha\in\mathcal{B}}E_\alpha\neq\emptyset$ for any finite $\mathcal{B}\subseteq \mathcal{A}$. Then $\bigcap_{\alpha\in\mathcal{A}}E_\alpha\neq\emptyset$.
+\end{thm}
+
+\begin{dfn}[K-cell]
+	A K-cell is a subset of $\R^k$ of the form $[a_1,b_1]\times[a_2,b_2]\times\cdots\times[a_k,b_k]$.
+\end{dfn}
+
+\begin{thm}
+	Every k-cell $F$ in $\mathbb{R}^k$ is compact.
+\end{thm}
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{thm}
+	A subset $E$ of $\mathbb{R}^k$ is compact if and only if it is closed and bounded.
+\end{thm}
+\begin{proof}
+	TODO
+\end{proof}
+\begin{rem}
+	The forward direction is true in any metric space.
+\end{rem}
+
+\begin{tcolorbox}[title=\textbf{Characterization of compact sets}]
+	(1) and (2) are equivalent in any metric space. Forward direction of (3) is true in any metric space. All of three are equivalent in $\R^k$.
+	\begin{enumerate}
+		\item Every open cover of $E$ has a finite subcover.
+		\item A set $E\subseteq X$ is compact if and only if every sequence in $E$ has a convergent subsequence converging to a point in $E$.
+		\item A subset $E$ of $\mathbb{R}^k$ is compact if and only if it is closed and bounded.
+	\end{enumerate}
+\end{tcolorbox}
+\lline
+
+\subsection*{Cantor Set}
+\begin{dfn}[Cantor Set]
+	Let $\mathcal{C}_0$ be $[0,1]$. Then define $\mathcal{C}_1$ as the union of $2^1$ interval $[0,\frac{1}{3}]\cup[\frac{2}{3},1]$. Each time delete the middle $\frac{1}{3}$ of intervals. Thus $\mathcal{C}_2$ is the union of $2^2$ intervals which is $[0,\frac{1}{9}]\cup[\frac{2}{9},\frac{1}{3}]\cup[\frac{2}{3},\frac{7}{9}]\cup[\frac{8}{9},1]$.\smallskip
+	
+	In short, $C_n$ is the union of $2^n$ disjoint closed intervals of which length is $(\frac{1}{3})^n$. Then define Cantor Set
+	\begin{displaymath}
+		\mathcal{C}=\bigcap_{i=0}^{\infty}\mathcal{C}_i.
+	\end{displaymath}
+\end{dfn}
+\begin{thm}
+	Here are some facts/properties about the Cantor set $\mathcal{C}$:
+	\begin{itemize}
+		\item $\mathcal{C}$ is compact.
+		\item $\mathcal{C}$ does not contain any intervals.
+		\item $\mathcal{C}$ does not have any interior points.
+		\item Every point in $\mathcal{C}$ is a limit point of $\mathcal{C}$.
+		\item Every point in $\mathcal{C}$ is a limit point of $\mathcal{C}^\com$.
+	\end{itemize}
+\end{thm}	
+
+\end{document}

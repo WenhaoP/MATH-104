@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.5.26)  9 JUL 2021 12:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.5.26)  14 JUL 2021 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -166,20 +166,20 @@ LaTeX Warning: Unused global option(s):
 (./hw3.aux)
 \openout1 = `hw3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -215,12 +215,12 @@ LaTeX Font Info:    ... okay on input line 31.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
 
 (e:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
 
 
 (e:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -273,12 +273,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [5]
-Overfull \hbox (27.97762pt too wide) detected at line 148
+Overfull \hbox (27.97762pt too wide) detected at line 151
 []
  []
 
 
-Overfull \hbox (1.63245pt too wide) detected at line 152
+Overfull \hbox (1.63245pt too wide) detected at line 155
 \OML/cmm/m/it/12 n \OMS/cmsy/m/n/12 ^^U \OML/cmm/m/it/12 N[]  \OT1/cmr/m/n/12 =
 []\OMS/cmsy/m/n/12 )  [] \OML/cmm/m/it/12 < [] \OT1/cmr/m/n/12 + (\OML/cmm/m/it
 /12 M \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 1) \OML/cmm/m/it/12 < \OT1/cmr/m/n/1
@@ -350,10 +350,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [12] (./hw3.aux) ) 
 Here is how much of TeX's memory you used:
- 2411 strings out of 478754
- 31982 string characters out of 5858221
- 349251 words of memory out of 5000000
- 20136 multiletter control sequences out of 15000+600000
+ 2413 strings out of 478754
+ 31991 string characters out of 5858221
+ 349263 words of memory out of 5000000
+ 20138 multiletter control sequences out of 15000+600000
  411844 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,14n,66p,821b,316s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -372,7 +372,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><e:/texlive/2021/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb><e:/texlive/2021/texmf-dist/fonts/type1
 /public/amsfonts/symbols/msbm10.pfb><e:/texlive/2021/texmf-dist/fonts/type1/pub
 lic/cm-super/sfrm1200.pfb>
-Output written on hw3.pdf (12 pages, 160617 bytes).
+Output written on hw3.pdf (12 pages, 162549 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream

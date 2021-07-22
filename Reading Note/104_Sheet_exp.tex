@@ -1,0 +1,863 @@
+\documentclass[12pt, lettersize]{book}
+
+% format setting
+\usepackage[margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{chngcntr}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\tcbuselibrary{theorems}
+
+
+
+% Theorem declaration
+\newtcbtheorem[number within=section]{thm}{Theorem}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[number within=section]{dfn}{Definition}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[number within=section]{lem}{Lemma}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[number within=section]{eg}{Example}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[number within=section]{cor}{Corollary}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\renewcommand\qedsymbol{\hfill $\blacksquare$}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\dom}{\text{dom}\,}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\counterwithout{equation}{chapter}
+
+\title{MATH 104 Cheat Sheet}
+\author{Wenhao Pan}
+\date{May 28, 2021}
+
+\begin{document}
+
+	\maketitle
+	
+	This document is a collection of all mentioned definitions, theorems, and corollaries from \textit{Elementary Analysis} by Kenneth A. Ross or Theodore Zhu's lectures of MATH 104 Summer 2021.
+	
+	\tableofcontents
+	
+	\chapter{Introduction}
+	\newpage
+	\section{The Set $\N$ of Natural Numbers}
+		We denote the set $\{1,2,3,\dots\}$ of all \emph{positive integers} by $\N$. Each positive integer $n$ has a successor, namely $n+1$. The following is 5 properties of $\N$:
+		\begin{itemize}
+			\item[\textbf{N1.}] $1$ belongs to $\N$.
+			\item[\textbf{N2.}] If $n\in\N$, then its successor $n+1\in\N$.
+			\item[\textbf{N3.}] $1$ is not the successor of any element in $\N$.
+			\item[\textbf{N4.}] If $n$ and $m$ in $\N$ have the same successor, then $n=m$.
+			\item[\textbf{N5.}] A subset of $\N$ which contains $1$, and which contains $n+1$ whenever it contains $n$, must equal $\N$.
+		\end{itemize}
+		Axiom \textbf{N5} is the basis of mathematical induction, which asserts all the statements $P_1,P_2,P_3,\dots$ are true provided
+		\begin{itemize}
+			\item[(\textbf{$I_1$})] $P_1$ is true,
+			\item[(\textbf{$I_2$})] $P_{n+1}$ is true whenever $P_n$ is true.
+		\end{itemize}
+		\newpage
+	\section{The Set $\Q$ of Rational Numbers}
+		\begin{dfn}
+		A number is called an \emph{algebraic number} if it satisfies a polynomial equation
+		\begin{displaymath}
+			c_nx^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0=0
+		\end{displaymath}
+		where the coefficients $c_0,c_1,\dots,c_n$ are integers, $c_n\neq0$ and $n\geq1$.
+		\end{dfn}
+		Rational numbers are always algebraic numbers. If $r=\frac{m}{n}$ is a rational number [$m,n\in\Z$ and $n\neq0$], then it satisfies the equation $nx-m=0$.
+		
+		\setcounter{equation}{0}
+		\begin{thm}[label=thm:2.2]{Rational Zeros Theorem}
+		Suppose $c_0,c_1,\dots,c_n$ are integers and $r$ is a rational number satisfying the polynomial equation
+		\begin{equation}
+			c_nx^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0=0
+		\end{equation}
+		where $n\geq1$, $c_n\neq0$ and $c_0\neq0$. Let $r=\frac{c}{d}$ where $c,d$ are integers having no common factors and $d\neq 0$. Then $c\,|\, c_0$ and $d\,|\,c_n$.
+		\end{thm}
+		In other words, the only rational candidates for solutions of (1) have the form $\frac{c}{d}$ where $c$ divides $c_0$ and $d$ divides $c_n$.
+		\begin{proof}
+		We are given
+		\begin{displaymath}
+			c_n\left(\frac{c}{d}\right)^n+c_{n-1}\left(\frac{c}{d}\right)^{n-1}+\cdots+c_1\left(\frac{c}{d}\right)+c_0=0
+		\end{displaymath}
+	 	Multiply both sides by $d^n$ and obtain
+	 	\begin{displaymath}
+	 		c_nc^n+c_{n-1}c^{n-1}d+c_{n-2}c^{n-2}d^2+\cdots+c_2c^2d^{n-2}+c_1cd^{n-1}+c_0d^n=0
+	 	\end{displaymath}
+ 		Solve for $c_0d^n$ and obtain
+ 		\begin{displaymath}
+ 			c_0d^n=-c[c_nc^{n-1}+c_{n-1}c^{n-2}d+\cdots+c_2cd^{n-2}+c_1d^{n-1}]
+ 		\end{displaymath}
+ 		Since $c$ and $d^n$ have no common factors, $c$ divides $c_0$. Do the same thing and solve for $c_nc^n$ and we will see $d$ divides $c_n$.
+		\end{proof}
+		
+		\begin{cor}[label=cor:2.3]
+		Consider the polynomial equation
+		\begin{displaymath}
+			x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0=0
+		\end{displaymath}
+		where the coefficients $c_0,c_1,\dots,c_{n-1}$ are integers and $c_0\neq0$. Any rational solution of this equation
+		must be an integer that divides $c_0$.
+		\end{cor}
+		\begin{proof}
+		By the Rational Zeros Theorem \ref{thm:2.2}, the denominator of $r$ must divide the coefficient of $x^n$, which is $1$. Thus $r$ is an integer dividing $c_0$.
+		\end{proof}
+		
+		\newpage
+	\section{The Set $\R$ of Real Numbers}
+		The set $\Q$ of Rational numbers also have the following properties for addition and multiplication:
+		\begin{itemize}
+			\item[\textbf{A1.}] $a+(b+c)=(a+b)+c$ for all $a,b,c$.
+			\item[\textbf{A2.}] $a+b=b+a$ for all $a,b$.
+			\item[\textbf{A3.}] $a+0=a$ for all $a$.
+			\item[\textbf{A4.}] For each $a$, there is an element $-a$ such that $a+(-a)=0$.
+			\item[\textbf{M1.}] $a(bc)=(ab)c$ for all $a,b,c$.
+			\item[\textbf{M2.}] $ab=ba$ for all $a,b$.
+			\item[\textbf{M3.}] $a\cdot1=a$ for all $a$.
+			\item[\textbf{M4.}] For each $a\neq0$, there is an element $a^{-1}$ such that $aa^{-1}=1$.
+			\item[\textbf{DL}] $a(b+c)=ab+ac$ for all $a,b,c$.  
+		\end{itemize}
+		
+		The set $\Q$ also has an order structure $\leq$ satisfying
+		\begin{itemize}
+			\item[\textbf{O1.}] Given $a$ and $b$, either $a\leq b$ or $b\leq a$.
+			\item[\textbf{O2.}] If $a\leq b$ and $b\leq a$, then $a=b$.
+			\item[\textbf{O3.}] If $a\leq b$ and $b\leq c$, then $a\leq c$.
+			\item[\textbf{O4.}] If $a\leq b$, then $a+c\leq b+c$.
+			\item[\textbf{O5.}] If $a\leq b$ and $0\leq c$, then $ac\leq bc$.
+		\end{itemize}
+		
+		\begin{thm}[label=thm:3.1]
+		The following are consequences of the field properties:
+		\begin{enumerate}[(i)]
+			\item \textcolor{red}{$a+c=b+c\implies a=b$};
+			\item $a\cdot0=0$ for all $a$;
+			\item $(-a)b=-ab$ for all $a,b$;
+			\item $(-a)(-b)=ab$ for all $a,b$;
+			\item $(ac=bc)\land(c\neq0) \implies a=b$;
+			\item $ab=0\implies(a=0)\lor(b=0)$ for $a,b,c\in\R$.
+		\end{enumerate}
+		for $a,c,c\in\R$.
+		\end{thm}
+		
+		\begin{thm}[label=thm:3.2]
+		The following are consequences of the properties of an ordered field:
+		\begin{enumerate}[(i)]
+			\item $a\leq b\implies-b\leq-a$;
+			\item $(a\leq b)\land(c\leq0)\implies bc\leq ac$;
+			\item $(0\leq a)\land(0\leq b)\implies 0\leq ab$;
+			\item $0\leq a^2$ for all $a$;
+			\item $0<1$;
+			\item $0<a\implies0< a^{-1}$;
+			\item $0<a<b\implies0<b^{-1}<a^{-1}$;
+		\end{enumerate}
+		for $a,c,c\in\R$.
+		\end{thm}
+		Note that $a<b$ can be represented as $(a\leq b)\land(a<b)$.
+		
+		\begin{dfn}[label=def:3.3]
+		We define
+		\begin{displaymath}
+			\text{$|a|=a$ if $a\geq0$  and   $|a|=-a$ if $a\leq0$}
+		\end{displaymath}
+		\end{dfn}
+	
+		An useful fact: $|a|\leq b\iff -b\leq a\leq b$.
+		
+		\begin{dfn}[label=def:3.4]
+		For numbers $a$ and $b$ we define dist$(a,b)=|a-b|$; dist$(a,b)$ represents the \emph{distance between $a$ and $b$}.
+		\end{dfn}
+		
+		\begin{thm}[label=thm:3.5]
+		\begin{enumerate}[(i)]
+			\item[]
+			\item $|a|\geq0$ for all $a\in\R$.
+			\item $|ab|=|a|\cdot|b|$ for all $a,b\in\R$.
+			\item $|a+b|\leq|a|+|b|$ for all $a,b\in\R$. 
+		\end{enumerate}
+		\end{thm}
+		
+		\begin{cor}[label=cor:3.6]
+		dist$(a,c)\leq$ dist$(a,b)+$ dist$(b,c)$ for all $a,b,c\in\R$. This is equivalent to $|a-c|\leq|b-c|+|b-c|$.
+		\end{cor}
+		
+		\begin{thm}[label=thm:3.7]{Triangle Inequality}
+		$|a+b|\leq|a|+|b|$ for all $a,b$.
+		\end{thm}
+		\begin{cor}[label=cor: reverse triangular]{Reverse Triangular Inequality}
+		\textcolor{red}{$\big||a|-|b|\big|\leq|a-b|$ for all $a,b\in\R$.}	
+		\end{cor}
+	
+		\begin{tcolorbox}
+			\textcolor{red}{Here is one of the most important techniques in real analysis}.
+			\begin{enumerate}[(a)]
+				\item If $a\leq b+\epsilon$ for any $\epsilon>0$, then $a\leq b$.
+				\item If $a\geq b-\epsilon$ for any $\epsilon>0$, then $a\geq b$.
+				\item If $|a-b|<\epsilon$ for any $\epsilon>0$, then $|a-b|=0$.
+			\end{enumerate}
+		\end{tcolorbox}
+	
+		\newpage
+	\section{The Completeness Axiom}
+		The completeness axiom for $\R$ ensure us $\R$ has no "gaps".
+		\begin{dfn}\label{def:4.1}
+		Let $S$ be a nonempty subset of $\R$.
+		\begin{enumerate}[(a)]
+			\item If $S$ contains a largest element $s_0$ [that is, $s_0\in S$ and $\forall s\in S,\ s\leq s_0$], then we call $s_0$ the \emph{maximum} of $S$ and write $s_0=\max S$.
+			\item If $S$ contains a smallest element $s_0$ [that is, $s_0\in S$ and $\forall s\in S,\ s\geq s_0$], then we call $s_0$ the \emph{minimum} of $S$ and write $s_0=\min S$. 
+		\end{enumerate}
+		\end{dfn}
+		Open intervals like $(a,b)=\{x\in\R: a<x\leq b\}$ have no minimum or maximum since the endpoints $a$ and $b$ is not in the interval.
+		
+		\begin{dfn}\label{def:4.2}
+		Let $S$ be a nonempty subset of $\R$.
+		\begin{enumerate}[(a)]
+			\item If a real number $M$ satisfies $s\leq M$ for all $s\in S$, then $M$ is called an \emph{upper bound} of $S$ and the set $S$ is said to be \emph{bounded above}.
+			\item If a real number $m$ satisfies $m\leq s$ for all $s\in S$, then $m$ is called an \emph{lower bound} of $S$ and the set $S$ is said to be \emph{bounded below}.
+			\item The set $S$ is said to be \emph{bounded} if it is bounded above and bounded below. Thus $S$ is bounded if there exist real numbers $m$ and $M$ such that $S\subseteq[m,M]$.
+		\end{enumerate}
+		\end{dfn}
+		The maximum of a set is always an upper bound for the set. Likewise, the minimum of a set is always a lower bound for the set.
+	
+		\begin{dfn}
+		Least Upper Bound Property (LUBP)\newline
+		An ordered set $S$ has the LUBP if every nonempty subset $\mathcal{A}\subset S$ that has an upper bound has a least upper bound in $S$.
+		\end{dfn}
+		Note that the set $\Q$ of rational number does not satisfy the LUBP but $\R$ does. e.g. $\mathcal(A)=\{q\in\Q: q^2<2\}$.
+			
+		\begin{dfn}\label{def:4.3}
+		Let $S$ be a nonempty subset of $\R$.
+		\begin{enumerate}[(a)]
+			\item If $S$ is bounded above and $S$ has a least upper bound, then we will call it the \emph{supremum} of $S$ and denote it by $\sup S$.
+			\item If $S$ is bounded below and $S$ has a greatest lower bound, then we will call it the \emph{infimum} of $S$ and denote it by $\inf S$.
+		\end{enumerate}
+		\end{dfn}
+		If $S$ is bounded above, then $M=\sup S$ if and only if (i) $s\leq M$ for all $s\in S$, and (ii) whenever $M_1<M$, there exists $s_1\in S$ such that $s_1>M_1$. Or for each $\epsilon>0$, there exists $s\in S$ such that $s>\sup S-\epsilon$.
+		
+		Note that for a positive set $S=\{s: s>0\}$, its infimum is not always positive. Example: $\{\frac{1}{n}: n\in\N\}$. Each element is positive but the infimum is $0$.
+		
+		Here are some basic facts:
+		\begin{itemize}
+			\item If a set $S$ has finitely many elements, then $\max S$ exists.
+			\item If $\max S$ exists, then $\sup S=\max S$.
+			\item For any set $S\neq\emptyset$, $\inf S\leq \sup S$
+		\end{itemize}
+		
+		\begin{thm}[Completeness Axiom]\label{thm:4.4}
+		Every nonempty subset $S$ of $\R$ that is bounded above has a least upper bound. In other words, $\sup S$ exists and is a real number.
+		\end{thm}
+		Note that the completeness axiom does not hold for $\Q$. 
+		\begin{cor}
+		Every nonempty subset $S$ of $\R$ that is bounded below has a greatest lower bound. In other words, $\inf S$ exists and is a real number.
+		\end{cor}
+		
+		\begin{thm}[Archimedean Property]\label{thm:4.6}
+		If $a>0$ and $b>0$, then for some positive integer $n$, we have $na>b$.
+		\end{thm}
+	 	\begin{cor}
+	 	(Set $a=1$). For any $b>0$, there exists $n\in\N$ such that $n>b$
+	 	\end{cor}
+ 		\begin{cor}
+ 		(Set $b=1$). For any $a>0$, there exists $n\in\N$ such that $na>1\implies \frac{1}{n}<a$.
+ 		\end{cor}
+		
+		\begin{lem}\label{lem:4.7}
+		If $x,y\in\R$ such that $y-x>1$, then there exists $m\in\Z$ such that $x<m<y$.
+		\end{lem}
+
+		
+		\begin{thm}[Denseness of $\Q$]\label{thm:4.7}
+		If $a,b\in\R$ and $a<b$, then there is a rational $r\in\Q$ such that $a<r<b$.
+		\end{thm}
+
+		\newpage
+	\section{The Symbols $+\infty$ and $-\infty$}
+		The symbols $+\infty$ and $-\infty$ are extremely useful even though they are \textbf{not} real numbers. So for each real number a, $-\infty<a<\infty$. If a set $S$ is not bounded above, we define $\sup S=+\infty$. Likewise, if $S$ is not bounded below, then we define $\inf S=-\infty$.
+		
+		We can extend real numbers to $\R\cup\{-\infty,\infty\}$. Notice that this is not a \textbf{field}, so it does not satisfy all field properties.
+		
+		For emphasis, we recapitulate:
+		
+		Let $S$ be any nonempty subset of $\R$. The \emph{symbols} $\sup S$ and $\inf S$ always make sense. If $S$ is not bounded above, then $\sup S$ is a \emph{real} number; otherwise $\sup S=+\infty$. If $S$ is bounded below, then $\inf S$ is a \emph{real} number; otherwise $\inf S=-\infty$. Moreover, we have $\inf S\leq\sup S$.
+		
+	\chapter{Sequences}
+	\newpage
+	\section{Limits of Sequences}		
+		\begin{dfn}\label{def:limit}
+		A sequence $(s_n)$ of real numbers is said to \textbf{converge} to the real number \emph{$s$} provided that
+		\begin{displaymath}
+			\forall \epsilon > 0,\ \exists N,\ n > N \Rightarrow |s_n-s| < \epsilon.
+		\end{displaymath}
+		If $(s_n)$ converges to $s$, we write $\lim_{n\rightarrow \infty}s_n=s$ or $s_n\rightarrow s$. $s$ is the \emph{limit} of the sequence $(s_n)$.
+		A sequence that does not converge (i.e. it has no \emph{limit}) is said to \emph{diverge}.\\
+		Notice that in the definition, instead of simple $\epsilon$, we can also use some other complicated forms with some extra constants like $M\epsilon,\ \frac{\epsilon}{c},\ a^2\epsilon$ and so on.
+		\end{dfn}
+	
+		Intuitively, the definition means that no matter how small you pick $\epsilon>0$, \textbf{eventually} the sequence will stay within $\epsilon$ of $s$ at some point (the threshold $N$) and forever after.
+	
+		\begin{thm}
+		The limit of a sequence $(s_n)$ is unique. i.e. $(\lim s_n=s) \land (lim s_n=t) \Rightarrow s=t$.
+		\end{thm}
+		
+		\begin{thm}
+		\textcolor{red}{
+		\begin{itemize}
+			\item If $s_n\geq a$ for all but finitely many $n$, then $\lim s_n\geq a$.
+			\item If $s_n\leq b$ for all but finitely many $n$, then $\lim s_n\leq b$.
+		\end{itemize}}
+		\end{thm}
+		
+		\begin{thm}[Squeeze Lemma]\label{lem: squeeze}
+			\textcolor{red}{If $a_n\leq s_n\leq b_n$ for all $n$ and $\lim a_n=\lim b_n=s$, then $\lim s_n=s$.}
+		\end{thm}
+		
+		\newpage
+	
+	\section{A Discussion about Proofs}
+		This section gives several examples of proofs with some discussion using the definition of the limit of a sequence.
+		\begin{eg}
+		Prove $\lim \frac{1}{n^2}=0$.
+		\end{eg}
+		\emph{Discussion}. According to the definition of the limit, we need to consider an $\epsilon >0$ such that $|\frac{1}{n^2}-0|<\epsilon$ for $n>\text{some}N$.
+		$|\frac{1}{n^2}-0|<\epsilon$ implies that $\frac{1}{\epsilon}<n^2 \text{or} \frac{1}{\sqrt{\epsilon}}<n$.
+		Thus we can suppose $N=\frac{1}{\sqrt{\epsilon}}$ and check if we reverse our reasoning into proof, it still makes sense. 
+		\begin{proof}
+		Let $\epsilon>0$ and $N=\frac{1}{\sqrt{\epsilon}}$, then
+		\begin{align*}
+			n>N &\Rightarrow \epsilon > \frac{1}{n^2}\\
+				&\Rightarrow \frac{1}{n^2}-0 < \epsilon -0\\
+				&\Rightarrow \abs{\frac{1}{n^2}-0}<\epsilon
+		\end{align*}
+		This proofs $\lim \frac{1}{n^2}=0$ according to the definition of the limit \ref{def:limit}.
+		\end{proof}
+		
+		\begin{eg}
+		Prove $\lim \frac{3n+1}{7n-4}=\frac{3}{7}$
+		\end{eg}
+		\emph{Discussion}. Just like the last example, we can start from the definition \ref{def:limit} to get a suitable $N$.
+		\begin{proof}
+			Let $\epsilon>0$ and $N=\frac{19}{49\epsilon}+\frac{4}{7}$, then
+		\begin{align*}
+			n>N &\Rightarrow 7n>\frac{19}{7\epsilon}+4\\
+				&\Rightarrow \frac{19}{7(7n-4)}<\epsilon\\
+				&\Rightarrow \frac{3n+1}{7n-4} - \frac{3}{7}<\epsilon\\
+				&\Rightarrow \abs{\frac{3n+1}{7n-4} - \frac{3}{7}}<\epsilon\qquad \text{since}\ n>0
+		\end{align*}
+		This proofs $\lim \frac{3n+1}{7n-4}=\frac{3}{7}$ according to the definition of the limit \ref{def:limit}.
+		\end{proof}
+		
+		\begin{eg}
+			Prove $\lim\frac{4n^3+3n}{n^3-6}=4$
+		\end{eg}
+		\emph{Discussion}. Since $\frac{4n^3+3n}{n^3-6}-4 = \frac{3n+24}{n^3-6}$, when $n>1$, we can find an upper bound for
+		$\frac{3n+24}{n^3-6}$ so that the bound $<\epsilon \Rightarrow \abs{\frac{3n+24}{n^3-6}}<\epsilon$. Finding an upper bound for a fraction is equivalent to finding a upper bound for its numerator and a lower bound for its denominator.
+		We know $3n+24\leq27n$ for $n>1$. Also we note $n^3-6\geq\frac{n^3}{2} \Rightarrow n>2$. Thus we can have $\frac{3n+24}{n^3-6}<\frac{27n}{n^3/2}<\epsilon \Rightarrow n>\sqrt{\frac{54}{\epsilon}},\ \text{provided}\ n>2$.
+		\begin{proof}
+			Let $\epsilon>0$ and $N=\max\{2,\sqrt{\frac{54}{\epsilon}}\}$, then
+		\begin{align*}
+			n>N &\Rightarrow (n>\sqrt{\frac{54}{\epsilon}})\land(n>2)\\
+			&\Rightarrow (\frac{27n}{n^3/2}<\epsilon)\land(\frac{n^3}{2}\leq n^3-6)\land(27n\geq3n+24)\\
+			&\Rightarrow \frac{3n+24}{n^3-6} < \frac{27n}{n^3/2} < \epsilon\\
+			&\Rightarrow \abs{\frac{4n^3+3n}{n^3-6}-4} < \epsilon
+		\end{align*}
+		This proofs $\lim\frac{4n^3+3n}{n^3-6}=4$ according to the definition of the limit \ref{def:limit}.
+		\end{proof}
+		
+		\begin{eg}
+		Show that $a_n=(-1)^n$ does not converge.
+		\end{eg}
+		\emph{Discussion}. Assume $\lim(-1)^n=a$, and we can see that no matter what $a$ is, either $1$ or $-1$ is at least
+		$1$ from $a$, so it means $\abs{(-1)^n-a}<1$ will not hold for all large $n$.
+		\begin{proof}
+		Suppose $\lim(-1)^n=a$ and $\epsilon = 1$. By \ref{def:limit}, $\abs{(-1)^n-a}<1 \Rightarrow (|1-a|<1)\land(|-1-a|<1)$.
+		Now by \ref{def:tri-ineq}, $2=|1-a+a-(-1)|\leq|1-a|+|a-(-1)|<1+1=2$, which is a contradiction. 
+		\end{proof}
+		
+		\begin{eg}
+		Let $(s_n)$ be a sequence of nonnegative real numbers and suppose $s=\lim s_n$. Note $s\geq0$. Prove $\lim\sqrt{s_n}=\sqrt{s}$
+		\end{eg}
+		\begin{proof}
+		There are two cases.
+		\begin{enumerate}
+			\item $s>0$: Let $\epsilon>0$. $\lim s_n=s \Rightarrow (\exists N,\ n>N \Rightarrow |s_n-s|<\sqrt{s}\epsilon)$.
+			$n>N$ also implies
+			\begin{displaymath}
+				|\sqrt{s_n}-\sqrt{s}|=\frac{(\sqrt{s_n}-\sqrt{s})(\sqrt{s_n}+\sqrt{s})}{\sqrt{s_n}+\sqrt{s}}=\frac{|s_n-s|}{\sqrt{s_n}+\sqrt{s}}\leq\frac{|s_n-s|}{\sqrt{s}}<\frac{\sqrt{s}\epsilon}{\sqrt{s}}=\epsilon
+			\end{displaymath}
+			\item $s=0$: EXERCISE 8.3 
+		\end{enumerate}
+		\end{proof}
+	
+		\begin{eg}
+		Let $(s_n)$ be a convergent sequence of real numbers such that $s_n\neq0$ for all $n\in \mathbb{N}$ and $\lim s_n=s
+		\neq0$. Prove $\inf\{|s_n|: n\in\mathbb{N}\}>0$
+		\end{eg}
+		\begin{proof}
+		Let $\epsilon=\frac{|s|}{2}$. Since $\lim s_n=s$,
+		\begin{displaymath}
+			n>N \Rightarrow |s_n-s|<\frac{|s|}{2} \Rightarrow |s_n|\geq\frac{|s|}{2}
+		\end{displaymath}
+		The last implication is because otherwise 
+		\begin{displaymath}
+			|s|=|s-s_n+s_n|\leq|s-s_n|+|s_n|<\frac{|s|}{2}+\frac{|s|}{2}=|s|
+		\end{displaymath}
+		which is a contradiction. Now if we set $m=\min\{\frac{|s|}{2},|s_1|,|s_2|,\dots,|s_N|\}$, then clearly we have
+		$m>0$ since and $|s_n|\geq m$ for all $n\in \mathbb{N}$. Thus $\inf\{|s_n|: n\in\mathbb{N}\}\geq m>0$\textbf{WHY???} 
+		\end{proof}
+		\newpage
+		
+	\section{Limit Theorems for Sequences}
+		\begin{dfn}\label{def:bound}
+		A sequence $(s_n)$ is said to be \emph{bounded} if $\exists M,\ \forall n,\ \text{such that}\ |s_n|\leq M$
+		\end{dfn}
+		
+		\begin{thm}\label{def:convergence is bounded}
+		Convergent sequences are bounded.
+		\end{thm}
+		
+		\begin{thm}
+		If the sequence $(s_n)$ converges to $s$ and $k\in\mathbb{R}$, then $(ks_n)$ converges to $ks$. i.e. $\lim(ks_n)=k\cdot\lim s_n$.
+		\end{thm}
+		
+		\begin{thm}\label{def:addition}
+		If $(s_n)$ and $(t_n)$ converge to $s$ and $t$, then $(s_n+t_n)$ converges to $s+t$. That is,
+		\begin{displaymath}
+			\lim(s_n+t_n)=\lim s_n+\lim t_n.
+		\end{displaymath} 
+		\end{thm}
+	
+		\begin{thm}\label{def:multiplication}
+		If $(s_n)$ and $(t_n)$ converge to $s$ and $t$, then $(s_nt_n)$ converges to $st$. That is,
+		\begin{displaymath}
+			\lim(s_nt_n)=(\lim s_n)(\lim t_n)
+		\end{displaymath} 
+		\end{thm}
+		
+		\begin{lem}
+		If $(s_n)\rightarrow s\neq0$ and $s_n\neq0$ and  for all $n$, then $\inf{|s_n|: n\in\N}>0$.
+		\end{lem}
+		
+		\begin{lem}\label{def:reciprocal}
+		If $(s_n)$ converges to $s$, $s_n\neq 0$ for all $n$, and $s\neq 0$, then $(1/s_n)$ converges to $1/s$.
+		\end{lem}
+
+	
+		\begin{thm}
+		Suppose $(s_n)$ and $(t_n)$ converge to $s$ and $t$. If $s\neq 0$ and $s_n\neq 0$ for all $n$, then $(t_n/s_n)$ converges to t/s.
+		\end{thm}
+		
+		\begin{thm}
+		\begin{enumerate}[(a)]
+			\item[]
+			\item $\lim_{n\rightarrow\infty}(\frac{1}{n^p})=0$ for $p>0$.
+			\item $\lim_{n\rightarrow\infty}a^n=0$ if $|a|<1$.
+			\item $\lim(n^{1/n})=1$.
+			\item $\lim_{n\rightarrow\infty}a^{1/n}=1$ for $a>0$.
+		\end{enumerate}
+		\end{thm}
+		
+		\begin{dfn}
+		For a $(s_n)$, we write $\lim s_n=+\infty$ provided for each $M>0$ there is a number $N$ wuch that $n>N\Rightarrow s_n>M$. Similarly, we write $\lim s_n=-\infty$ provided for each $M<0$ there is a number $N$ wuch that $n>N\Rightarrow s_n<M$.
+		\end{dfn}
+		This implies that if $\lim s_n>-\infty$, $\exists T,\ \forall n, s_n>T$. $\lim s_n<\infty$, $\exists T,\ \forall n, s_n<T$. 
+		Be careful that we say $\lim s_n=+\infty$ as $(s_n)$ \textbf{diverges} to $\infty$, \textbf{not converge} to $\infty$.
+
+		
+		\begin{thm}
+		Let $\lim s_n=+\infty$ and $\lim t_n>0$. Then $\lim s_nt_n=+\infty$.
+		\end{thm}
+
+		
+		\begin{thm}
+		For a $(s_n)$ of \emph{positive} real numbers, we have $\lim s_n=+\infty$ if and only if $\lim(\frac{1}{s_n})=0$.
+		\end{thm}
+		
+		\begin{thm}
+		Assume all $s_n\neq0$ and that the limit $L=\lim\left|\frac{s_{n+1}}{s_n}\right|$ exists.
+		\begin{enumerate}[(a)]
+			\item If $L<1$, then $\lim s_n=0$.
+			\item If $L>1$, then $\lim |s_n|=+\infty$.
+		\end{enumerate} 
+		\end{thm}
+		\newpage
+	\section{Monotone Sequences and Cauchy Sequence}
+		\begin{dfn}
+		$(s_n)$ is called an \emph{increasing sequence (or nondecreasing)} if $\forall n,\ s_n\leq s_{n+1}$ and $s_n\leq s_m\ \text{whenever}\ n<m$.
+		Similarly, $(s_n)$ is called an \emph{decreasing sequence (or nonincreasing)} if $\forall n,\ s_n\geq s_{n+1}$. An increasing or decreasing sequence is called \emph{monotone} or \emph{monotonic} sequence.
+		\end{dfn}
+	
+		\begin{thm}\label{def:bounded monotone seq}
+		All bounded monotone sequences converge.
+		\end{thm}
+		Notice that bounded monotone sequences \textbf{converge to its infimum or supremum}
+		
+		\begin{thm}\label{def:unbounded monotone seq}
+		\begin{enumerate}[(i)]
+			\item[]
+			\item If $(s_n)$ is an unbounded increasing sequence, then $\lim s_n=+\infty$.
+			\item If $(s_n)$ is an unbounded decreasing sequence, then $\lim s_n=-\infty$.
+		\end{enumerate}
+		\end{thm}
+		\begin{cor}
+		If $(s_n)$ is monotone, then $\lim s_n$ is always meaningful. i.e. $\lim s_n=s,\ +\infty,\ \text{or}\ -\infty$.
+		\end{cor}
+	
+		Suppose $(s_n)$ is bounded. Define $u_n=\inf\{s_m: m\geq n\}$ and $v_n=\sup{s_m: m\geq n}$. Then observe that $(u_n)$ is nondecreasing and $(v_n)$ is nonincreasing since as $n$ increases, the set has fewer elements. i.e. we have fewer choices for infimum and supremum. 
+		
+		In general, if $A\subseteq B$, then $\inf A\geq \inf B$ and $\sup A\leq \sup B$.
+		
+		\begin{dfn}
+		Let $(s_n)$ be a sequence in $\mathbb{R}$, define
+		\begin{itemize}
+			\item $\lim\sup s_n=\lim\limits_{N\rightarrow\infty}\sup\{s_n: n>N\}$
+			\item $\lim\inf s_n=\lim\limits_{N\rightarrow\infty}\inf\{s_n: n>N\}$
+		\end{itemize}
+		\end{dfn}
+		If $(s_n)$ is not bounded above. $\sup\{s_n: n>N\}=+\infty$ for all $N$ and we decree $\lim\sup s_n=+\infty$.
+		Likewise, if $(s_n)$ is not bounded below. $\inf\{s_n: n>N\}=-\infty$ for all $N$ and we decree $\lim\inf s_n=-\infty$.
+		
+		Notice that $\lim\sup s_n$ need not equal to $\sup\{s_n: n>N\}$, but $\lim\sup s_n\leq\sup\{s_n: n>N\}$
+		
+		
+		\begin{thm}\label{def:condition for limit}
+		Let $(s_n)$ be a sequence in $\mathbb{R}$.
+		\begin{enumerate}[(i)]
+			\item If $\lim s_n$ is defined, then $\lim\inf s_n=\lim s_n=\lim\sup s_n$.
+			\item If $\lim\inf s_n=\lim\sup s_n$, then $\lim s_n$ is defined and $\lim s_n=\lim\inf s_n=\lim\sup s_n$.
+		\end{enumerate}
+		\end{thm}
+		
+		\begin{dfn}\label{def:cauchy-seq}
+		A $(s_n)$ is called a \emph{Cauchy sequence} if 
+		\begin{displaymath}
+			\forall\epsilon>0,\ \exists N\ \text{such that}\ m,n>N\Rightarrow|s_n-s_m|<\epsilon
+		\end{displaymath}
+		\end{dfn}
+	
+		\begin{lem}
+		Convergent sequences are Cauchy sequences.
+		\end{lem}
+
+		
+		\begin{lem}
+		Cauchy sequences are bounded.
+		\end{lem}
+	
+		\begin{thm}\label{def:cauchy iff convergent}
+		A sequence is a convergent sequence if and only if it is a Cauchy sequence.
+		\end{thm}
+		\newpage
+		
+	\section{Subsequences}
+		\begin{dfn}
+		Suppose $(s_n)_{n\in\mathbb{N}}$ is a sequence. A \emph{subsequence} of this sequence is $(t_k)_{k\in\mathbb{N}}$ where for each $k$ there is a positive integer $n_k$ such that
+		\begin{equation*}
+			n_1<n_2<\cdots<n_k<n_{k+1}<\cdots
+		\end{equation*}
+		and
+		\begin{equation*}
+			t_k=s_{n_k}.
+		\end{equation*}
+		Thus $(t_k)$ is just a selection of some [possibly all] of the $s_n$'s taken in order.
+		\end{dfn}
+		For the subset $\{n_1,n_2,\dots\}$ there is a natural function $\sigma$ given by $\sigma(k)=n_k$ for $k\in\mathbb{N}$. The function $\sigma$ "selects" an infinite subset of $\mathbb{N}$ in order. Then
+		the subsequence of $s$ corresponding to $\sigma$ is simply the composite function $t=s\circ\sigma$. That is
+		\begin{displaymath}
+			t_k=t(k)=s\circ\sigma(k)=s(\sigma(k))=s(n_k)=s_{n_k}\quad\text{for}\quad k\in N.
+		\end{displaymath}
+		Notice that $\sigma$ needs to be an \emph{increasing} function. 
+		
+		\begin{thm}
+			Let $(q_n)$ be an enumeration of $\Q$. Then for any $a\in\R$, there exists a subsequence $(q_{n_k})$ of $(q_n)$ such that $q_{n_k}\rightarrow a$.
+		\end{thm}
+		
+		\begin{thm}\label{def:limit-subseq}
+		Let $(s_n)$ be a sequence.
+		\begin{enumerate}[(i)]
+			\item If $t$ is in $\mathbb{R}$ then there is a subsequence of $(s_n)$ converging to $t$ if and only if
+			the set $\{n\in\mathbb{N}: |s_n-t|<\epsilon\}$ is \emph{infinite} for all $\epsilon>0$.
+			\item If $(s_n)$ is unbounded above, it has a subsequence with limit $+\infty$.
+			\item If $(s_n)$ is unbounded below, it has a subsequence with limit $-\infty$.
+		\end{enumerate}
+		In each case, the subsequence can be taken to be \emph{monotonic}.
+		\end{thm}
+		
+		\begin{thm}\label{def:subsequence converges to the same limit}
+		If $(s_n)$ converges, then every subsequence converges to the same limit. If there are two subsequences of $(s_n)$ with different limits, $(s_n)$ does not converge.
+		\end{thm}
+		
+		\begin{thm}
+		Every sequence $(s_n)$ has a monotonic subsequence.
+		\end{thm}
+		\setcounter{equation}{0}
+		
+		\begin{dfn}
+		Let $(s_n)$ be a sequence in $\mathbb{R}$. A \emph{subsequential limit} is any real number or symbol $+\infty$ or $-\infty$ that is the limit of some subsequence of $(s_n)$.
+		\end{dfn}
+		
+		\setcounter{equation}{0}
+		\begin{thm}\label{def:subsequence with limit limsup or liminf}
+		Let $(s_n)$ be any sequence. There exists a monotonic subsequence whose limit is $\lim\sup s_n$, and there exists a monotonic subsequence whose limit is $\lim\inf s_n$.
+		\end{thm}
+		
+		\begin{thm}\label{def:subsequential limit condition}
+		Let $(s_n)$ be any sequence in $\mathbb{R}$, and let $S$ denote the set of subsequential limits of $(s_n)$.
+		\begin{enumerate}[(i)]
+			\item S is nonempty.
+			\item $\sup S=\lim\sup s_n$ and $\inf S=\lim\inf s_n$.
+			\item $\lim s_n$ exists if and only if $S$ has exactly one element, namely $\lim s_n$.
+		\end{enumerate}
+		\end{thm}
+		
+		\begin{thm}
+		Let $S$ denote the set of subsequential limits of a sequence $(s_n)$. Suppose $(t_n)$is a sequence in $S\cap\mathbb{R}$ and that $t=\lim t_n$. Then $t$ belongs to $S$.
+		\end{thm}
+		\newpage
+		
+	\section{lim sup's and lim inf's}
+		\setcounter{equation}{0}
+		\begin{thm}\label{thm:12.1}
+		If $(s_n)$ converges to a positive real number $s$ and $(t_n)$ is any sequence, then
+		\begin{displaymath}
+			\lim\sup s_nt_n=s\cdot\lim\sup t_n.
+		\end{displaymath}
+		Here we allow the conventions $s\cdot(+\infty)=+\infty$ and $s\cdot(-\infty)=-\infty$ for $s>0$.
+		\end{thm}
+		\begin{proof}
+		We first want to show
+		\begin{equation}
+			\lim\sup s_nt_n\geq s\cdot\lim\sup t_n.
+		\end{equation}
+		We have three cases. Let $\beta=\lim\sup t_n$.
+		\begin{enumerate}
+			\item Suppose $\beta$ is finite. By \ref{def:subsequence with limit limsup or liminf}, there exists a subsequence
+			$(t_{n_k})$ of $(t_n)$ such that $\lim_{k\rightarrow\infty}t_{n_k}=\beta$. We also have $\lim_{k\rightarrow\infty}s_{n_k}=s$ by \ref{def:subsequence converges to the same limit}, so $\lim_{k\rightarrow\infty}s_{n_k}t_{n_k}=s\beta$ thus $(s_{n_k}t_{n_k})$ is a subsequence of $(s_nt_n)$ converging to $s\beta$, and therefore $s\beta\leq\lim\sup s_nt_n$ by \ref{def:subsequential limit condition}. Thus (1) holds.
+			\item Suppose $\beta=+\infty$. Then there exists a subsequence $(t_{n_k})$ of $(t_n)$ converging to $+\infty$.
+			Since $\lim_{k\rightarrow\infty}s_{n_k}=s>0$, $\lim_{k\rightarrow\infty}s_{n_k}t_{n_k}=+\infty$. Hence $\lim\sup s_nt_n=+\infty$. Thus (1) holds.
+			\item Suppose $\beta=-\infty$. Then the right-hand side of (1) is equal to $-\infty$. Hence (1) is obviously true.	
+		\end{enumerate}
+		To show $\lim\sup s_nt_n\leq s\cdot\lim\sup t_n$, we may ignore the first few terms of $(s_n)$ and assume all $s_n\neq0$. Then we can write $\lim\frac{1}{s_n}=\frac{1}{s}$. Now we apply (1) with $s_n$ replaced by $\frac{1}{s_n}$ and $t_n$ replaced by $s_nt_n$:
+		\begin{displaymath}
+			\lim\sup t_n=\lim\sup(\frac{1}{s_n})(s_nt_n)\geq(\frac{1}{s})\lim\sup s_nt_n,
+		\end{displaymath}
+		which is 
+		\begin{displaymath}
+			\lim\sup s_nt_n\leq s\cdot\lim\sup t_n
+		\end{displaymath}
+		Therefore we have $\lim\sup s_nt_n=s\cdot\lim\sup t_n$.
+		\end{proof}
+		
+		\setcounter{equation}{0}
+		\begin{thm}\label{thm:12.2}
+		Let $(s_n)$ be any sequence of nonzero real numbers. Then we have
+		\begin{displaymath}
+			\lim\inf\abs{\frac{s_{n+1}}{s_n}}\leq\lim\inf|s_n|^{1/n}\leq\lim\sup|s_n|^{1/n}\leq\lim\sup\abs{\frac{s_{n+1}}{s_n}}
+		\end{displaymath}
+		\end{thm}
+		\begin{proof}
+			The middle inequality is obvious. The first and third inequalities have similar proofs. We will prove the third
+			inequality as below:
+			
+			Let $\alpha=\lim\sup|s_n|^{1/n}$ and $L=\lim\sup\abs{\frac{s_{n+1}}{s_n}}$. Assume $L<+\infty$. To prove $\alpha\leq L$ it suffices to show
+			\begin{equation}
+				a\leq L_1\quad\text{for any}\quad L_1>L
+			\end{equation}
+			because if $\exists L_1>L,\ \alpha>L_1$, then $\alpha>L_1>L\Rightarrow\alpha>L$
+			Since
+			\begin{displaymath}
+				L=\lim\sup\abs{\frac{s_{n+1}}{s_n}}=\lim\limits_{N\rightarrow\infty}\sup \left\{ \abs{\frac{s_{n+1}}{s_n}}: n>N \right\} <L_1
+			\end{displaymath}
+			there exists a positive integer $N$ such that
+			\begin{displaymath}
+				\sup\left\{\abs{\frac{s_{n+1}}{s_n}}: n\geq N\right\}<N_1
+			\end{displaymath}
+			Thus
+			\begin{equation}
+				\abs{\frac{s_{n+1}}{s_n}}<L_1\quad\text{for}\quad n\geq N
+			\end{equation}
+			Now for $n>N$ we can write
+			\begin{displaymath}
+				|s_n|=\abs{\frac{s_n}{s_{n-1}}}\cdot\frac{s_{n-1}}{s_{n-2}}\cdots\abs{\frac{s_{N+1}}{s_N}}\cdot|s_N|.
+			\end{displaymath}
+			Apply (2) we see that
+			\begin{align*}
+				|s_n|&<L_1^{n-N}|s_N|\quad\text{for}\quad n>N\\
+				|s_n|&<L_1^na\quad\text{for}\quad n>N.\qquad \text{for}\ a=L_1^{-N}|s_N|\\
+				|s_n|^{1/n}&<L_1a^{1/n}\quad\text{for}\quad n>N
+			\end{align*}
+			Since $\lim_{n\rightarrow\infty}a^{1/n}=1$ we conclude $\alpha=\lim\sup|s_n|^{1/n}\leq L_1$
+		\end{proof}
+		
+		\begin{cor}\label{def:12.3}
+		If $\lim\abs{\frac{s_{n+1}}{s_n}}$ exists [and equals L], then $\lim|s_n|^{1/n}$ exists [and equals L].
+		\end{cor}
+		\begin{proof}
+		If $\lim\abs{\frac{s_{n+1}}{s_n}}=L$, then all four values in the last theorem are equal to $L$. Hence
+		$\lim|s_n|^{1/n}=L$ by \ref{def:condition for limit}.
+		\end{proof}
+		\newpage
+	\section{Some Topological Concepts in Metric Spaces}
+		\begin{dfn}
+		Let $S$ be a set, and suppose $d$ is a function defined for all pairs $(x,y)$ of elements from $S$ satisfying
+		\begin{enumerate}
+			\item $d(x,x)=0$ for all $x\in S$ and $d(x,y)>0$ for distinct $x,y\in S$.
+			\item $d(x,y)=d(y,x)$ for all $x,y\in S$.
+			\item $d(x,z)\leq d(x,y)+d(y,z)$ for all $x,y,z\in S$.
+		\end{enumerate}
+		Such a function $d$ is called a \emph{distance function} or a \emph{metric} on $S$.
+		\end{dfn}
+		A \emph{metric space} $S$ is a set $S$ together with a metric on it.
+		
+		\begin{dfn}
+		A sequence $(s_n)$ in a metric space $(S,d)$ converges to $s$ in $S$ if $\lim_{n\rightarrow\infty}d(s_n,s)=0$.\\ 
+		A sequence $(s_n)$ in $S$ is a \emph{Cauchy sequence} if for each $\epsilon>0$ there exists an $N$ such that
+		\begin{displaymath}
+			m,n>N\Rightarrow d(s_m,s_n)<\epsilon.
+		\end{displaymath}
+		$(S,d)$ is said to be \emph{complete} if every Cauchy sequence in $S$ converges to some element in $S$.
+		\end{dfn}
+		
+		\setcounter{equation}{0}
+		\begin{lem}\label{def:sequence in R^k}
+		A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ converges if and only if for each $j=1,2\dots,k$, the sequence
+		$(x_j^{(n)})$ converges in $\mathbb{R}$.\\
+		A sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$
+		is a Cauchy sequence in $\mathbb{R}$.
+		\end{lem}
+		\begin{proof}
+		For the second assertion, we first observe for $\textbf{x,y}\in\mathbb{R}^k$ and $j=1,\dots,k$,
+		\begin{equation}
+			|x_j-y_j|\leq d(\textbf{x,y})\leq \sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}
+		\end{equation}
+		\begin{itemize}
+			\item[$\Rightarrow$]: Suppose $(\textbf{x}^{(n)})$ is a Cauchy sequence, from the definition we know
+			\begin{displaymath}
+				m,n>N\Rightarrow d(\textbf{x}^{(m)},\textbf{y}^{(n)})<\epsilon
+			\end{displaymath}
+			From (1) we see
+			\begin{displaymath}
+				m,n>N\Rightarrow|x_j^{(m)}-x_j^{(n)}|<\epsilon
+			\end{displaymath}
+			so $(x_j^{(n)})$ is a Cauchy sequence.
+			\item[$\Leftarrow$]:  Suppose $(x_j^{(n)})$ is a Cauchy sequence, then for $j=1,\dots,k$
+			\begin{displaymath}
+				m,n>N_j\Rightarrow|x_j^{(m)}-x_j^{(n)}|<\frac{\epsilon}{\sqrt{k}}.
+			\end{displaymath}
+			If $N=\max\{N_1,N_2,\dots,N_k\}$, then by (1)
+			\begin{displaymath}
+				m,n>N\Rightarrow d(\textbf{x}^{(m)},\textbf{y}^{(n)})<\epsilon
+			\end{displaymath}
+			i.e. $(\textbf{x}^{(n)})$ is a Cauchy sequence.
+		\end{itemize}
+		\end{proof}
+		
+		\begin{thm}
+		Euclidean k-space $\mathbb{R}^k$ is complete.
+		\end{thm}
+		\begin{proof}
+		Consider a Cauchy sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$. By \ref{def:sequence in R^k}, each $(x_j^{(n)})$ is a Cauchy sequence. By \ref{def:cauchy iff convergent} each $(x_j^{(n)})$ converges. Thus by \ref{def:sequence in R^k} $(\textbf{x}^{(n)})$ converges.
+		\end{proof}
+	
+		\begin{thm}
+		Every bounded sequence in $\mathbb{R}^k$ has a convergent subsequence.
+		\end{thm}
+		\begin{proof}
+		Since $(\textbf{x}^{(n)})$ is bounded, then each $(x_j^{(n)})$ is bounded in $\mathbb{R}$. By \ref{def:B-W}, we
+		could replace $(\textbf{x}^{(n)})$ by one of its subsequence, say $(\bar{\mathbf{x}}^{(n)})$, whose $(x_1^{(n)})$
+		converges. By \ref{def:B-W} again, we may replace $(\textbf{x}^{(n)})$ by a subsequence of $(\textbf{x}^{(n)})$ such
+		that both $(x_1^{(n)})$ and $(x_2^{(n)})$ converge. $(x_1^{(n)})$ still converges because \ref{def:subsequence converges to the same limit}. Repeating this argument by $k$ times, we obtain a new sequence $(\textbf{x}^{(n)})$ where each $(x_j^{(n)})$ converges, $j=1,\dots,k$, which is a subsequence of the original sequence, and it converges by \ref{def:sequence in R^k}. 
+		\end{proof}
+		
+		\begin{dfn}
+		Let $(S,d)$ be a metric space. Let $E$ be a subset of $S$. An element $s_0\in E$ is \emph{interior} to $E$ if for some $r>0$ we have
+		\begin{displaymath}
+			\{s\in S: d(s,s_0)<r\}\subseteq E
+		\end{displaymath}
+		We write $E^\circ$ for the set of points in $E$ that are interior to $E$. The set $E$ is \emph{open} in $S$ if every point in $E$ is interior to $E$, i.e., if $E=E^\circ$.
+		\end{dfn}
+		We can show that
+		\begin{enumerate}
+			\item $S$ is open in $S$.
+			\item The empty set $\emptyset$ is open in $S$.
+			\item The union of \emph{any} collection of open sets is open.
+			\item The intersection of \emph{finitely many} open sets is again an open set.
+		\end{enumerate}
+		
+		\begin{dfn}
+		Let $(S,d)$ be a metric space. A subset $E$ of $S$ is \emph{closed} if its complement $S\backslash E$ is an open set.
+		
+		The intersection of any collection of closed sets is closed. The \emph{closure} $E^-$ of a set $E$ is the intersection of all closed sets containing $E$.
+		The \emph{boundary} of $E$ is the set $E^-\backslash E^\circ$; points in this set are called \emph{boundary points}.
+		\end{dfn}
+		\begin{thm}
+			Let $E$ be a subset of a metric space $(S,d)$.
+			\begin{enumerate}
+				\item $E$ is closed $\iff$ $E=E^-$.
+				\item $E$ is closed $\iff$ $E$ contains the limit of every convergent sequence of points in $E$.
+				\item An element is in $E^-$ $\iff$ it is the limit of some sequence of points in $E$.
+				\item A point is in the boundary of $E$ $\iff$ it belongs to the closure of both $E$ and its complement.
+			\end{enumerate}
+		\end{thm}
+		
+		\begin{thm}
+		Let $(F_n)$ be a decreasing sequence [i.e., $F_1\supseteq F_2\supseteq\cdots$] of closed bounded nonempty sets in $\mathbb{R}^k$. Then $F=\cap_{n=1}^\infty F_n$ is also closed, bounded and nonempty.
+		\end{thm}
+		\begin{proof}
+			TODO
+		\end{proof}
+	
+		\begin{dfn}
+		Let $(S,d)$ be a metric space. A family $\mathcal{U}$ of open sets is said to be an \emph{open cover} for a set
+		$E$ if each point of $E$ belongs to at least one set in $\mathcal{U}$, i.e.,
+		\begin{displaymath}
+			E\subseteq\bigcup\{U:U\in\mathcal{U}\}.
+		\end{displaymath}
+		A \emph{subcover} of $\mathcal{U}$ is any subfamily of $\mathcal{U}$ that also covers $E$. A cover or subcover
+		if \emph{finite} if it contains only finitely many sets; the sets themselves may be infinite.
+		
+		A set $E$ is \emph{compact} if every oper cover of $E$ has a finite subcover of $E$.
+		\end{dfn}
+		
+		\begin{thm}
+		A subset $E$ of $\mathbb{R}^k$ is compact if and only if it is closed and bounded.
+		\end{thm}
+		\begin{proof}
+		TODO
+		\end{proof}
+	
+		WHAT IS A \emph{K-CELL}
+		
+		\begin{thm}
+		Every k-cell $F$ in $\mathbb{R}^k$ is compact.
+		\end{thm}
+		\begin{proof}
+		TODO
+		\end{proof}
+		\newpage
+	\begin{enumerate}
+		\item 8.5
+		\item 8.9
+		\item 9.9
+		\item 9.12
+		\item The set $\mathbb{Q}$ of rational number can be listed as a sequence $(r_n)$. Given any real number $a$ there exists a subsequence $(r_{n_k})$ of $(r_n)$ converging to $a$.
+  	\end{enumerate}
+		
+\end{document}

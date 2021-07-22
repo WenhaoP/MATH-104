@@ -16,8 +16,11 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\com}{\mathsf{C}}
 
-
 \newtheorem{lem*}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -44,12 +47,12 @@
 	\begin{itemize}
 		\item[$\implies$:] We will show the contrapositive of the forward direction which is "If $(s_n)$ does not converge to $s$, then there exists a subsequence of $(s_n)$ such that all of its subsequences do not converge to $s$." 
 		
-		Since $s_n\nrightarrow s$, then $\exists\epsilon_0>0$ such that $\forall N\in N\ \exists n\geq N\ |s_n-s|\geq\epsilon_0$. Then we can construct a subsequence of $(s_n)$ of which each term is at least $\epsilon_0$ away from $s$:
+		Since $s_n\nrightarrow s$, then $\exists\epsilon_0>0$ such that $\forall N\in\N\ \exists n\geq N\ |s_n-s|\geq\epsilon_0$. Then we can construct a subsequence of $(s_n)$ of which each term is at least $\epsilon_0$ away from $s$:
 		\begin{itemize}
 			\item[Base Case:] Let $N=1$, then there exists $n_1\in\N$ and $n_1>1$ such that $|s_{n_1}-s|\geq\epsilon_0$.
 			\item[Induction step:] Given $n_1<\cdots<n_k\in\N$ such that $|s_{n_j}-s|\geq\epsilon_0$ for $j=1,\dots,k$, there exists $n_{k+1}\in\N$ and  $n_{k+1}>n_k$ such that $|s_{k+1}-s|\geq\epsilon_0$ by the condition $s_n\nrightarrow s$.
 		\end{itemize}
-		Now since every term of $s_{n_k}$ is $\epsilon_0>0$ away from $s$, all of its subsequences still have every term at least $\epsilon_0>0$ away from $s$, and hence cannot converge to $s$.
+		Now since every term of $(s_{n_k})$ is $\epsilon_0>0$ away from $s$, all of its subsequences still have every term at least $\epsilon_0>0$ away from $s$, and hence they cannot converge to $s$ obviously.
 		\item[$\impliedby$:] Since $s_n\rightarrow s$, then every subsequence $(s_{n_k})$ of $(s_n)$ converges to $s$. Since each $(s_{n_k})$ itself is also a sequence and converges, $(s_{n_k})$ is bounded. Thus by Bolzano-Weierstrass Theorem, $(s_{n_k})$ has a convergent subsequence which converges to $s$ since $s_{n_k}\rightarrow s$.
 	\end{itemize}
 	\newpage
@@ -153,12 +156,12 @@
 			Thus $\lim\bar{s}_n=-\infty$, completing the case.
 			
 			\item[Case 3:] If $\lim\sup s_n=\alpha\in\R$, then for each $\frac{\epsilon}{2}>0$, $\exists N\in\N\ v_N<\alpha+\frac{\epsilon}{2}$. Notice $v_N$ is nonincreasing. Observe that for fixed $N$, $F(n)=\frac{s_1+\cdots+s_{N-1}-(N-1)v_N}{n}\rightarrow 0$ as $n\rightarrow0$, so for each $\frac{\epsilon}{2}>0$, $\exists N^\prime\geq N\ n\geq N^\prime\implies F(n)\leq F(N^\prime)<\frac{\epsilon}{2}$ since $F(n)$ is nonincreasing. Thus for each $\epsilon>0$, we have $n\geq N^\prime\implies \bar{s}_n\leq F(N^\prime)+v_{N^\prime}\leq F(N^\prime)+v_N<\frac{\epsilon}{2}+(\alpha+\frac{\epsilon}{2})=\alpha+\epsilon\implies \bar{s}_n<\alpha\implies \sup\{\bar{s}_n: n\geq N^\prime\geq N\}\leq\alpha$. Thus $\lim\sup\bar{s}_n\leq\lim\alpha=\alpha=\lim\sup s_n$, completing the proof of the first inequality.
-		\end{itemize}\bigskip
+		\end{itemize}\smallskip
 		
 		The proof of the second inequality mirrors the proof of the first.
 		\item If $\lim s_n$ exists, then $\lim\inf s_n=\lim\sup s_n$. It is clear that $\lim\inf\bar{s}_n\leq\lim\sup\bar{s}_n$, then $\lim\inf s_n\leq\lim\inf\bar{s}_n\leq\lim\sup\bar{s}_n\leq\lim\sup s_n$ achieves equality every where, so $\lim\inf\bar{s}_n=\lim\sup\bar{s}_n$ and hence $\lim\bar{s}_n$ exists. Then $\lim\bar{s}_n=\lim\inf\bar{s}_n=\lim\inf s_n=\lim s_n$, completing the proof.
 		\item Let $s_n=(-1)^n$. Obviously $(s_n)$ does not converge since its set of subsequential limit has elements $-1$ and $1$. However $\bar{s}_n=\frac{(-1)^n}{n}$ converges to $0$.
-		\item First such a sequence is not monotonic. Consider a sequence whose terms are in $\{-1, -1\}$. Each group of $1$'s or $-1$'s is followed by a longer alternative group of $-1$'s or $1$'s, like $\{1,-1,-1,1,1,1,-1,-1,-1,-1,1,1,1,1,1,\dots\}$. Thus, its first $n$ terms average $s_n$ will fluctuate between $-1$ and $1$ though slower and slower but never converge to some point. 
+		\item First such a sequence is not monotonic. Consider a sequence whose terms are in $\{-1, -1\}$. Each group of $1$'s or $-1$'s is followed by a longer enough alternative group of $-1$'s or $1$'s so that $s_n$ will fluctuate between $-1$ and $1$ though slower and slower but never converge to any point as $n$ grows. 
 	\end{enumerate}
 	\newpage
 	
@@ -173,12 +176,15 @@
 				d(\mathbf{x,z})=\sum_{j=1}^{k}|z_j-x_j| &= \sum_{j=1}^{k}|z_j-y_j+y_j-x_j|\\
 														&\leq \sum_{j=1}^{k}(|z_j-y_j|+|y_j-x_j|)\\
 														&= \sum_{j=1}^{k}|z_j-y_j|+\sum_{j=1}^{k}|y_j-x_j|\\
-														&= d(\mathbf{y,z})+d(\mathbf{x,y})
+														&= d(\mathbf{x,y})+d(\mathbf{y,z})
 			\end{align*}
 			Thus $d(\mathbf{x,z})\leq d(\mathbf{x,y})+d(\mathbf{y,z})$, completing the proof.
 		\end{itemize}
 		\item Consider a Cauchy sequence $(\mathbf{x}^{(n)})\in\R^k$. By Lemma 13.3, $\forall j=1,\dots,k\ \mathbf{x}^{(n)}_j$ is a Cauchy sequence in $\R$. By the completeness of $\R$, $\forall j=1,\dots,k\ \mathbf{x}^{(n)}_j$ is convergent in $\R$. Then by Lemma 13.3 again $(\mathbf{x}^{(n)})$ is convergent in $\R^k$ and hence $(\R^k,d)$ is complete.
-	\end{enumerate}
+	\end{enumerate}\bigskip
+	\begin{rem}
+		My original proof for (b) assumes that we are using the usual Euclidean distance for this metric space which is incorrect. See the standard solution in \emph{hw3sol.pdf}.
+	\end{rem}
 	\newpage
 	
 	\subsection*{Q7}
