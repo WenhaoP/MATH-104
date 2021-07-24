@@ -13,4 +13,5 @@
 \contentsline {section}{\numberline {2.6}lim sup's and lim inf's}{26}{section.2.6}%
 \contentsline {section}{\numberline {2.7}Some Topological Concepts in Metric Spaces}{27}{section.2.7}%
 \contentsline {section}{\numberline {2.8}Series}{39}{section.2.8}%
-\contentsline {chapter}{\numberline {3}Useful Tricks}{43}{chapter.3}%
+\contentsline {section}{\numberline {2.9}Alternating Series and Integral Tests}{43}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Useful Tricks}{45}{chapter.3}%

@@ -1711,6 +1711,9 @@
 			\left(\forall\epsilon>0,\ \exists N,\ n>N\Rightarrow\left|a_n\right|<\epsilon\right)\Rightarrow\lim a_n=0
 		\end{displaymath}
 		\end{proof}
+		\begin{rem}
+			If $\lim a_n\neq0$, then $\sum a_n$ does not converge.
+		\end{rem}
 		A useful contrapositive of this corollary is "If $\lim a_n\neq0$, then $\sum a_n$ does not converge."
 		
 		\setcounter{equation}{0}
@@ -1760,7 +1763,7 @@
 				|a_n|<(a+\epsilon)^n\quad\text{for}\quad n>N.
 			\end{displaymath}
 			Since $0<\alpha+\epsilon<1$, $\sum_{n=N+1}^{\infty}(\alpha+\epsilon)^n$ converges and \ref{def:Comparison Test}(i) tells $\sum_{n=N+1}^{\infty}a_n$ converges. Then clearly $\sum a_n$ converges.
-			\item If $\alpha>1$, then there is a subsequence of $|a_n|^{1/n}$ has limit $\alpha>1$ by \ref{def:subsequence with limit limsup or liminf}. This means $|a_n|>1$ for infinitely many choices of $n$. In particular, $(a_n)$
+			\item If $\alpha>1$, then for each $\alpha-\epsilon>1$, there exists $N\in\N$ such that $\sup\{|a_n|^\frac{1}{n}: n\geq N\}>1$, i.e., $\exists N_1\geq N$ such that $|a_{N_1}|^\frac{1}{N_1}|>1\implies |a_{N_1}|>1$ since $1$ is smaller than the supremum. This means $|a_n|>1$ for infinitely many choices of $n$. In particular, $(a_n)$
 			cannot possibly converge to $0$, so $\sum a_n$ cannot converge by the contrapositive of \ref{def:If a_n converges then lim(a_n)=0}.
 			\item Example: $\sum\frac{1}{n}$ diverges but $\sum\frac{1}{n^2}$ converges.
 		\end{enumerate}
