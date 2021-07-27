@@ -1,0 +1,85 @@
+\documentclass[12pt,lettersize]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,physics}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{chngcntr}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 104}
+\chead{Homework 6}
+\rhead{Wenhao Pan}
+\cfoot{\thepage}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+	
+	\subsection*{Q1}
+	Let $f(0)=f(2)=c$. Then we have
+	\begin{align*}
+		g(0) &= f(0+1)-f(0)=f(1)-c,\\
+		g(1) &= f(1+1)-f(1)=c-f(1).
+	\end{align*}
+	If $f(1)=c$, then $g(0)=g(1)=0\implies f(1)=f(0)\text{ and }f(2)=f(1)$, as desired.\smallskip
+	
+	If $f(1)>c$, then $g(1)<0<g(0)\implies \exists x_0\in[0,1]\ f(x_0+1)-f(x_0)=g(x_0)=0$ by intermediate value theorem. Thus we have $|(x_0+1)-x_0|=1$ and $f(x_0+1)=f(x_0)$ as desired.\smallskip
+	
+	If $f(1)<c$, then $g(0)<0<g(1)\implies \exists x_0\in[0,1]\ f(x_0+1)-f(x_0)=g(x_0)=0$ by intermediate value theorem. Thus we have $|(x_0+1)-x_0|=1$ and $f(x_0+1)=f(x_0)$ as desired, completing the proof.
+	\newpage
+	
+	\subsection*{Q2}
+	(Contrapositive) Suppose $f$ is unbounded on $(a,b)$, i.e., $\forall M<0\ \exists x\in(a,b)\ \abs{f(x)}>M$. Thus we can construct a sequence $(x_n)\in(a,b)$ such that $\forall n\in\N\ \abs{f(x_n)}>n$. Since $(x_n)$ is bounded in $(a,b)$, it has a convergent subsequence $(x_{n_k})\in(a,b)$, which is also Cauchy sequence. Clearly $\forall k\in\N\ \abs{f(x_{n_k})}>n_k$ which implies $f(x_{n_k})$ is not convergent and hence not Cauchy. Thus $f$ is not uniformly continuous on $(a,b)$.  
+	\newpage
+	
+	\subsection*{Q3}
+	\begin{enumerate}[(a)]
+		\item Since $f$ and $g$ are continuous on $\R$, $f-g$ is also continuous on $R$. Let $r\in\R\backslash\Q$. Suppose $f(r)\neq g(r)$, i.e. $(f-g)(r)=c_r\neq 0$. Let $\epsilon=\abs{c_r}$, then for each $\delta>0\ \exists q\in\Q$ such that
+		\begin{align*}
+			r<q<r+\delta\text{ and }\abs{(f-g)(q)-(f-g)(r)} &= \abs{0-\abs{c_r}} \\ &= \abs{c_r}\\ &\geq\epsilon
+		\end{align*}
+		implying that $f-g$ is not continuous at $r$ which is a contradiction. Thus $f(r)=g(r)$ for each $r\in\R\backslash\Q$. Since $f(q)=g(q)$ for every $q\in\Q$, we have $f(x)=f(x)$ for every $x\in\R$.
+		
+		\item
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q4}
+
+	\newpage
+	
+	\subsection*{Q5}
+	
+	\newpage
+	
+	\subsection*{Q6}
+	
+	\newpage
+	
+	\subsection*{Q7}
+
+	\newpage
+	
+	\subsection*{Q8}
+
+	\newpage
+	
+	\subsection*{Q9}
+	
+	\newpage
+	
+	\subsection*{Q10}
+	
+	\newpage
+	
+\end{document}

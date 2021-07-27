@@ -16,14 +16,14 @@
 \contentsline {section}{\numberline {2.9}Alternating Series and Integral Tests}{52}{section.2.9}%
 \contentsline {chapter}{\numberline {3}Continuity}{55}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Continuous Functions}{56}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Properties of Continuous Functions}{58}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Uniform Continuity}{61}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Limits of Functions}{63}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Sequences and Series of Functions}{67}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Power Series}{68}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Uniform Convergence}{69}{section.4.2}%
-\contentsline {section}{\numberline {4.3}More on Uniform Convergence}{71}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Differentiation and Integration of Power Series}{74}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Differentiation}{79}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Basic Properties of the Derivative}{80}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Useful Tricks}{83}{chapter.6}%
+\contentsline {section}{\numberline {3.2}Properties of Continuous Functions}{59}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Uniform Continuity}{62}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Limits of Functions}{64}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Sequences and Series of Functions}{69}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Power Series}{70}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Uniform Convergence}{71}{section.4.2}%
+\contentsline {section}{\numberline {4.3}More on Uniform Convergence}{73}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Differentiation and Integration of Power Series}{76}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Differentiation}{81}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Basic Properties of the Derivative}{82}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Useful Tricks}{85}{chapter.6}%

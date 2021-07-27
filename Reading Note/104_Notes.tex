@@ -1896,11 +1896,16 @@
 				\forall x\in\dom(f),\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<\epsilon
 			\end{displaymath}
 			
+			\begin{cor}[Discontinuity]
 			To use $\epsilon\text{-}\delta$ property to prove the discontinuity, we need to show that
 			\begin{displaymath}
 				\exists\epsilon>0\quad\text{such that}\quad\forall\delta>0,\ \exists x\in\dom(f)\quad\text{such that}\quad |x-x_0|<\delta\quad\text{but}\quad|f(x)-f(x_0)|\geq\epsilon
 			\end{displaymath}
+			\end{cor}
 			
+			\begin{thm}
+			Let $f$ be a real-valued function with $\dom(f)\subseteq\R$. $f$ is continuous at $x_0$ if and only if for every monotonic sequence $(x_n)$ in $\dom(f)$ converging to $x_0$, we have $\lim f(x_n)=f(x_0)$.
+			\end{thm}
 			
 			\begin{thm}\label{def:17.3}
 			If $f$ is continuous at $x_0$ in $\dom(f)$, then $|f|$ and $kf$, for $k\in\R$, are continuous at $x_0$.
@@ -1940,7 +1945,23 @@
 			converging to $x_0$. Since $f$ is continuous at $x_0$, we have $\lim f(x_n)=f(x_0)$. Since the sequence $(f(x_n))$ converges to $f(x_0)$ and $g$ is continuous at $f(x_0)$, we also have $\lim g(f(x_n))=g(f(x_0))$ which
 			is $\lim g\circ f(x_n)=g\circ f(x_0)$.
 			\end{proof}
+			
+			\begin{tcolorbox}[title=Conclusion]
+			Suppose $f,g$ are real-valued functions. If $f$ and $g$ are continuous at $x_0$, then the following functions are also continuous at $x_0$ (as long as $x_0$ is also in the domain of them):
+			\begin{itemize}
+				\item $(f+g)(x_0)=f(x_0)+g(x_0)$
+				\item $(fg)(x_0)=f(x_0)g(x_0)$
+				\item $k\in\R\ (kf)(x_0)=k(f(x_0))$
+				\item $(f/g)(x_0)=f(x_0)/g(x_0)$
+				\item $(|f|)(x_0)=|f(x_0)|$
+				\item $(\max\{f,g\})(x_0)=\max\{f(x_0),g(x_0)\}$
+				\item $(\min\{f,g\})(x_0)=\min\{f(x_0),g(x_0)\}$
+			\end{itemize}
+			\end{tcolorbox}
+			
+			
 			\newpage
+			
 		\section{Properties of Continuous Functions}
 			A real-valued function $f$ is said to be \emph{bounded} if $\{f(x): x\in\dom(f)\}$ is a bounded set. i.e. if
 			there exists a real number $M$ such that $|f(x)|\leq M$ for all $x\in\dom(f)$.
@@ -1966,7 +1987,7 @@
 			achieves its minimum at $x_0$.
 			\end{proof}
 			
-			\begin{thm}[Intermediate Value Theorem]\label{def:18.2}
+			\begin{thm}[Intermediate Value Theorem]\label{thm:18.2}
 			If $f$ is a continuous real-valued function on an interval $I$, then $f$ has the intermediate value property on I: Whenever $a,b\in I$, if $a<b$ and $y$ lies between $f(a)$ and $f(b)$ [i.e. $f(a)<y<f(b)$ or $f(b)<y<f(a)$], then there exists at least one $x$ in
 			$(a,b)$ such that $f(x)=y$.
 			\end{thm}
@@ -1981,6 +2002,22 @@
 				f(x_0)=\lim f(t_n)\geq y
 			\end{displaymath}
 			because $f$ is continuous at $x_0$. Thus $f(x_0)=y$. 
+			\end{proof}
+			\begin{cor}[Fixed Point Theorem]
+			Let $f$ be a function $f:[0,1]\rightarrow[0,1]$. If $f$ is continuous, then $f$ has a fixed point, i.e., there exists $x\in[0,1]$ such that $f(x)=x$.
+			\end{cor}
+			\begin{proof}
+			Define $g(x)=f(x)-x$. Note that $g$ is continuous.
+			\begin{itemize}
+				\item[Case 1:] If $f(0)=0$ or $f(1)=1$, th en the statement is true trivially.
+				\item[Case 2:] If $f(0)\neq0$ and $f(1)\neq1$, then $g(0)=f(0)-0>0$ and $g(1)=f(1)-1<0$. Since $g(1)<0<g(0)$, by \ref{thm:18.2} there exists $x\in(0,1)$ such that $g(x)=0\implies f(x)=x$.
+			\end{itemize}
+			\end{proof}
+			\begin{cor}
+			Let $f$ and $g$ be continuous functions on $[a,b]$ such that $f(a)\geq g(a)$ and $f(b)\leq g(b)$. Prove $f(x_0)=g(x_0)$ for at least one $x_0$ in $[a,b]$.
+			\end{cor}
+			\begin{proof}
+				See Ex. 18.5
 			\end{proof}
 			
 			\begin{cor}\label{def:18.3}
@@ -2057,9 +2094,10 @@
 			$\epsilon>0$ and $S$, so that $\delta$ does not depend on the particular point $x_0$.
 			\begin{dfn}
 			Let $f$ be a real-valued function defined on a set $S\subseteq\R$. Then $f$ is uniformly ocntinuous on $S$ if
-			\begin{displaymath}
-				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.$}
-			\end{displaymath}
+			\begin{align*}
+				\text{for each $\epsilon>0$ there exists $\delta>0$ such that}\\
+				\text{$\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.$}
+			\end{align*}
 			We will say $f$ is uniformly continuous if $f$ is uniformly continuous on $\dom f$.
 			\end{dfn}
 			
@@ -2082,7 +2120,7 @@
 			However, since $|f(x_{n_k})-f(y_{n_k})|\geq\epsilon>0$ for all $k$, we have a contradiction.
 			\end{proof}
 			
-			\begin{thm}\label{def:19.4}
+			\begin{thm}\label{thm:19.4}
 			If $f$ is uniformly continuous on a set $S$ and $(s_n)$ is a Cauchy sequence in $S$, then $(f(s_n))$ is a 
 			Cauchy sequence.
 			\end{thm}
@@ -2098,7 +2136,15 @@
 			\end{displaymath}
 			Thus $(f(s_n))$ is indeed a Cauchy sequence.
 			\end{proof}
-			The contrapositive of the above them is that "If $(s_n)$ is a Cauchy sequence in $S$, but $(f(s_n))$ is not a Cauchy sequence, then $f$ is not uniformly continuous on a set $S$.
+			\begin{cor}
+			Let $(s_n)$ be a Cauchy sequence in $S$ and $f$ be a function on $S$. If $(f(s_n))$ is not a Cauchy sequence, then $f$ is not \emph{uniformly continuous}.
+			\end{cor}
+			\begin{proof}
+				The contrapositive of \ref{thm:19.4}.
+			\end{proof}
+			\begin{cor}
+			If $f$ is uniformly continuous on $(a,b)$, then $f$ is a bounded function on $(a,b)$. i.e. If $f$ is an unbounded function on $(a,b)$, then $f$ is not uniformly continuous on $(a,b)$.
+			\end{cor}
 			
 			\setcounter{equation}{0}
 			\begin{thm}\label{def:19.5}
@@ -2138,6 +2184,7 @@
 			$I^\circ$ and if $f^\prime$ is bounded on $I^\circ$, then $f$ is uniformly continuous on $I$.
 			\end{thm}
 			\newpage
+			
 		\section{Limits of Functions}
 			\begin{dfn}
 			Let $S\subset\R$ and $a\in\R$ or a symbol $\infty$ or $-\infty$ that is the limit of some sequence in $S$, and let $L$ be a real number or symbol $+\infty$ or $-\infty$. We write $\lim_{x\rightarrow a^S} f(x)=L$ if

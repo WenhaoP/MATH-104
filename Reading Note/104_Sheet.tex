@@ -1233,18 +1233,9 @@
 	\begin{thm}
 		A series converges $\iff$ it satisfies the Cauchy criterion. 
 	\end{thm}
-	\begin{proof}
-		By \ref{def:cauchy iff convergent}, we know its partial sum converges, so the series also converges.
-	\end{proof}
 	\begin{cor}\label{def:If a_n converges then lim(a_n)=0}
 		If a series $\sum a_n$ converges, then $\lim a_n=0$
 	\end{cor}
-	\begin{proof}
-		By setting $n=m$ in the condition of \ref{def:cauchy criterion}, we get
-		\begin{displaymath}
-			\left(\forall\epsilon>0,\ \exists N,\ n>N\Rightarrow\left|a_n\right|<\epsilon\right)\Rightarrow\lim a_n=0
-		\end{displaymath}
-	\end{proof}
 	\begin{rem}
 		If $\lim a_n\neq0$, then $\sum a_n$ does not converge.
 	\end{rem}
@@ -1258,25 +1249,10 @@
 			\item If $\sum a_n=+\infty$ and $b_n\geq a_n$ for all $n$, then $\sum b_n=+\infty$
 		\end{enumerate}
 	\end{thm}
-	\begin{proof}
-		\begin{enumerate}[(i)]
-			\item[]
-			\item For $n\geq m$ we have
-			\begin{equation}
-				\left|\sum_{k=m}^{n}b_k\right|\leq\sum_{k=m}^{n}|b_k|\leq\sum_{k=m}^{n}a_k
-			\end{equation} 
-			Since $\sum a_n$ converges, it satisfies \ref{def:cauchy criterion}(1). Then from (1)  we can see $\sum b_n$
-			also satisfies the Cauchy criterion in \ref{def:cauchy criterion}(3), and hence $\sum b_n$ converges.
-			\item Since $b_n\geq a_n$ for all $n$, obviously we have $\sum_{k=m}^{n}b_k\geq\sum_{k=m}^{n}a_k$. Since $\lim\sum_{k=m}^{n}b_k=+\infty$, $\lim\sum_{k=m}^{n}a_k=+\infty$.			
-		\end{enumerate}
-	\end{proof}
+
 	\begin{cor}
 		Absolutely convergent series are convergent.
 	\end{cor}
-	\begin{proof}
-		Suppose $\sum b_n$ is absolutely convergent. This means $\sum a_n$ converges where $a_n=|b_n|$ for all $n$. Then
-		$|b_n|\leq a_n$ and $\sum b_n$ converges trivially from \ref{def:Comparison Test}.
-	\end{proof}
 	
 	\begin{thm}[Root Test]\label{def:Root Test}
 		Let	$\sum a_n$ be a series and let $\alpha=\lim\sup|a_n|^{1/n}$. The series $\sum a_n$
@@ -1286,22 +1262,6 @@
 			\item Otherwise the test does not provide any useful information.
 		\end{enumerate}
 	\end{thm}
-	\begin{proof}
-		\begin{enumerate}[(i)]
-			\item Suppose $\alpha<1$, and select $\epsilon>0$ so that $\alpha+\epsilon<1$. Then
-			\begin{displaymath}
-				\alpha-\epsilon<\sup\{|a_n|^{1/n}: n>N\}<\alpha+\epsilon
-			\end{displaymath}
-			so
-			\begin{displaymath}
-				|a_n|<(a+\epsilon)^n\quad\text{for}\quad n>N.
-			\end{displaymath}
-			Since $0<\alpha+\epsilon<1$, $\sum_{n=N+1}^{\infty}(\alpha+\epsilon)^n$ converges and \ref{def:Comparison Test}(i) tells $\sum_{n=N+1}^{\infty}a_n$ converges. Then clearly $\sum a_n$ converges.
-			\item If $\alpha>1$, then for each $\alpha-\epsilon>1$, there exists $N\in\N$ such that $\sup\{|a_n|^\frac{1}{n}: n\geq N\}>1$, i.e., $\exists N_1\geq N$ such that $|a_{N_1}|^\frac{1}{N_1}|>1\implies |a_{N_1}|>1$ since $1$ is smaller than the supremum. This means $|a_n|>1$ for infinitely many choices of $n$. In particular, $(a_n)$
-			cannot possibly converge to $0$, so $\sum a_n$ cannot converge by the contrapositive of \ref{def:If a_n converges then lim(a_n)=0}.
-			\item Example: $\sum\frac{1}{n}$ diverges but $\sum\frac{1}{n^2}$ converges.
-		\end{enumerate}
-	\end{proof}
 	
 	\begin{thm}[Ratio Test]\label{def:Ratio Test}
 		A series $\sum a_n$ of nonzero terms
@@ -1312,18 +1272,6 @@
 			the test gives no information.
 		\end{enumerate}
 	\end{thm}
-	\begin{proof}
-		let $\alpha=\lim\sup|a_n|^{1/n}$. By \ref{def:12.2} we have
-		\begin{displaymath}
-			\lim\inf\left|\frac{a_{n+1}}{a_n}\right|\leq\alpha\leq\lim\sup\left|\frac{a_{n+1}}{a_n}\right|.
-		\end{displaymath}
-		\begin{enumerate}[(i)]
-			\item If $\lim\sup\left|\frac{a_{n+1}}{a_n}\right|<1$, then $\alpha<1$ and the series converges by \ref{def:Root Test}.
-			\item If $\lim\inf\left|\frac{a_{n+1}}{a_n}\right|>1$, then $\alpha>1$ and the series diverges by \ref{def:Root Test}.
-			\item If $\alpha=1$, then same reasoning as the proof in \ref{def:Root Test}(iii).
-		\end{enumerate}
-	\end{proof}
-	\bigskip
 	If the terms $a^n$ are nonzero and if $\lim\left|\frac{a_{n+1}}{a_n}\right|=1$, then $\alpha=\lim\sup|a_n|^{1/n}=1$
 	by \ref{def:12.3}, so neither the Ratio Test nor the Root Test gives information about the convergence of $\sum a_n$.
 	\newpage
@@ -1334,16 +1282,6 @@
 	\begin{thm}
 		$\sum\frac{1}{n^p}$ converges $\iff$ $p>1$.
 	\end{thm}
-	\begin{proof}
-		By drawing the function $\frac{1}{n^p}$ and the of rectangles corresponding to the series on a same picture, we can
-		get
-		\begin{displaymath}
-			\sum_{k=1}^{n}\frac{1}{k^p}\leq1+\int_{1}^{n}\frac{1}{x^p}dx=1+\frac{1}{p-1}\left(1-\frac{1}{n^{p-1}}\right)<1+\frac{1}{p-1}=\frac{p}{p-1}
-		\end{displaymath}
-		Thus $\sum_{n=1}^{\infty}\frac{1}{n^p}\leq\frac{p}{p-1}<+\infty$
-		
-		Suppose $0<p\leq1$. Then $\frac{1}{n^p}\geq\frac{1}{n}$ for all n, so $\sum\frac{1}{n^p}$ diverges when $\sum\frac{1}{n}$ diverges by \ref{def:Comparison Test}.
-	\end{proof}
 	
 	\begin{thm}
 		Here are the conditions under which an integral test is advisable:
@@ -1360,27 +1298,158 @@
 		If $a_1\geq a_2\geq\cdots\geq a_n\geq\cdots\geq0$ and $\lim a_n=0$, then the alternating series $\sum(-1)^{n+1}a_n$
 		converges. Moreover, the partial sums $s_n=\sum_{k=1}^{n}(-1)^{k+1}a_k$ satisfy $|s-s_n|\leq a_n$ for all $n$.
 	\end{thm}
-	\begin{proof}
-		To prove the series converge we need to show the partial sum $(s_n)$ also converges. Note that the subsequence
-		$(s_{2n})$ is increasing (accumulative sum of positive $a_n$) and the subsequence $(s_{2n-1})$ is decreasing (accumulative sum of negative $a_n$). We claim
-		\begin{equation}
-			s_{2m}\leq s_{2n+1}\quad\text{for all}\quad m,n\in\mathbb{N}
-		\end{equation}		
-		Since $s_{2n+1}-s_{2n}=a_{2n+1}\geq0$, we have $s_{2n}\leq s_{2n+1}$ for all $n$. Thus if $m\leq n$ in (1) then (1)
-		holds because $s_{2m}\leq s_{2n}\leq s_{2n+1}$, when $(s_{2n})$ is increasing. If $m\geq n$ in (1), then (1) also
-		holds because $s_{2n+1}\geq s_{2m+1}\geq s_{2m}$ when $(s_{2n+1})$ is decreasing. Therefore, by (1) we can see that
-		the subsequence $(s_{2n})$ is bounded above by every odd partial sum, and the subsequence $(s_{2n+1})$ is a 
-		bounded below by each even partial sum. Then by \ref{def:bounded monotone seq} $(s_{2n})$ and $(s_{2n+1})$ converge
-		to some $s$ and $t$. Now we have
-		\begin{displaymath}
-			t-s=\lim\limits_{n\rightarrow\infty}(s_{2n+1}-2_{2n})=\lim\limits_{n\rightarrow\infty}a_{2n+1}=0
-		\end{displaymath}
-		so $s=t$ and $\lim_ns_n=s$. (\textbf{WHY???} Is it because $s=sup S$ and $t=\inf S$ where $S$ is the set of subsequential limits.)
+	
+	\newpage
+	
+	\chapter{Continuity}
+		\newpage
+		\section{Continuous Functions}
+		In this book/note, we will be concerned with functions $f$ such that $\dom(f)\subseteq\R$ and such that $f$ is
+		a real-valued function. We consider the \emph{natural domain} as "the largest subset of $\R$ on which the function is a well defined real-valued function. 
 		
-		To check the last claim, note that $s_{2k}\leq s\leq s_{2k+1}$, so both $s_{2k+1}-s$ and $s-s_{2k}$ are bounded by
-		$s_{2k+1}-s_{2k}=a_{2k+1}\leq a_{2k}$ (\textbf{WHY????}). So whether $n$ is even or odd, we have $|s-s_n|\leq a_n$. 
-	\end{proof}
-
+		\begin{dfn}\label{def:continuous}
+			The function $f$ is \emph{continuous} at $x_0$ in $\dom(f)$ if, for every sequence $(x_n)$ in $\dom(f)$ converging to $x_0$, we have $\lim_nf(x_n)=f(x_0)$. If $f$ is continuous at each point of a set $S\subseteq\dom(f)$, then $f$ is said to be \emph{continuous} on $S$. The function $f$ is said to be
+			\emph{continuous} if it is continuous on $\dom(f)$.
+		\end{dfn}
+		
+		\setcounter{equation}{0}
+		\begin{thm}\label{def:delta-epsilon property}
+			$f$ is continuous at $x_0$ in $\dom(f)$ if and only if
+			\begin{equation}
+				\forall\epsilon>0,\ \exists\delta>0\quad\text{such 	that}\quad(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon
+			\end{equation}
+		\end{thm}
+		The condition $(x\in\dom(f))\land(|x-x_0|<\delta)\implies|f(x)-f(x_0)|<\epsilon$ in the book is a little bit
+		confusing. In other words, it means
+		\begin{displaymath}
+			\forall x\in\dom(f),\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<\epsilon
+		\end{displaymath}
+		
+		\begin{cor}[Discontinuity]
+			To use $\epsilon\text{-}\delta$ property to prove the discontinuity, we need to show that
+			\begin{displaymath}
+				\exists\epsilon>0\quad\text{such that}\quad\forall\delta>0,\ \exists x\in\dom(f)\quad\text{such that}\quad |x-x_0|<\delta\quad\text{but}\quad|f(x)-f(x_0)|\geq\epsilon
+			\end{displaymath}
+		\end{cor}
+		
+		\begin{thm}
+			Let $f$ be a real-valued function with $\dom(f)\subseteq\R$. $f$ is continuous at $x_0$ if and only if for every monotonic sequence $(x_n)$ in $\dom(f)$ converging to $x_0$, we have $\lim f(x_n)=f(x_0)$.
+		\end{thm}
+		
+		\begin{thm}\label{def:17.3}
+			If $f$ is continuous at $x_0$ in $\dom(f)$, then $|f|$ and $kf$, for $k\in\R$, are continuous at $x_0$.
+		\end{thm}
+		
+		\begin{thm}\label{def:17.4}
+			Let $f$ and $g$ be real-valued fucntions that are continuous at $x_0$ in $\R$. Then
+			\begin{enumerate}[(i)]
+				\item $f+g$ is continuous at $x_0$;
+				\item $fg$ is continuous at $x_0$;
+				\item $f/g$ is continuous ar $x_0$ if $g(x_0)\neq0$.
+			\end{enumerate}
+		\end{thm}
+		
+		\begin{thm}\label{def:17.5}
+			If $f$ is continuous at $x_0$ and $g$ is continuous at $f(x_0)$, then the composite function $g\circ f$ is
+			continuous at $x_0$.
+		\end{thm}
+		
+		\begin{tcolorbox}[title=Conclusion]
+			Suppose $f,g$ are real-valued functions. If $f$ and $g$ are continuous at $x_0$, then the following functions are also continuous at $x_0$ (as long as $x_0$ is also in the domain of them):
+			\begin{itemize}
+				\item $(f+g)(x_0)=f(x_0)+g(x_0)$
+				\item $(fg)(x_0)=f(x_0)g(x_0)$
+				\item $k\in\R\ (kf)(x_0)=k(f(x_0))$
+				\item $(f/g)(x_0)=f(x_0)/g(x_0)$
+				\item $(|f|)(x_0)=|f(x_0)|$
+				\item $(\max\{f,g\})(x_0)=\max\{f(x_0),g(x_0)\}$
+				\item $(\min\{f,g\})(x_0)=\min\{f(x_0),g(x_0)\}$
+			\end{itemize}
+		\end{tcolorbox}
+		
+		\newpage
+		
+		\section{Properties of Continuous Functions}
+		A real-valued function $f$ is said to be \emph{bounded} if $\{f(x): x\in\dom(f)\}$ is a bounded set. i.e. if
+		there exists a real number $M$ such that $|f(x)|\leq M$ for all $x\in\dom(f)$.
+		
+		\begin{thm}\label{def:18.1}
+			Let $f$ be a continuous real-valued function on a \emph{closed} interval $[a,b]$. Then $f$ is a bounded function.
+			Moreover, $f$ assume its maximum and minimum values on $[a,b]$; that is there exist $x_0,y_0$ in $[a,b]$
+			such that $f(x_0)\leq f(x)\leq f(y_0)$ for all $x\in[a,b]$.
+		\end{thm}
+		
+		\begin{thm}[Intermediate Value Theorem]\label{thm:18.2}
+			If $f$ is a continuous real-valued function on an interval $I$, then $f$ has the intermediate value property on I: Whenever $a,b\in I$, if $a<b$ and $y$ lies between $f(a)$ and $f(b)$ [i.e. $f(a)<y<f(b)$ or $f(b)<y<f(a)$], then there exists at least one $x$ in
+			$(a,b)$ such that $f(x)=y$.
+		\end{thm}
+		\begin{cor}[Fixed Point Theorem]
+			Let $f$ be a function $f:[0,1]\rightarrow[0,1]$. If $f$ is continuous, then $f$ has a fixed point, i.e., there exists $x\in[0,1]$ such that $f(x)=x$.
+		\end{cor}
+		\begin{cor}
+			Let $f$ and $g$ be continuous functions on $[a,b]$ such that $f(a)\geq g(a)$ and $f(b)\leq g(b)$. Prove $f(x_0)=g(x_0)$ for at least one $x_0$ in $[a,b]$.
+		\end{cor}
+		
+		\begin{cor}\label{def:18.3}
+			If $f$ is a continuous real-valued function on an interval $I$, then the set $f(I)=\{f(x): x\in I\}$ is also
+			an interval or a single point.
+		\end{cor}
+		
+		\begin{thm}\label{def:18.5}
+			Let $g$ be a strictly increasing function on an interval $J$ such that $g(J)$ is an interval $I$. Then $g$ is
+			continuous on $J$.
+		\end{thm}
+		
+		\begin{thm}\label{def:18.4}
+			Let $f$ be a continuous strictly increasing function on some interval $I$. Then $f(I)$ is an interval $J$ by \ref{def:18.3} and $f^{-1}$ represents a function with domain $J$. The function $f^{-1}$ is a continuous strictly increasing function on $J$.
+		\end{thm}
+		
+		\setcounter{equation}{0}
+		\begin{thm}
+			Let $f$ be a \emph{one-to-one} continuous function on an interval $I$. Then $f$ is strictly increasing or strictly decreasing.
+		\end{thm}
+		\newpage
+		
+		\section{Uniform Continuity}
+		Sometimes we want to know when the $\delta$ in \ref{def:delta-epsilon property} can be chosen to depend only on
+		$\epsilon>0$ and $S$, so that $\delta$ does not depend on the particular point $x_0$.
+		\begin{dfn}
+			Let $f$ be a real-valued function defined on a set $S\subseteq\R$. Then $f$ is uniformly ocntinuous on $S$ if
+			\begin{align*}
+				\text{for each $\epsilon>0$ there exists $\delta>0$ such that}\\
+				\text{$\forall x,y\in S,\ |x-y|<\delta\implies|f(x)-f(y)|<\epsilon.$}
+			\end{align*}
+			We will say $f$ is uniformly continuous if $f$ is uniformly continuous on $\dom f$.
+		\end{dfn}
+		
+		\begin{thm}\label{def:19.2}
+			If $f$ is continuous on a closed interval $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
+		\end{thm}
+		
+		\begin{thm}\label{thm:19.4}
+			If $f$ is uniformly continuous on a set $S$ and $(s_n)$ is a Cauchy sequence in $S$, then $(f(s_n))$ is a 
+			Cauchy sequence.
+		\end{thm}
+		\begin{cor}
+			Let $(s_n)$ be a Cauchy sequence in $S$ and $f$ be a function on $S$. If $(f(s_n))$ is not a Cauchy sequence, then $f$ is not \emph{uniformly continuous}.
+		\end{cor}
+		\begin{cor}
+			If $f$ is uniformly continuous on $(a,b)$, then $f$ is a bounded function on $(a,b)$. i.e. If $f$ is an unbounded function on $(a,b)$, then $f$ is not uniformly continuous on $(a,b)$.
+		\end{cor}
+	
+		\setcounter{equation}{0}
+		\begin{thm}\label{def:19.5}
+			A real-valued function $f$ on $(a,b)$ is uniformly continuous on $(a,b)$ if and only if it can be extended to
+			a continuous function $\tilde{f}$ on $[a,b]$.
+		\end{thm}
+		
+		\begin{thm}
+			Let $f$ be a continuous function on an interval $I$ [$I$ may be bounded or unbounded]. Let $I^\circ$ be the
+			interval obtained by removing from $I$ any endpoints that happen to be in $I$. If $f$ is differentiable on
+			$I^\circ$ and if $f^\prime$ is bounded on $I^\circ$, then $f$ is uniformly continuous on $I$.
+		\end{thm}
+		\newpage
+	
 	\chapter{Useful Tricks}
 	\begin{enumerate}
 		\item Here is one of the most important techniques in real analysis.
