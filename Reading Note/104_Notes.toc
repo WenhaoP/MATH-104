@@ -18,12 +18,15 @@
 \contentsline {section}{\numberline {3.1}Continuous Functions}{56}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Properties of Continuous Functions}{59}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Uniform Continuity}{62}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Limits of Functions}{64}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Sequences and Series of Functions}{69}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Power Series}{70}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Uniform Convergence}{71}{section.4.2}%
-\contentsline {section}{\numberline {4.3}More on Uniform Convergence}{73}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Differentiation and Integration of Power Series}{76}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Differentiation}{81}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Basic Properties of the Derivative}{82}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Useful Tricks}{85}{chapter.6}%
+\contentsline {section}{\numberline {3.4}Continuity in Metric Space}{64}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Limits of Functions}{67}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Sequences and Series of Functions}{71}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Power Series}{72}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Uniform Convergence}{74}{section.4.2}%
+\contentsline {section}{\numberline {4.3}More on Uniform Convergence}{76}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Differentiation and Integration of Power Series}{81}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Differentiation}{83}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Basic Properties of the Derivative}{84}{section.5.1}%
+\contentsline {section}{\numberline {5.2}The Mean Value Theorem}{87}{section.5.2}%
+\contentsline {section}{\numberline {5.3}L'Hospital's Rule}{89}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Useful Tricks}{91}{chapter.6}%

@@ -3,15 +3,14 @@
 % format setting
 \usepackage[margin=1in]{geometry}
 
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
+\usepackage{amsmath,amsthm,amssymb}
 \usepackage{physics}
 \usepackage{enumerate}
 \usepackage{hyperref}
 \usepackage{chngcntr}
 \usepackage{xcolor}
 \usepackage{tcolorbox}
+\usepackage{comment}
 
 
 % Theorem declaration
@@ -2101,6 +2100,10 @@
 			We will say $f$ is uniformly continuous if $f$ is uniformly continuous on $\dom f$.
 			\end{dfn}
 			
+			\begin{thm}
+			If a real-valued function $f$ is uniformly continuous on an open interval $(a,b)$, then $f$ is \emph{bounded} on $(a,b)$.
+			\end{thm}
+			
 			\begin{thm}\label{def:19.2}
 			If $f$ is continuous on a closed interval $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
 			\end{thm}
@@ -2147,7 +2150,7 @@
 			\end{cor}
 			
 			\setcounter{equation}{0}
-			\begin{thm}\label{def:19.5}
+			\begin{thm}[Continuous Extension Theorem]\label{def:19.5}
 			A real-valued function $f$ on $(a,b)$ is uniformly continuous on $(a,b)$ if and only if it can be extended to
 			a continuous function $\tilde{f}$ on $[a,b]$.
 			\end{thm}
@@ -2183,6 +2186,120 @@
 			interval obtained by removing from $I$ any endpoints that happen to be in $I$. If $f$ is differentiable on
 			$I^\circ$ and if $f^\prime$ is bounded on $I^\circ$, then $f$ is uniformly continuous on $I$.
 			\end{thm}
+			\newpage
+		
+		\section{Continuity in Metric Space}
+			\begin{dfn}[Image and Preimage]
+			Let $X$ and $Y$ be two sets. Let a function $f: X\rightarrow Y$. Let $E\subseteq X$ and $U\subseteq Y$. We define the \emph{image of $E$ under $f$} as
+			\begin{displaymath}
+				f(E)=\{f(x): x\in E\};
+			\end{displaymath}
+			define the \emph{preimage of $A$ under $f$} as
+			\begin{displaymath}
+				f^{-1}(A)=\{x\in X: f(x)\in A\}.
+			\end{displaymath}
+			\end{dfn}
+			
+			\begin{thm}
+			Let $X$ and $Y$ be two sets, and let $f: X\rightarrow Y$, let $E\subseteq X$, and let $A,B\subseteq Y$. Thenthe following assertions are true:
+			\begin{enumerate}[(a)]
+				\item $f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B)$.
+				\item $f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B)$.
+				\item $f^{-1}(A^\com)=(f^{-1}(A))^\com$.
+				\item $f^{-1}(A)\subseteq f^{-1}B$ if $A\subseteq B$.
+				\item $E\subseteq f^{-1}(f(E))$.
+			\end{enumerate}
+			\end{thm}
+			\begin{proof}
+				See worksheet 12.
+			\end{proof}
+			
+			\begin{dfn}[Continuity]\label{def:continuity (Metrics)}
+			Let $(X, d_X)$ and $(Y, d_Y)$ be two metric spaces, and let $f: X\rightarrow Y$. The following are three \emph{equivalent} definitions of continuity at a point $x_0\in X$.
+			\begin{enumerate}
+				\item ($\epsilon$-$\delta$ definition) For any $\epsilon>0$, there exists $\delta>0$ such that $x\in X\text{ and }d_X(x,x_0)<\delta\implies d_Y(f(x),f(x_0))<\epsilon$.
+				\item (sequential definition) For any sequence $(x_n)$ in $X$ converging to $x_0$, the sequence $f(x_n)$ converges to $f(x_0)$.
+				\item (topological definition) For any open set $U$ in $Y$ such that $f(x_0)\in U$, there exists an open set $V$ in $X$ such that $x_0\in V\subseteq f^{-1}(U)$.
+			\end{enumerate}
+			\end{dfn}
+			\begin{rem}
+				See worksheet 12 for the proof of equivalence.
+			\end{rem}
+		`	
+			\begin{thm}\label{thm:preimage is open}
+			$f$ is continuous (on its domain) if and only if $f^{-1}(U)$ is open in $X$ for every open set $U$ in $Y$. i.e. a function is continuous if and only if the preimage of every open set is open.
+			\end{thm}
+			\begin{proof}
+				See worksheet 12.
+			\end{proof}
+			
+			\begin{dfn}[Uniform Continuity]
+			Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces. A function $f: X\rightarrow Y$ is \emph{uniformly continuous} on $E\subseteq X$ if for any $\epsilon>0$ there exists $\delta>0$ such that
+			\begin{displaymath}
+				x_1,x_2\in E\text{ and }d_X(x_1,x_2)<\delta\implies d_Y(f(x_1),f(x_2))<\epsilon.
+			\end{displaymath} 
+			\end{dfn}
+			
+			\begin{thm}
+			Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces. Let a function $f:X\rightarrow Y$ be continuous. Suppose a subset $E\subseteq X$ is compact.
+			\begin{enumerate}[(i)]
+				\item $f(E)$ is compact. i.e., the image of a compact set under continuous function is still compact.
+				\item $f$ is uniformly continuous on $E$. i.e., a continuous function on a compact set is also uniformly continuous.
+			\end{enumerate}
+			\end{thm}
+			\begin{proof}
+			\begin{enumerate}[(i)]
+				\item[]
+				\item Let $\{U_\alpha\}_{\alpha\in\mathcal{A}}$ be an open cover of $f(E)$. Then $\{f^{-1}(U_\alpha)\}_{\alpha\in\mathcal{A}}$ is an open cover of $E$ since $f$ is continuous and by \ref{thm:preimage is open}. Since $E$ is compact, there exists a finite subcover $\{f^{-1}(U_{\alpha_i})\}_{i}^{n}$ of $E$. Thus
+				\begin{displaymath}
+					E\subseteq\bigcup_{i=1}^{n}f^{-1}(U_{\alpha_i})=f^{-1}\left(\bigcup_{i=1}^{n}U_{\alpha_i}\right)
+				\end{displaymath}
+				implies
+				\begin{displaymath}
+					f(E)\subseteq \bigcup_{i=1}^{n}U_{\alpha_i}
+				\end{displaymath}
+				which is a finite subcover of $f(E)$.
+				
+				\item TODO
+			\end{enumerate}
+			\end{proof}
+			\begin{cor}
+			Let $f$ be a continuous function $f:X\rightarrow\R$. Suppose $E$ is a compact subset of $X$. Then
+			\begin{enumerate}[(i)]
+				\item $f(E)$ is closed and bounded;
+				\item There exists $u,v\in E$ such that $f(u)=\inf_{x\in E}f(x)=\inf f(E)$ and $f(v)=\sup_{x\in E}f(x)=\sup f(E)$. i.e. $f$ attains its \emph{maximum} and \emph{minimum} on $E$.
+			\end{enumerate}
+			\end{cor}
+			\begin{proof}
+			\begin{enumerate}[(i)]
+				\item Follows from the definition of compact set $f(E)$.
+				\item For any compact set, its supremum and infimum are in the set.
+			\end{enumerate}
+			\end{proof}
+			
+			\begin{thm}
+			Let $S$ be a subset of $\R$. Suppose a function $f:S\rightarrow\R$. If $f$ is continuous on an interval $I\subseteq S$ like $[a,b],(a,b),(a,b]$ where $a,b\in\R\cup\{\pm\infty\}$, then $f(I)$ is a singleton or an interval.
+			\end{thm}
+			\begin{proof}
+				TODO
+			\end{proof}
+			\begin{rem}
+				Singleton is a set with exactly one element.
+			\end{rem}
+			
+			\begin{thm}[Continuous Extension Theorem]
+			Let $(X,d)$ be a metric space. Let $E\subseteq X$ and $f$ be a function $f:E\rightarrow R$
+			\begin{enumerate}[(i)]
+				\item If $f$ is uniformly continuous function on $E$, then $f$ can be extended to a (uniformly) continuous function on $\overline{E}=E\cup E^\prime$.
+				\item If $f$ can be extended to a uniformly continuous function on $\overline{E}=E\cup E^\prime$, then $f$ is uniformly continuous function on $E$.
+			\end{enumerate}
+			\end{thm}
+			\begin{proof}
+				TODO
+			\end{proof}
+			\begin{rem}
+				Be careful that if $f$ is \emph{only continuous} (not uniformly) on $\overline{E}$, then (ii) fails.
+			\end{rem}
 			\newpage
 			
 		\section{Limits of Functions}
@@ -2357,75 +2474,120 @@
 		\newpage
 		\section{Power Series}
 			\begin{dfn}
-			Given a sequence $(a_n)_{n=0}^{\infty}$ of real numbers, the series $\sum_{n=0}^{\infty}a_nx^n$ is called 
-			a power series, which is a function of $x$ provided it converges for some or all $x$. One of the following
+			Given a sequence $(a_n)_{n=0}^{\infty}$ of real numbers and $x_0\in\R$, the series $\sum_{n=0}^{\infty}a_n(x-x_0)^n$ is called 
+			a power series, which is a function of $x$ provided it converges for some or all $x$. Note  that any power series always converges at $x=x_0$ (with convention $0^0=1$). One of the following
 			holds for a power series with coefficients $(a_n)$:
 			\begin{enumerate}[(a)]
 				\item The power series converge for all $x\in\R$;
-				\item The power series converges only for $x=0$;
-				\item The power series converges for all $x$ in some bounded interval centered at $0$; the interval may be
+				\item The power series converges only for $x=x_0$;
+				\item The power series converges for all $x$ in some bounded interval centered at $x_0$; the interval may be
 				open, half-open, or closed.
 			\end{enumerate}
 			\end{dfn}
 			
 			\begin{thm}\label{def:23.1}
-			For the power series $\sum a_nx^n$, let
+			For the power series $\sum a_n(x-x_0)^n$, let
 			\begin{displaymath}
-				\beta=\lim\sup |a_n|^{1/n}\quad\text{and}\quad R=\frac{1}{\beta}
+				\beta=\lim\sup |a_n|^{1/n}
 			\end{displaymath}
-			[If $\beta=0$ we set $R=+\infty$, and if $\beta=+\infty$ we set $R=0$.] Then
+			and
+			\begin{displaymath}
+				R:=\begin{cases}
+					\frac{1}{\beta}\quad\text{if $0<\beta<\infty$,}\\
+					\infty\quad\text{if $\beta=0$,}\\
+					0\quad\text{if $\beta=\infty$.}
+				\end{cases}
+			\end{displaymath} Then
 			\begin{enumerate}[(i)]
-				\item The power series converges for $|x|<R$;
-				\item The power series diverges for $|x|>R$. 
+				\item The power series converges for $|x-x_0|<R$;
+				\item The power series diverges for $|x-x_0|>R$. 
 			\end{enumerate}
-			We call $R$ the \emph{radius of convergence} for the power series. For $|x|=R$ we need some extra care.
+			We call $R$ the \emph{radius of convergence} for the power series. Note that we need to check $|x-x_0|=R$ cases individually.
 			\end{thm}
 			\begin{proof}
-			The proof follows easily from the Root Test \ref{def:Root Test}. Define $\alpha_x=\lim\sup|a_nx^n|^{1/n}$, then
+			The proof follows easily from the Root Test \ref{def:Root Test}. Define $\alpha_x=\lim\sup|a_n(x-x_0)^n|^{1/n}$, then
 			we have 
 			\begin{displaymath}
-				\alpha_x=\lim\sup|a_nx^n|^{1/n}=\lim\sup|x||a_n|^{1/n}=|x|\cdot\lim\sup|a_n|^{1/n}=\beta|x|
+				\alpha_x=\lim\sup|a_n(x-x_0)^n|^{1/n}=\lim\sup|x-x_0||a_n|^{1/n}=|x|\cdot\lim\sup|a_n|^{1/n}=\beta|x-x_0|
 			\end{displaymath}
 			Now we need to consider three different cases:
 			\begin{enumerate}
-				\item Suppose $0<R<+\infty$. Then $\alpha_x=\frac{|x|}{R}$. If $|x|<R$, then $\alpha_x<1$, so the series
-				converge by the root test. Likewise, if $|x|>R$, then $\alpha_x>1$ and the series diverges.
-				\item Suppose $R=+\infty$. Then $\beta=0$ and $\alpha_x=0$ no matter what $x$ is. Hence the power series
-				converges for all $x$.
-				\item Suppose $R=0$. Then $\beta=+\infty$ and $\alpha_x=+\infty$ for $x\neq0$. Thus the series diverges for
-				$x\neq0$ by the root test.
+				\item Suppose $0<R<+\infty$. Then $\alpha_x=\frac{|x-x_0|}{R}$. If $|x-x_0|<R$, then $\alpha_x<1$, so the series converge by the root test. Likewise, if $|x-x_0|>R$, then $\alpha_x>1$ and the series diverges.
+				\item Suppose $R=+\infty$. Then $\beta=0$ and $\alpha_x=0$ no matter what $|x-x_0|$ is. Hence the power series converges for all $x$.
+				\item Suppose $R=0$. Then $\beta=+\infty$ and $\alpha_x=+\infty$ for $x\neq x_0$. Thus the series diverges for $|x-x_0|>0=R$ by the root test.
 			\end{enumerate}
 			\end{proof}
-			Note that if $\lim\left|\frac{a_{n+1}}{a_n}\right|$ exists, then it equals $\beta$ by \ref{def:12.3}. This limit
-			is often easier to calculate than $\lim\sup|a_n|^{1/n}$.
+			\begin{cor}
+				If $\lim\abs{\frac{a_n}{a_n+1}}$ exists, then it is equal to the radius of convergence of the power series.
+			\end{cor}
+			\begin{proof}
+				 If $\lim\abs{\frac{a_n}{a_{n+1}}}$ exists, so does $\lim\abs{\frac{a_{n+1}}{a_n}}=\alpha$. By \ref{thm:12.2}, $\lim\sup|a_n|^\frac{1}{n}=\alpha$. Then
+				 \begin{displaymath}
+				 	\lim\abs{\frac{a_n}{a_{n+1}}}\begin{cases}
+				 		\frac{1}{\alpha}\quad\text{if $0<\alpha<\infty$,}\\
+				 		\infty\quad\text{if $\alpha=0$}\\
+				 		0\quad\text{if $\alpha=\infty$,}
+				 	\end{cases}
+				 \end{displaymath}
+			 	which is equal to $R$, the radius of convergence.
+			\end{proof}
+			
+			\begin{dfn}[Interval of Convergence]
+			The interval of convergence of the power series $\sum a_n(x-x_0)^n$ is the set $\{x\in\R:$ the series of real numbers $\sum a_n(x-x_0)^n$ converges$\}$.
+			\end{dfn}
 			\newpage
 		\section{Uniform Convergence}
-			\begin{dfn}
-			Let $(f_n)$ be a sequence of real-valued functions defined on a set $S\subseteq\R$. The sequence $(f_n)$ \emph{converges pointwise} to a function $f$ defined on $S$ if
+			\begin{dfn}[Pointwise Convergence]
+			Let $(X,d)$ be a metric space. Let $(f_n)$ be a sequence of real-valued functions defined on a set $E\subseteq X$. The sequence $(f_n)$ \emph{converges pointwise} on $E$ to a function $f$ defined on $E$ if
 			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}f_n(x)=f(x)\quad\text{for all}\quad x\in S.
+				\lim\limits_{n\rightarrow\infty}f_n(x)=f(x)\quad\text{for each}\quad x\in S.
 			\end{displaymath}
-			We often write $\lim f_n=f$ \emph{pointwise [on S]} or $f_n\rightarrow f$ \emph{pointwise [on S]}
+			We often write $\lim f_n=f$ \emph{pointwise [on E]} or $f_n\rightarrow f$ \emph{pointwise [on E]}
 			\end{dfn}
-			Observe that saying $f_n\rightarrow f$ \emph{pointwise [on S]} is equivalent to the following:
+			Observe that saying $f_n\rightarrow f$ \emph{pointwise [on E]} is equivalent to the following:
 			\begin{displaymath}
-				\text{for each $\epsilon>0$ and $x$ in $S$ there exists $N$ such that $|f_n(x)-f(x)|<\epsilon$ for $n>N$.}
+				\text{for each $\epsilon>0$ and $x$ in $E$ there exists $N$ such that $|f_n(x)-f(x)|<\epsilon$ for $n>N$.}
 			\end{displaymath}
 			
-			\begin{dfn}
-			Let $(f_n)$ be a sequence of real-valued functions defined on a set $S\subseteq\R$. The sequence $(f_n)$ \emph{converges uniformly} on $S$ to a function $f$ defined on $S$ if
+			\begin{dfn}[Uniform Convergence (i)]
+			Let $(X,d)$ be a metric space. Let $(f_n)$ be a sequence of real-valued functions defined on a set $E\subseteq X$. The sequence $(f_n)$ \emph{converges uniformly} on $E$ to a function $f$ defined on $E$ if
 			\begin{align*}
 				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
-				\text{$|f_n(x)-f(x)|<\epsilon$ for all $x\in S$ and all $n>N$.}
+				\text{$|f_n(x)-f(x)|<\epsilon$ for all $x\in E$ and all $n\geq N$.}
 			\end{align*}
-			We write $\lim f_n=f$ \emph{uniformly [on S]} or $f_n\rightarrow f$ \emph{uniformly [on S]}
+			We write $\lim f_n=f$ \emph{uniformly [on E]} or $f_n\rightarrow f$ \emph{uniformly [on E]}
 			\end{dfn}
+			\begin{rem}
+			\begin{itemize}
+				\item Comparing to pointwise convergence, here for each $\epsilon>0$, $N$ works for all the $x\in E$.
+				\item Note that if $f_n\rightarrow f$ uniformly on $E$ and if $\epsilon>0$, then there exists $N$ such that $f(x)-\epsilon<f_n(x)<f(x)+\epsilon$ for \emph{all} $x\in E$ and $n\geq N$. i.e. for $n\geq N$ the graph of $f_n$ lies in the strip between the graphs of $f-\epsilon$ and $f+\epsilon$.
+			\end{itemize}
+			\end{rem}
+			
+			\begin{dfn}[Uniform Convergence (ii)]
+			Let $(X,d)$ be a metric space. Let $(f_n)$ be a sequence of real-valued functions defined on a set $E\subseteq X$. The sequence $(f_n)$ \emph{converges uniformly} on $E$ to a function $f$ defined on $E$ if
+			\begin{displaymath}
+				\lim\limits_{n\rightarrow\infty}\sup\{|f_n(x)-f(x)|: x\in E\}=0.
+			\end{displaymath}
+			\end{dfn}
+			\begin{rem}
+				This is an alternative definition to uniform convergence. See details in worksheet 14. We can decide whether a sequence $(f_n)$ converges uniformly to $f$ by calculating $\sup\{|f_n(x)-f(x)|: x\in X\}$ for each $n$. If $f_n-f$ is differentiable, we may use calculus to find these suprema.
+			\end{rem}
+			
+			\begin{eg}
+				$f_n(x)=x^n$ does not converge uniformly to $f(x)=\begin{cases}
+					0\quad x\in[0,1)\\1\quad x=1.
+				\end{cases}$
+			\end{eg}
+			\begin{proof}
+				Let $\epsilon=\frac{1}{2}$. Then for each $N\in\N$, since $f_N(x)=x^N$ is continuous at $x_0=1$, there exists $\delta>0$ such that $|x-x_0|<\delta\implies|x^N-1|<\frac{1}{2}$. Then $f_N\left(1-\frac{\delta}{2}\right)=\left(1-\frac{\delta}{2}\right)^N>\frac{1}{2}.$ Thus at $x_0=1$, no $N\in\N$ can work for the definition of uniform convergence.
+			\end{proof}
 			
 			\setcounter{equation}{0}
-			\begin{thm}\label{thm:24.3}
-			The uniform limit of continuous functions is continuous. More precisely, let $(f_n)$ be a sequence of functions
-			on a set $S\subseteq\R$, suppose $f_n\rightarrow f$ uniformly on $S$, and suppose $S=\dom(f)$. If each $f_n$ is
-			continuous at $x_0$ in $S$, then $f$ is continuous at $x_0$. [so if each $f_n$ is continuous on $S$, then $f$ is continuous on $S$.]
+			\begin{thm}[Uniform Limit Theorem]\label{thm:24.3}
+			The uniform limit of a continuous function is continuous. More precisely, let $(f_n)$ be a sequence of real-valued functions
+			defined on $E\subseteq X$. Suppose $f_n\rightarrow f$ uniformly on $E$, and suppose $E=\dom(f)$. If $f_n$ is
+			continuous at $x_0$ in $E$ for each $n\in\N$, then $f$ is continuous at $x_0$. [so if each $f_n$ is continuous on $S$, then $f$ is continuous on $S$.]
 			\end{thm}
 			\begin{proof}
 			The critical inequality for this proof is
@@ -2434,32 +2596,31 @@
 			\end{equation}
 			Let $\epsilon>0$. There exists $N\in\N$ such that
 			\begin{displaymath}
-				n>N\implies \forall x\in S,\ |f_n(x)-f(x)|<\frac{\epsilon}{3}
+				n>N\implies \forall x\in E,\ |f_n(x)-f(x)|<\frac{\epsilon}{3}
 			\end{displaymath}
-			since $f_n\rightarrow f$ uniformly on $S$. In particular,
+			since $f_n\rightarrow f$ uniformly on $E$. In particular,
 			\begin{equation}
-				\forall x\in S,\ |f_{N+1}(x)-f(x)|<\frac{\epsilon}{3}
+				\forall x\in E,\ |f_{N+1}(x)-f(x)|<\frac{\epsilon}{3}
 			\end{equation}
 			Since $f_{N+1}$ is continuous at $x_0$ there is a $\delta>0$ such that
 			\begin{equation}
-				\forall x\in S,\ |x-x_0|<\delta\implies|f_{N+1}(x)-f_{N+1}(x_0)|<\frac{\epsilon}{3};
+				\forall x\in E,\ |x-x_0|<\delta\implies|f_{N+1}(x)-f_{N+1}(x_0)|<\frac{\epsilon}{3};
 			\end{equation}
 			Now apply (1) with $n=N+1$, (2) twice and (3) once to conclude
 			\begin{displaymath}
-				\forall x\in S,\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<3\cdot\frac{\epsilon}{3}=\epsilon;
+				\forall x\in E,\ |x-x_0|<\delta\implies|f(x)-f(x_0)|<3\cdot\frac{\epsilon}{3}=\epsilon;
 			\end{displaymath}
 		 	Thus $f$ is continuous at $x_0$.
 			\end{proof}
-			The contrapositive of this theorem is useful to show $f_n$ does not uniformly converge to $f$ on $S$:
-			If $f$ is not continuous at $x_0\in S$ but $f_n$ is continuous at $x_0$, then the statement that "$f_n\rightarrow f$ uniformly on $S$" is \textbf{incorrect}.
-		
-			It is worthy to mention that the uniform convergence can be reformulated as follows: \emph{A sequence $(f_n)$ of functions on a set $\subseteq\R$ converges uniformly to a function $f$ on $S$ $\iff$}
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}\sup\{|f(x)-f_n(x)|: x\in S\}=0
-			\end{displaymath}
-			Thus we can decide whether a sequence $(f_n)$ converges uniformly to $f$ by calculating $\sup\{|f(x)-f_n(x)|: x\in S\}$ for each $n$. If $f-f_n$ is differentiable, we may use calculus to find these suprema.
+			\begin{rem}
+				The contrapositive of this theorem is useful to show $f_n$ does not uniformly converge to $f$ on $E$:
+				If $f$ is not continuous at $x_0\in E$ but $f_n$ is continuous at $x_0$, then the statement that "$f_n\rightarrow f$ uniformly on $E$" is \textbf{incorrect}.
+			\end{rem}
+			
 			\newpage
+			
 		\section{More on Uniform Convergence}
+			\begin{comment}
 			Here are two important facts about integration
 			\begin{enumerate}
 				\item If $g$ and $h$ are integrable on $[a,b]$ and if $g(x)\leq h(x)$ for all $x\in[a,b]$, then $\int_{a}^{b}g(x)dx\leq\int_{a}^{b}h(x)dx$.
@@ -2486,62 +2647,78 @@
 			Thus $\lim\limits_{n\rightarrow\infty}\int_{a}^{b}f_n(x)dx=\int_{a}^{b}f(x)dx$.
 			\end{proof}
 			\end{thm}
+			\end{comment}
 			
-			\begin{dfn}
-			A sequence $(f_n)$ of functions defined on a set $S\subseteq\R$ is \emph{uniformly Cauchy on S} if
+			\begin{dfn}[Uniformly Cauchy]
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A sequence $(f_n)$ of functions defined on a set $E$ is \emph{uniformly Cauchy on S} if
 			\begin{align*}
 				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
-				\text{$\abs{f_n(x)-f_m(x)}<\epsilon$ for all $x\in S$ and all $m,n>N$.}
+				\text{$\abs{f_m(x)-f_n(x)}<\epsilon$ for all $x\in E$ and all $m,n\geq N$.}
 			\end{align*}
 			\end{dfn}
-			Notice that uniformly convergent sequences of functions are uniformly Cauchy.
+			
+			\begin{dfn}[Uniform Convergence for Series of Functions]
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A series of functions $\sum_{n=1}^{\infty}g_n$ on $E$ is \emph{uniformly convergent to the function $G$ on $E$} if 
+			\begin{displaymath}
+				\forall\epsilon>0\ \exists N\in\N\ n\geq N\implies\abs{\sum_{k=1}^{n}g_k(x)-G(x)}<\epsilon\text{ for all $x\in E$.}
+			\end{displaymath}
+			\end{dfn}
+			
+			\begin{dfn}[Uniform Cauchy Criterion]
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A series of functions $\sum_{n=1}^{\infty}g_n$ on $E$ satisfy the \emph{uniform Cauchy criterion} if
+			\begin{displaymath}
+				\forall\epsilon>0\ \exists N\in\N\ n\geq m\geq N\implies \abs{\sum_{k=m}^{n}g_k(x)}<\epsilon\text{ for all $x\in E$.}
+			\end{displaymath} 
+			\end{dfn}
+			\begin{rem}
+				There is an analogue between the Cauchy criterion for a normal series $\sum a_k$ and the one for a series of functions $\sum g_k$: The sequence of partial sums of a series $\sum_{k=0}^{\infty}g_k$ of functions is uniformly Cauchy on a set $E$ $\iff$ the series satisfies the \emph{uniform Cauchy criterion} on $E$.
+			\end{rem}
 			
 			\setcounter{equation}{0}
 			\begin{thm}\label{thm:25.4}
-			Let $(f_n)$ be a sequence of functions defined and uniformly Cauchy on a set $S\subseteq\R$. Then there exists a function $f$ on $S$ such that $f_n\rightarrow f$ uniformly on $S$.
+				Let $(X,d)$ be a metric space, and let $E\subseteq X$. A sequence of functions $(f_n)$ is \emph{uniformly Cauchy} if and only if $(f_n)$ converges uniformly.
 			\end{thm}
 			\begin{proof}
-			Since $(f_n)$ is uniformly Cauchy, $(f_n(x_0))$ is a Cauchy sequence for each $x_0\in S$. Now for each $x\in S$, define $f(x)=\lim_{n\rightarrow\infty}f_n(x)$. This defines a function $f$ on $S$ such that $f_n\rightarrow f$ pointwise on $S$.
-			
-			Let $\epsilon>0$. Since $(f_n)$ is uniformly Cauchy, there is a number $N$ such that 
-			\begin{equation}
-				\abs{f_n(x)-f_m(x)}<\frac{\epsilon}{2}\quad\text{for all}\quad x\in S\quad\text{and all}\quad m,n<N
-			\end{equation}
-			Consider $m>N$ and $x\in S$. (1) tells us that $f_n(x)$ lies in $(f_m(x)-\frac{\epsilon}{2},f_m(x)+\frac{\epsilon}{2})$ for all $n>N$. Therefore, $f(x)=\lim_{n\rightarrow \infty}f_n(x)$ lies in $[f_m(x)-\frac{\epsilon}{2},f_m(x)+\frac{\epsilon}{2}]$. In other words,
-			\begin{displaymath}
-				\abs{f(x)-f_m(x)}\leq\frac{\epsilon}{2}\quad\text{for all}\quad x\in S\quad\text{and}\quad m>N
-			\end{displaymath}
-			Then of course
-			\begin{displaymath}
-				\abs{f(x)-f_m(x)}\leq\epsilon\quad\text{for all}\quad x\in S\quad\text{and}\quad m>N
-			\end{displaymath}
-			Thus $f_m\rightarrow f$ uniformly on $S$, as desired.
+			\begin{itemize}
+				\item[$\implies$:] Use $\frac{\epsilon}{2}$ and triangular inequality $\abs{f_m(x)-f_n(x)}\leq\abs{f_m(x)-f(x)}+\abs{f(x)-f_n(x)}$.
+				\item[$\impliedby$:] Since $(f_n)$ is uniformly Cauchy, $(f_n(x_0))$ is a Cauchy sequence for each $x_0\in E$. Thus $(f_n(x_0))$ is in $\R$ and thereby convergent. Now for each $x\in E$, define $f(x)=\lim_{n\rightarrow\infty}f_n(x)$. This defines a function $f$ on $E$ such that $f_n\rightarrow f$ pointwise on $E$.
+				
+				Let $\epsilon>0$. Since $(f_n)$ is uniformly Cauchy, there is a number $N$ such that 
+				\begin{equation}
+					\abs{f_m(x)-f_n(x)}<\frac{\epsilon}{2}\quad\text{for all}\quad x\in E\quad\text{and all}\quad m,n\geq N
+				\end{equation}
+				Consider $n\geq N$ and $x\in E$. (1) tells us that $f_n(x)$ lies in $(f_N(x)-\frac{\epsilon}{2},f_N(x)+\frac{\epsilon}{2})$ for all $n\geq N$. Therefore, $f(x)=\lim_{n\rightarrow \infty}f_n(x)$ lies in $[f_N(x)-\frac{\epsilon}{2},f_N(x)+\frac{\epsilon}{2}]$. In other words,
+				\begin{displaymath}
+					\abs{f_n(x)-f(x)}\leq\frac{\epsilon}{2}\quad\text{for all}\quad x\in E\quad\text{and}\quad n\geq N
+				\end{displaymath}
+				Then of course
+				\begin{displaymath}
+					\abs{f_n(x)-f(x)}\leq\epsilon\quad\text{for all}\quad x\in E\quad\text{and}\quad n\geq N
+				\end{displaymath}
+				Thus $f_n\rightarrow f$ uniformly on $S$, as desired.
+			\end{itemize}
 			\end{proof}
-			
-			A \emph{series of functions} is an expression $\sum_{k=0}^{\infty}g_k$ or $\sum_{k=0}^{\infty}g_k(x)$ which makes sense provided the sequence of partial sums $\sum_{k=0}^{n}g_k$ converges, or diverges to $+\infty$ or $-\infty$ pointwise. If the sequence of partial sums converges uniformly on a set $S$ to $\sum_{k=0}^{\infty}$, then we say the \emph{series is uniformly convergent} on $S$.
+			\begin{cor}
+				$\sum_{k=0}^{\infty}g_k$ satisfies the uniform Cauchy criterion if and only if it converges.
+			\end{cor}
 			
 			\begin{thm}\label{thm:25.5}
 			Consider a series $\sum_{k=0}^{\infty}g_k$ of functions on a set $S\subseteq\R$. Suppose each $g_k$ is continuous on $S$ and the series converges uniformly on $S$. Then the series $\sum_{k=0}^{\infty}g_k$ represents a continuous function on $S$.
 			\end{thm}
 			\begin{proof}
-			Each partial sum $f_n=\sum_{k=1}^{n}g_k$ is continuous and the sequence $(f_n)$ converges uniformly on $S$. Hence the limit function is continuous by \ref{def:24.3}.
+			Each partial sum $f_n=\sum_{k=1}^{n}g_k$ is continuous and the sequence $(f_n)$ converges uniformly on $S$. Hence the limit function is continuous by \ref{thm:24.3}.
 			\end{proof}
-			There is an analogue between the Cauchy criterion for a normal series $\sum a_k$ and the one for a series of functions $\sum g_k$: \emph{The sequence of partial sums of a series $\sum_{k=0}^{\infty}g_k$ of functions is uniformly Cauchy on a set $S$ $\iff$ the series satisfies the \emph{Cauchy criterion}[uniformly on $S$]}:
-			\begin{align*}
-				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
-				\text{$n\geq m>N$ implies $\abs{\sum_{k=m}^{n}g_k(x)}<\epsilon$ for all $x\in S$.}
-			\end{align*}
 			
 			\begin{thm}\label{thm:25.6}
 			If a series $\sum_{k=0}^{\infty}g_k$ of functions satisfies the Cauchy criterion uniformly on a set $S$, then the
 			series converges uniformly on $S$.
 			\end{thm}
 			\begin{proof}
-			Let $f_n=\sum_{k=0}^{n}g_k$. The sequence $(f_n)$ of partial sums is uniformly Cauchy on $S$, so $(f_n)$ converges uniformly on $S$ by \ref{def:25.4}.
+			Let $f_n=\sum_{k=0}^{n}g_k$. The sequence $(f_n)$ of partial sums is uniformly Cauchy on $S$, so $(f_n)$ converges uniformly on $S$ by \ref{thm:25.4}.
 			\end{proof}
 			
 			\begin{thm}[Weierstrass M-test]\label{thm:25.7}
-			Let $(M_k)$ be a sequence of nonnegative real numbers where $\sum M_k<\infty$. If $|g_k(x)|\leq M_k$ for all $x$ in a set $S$, then $\sum g_k$ converges uniformly on $S$.
+			Let $(M_k)$ be a sequence of nonnegative real numbers where $\sum M_k<\infty$, i.e., $\sum M_k$ converges. If $|g_k(x)|\leq M_k$ for all $x$ in a set $E$ and $k\in\N$, then $\sum g_k$ converges uniformly on $E$.
 			\end{thm}
 			\begin{proof}
 			We want to verify the Cauchy criterion of such $\sum g_k$ on $S$. Let $\epsilon>0$. Since the series $\sum M_k$ converges, it satisfies the Cauchy criterion in \ref{def:cauchy criterion}. So there exists a number $N$ such that
@@ -2552,29 +2729,98 @@
 			\begin{displaymath}
 				\abs{\sum_{k=m}^{n}g_k(x)}\leq\sum_{k=m}^{n}\abs{g_k(x)}\leq\sum_{k=m}^{n}M_k<\epsilon. 
 			\end{displaymath}
-			Thus the series $\sum g_k$ satisfies the Cauchy criterion uniformly on $S$, and \ref{def:25.6} shows that it converges uniformly on $S$.
+			Thus the series $\sum g_k$ satisfies the Cauchy criterion uniformly on $S$, and \ref{thm:25.6} shows that it converges uniformly on $S$.
 			\end{proof}
 			
-			If the series $\sum g_n$ converges uniformly on a set $S$, then
-			\begin{displaymath}
-				\lim\limits_{n\rightarrow\infty}\sup\{|g_n(x)|: x\in S\}=0.
-			\end{displaymath}
-			\newpage
-		\section{Differentiation and Integration of Power Series}
-			\begin{thm}\label{thm:26.1}
-			Let $\sum_{n=0}^{\infty}a_nx^n$ be a power series with radius of convergence $R>0$ [possibly $R=+\infty$]. If $0<R_1<R$, then the power series converges uniformly on $[-R_1, R_1]$ to a continuous function.
+			\begin{thm}
+				If the series $\sum g_n$ converges uniformly on a set $S$, then
+				\begin{displaymath}
+					\lim\limits_{n\rightarrow\infty}\sup\{|g_n(x)|: x\in S\}=0.
+				\end{displaymath}
+			\end{thm}
+			
+			\begin{thm}
+				Let $(f_n)$ be a sequnece of bounded functions on a set $S$. If $f_n\rightarrow f$ uniformly on $E$, then $f$ is a bounded function on $E$.
 			\end{thm}
 			\begin{proof}
-			Consider $0<R_1<R$. First observe that the series $\sum a_nx^n$ and $\sum|a_n|x^n$ have the same radius of convergence. Since $|R_1|<R$, we have $\sum a_nR_1^n<\infty$. Clearly we have $|a_nx^n|\leq|a_n|R_1^n$ for all $x\in[-R_1,R_1]$, so the series $\sum a_nx^n$ converges uniformly on $[-R_1,R_1]$ by \ref{thm:25.7}. Then by \ref{def:25.5} since each $a_nx^n$ is continuous, the limit of the series of the functions is also continuous.
+				See Ex 25.5
 			\end{proof}
 			
+			\begin{thm}\label{thm:26.1}
+				Let $\sum_{n=0}^{\infty}a_n(x-x_0)^n$ be a power series with radius of convergence $R>0$ [possibly $R=+\infty$]. If $0<R_0<R$, then the power series converges uniformly on $[x_0-R_0, x_0+R_0]$ to a continuous function.
+			\end{thm}
+			\begin{proof}
+				Consider $0<R_0<R$. First observe that the series $\sum a_n(x-x_0)^n$ and $\sum|a_n|(x-x_0)^n$ have the same radius of convergence $R>0$. Since $x_0+R_0\in(x_0-R,x_0+R)$, we have $\sum \abs{a_n}(x_0+R_0-x_0)^n<\infty$, i.e. $\sum M_n=\sum\abs{a_n}R_0^n$ converges. Clearly we have $|a_n(x-x_0)^n|\leq|a_n|R_0^n=M_n$ for all $x\in[x_0-R_0,x_0+R_0]$, so the series $\sum a_n(x-x_0)^n$ converges uniformly on $[x_0-R_0,x_0+R_0]$ by \ref{thm:25.7}. Then by \ref{thm:25.5} since each $a_n(x-x_0)^n$ is continuous, the limit of the series of the functions is also continuous.
+			\end{proof}
 			\begin{cor}\label{cor:26.2}
-			The power series $\sum a_nx^n$ converges to a continuous function on the open interval $(-R,R)$.
+				The power series $\sum a_n(x-x_0)^n$ with radius of convergence $R>0$ converges to a continuous function on the open interval $(x_0-R,x_0+R)$.
 			\end{cor}
 			\begin{proof}
-			If $x_0\in(-R,R)$, then $x_0\in(-R_1,R_1)$ for some $R_1<R$. The theorem shows the limit of the series is continuous at $x_0$. 
+				If $x\in(x_0-R,x_0+R)$, then exists $R_0<R$ such that $x\in(x_0-R_0,x_0+R_0$). By the previous theorem \ref{thm:26.1}, the limit of the series $\sum a_n(x-x_0)^n$ is continuous on $[x_0-R_0,x_0+R_0]$ and so is at $x$. 
 			\end{proof}
 			
+			\begin{thm}[Dini's Theorem]
+			If $(f_n)$ is a sequence of continous functions on $[a,b]$ such that $(f_n(x))$ is nondecreasing for each $x\in[a,b]$ and $f_n\rightarrow f$ pointwise for some continuous function $f$, then $f_n\rightarrow f$ uniformly on $[a,b]$.
+			\end{thm}
+			\begin{proof}
+				See worksheet 15
+			\end{proof}
+			
+			\begin{lem}
+			If $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $1$ and the series converges at $x=1$, then $f$ is continuous on $[0,1]$.
+			\end{lem}
+			\begin{proof}
+				See worksheet 15.
+			\end{proof}
+			
+			\setcounter{equation}{0}
+			\begin{thm}[Abel's Theorem]\label{thm:26.6}
+				Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ be a power series with finite positive radius of convergence $R$. If the series converges at $x=R$, then $f$ is continuous at $x=R$; if the series converges at $x=-R$, then $f$ is continuous at $x=-R$.
+			\end{thm}
+			\begin{proof}
+				\begin{itemize}
+					\item[]
+					\item[Case] 1. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $1$ and the series converges at $x=1$. We will prove $f$ is continuous on $[0,1]$. We need to show that $f$ is continuous on $[0,1]$. By subtracting a constant from $f$, we may assume $f(1)=\sum_{n=0}^{\infty}a_n=0$. Let $f_n(x)=\sum_{k=0}^{n}a_kx^k$ and $s_n=\sum_{k=0}^{n}a_k=f_n(1)$ for $n=0,1,2,\dots.$. Since $f_n(x)\rightarrow f(x)$ pointwise on $[0,1]$ and each $f_n$ is continuous, by \ref{thm:24.3} it suffices to show $f_n\rightarrow f$ uniformly on $[0,1]$. By \ref{thm:25.4} it suffices to show the convergence is uniformly Cauchy.
+					
+					For $m<n$, we have
+					\begin{align*}
+						f_n(x)-f_m(x)&=\sum_{k=m+1}^{n}a_kx^k\\
+						&=\sum_{k=m+1}^{n}(s_k-s_{k-1})x^k\\
+						&=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m+1}^{n}s_{k-1}x^{k-1}\\
+						&=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m}^{n-1}s_kx^{k}
+					\end{align*}
+					and therefore
+					\begin{equation}
+						f_n(x)-f_m(x)=s_nx^n-s_mx^{n+1}+(1-x)\sum_{k=m+1}^{n-1}s_kx^k
+					\end{equation}
+					By the definition of $s_n$, we have $\lim s_n=\sum_{k=0}^{\infty}a_k=f(1)=0$. Given $\epsilon>0$, there is an integer $N$ so that $|s_n|<\frac{\epsilon}{3}$ for all $n\geq N$. Then for $n>m\geq N$ and $x\in[0,1)$,
+					we have
+					\begin{align}
+						\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|&\leq\frac{\epsilon}{3}(1-x)\sum_{k=m+1}^{n-1}x^k\notag\\
+						&=\frac{\epsilon}{3}(1-x)x^{m+1}\frac{1-x^{n-m-1}}{1-x}\notag\\
+						&<\frac{\epsilon}{3}
+					\end{align}
+					Since $\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|<\frac{\epsilon}{3}$ for $x=1$, combining (1) and (2), for $n>m\geq N$ and $x\in[0,1]$,
+					\begin{displaymath}
+						|f_n(x)-f_m(x)|\leq|s_n|x^n+|s_m|x^{m+1}+\frac{\epsilon}{3}<\frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon.
+					\end{displaymath}
+					Thus the sequence $(f_n)$ is uniformly Cauchy on $[0,1]$, and its limit $f$ is continuous.
+					\item[Case] 2. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=R$. Let $g(x)=f(Rx)$ and note that 
+					\begin{displaymath}
+						g(x)=\sum_{n=0}^{\infty}a_nR^nx^n\quad\text{for}\quad|x|<1.
+					\end{displaymath}
+					This series has radius of convergence $1$, and it converges at $x=1$. By Case 1, $g$ is continuous at $x=1$. Since $f(x)=g(\frac{x}{R})$, it follows that $f$ is continuous at $x=R$.
+					\item[Case] 3. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=-R$. Let $h(x)=f(-x)$ and note that 
+					\begin{displaymath}
+						h(x)=\sum_{n=0}^{\infty}(-1)^na_nx^n\quad\text{for}\quad|x|<R.
+					\end{displaymath}
+					This series for $h$ converges at $x=R$, so $h$ is continuous at $x=R$ by Case 2. It follows that $f(x)=h(-x)$ is continuous at $x=-R$.
+				\end{itemize}
+			\end{proof}
+			\newpage
+			
+		\section{Differentiation and Integration of Power Series}
+			\begin{comment}
 			\begin{lem}\label{lem:26.3}
 			If the power series $\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, then the power series
 			\begin{displaymath}
@@ -2627,77 +2873,76 @@
 				f^\prime(x)=g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|\leq R_1
 			\end{displaymath}
 			\end{proof}
+			\end{comment}
 			
-			\setcounter{equation}{0}
-			\begin{thm}[Abel's Theorem]\label{thm:26.6}
-			Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ be a power series with finite positive radius of convergence $R$. If the series converges at $x=R$, then $f$ is continuous at $x=R$; if the series converges at $x=-R$, then $f$ is continuous at $x=-R$.
-			\end{thm}
-			\begin{proof}
-			\begin{itemize}
-				\item[]
-				\item[Case] 1. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $1$ and the series converges at $x=1$. We will prove $f$ is continuous on $[0,1]$. We need to show that $f$ is continuous on $[0,1]$. By subtracting a constant from $f$, we may assume $f(1)=\sum_{n=0}^{\infty}a_n=0$. Let $f_n(x)=\sum_{k=0}^{n}a_kx^k$ and $s_n=\sum_{k=0}^{n}a_k=f_n(1)$ for $n=0,1,2,\dots.$. Since $f_n(x)\rightarrow f(x)$ pointwise on $[0,1]$ and each $f_n$ is continuous, by \ref{thm:24.3} it suffices to show $f_n\rightarrow f$ uniformly on $[0,1]$. By \ref{thm:25.4} it suffices to show the convergence is uniformly Cauchy.
-				
-				For $m<n$, we have
-				\begin{align*}
-					f_n(x)-f_m(x)&=\sum_{k=m+1}^{n}a_kx^k\\
-								 &=\sum_{k=m+1}^{n}(s_k-s_{k-1})x^k\\
-								 &=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m+1}^{n}s_{k-1}x^{k-1}\\
-								 &=\sum_{k=m+1}^{n}s_kx^k-x\sum_{k=m}^{n-1}s_kx^{k}
-				\end{align*}
-				and therefore
-				\begin{equation}
-					f_n(x)-f_m(x)=s_nx^n-s_mx^{n+1}+(1-x)\sum_{k=m+1}^{n-1}s_kx^k
-				\end{equation}
-				By the definition of $s_n$, we have $\lim s_n=\sum_{k=0}^{\infty}a_k=f(1)=0$. Given $\epsilon>0$, there is an integer $N$ so that $|s_n|<\frac{\epsilon}{3}$ for all $n\geq N$. Then for $n>m\geq N$ and $x\in[0,1)$,
-				we have
-				\begin{align}
-					\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|&\leq\frac{\epsilon}{3}(1-x)\sum_{k=m+1}^{n-1}x^k\notag\\
-															  &=\frac{\epsilon}{3}(1-x)x^{m+1}\frac{1-x^{n-m-1}}{1-x}\notag\\
-															  &<\frac{\epsilon}{3}
-				\end{align}
-				Since $\left|(1-x)\sum_{k=m+1}^{n-1}s_kx^k\right|<\frac{\epsilon}{3}$ for $x=1$, combining (1) and (2), for $n>m\geq N$ and $x\in[0,1]$,
-				\begin{displaymath}
-					|f_n(x)-f_m(x)|\leq|s_n|x^n+|s_m|x^{m+1}+\frac{\epsilon}{3}<\frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon.
-				\end{displaymath}
-				Thus the sequence $(f_n)$ is uniformly Cauchy on $[0,1]$, and its limit $f$ is continuous.
-				\item[Case] 2. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=R$. Let $g(x)=f(Rx)$ and note that 
-				\begin{displaymath}
-					g(x)=\sum_{n=0}^{\infty}a_nR^nx^n\quad\text{for}\quad|x|<1.
-				\end{displaymath}
-			 	This series has radius of convergence $1$, and it converges at $x=1$. By Case 1, $g$ is continuous at $x=1$. Since $f(x)=g(\frac{x}{R})$, it follows that $f$ is continuous at $x=R$.
-			 	\item[Case] 3. Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, $0<R<\infty$, and the series converges at $x=-R$. Let $h(x)=f(-x)$ and note that 
-			 	\begin{displaymath}
-			 		h(x)=\sum_{n=0}^{\infty}(-1)^na_nx^n\quad\text{for}\quad|x|<R.
-			 	\end{displaymath}
-			 	This series for $h$ converges at $x=R$, so $h$ is continuous at $x=R$ by Case 2. It follows that $f(x)=h(-x)$ is continuous at $x=-R$.
-			\end{itemize}
-			\end{proof}
+			
 	\chapter{Differentiation}
 		\newpage
 		\section{Basic Properties of the Derivative}
+			\subsection*{Limits of functions}
+			\begin{dfn}[Limit of function (i)]
+				We denote 
+				\begin{displaymath}
+					\lim_{x\rightarrow c}f(x)=L
+				\end{displaymath}
+				as that for every sequence $(x_n)\subseteq\dom(f)\backslash\{c\}$ such that $x_n\rightarrow c$ where $c\in\R\cup\{\pm\infty\}$, we have $f(x_n)\rightarrow L$.
+			\end{dfn}
+			\begin{rem}
+				Observe that followed by the definition above, $f$ is continuous at $c$ if and only if $\lim_{x\rightarrow c}f(x)=f(c)$.
+			\end{rem}
+			
+			\begin{dfn}[Limit of function (ii)]
+			Alternatively, we can also claim the $\epsilon$-$\delta$ definition of the limit of function as $\lim_{x\rightarrow c}f(x)=L$ if
+			\begin{displaymath}
+				\forall\epsilon>0\ \exists\delta>0\ 0<\abs{x-c}<\delta\implies\abs{f(x)-L}<\epsilon
+			\end{displaymath}	
+			\end{dfn}
+			
+			\begin{dfn}[Left-hand Limit]
+			We write $\lim_{x\rightarrow c^-}f(x)=L$ if there exists $a<c$ such that $(a,c)\subseteq\dom(f)$ and for any sequence $(x_n)\subseteq(a,c)$ such that $x_n\rightarrow c$, we have $f(x_n)\rightarrow L$.
+			\end{dfn}
+			
+			\begin{thm}
+				$\lim_{x\rightarrow c}f(x)$ exists if and only if $\lim_{x\rightarrow c^-}f(x)=\lim_{x\rightarrow c^+}f(x)$, in which case, all equal.
+			\end{thm}
+			\newpage
+			\lline
+			
+			\subsection*{Derivative}
 			\begin{dfn}\label{def:28.1}
-			Let $f$ be a real-valued function defined on an open interval containing a point $a$. We say $f$ is \emph{differentiable} at $a$, or $f$ has a derivative at $a$, if the limit
+			Let $f$ be a real-valued function defined on an open interval containing a point $x$. Define \emph{difference quotient} on $\dom(f)\backslash\{x\}$ as 
 			\begin{displaymath}
-				\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}
+				\varphi_x(y)=\frac{f(y)-f(x)}{y-x}.
 			\end{displaymath}
-			exists and is finite. We will write $f^\prime(a)$ for the derivative of $f$ at $a$:
+			We say $f$ is \emph{differentiable} at $x$, or $f$ has a derivative at $a$, if the limit
 			\begin{displaymath}
-				f^\prime(a)=\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}
+				\lim_{y\rightarrow x}\varphi_x(y)=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}
+			\end{displaymath}
+			exists and is finite. We will write $f^\prime(x)$ for the derivative of $f$ at $x$:
+			\begin{displaymath}
+				f^\prime(x)=\lim_{y\rightarrow x}\varphi_x(y)=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}
 			\end{displaymath}
 			whenever this limit exists and is finite.
 			\end{dfn}
-			The domain of $f^\prime$ is the set of points at which $f$ is differentiable; thus $\dom(f^\prime)\subseteq\dom(f)$.
+			\begin{rem}
+			\begin{itemize}
+				\item $f$ is \emph{differentiable on a set $E$} if $f$ is differentiable at every point $x\in E$.
+				\item $f$ is \emph{differentiable} if $f$ is differentiable at every point $x\in\dom(f)$.
+				\item We can consider $f^\prime$ as a function. The domain of $f^\prime$ is the set of points at which $f$ is differentiable; thus $\dom(f^\prime)\subseteq\dom(f)$.
+			\end{itemize}
+			\end{rem}
 			
 			\begin{thm}\label{thm:28.2}
-			If $f$ is differentiable at a point $a$, then $f$ is continuous at $a$.
+			If $f$ is differentiable at a point $x$, then $f$ is continuous at $x$.
 			\end{thm}
 			\begin{proof}
-			We are given $f^\prime(a)=\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}$, and we need to prove $\lim_{x\rightarrow a}f(x)=f(x)$. We have 
+			We are given $f^\prime(x)=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}$, and we need to prove $\lim_{y\rightarrow x}f(y)=f(x)$. We have 
 			\begin{displaymath}
-				f(x)=(x-a)\frac{f(x)-f(a)}{x-a}+f(a)
+				f(y)=(y-x)\frac{f(y)-f(x)}{y-x}+f(x)
 			\end{displaymath}
-			for $x\in\dom(f), x\neq a$. Since $\lim_{x\rightarrow a}(x-a)=0$ and $\lim_{x\rightarrow a}\frac{f(x)-f(a)}{x-a}$ exists and is finite, by \ref{def:20.4}(ii), $\lim (x-a)\frac{f(x)-f(a)}{x-a}=0$. Thus $\lim_{x\rightarrow a}f(x)=f(a)$.
+			for $y\in\dom(f), y\neq x$. Since $\lim_{y\rightarrow x}(y-x)=0$ and $\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}$ exists and is finite, by \ref{def:20.4}(ii), $\lim (y-x)\frac{f(y)-f(x)}{y-x}=0$. Thus $\lim_{y\rightarrow x}f(y)=f(x)$.
 			\end{proof}
+			\newpage
 			
 			\begin{thm}\label{def:28.3}
 			Let $f$ and $g$ be functions that are differentiable at the point $a$. Each of the functions $cf$, $f+g$, $fg$, and $f/g$ is also differentiable at $a$, except $f/g$ is $g(a)=0$ since $f/g$ is not defined at $a$ in this case.
@@ -2729,7 +2974,98 @@
 			If $f$ is differentiable at $a$ and $g$ is differentiable at $f(a)$, then the composite function $g\circ f$ is differentiable at $a$ and we have $(g\circ f)^\prime(a)=g^\prime(f(a))\cdot f^\prime(a)$.
 			\end{thm}
 			If $f$ is differentiable on an interval $I$ and if $g$ is differentiable on $\{f(x): x\in I\}$, then $(g\circ f)^\prime$ is exactly $(g^\prime\circ f)\cdot f^\prime$ on $I$.
+			\newpage
 			
+		\section{The Mean Value Theorem}
+			\begin{lem}
+			Let $f$ be defined on an open interval $I$ containing $x$. If $f$ attains its maximum (or minimum) at $x$ and $f$ is differentiable at $x$, then $f^\prime(x)=0$.
+			\end{lem}
+			\begin{proof}
+			We'll only prove the maximum case since the minimum case is similar. Suppose $f$ attains its maximum at $x$. Argue by contradiction and suppose $f^\prime(x)>0$, i.e. $\lim_{y\rightarrow x}\varphi_x(y)>0$. By the $\epsilon$-$\delta$ definition of derivative, there exists $\delta>0$ such that $0<\abs{y-x}<\delta$ implies $\varphi_x(y)>0$, i.e. $\frac{f(y)-f(x)}{y-x}>0$. It follows that there exists $y$ such that $0<\abs{y-x}<\delta$ and $y>x$, so $f(y)>f(x)$ which is a contradiction. The proof of the case $f^\prime(x)<0$ will be similar. 
+			\end{proof}
+			\begin{rem}
+			If $f^\prime(x)\neq0$, then $f$ does not attains its maximum nor minimum at $x$.
+			\end{rem}
+			
+			\begin{thm}[Rolle's Theorem]\label{thm:29.2, Rolle}
+			Suppose $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, and that $f(a)=f(b)$. Then there exists $x\in(a,b)$ such that $f^\prime(x)=0$.
+			\end{thm}
+			\begin{proof}
+				Since $f$ is continuous on the compact set $[a,b]$, it attains its maximum and minimum on $[a,b]$. If $a$ or $b$ achieves the maximum, then so is $b$ or $a$. Thus there must be some $x\in(a,b)$ achieves the minimum. Then use the above lemma. If neither $a$ or $b$ achieves the maximum, then Thus there must be some $x\in(a,b)$ achieves the maximum. Then use the above lemma.
+			\end{proof}
+			
+			\begin{thm}[Mean Value Theorem]\label{thm:29.3, MVT}
+			Let $f$ be a continuous function on $[a,b]$ which is differentiable on $(a,b)$. Then there exists $x\in(a,b)$ such that $f^\prime(x)=\frac{f(b)-f(a)}{b-a}$.
+			\end{thm}
+			\begin{proof}
+			Consider $g(x)=\big(f(b)-f(a)\big)x-(b-a)f(x)$ and apply Rolle's theorem. 
+			\end{proof}
+			\begin{cor}
+			If $f$ is differentiable on $(a,b)$, and $f^\prime(x)=0$ for all $x\in(a,b)$, then $f$ is constant on $(a,b)$.
+			\end{cor}
+			\begin{proof}
+				Show the contrapositive.
+			\end{proof}
+			\begin{cor}
+			If $f,g$ are differentiable on $(a,b)$ and $f^\prime(x)=g^\prime(x)$ for all $x\in(a,b)$, then $f=g+C$ for some $c\in\R$.
+			\end{cor}
+			\begin{proof}
+				We have $(f-g)^\prime(x)=0$ for all $x$. By the previous corollary, $f-g$ is a constant function, so $f=g+C$.
+			\end{proof}
+			\newpage
+			\begin{cor}
+			Let $f$ be a differentiable function on $(a,b)$.
+			\begin{enumerate}[(i)]
+				\item If $f^\prime(x)>0$ for all $x\in(a,b)$, then $f$ is strictly increasing;
+				\item If $f^\prime(x)<0$ for all $x\in(a,b)$, then $f$ is strictly decreasing; 
+			\end{enumerate}
+			\end{cor}
+			\begin{proof}
+			\begin{enumerate}[(i)]
+				\item[]
+				\item Suppose $x_1,x_2\in(a,b)$ and $x_1<x_2$. Then $f$ is differentiable on $(x_1,x_2)$ and by \ref{thm:29.3}, there exist $c\in(x_1,x_2)\subset(a,b)$ such that
+				\begin{displaymath}
+					\frac{f(x_2)-f(x_1)}{x_2-x_1}=f^\prime(c)>0
+				\end{displaymath}
+				which implies $f(x_2)>f(x_1)$.
+				\item Similar to (i).
+			\end{enumerate}
+			\end{proof}
+			
+			\begin{thm}[Generalized Mean Value Theorem]
+			Suppose $f$ and $g$ are continuous on $[a,b]$ and differentiable on $(a,b)$. Prove that there exists $x\in(a,b)$ such that
+			\begin{displaymath}
+				f^\prime(x)(g(b)-g(a))=g^\prime(x)(f(b)-f(a)).
+			\end{displaymath}
+			\end{thm}
+			\begin{proof}
+				Consider $h(x)=(f(b)-f(a))g(x)-(g(b)-g(a))f(x)$. Show that $h(a)=h(b)$ and then apply Rolle's Theorem \ref{thm:29.2, Rolle}.
+			\end{proof}
+			
+			\begin{thm}
+			If $f$ is a differentiable function on $(a,b)$ with bounded derivative, then $f$ is uniformly continuous on $(a,b)$.
+			\end{thm}
+			\begin{proof}
+			Let $\epsilon>0$. Since $f^\prime$ is bouned, there exists $M>0$ such that $\abs{f^\prime(x)}\leq M$ for every $x\in(a,b)$. Take $\delta=\epsilon/M$. Suppose $x,y\in(a,b)$ such that $x<y$ and $\abs{x-y}<\delta=\epsilon/M$. By MVT \ref{thm:29.3, MVT}, $\exists c\in(x,y)\ \abs{\frac{f(x)-f(y)}{x-y}}=\abs{f^\prime(c)}\leq M$. Thus $\abs{f(x)-f(y)}\leq M\abs{x-y}<M\cdot\epsilon/M=\epsilon$, and hence $f$ is uniformly continuous on $(a,b)$. 
+			\end{proof}
+			\begin{rem}
+			The converse does not hold generally. For example, consider $f(x)=\sqrt{x}$ on $(0,1)$. 
+			\end{rem}
+			
+			\begin{thm}[Intermediate Value Theorem for Derivatives]
+			Let $f$ be a differentiable function on $(a,b)$. If $a<x<y<b$ and $c$ is between $f^\prime(x)$ and $f^\prime(y)$, then there exists $z\in(x,y)$ such that $f^\prime(z)=c$. 
+			\end{thm}
+			\newpage
+			
+		\section{L'Hospital's Rule}
+			\begin{thm}
+			Suppose $f,g$ are differentiable on $(a,b)$ and $g^\prime(x)\neq0$ for where $-\infty\leq a<b\leq\infty$. Let $s\in\{a,b\}$. If $\lim_{x\rightarrow s}\frac{f^\prime(x)}{g^\prime(x)}=L$ ($-\infty\leq L\leq \infty$) and either
+			\begin{enumerate}[(i)]
+				\item $\lim_{x\rightarrow s}f(x)=\lim_{x\rightarrow s}g(x)=0$; or
+				\item $\lim_{x\rightarrow s}g(x)=\pm\infty$,
+			\end{enumerate} 
+			then $\lim_{x\rightarrow s}\frac{f(x)}{g(x)}=L$.
+			\end{thm}
 	\chapter{Useful Tricks}
 	\begin{enumerate}
 		\item Here is one of the most important techniques in real analysis.

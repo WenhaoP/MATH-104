@@ -1,0 +1,161 @@
+\documentclass[12pt,lettersize]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,physics}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{chngcntr}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 104}
+\chead{Homework 7}
+\rhead{Wenhao Pan}
+\cfoot{\thepage}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+	
+	\subsection*{Q1}
+	\begin{enumerate}[(a)]
+		\item Fix $a>0$. With $f$ begin continuous on $[0,a+1]$, $f$ is uniformly continuous on $[0,a+1]$. For each $\epsilon>0$, observe that for each $x,y\in[0,\infty)$ such that $\abs{x-y}<1$, both $x$ and $y$ are either in $[0,a+1]$ or $[a,\infty)$. Since $f$ is uniformly continuous on $[0,a+1]$, $\exists\delta_1\ x,y\in[0,a+1]\text{ and }\abs{x-y}<\delta_1\implies \abs{f(x)-f(y)}<\epsilon$; since $f$ is uniformly continuous on $[a,\infty)$, $\exists\delta_2\ x,y\in[a,\infty)\text{ and }\abs{x-y}<\delta_2\implies \abs{f(x)-f(y)}<\epsilon$. Then take $\delta=\min\{1,\delta_1,\delta_2\}$, we have $x,y\in[0,\infty)\text{ and }\abs{x-y}<\delta\implies\abs{f(x)-f(y)}<\epsilon$. Thus $f$ is uniformly continuous on $[0,\infty)$.
+		
+		\item Clearly $\sqrt{x}$ is continuous on $[0,\infty)$. If we can show $\sqrt{x}$ is uniformly continuous on $[1,\infty)$, then by (a) it is uniformly continuous on $[0,\infty)$.\smallskip
+		
+		For each $\epsilon>0$, select $\delta=2\epsilon$. Then $x,y\in[1,\infty)\text{ and }\abs{x-y}<\delta=2\epsilon$ imply
+		\begin{displaymath}
+			\abs{\sqrt{x}-\sqrt{y}}=\abs{\frac{x-y}{\sqrt{x}+\sqrt{y}}}\leq\frac{\abs{x-y}}{1+1}<\frac{2\epsilon}{2}=\epsilon.
+		\end{displaymath}
+		Thus $\sqrt{x}$ is uniformly continuous on $[1,\infty)$, completing the proof.
+		
+		\item Since $x,\sin x,\frac{1}{x}$ is continuous on $(-\infty,0)\cup(0,\infty)$, $f(x)$ is continuous on $(-\infty,0)\cup(0,\infty)$. At $x_0=0$, suppose $(x_n)\subseteq\R\backslash\{0\}$ such that $x_n\rightarrow 0$ (if some $x_n=0$ and $x_n\rightarrow0$, then it follows that $f(x_n))\rightarrow0$ trivially), i.e. $\forall\epsilon>0\ \exists N\in\N\ n\geq N\implies |x_n|<\epsilon$. Since $\abs{f(x_n)}=\abs{x_n\sin(\frac{1}{x_n})}\leq\abs{x_n}\abs{\sin(\frac{1}{x_n})}\leq\abs{x_n}$, $f(x_n)\rightarrow0$ which is equal to $f(0)$, and hence $f$ is continuous at $0$. Therefore, $f$ is continuous on $\R$.\smallskip
+		
+		Now let's generalize the assertion in part (a) to that ``if $f$ is uniformly continuous on $(-\infty,a]$ for some $a<0$, then $f$ is uniformly continuous on $(-\infty,0]$". Then we just need to show that $f(x)$ is uniformly continuous on both $(-\infty,-1]$ and $[1,\infty)$.\smallskip
+		
+		Since $x,\sin(x),1/x$ are differentiable on $[1,\infty)$, $f$ is differentiable on $[1,\infty)$. $f'(x)$ is equal to $\sin(1/x)-\cos(1/x)/x$ on $[1,\infty)$. Thus $|f'(x)|$ is bounded by $2$ on $[1,\infty)$. By theorem 19.6, $f$ is uniformly continuous on $[1,\infty)$. Thus by the assertion in (a), $f$ is uniformly continuous on $[0,\infty)$. Similarly, we can show $f$ is uniformly continuous on $(-\infty,-1]$, and hence by the generalized assertion, $f$ is uniformly continuous on $(-\infty,0]$. For any $x,y\in\R$, if both $x$ and $y$ are in $(-\infty,0]$ or $[0,\infty)$, thenIt follows that $f$ is uniformly continuous on $\R$. 
+		
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q2}
+	First show $\lim\sup\abs{a_n}>0\implies R\leq 1$. Let $c\in\R$ such that $0<c<\lim\sup\abs{a_n}$, then it follows that $\forall N\in\N\ \sup\{\abs{a_n}:n\geq N\}>c$ since $\sup\{\abs{a_n}:n\geq N\}$ is nonincreasing. It implies that \begin{displaymath}
+		\forall N\in\N\ \exists n\geq N\ \abs{a_n}>c.
+	\end{displaymath}
+	Take $N=1$, then we can choose $n_1\geq1$ such that $\abs{a_{n_1}}>c$. Having already selected $n_1<n_2<\cdots<n_k$ such that $\abs{a_{n_j}}>c$ for each $j=1,\dots,k$, choose $n_{k+1}\geq n_k+1$ such that $\abs{a_{n_{k+1}}}>c$. Thus we inductively construct a subsequence $(a_{n_k})$ such that
+	\begin{displaymath}
+		\forall k\in\N\ \abs{a_{n_k}}>c\implies \abs{a_{n_k}}^\frac{1}{n_k}>c^\frac{1}{n_k}.
+	\end{displaymath}
+	It follows that
+	\begin{displaymath}
+		\lim\sup\abs{a_n}^\frac{1}{n}\geq\lim_k\sup\abs{a_{n_k}}^\frac{1}{n_k}\geq\lim_k\sup c^\frac{1}{n_k}=\lim_k c^\frac{1}{n_k}=1.
+	\end{displaymath}
+	Thus $R=\frac{1}{\lim\sup\abs{a_n}^\frac{1}{n}}\leq 1$.\smallskip
+	
+	Next show $\lim\sup\abs{a_n}<\infty\implies R\geq 1$. Since $\lim\sup\abs{a_n}\neq\infty$,
+	\begin{displaymath}
+		\exists M>0\ \forall N\in\N\ \sup\{|a_n|:n\geq N\}<M.
+	\end{displaymath}
+	Take $N=1$, then we have $\forall n\in\N\ \abs{a_n}<M\implies \abs{a_n}^\frac{1}{n}<M^\frac{1}{n}$. It follows that $\lim\sup\abs{a_n}^\frac{1}{n}\leq\lim\sup M^\frac{1}{n}=\lim M^\frac{1}{n}=1$. Thus $R=\frac{1}{\lim\sup\abs{a_n}^\frac{1}{n}}\geq 1$.\smallskip
+	
+	Combining two cases above, we have $0<\lim\sup\abs{a_n}<\infty\implies R\leq 1\text{ and }R\geq 1$, i.e. $R=1$.
+	\newpage
+	
+	\subsection*{Q3}
+	\begin{enumerate}[(a)]
+		\item Observe that
+		\begin{align*}
+			x\notin\{k\pi:k\in\Z\} &\iff -1<\cos x<1\\ &\iff \abs{\cos x}<1\\ &\iff 0=\lim_n\abs{\cos x}^n=\lim_n\abs{(\cos x)^n}\\ &\iff \lim_n(\cos x)^n=0,
+		\end{align*}
+		as desired.
+		
+		\item Observe that
+		\begin{align*}
+			x\in\{2k\pi: k\in\Z\} &\iff \cos x=1\\ &\iff \lim_n(\cos x)^n=1,
+		\end{align*}
+		as desired.
+		
+		\item Observe that
+		\begin{align*}
+			x\in\{(2k+1)\pi: k\in\Z\} &\iff \cos x=-1\\ &\iff \lim_n(\cos x)^n=\lim_n(-1)^n\\ &\iff \lim_n(\cos x)^n\text{ does not exists,}
+		\end{align*}
+		as desired.
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q4}
+	\begin{enumerate}[(a)]
+		\item Let $f$ be a Lipschitz function on $E\subseteq X$. Suppose there exists $C>0$ such that $d_Y(f(x_1),f(x_2))\leq C\cdot d(x_1,x_2)$ for all $x_1,x_2\in E$. Then for each $\epsilon>0$, let $\delta=\frac{\epsilon}{C}$. For any $x_1,x_2\in E$ such that $d_X(x_1,x_2)<\delta=\frac{\epsilon}{C}$ implies $d_Y(f(x_1),f(x_2))<C\cdot\delta=C\cdot\frac{\epsilon}{C}=\epsilon$. Thus $f$ is uniformly continuous on $E$.
+		
+		\item Let $\epsilon=1$. Then for each $\delta>0$. Consider $x\in\R$. If $x\geq\frac{4-\delta^2}{4\delta}$, then $f(x+\delta/2)-f(x)=x\delta+\frac{\delta^2}{4}\geq \frac{(4-\delta^2)\delta}{4\delta}+\frac{\delta^2}{4}=1=\epsilon$. Thus $f(x)=x^2$ is not uniformly continuous on $\R$, and hence it's not Lipschitz.
+		
+		\item From HW6.2, we know $f^\prime$ is bounded on $(a,b)$, i.e. $\exists M>0\ \forall x\in(a,b)\ \abs{f^\prime(x)}\leq M$. Then for any $x,y\in[a,b]$, there exists $c\in(a,b)$ such that $M\geq \abs{f^\prime(c)}=\abs{f(x)-f(y)}/\abs{x-y}$, i.e. $\abs{f(x)-f(y)}\leq M\cdot\abs{x-y}$. It follows that $f$ satisfies the definition of Lipschitz function as desired.
+		
+		\item Negate the definition of Lipschitz function, we want to find a uniformly continuous real-valued function on $[0,1]$ but $\forall C>0\ \exists x,y\in[0,1] \abs{\frac{f(x)-f(y)}{x-y}}>C$. Thus $f(x)=\sqrt{x}$ should satisfies the condition.
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q5}
+	Observe that $\forall x,y\in(a,b)\ 0\leq\abs{f(y)-f(x)}\leq(y-x)^2$ and $\lim_{y\rightarrow x}0=0$ and $\lim_{y\rightarrow x}(y-x)^2=0$. Thus by squeeze lemma, $\lim_{y\rightarrow x}\abs{f(y)-f(x)}=0$. Then since $-\abs{f(y)-f(x)}\leq f(y)-f(x)\leq\abs{f(y)-f(x)}$, by squeeze lemma again, $\lim_{y\rightarrow x}f(y)-f(x)=0$. It follows that $\forall x\in(a,b)\ f^\prime(x)=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}=0$, i.e. $f$ is constant on $(a,b)$. 
+	\newpage
+	
+	\subsection*{Q6}
+	Select $\epsilon>0$ with $\epsilon<1/M$. Thus $\forall x\in\R\ f^\prime(x)=1+\epsilon g^\prime(x)\geq 1-\epsilon M>1-1/M\cdot M=0$. Thus $f$ is strictly increasing.
+	\newpage
+	
+	\subsection*{Q7}
+	\begin{enumerate}[(a)]
+		\item (Contrapositive) Consider $g(x)=f(x)-x$. Suppose $f$ has two fixed points $a,b\in\R$, i.e. $g(a)=g(b)=0$. By Rolle's theorem, $\exists x\in(a,b)\ g^\prime(x)=0$, i.e. $f^\prime(x)-1=0\implies f^\prime(x)=1$.
+		
+		\item Consider $g(x)=f(x)-x=\frac{1}{1+e^x}$. Suppose $a\in\R$ is a fixed point of $f$, then $g(a)=\frac{1}{1+e^a}=0$, which is clearly impossible. Thus $f$ does not have any fixed point.
+		
+		\item By HW6.8, if we can show such $f$ is a contraction, then $f$ has a unique fixed point ($\R$ is complete). Let $C=\sup\{\abs{f^\prime(x)}:x\in\R\}<1$. Then for any $x,y\in\R\ \exists c\in(x,y)\ \abs{\frac{f(x)-f(y)}{x-y}}=\abs{f^\prime(c)}\leq C\implies \abs{f(x)-f(y)}\leq C\cdot\abs{x-y}$. Thus $f$ is a contraction, completing the proof.
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q8}
+	\begin{enumerate}[(a)]
+		\item Let $y=x+h$. Then 
+		\begin{displaymath}
+			\lim_{h\rightarrow0}\frac{f(x+h)-f(x)}{h}=\lim_{y-x\rightarrow0}\frac{f(y)-f(x)}{y-x}=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}=f^\prime(x),
+		\end{displaymath}
+		completing the proof.
+		
+		\item From (a), we know
+		\begin{displaymath}
+			\lim_{h\rightarrow0}\frac{f(a+h)-f(a)}{h}=f^\prime(a)\text{ and }\lim_{h\rightarrow0}\frac{f(a-h)-f(a)}{-h}=f^\prime(a).
+		\end{displaymath}
+		Thus 
+		\begin{align*}
+			f^\prime(a)=\frac{2f^\prime(a)}{2}&=\frac{1}{2}\left(\lim_{h\rightarrow0}\frac{f(a+h)-f(a)}{h}+\lim_{h\rightarrow0}\frac{f(a-h)-f(a)}{-h}\right)\\
+			&=\frac{1}{2}\left(\lim_{h\rightarrow0}\frac{f(a+h)-f(a)}{h}-\frac{f(a-h)-f(a)}{h}\right)\\
+			&=\lim_{h\rightarrow0}\frac{f(a+h)-f(a-h)}{2h},
+		\end{align*}
+		as desired.
+	\end{enumerate}
+	\newpage
+	
+	\subsection*{Q9}
+	$\forall x\geq 0\ f(x)\leq g(x)\implies (g^\prime-f^\prime)(x)=(g-f)^\prime(x)\geq 0$. i.e. $(g-f)$ is non-decreasing on $[0,\infty)$. Since $(g-f)(0)=0$, it follows that $(g-f)(x)\geq0$ for all $x\geq 0$, i.e. $f(x)\leq g(x)$ for all $x\geq 0$.
+	\newpage
+	
+	\subsection*{Q10}
+	\begin{enumerate}[(a)]
+		\item Since $e^x\neq0$ for $x\in(0,\infty)$, we can write $f(x)=\frac{f(x)e^x}{e^x}$. Thus
+		\begin{displaymath}
+			\lim_{x\rightarrow\infty}f(x)=\lim_{x\rightarrow\infty}\frac{f^\prime(x)e^x+f(x)e^x}{e^x}=\lim_{x\rightarrow\infty}(f^\prime(x)+f(x))=L.
+		\end{displaymath}
+		Thus second equality comes from L'Hospital's Rule. Then clearly it follows that $\lim_{x\rightarrow\infty}f^\prime(x)=0$.
+		\item Consider $f(x)=\frac{1}{x}\sin(x^2)$. $f(x)\rightarrow0$ while $\lim_{x\rightarrow\infty}f^\prime(x)=\lim_{x\rightarrow\infty}\left(2\cos(x^2)-\frac{\sin(x^2)}{x^2}\right)$ does not exists.
+	\end{enumerate}
+	\newpage
+	
+\end{document}

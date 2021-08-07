@@ -33,53 +33,112 @@
 	\end{align*}
 	If $f(1)=c$, then $g(0)=g(1)=0\implies f(1)=f(0)\text{ and }f(2)=f(1)$, as desired.\smallskip
 	
-	If $f(1)>c$, then $g(1)<0<g(0)\implies \exists x_0\in[0,1]\ f(x_0+1)-f(x_0)=g(x_0)=0$ by intermediate value theorem. Thus we have $|(x_0+1)-x_0|=1$ and $f(x_0+1)=f(x_0)$ as desired.\smallskip
+	If $f(1)>c$, then $g(1)<0<g(0)\implies \exists x_0\in(0,1)\ f(x_0+1)-f(x_0)=g(x_0)=0$ by intermediate value theorem. Thus we have $|(x_0+1)-x_0|=1$ and $f(x_0+1)=f(x_0)$ as desired.\smallskip
 	
-	If $f(1)<c$, then $g(0)<0<g(1)\implies \exists x_0\in[0,1]\ f(x_0+1)-f(x_0)=g(x_0)=0$ by intermediate value theorem. Thus we have $|(x_0+1)-x_0|=1$ and $f(x_0+1)=f(x_0)$ as desired, completing the proof.
+	If $f(1)<c$, then $g(0)<0<g(1)\implies \exists x_0\in(0,1)\ f(x_0+1)-f(x_0)=g(x_0)=0$ by intermediate value theorem. Thus we have $|(x_0+1)-x_0|=1$ and $f(x_0+1)=f(x_0)$ as desired, completing the proof.
 	\newpage
 	
 	\subsection*{Q2}
-	(Contrapositive) Suppose $f$ is unbounded on $(a,b)$, i.e., $\forall M<0\ \exists x\in(a,b)\ \abs{f(x)}>M$. Thus we can construct a sequence $(x_n)\in(a,b)$ such that $\forall n\in\N\ \abs{f(x_n)}>n$. Since $(x_n)$ is bounded in $(a,b)$, it has a convergent subsequence $(x_{n_k})\in(a,b)$, which is also Cauchy sequence. Clearly $\forall k\in\N\ \abs{f(x_{n_k})}>n_k$ which implies $f(x_{n_k})$ is not convergent and hence not Cauchy. Thus $f$ is not uniformly continuous on $(a,b)$.  
+	(Contrapositive) Suppose $f$ is unbounded on $(a,b)$, i.e., $\forall M>0\ \exists x\in(a,b)\ \abs{f(x)}>M$. Thus we can inductively construct a sequence $(x_n)\in(a,b)$ such that $\forall n\in\N\ \abs{f(x_n)}>n$. Since $(x_n)$ is bounded in $(a,b)$, it has a convergent subsequence $(x_{n_k})\in(a,b)$ which is also Cauchy. Clearly $\forall k\in\N\ \abs{f(x_{n_k})}>n_k$ which implies $f(x_{n_k})$ is not convergent and hence not Cauchy. Since $(x_n)$ is Cauchy but $f(x_n)$ is not Cauchy, $f$ is not uniformly continuous on $(a,b)$.  
 	\newpage
 	
 	\subsection*{Q3}
 	\begin{enumerate}[(a)]
 		\item Since $f$ and $g$ are continuous on $\R$, $f-g$ is also continuous on $R$. Let $r\in\R\backslash\Q$. Suppose $f(r)\neq g(r)$, i.e. $(f-g)(r)=c_r\neq 0$. Let $\epsilon=\abs{c_r}$, then for each $\delta>0\ \exists q\in\Q$ such that
 		\begin{align*}
-			r<q<r+\delta\text{ and }\abs{(f-g)(q)-(f-g)(r)} &= \abs{0-\abs{c_r}} \\ &= \abs{c_r}\\ &\geq\epsilon
+			r<q<r+\delta\text{ and }\abs{(f-g)(q)-(f-g)(r)} &= \abs{0-\abs{c_r}} \\ &= \abs{c_r}\\ &=\epsilon
 		\end{align*}
 		implying that $f-g$ is not continuous at $r$ which is a contradiction. Thus $f(r)=g(r)$ for each $r\in\R\backslash\Q$. Since $f(q)=g(q)$ for every $q\in\Q$, we have $f(x)=f(x)$ for every $x\in\R$.
 		
-		\item
+		\item We generalize part (a) to ``For any dense subset $E$ of $X$, if $f(x)=g(x)$ for every $x\in E$, then $f(x)=g(x)$ for all $x\in X$". The proof is the following:\smallskip
+		
+		Note that $f-g$ is continuous on $X$ and hence on $X\backslash E$. For any $x\in E$, the statement is trivially true by the statement itself. Let $x\in E\backslash X$. Suppose $f(x)\neq g(x)$, i.e. $f(x)-g(x)=c_x\neq 0$. Let $\epsilon=\abs{c_x}$. Since $E$ is dense in $X$, for each $\delta>0\ \exists y\in B_\delta(x)\cap E$ such that
+		\begin{displaymath}
+			\abs{(f-g)(y)-(f-g)(x)}=\abs{0-(f-g)(x)}=\abs{(f-g)(x)}=\abs{c_x}=\epsilon.
+		\end{displaymath}
+		Thus $f-g$ is not continuous at $x$ by definition, which is a contradiction. Thus $f(x)=g(x)$ for each $x\in X\backslash E$, completing the proof.  
 	\end{enumerate}
 	\newpage
 	
 	\subsection*{Q4}
-
+	Let $x_0\in\Q$. Then $f(x_0)=\frac{1}{\varphi(x_0)}\neq 0$. Consider a sequence $(x_n)\subseteq\R$ where $\forall n\in\N\ x_n=x_0+\frac{\sqrt{2}}{n}$. Clearly $(x_n)$ converges to $x_0$ but each term of it is irrational, i.e. $\forall n\in\N\ f(x_n)=0$. Thus $f(x_n)$ converges to $0$ which is different from the limit of $(x_n)$. Hence $f$ is discontinuous at $x_0$.\smallskip
+	
+	Let $x_0\in\R\backslash\Q$. Define $\delta_n=\min\{\abs{x_0-\frac{k}{n}}: k\in\Z\}$ for each $n\in\N$. Note that $\delta_n>0$ because $x_0$ is irrational. Consider an arbitrary $\epsilon>0$. By Archimedean Property there exists $N\in\N$ such that $\frac{1}{N}<\epsilon$. Take $\delta=\min\{\delta_k\}_{k=1}^{N}$. Then for each $x\in\R$ such that $\abs{x-x_0}<\delta$, if $x\in\R\backslash\Q$, then $\abs{f(x)-f(x_0)}=\abs{0-0}=0<\epsilon$ trivially; if $x\in\Q$, since $x$ is not the multiple of any $\frac{1}{n}$ where $n\leq N$, $\abs{f(x)-f(x_0)}=\abs{\frac{1}{\varphi(x)}}<\frac{1}{N}<\epsilon$. Thus $f$ is continuous at $x_0$, completing the proof.
 	\newpage
 	
 	\subsection*{Q5}
-	
+	\begin{enumerate}[(a)]
+		\item Let $\epsilon>0$ and $\delta=\frac{\epsilon}{2}$. Suppose two points $(x,y),(u,v)\in(X\times X)$ such that $d^\ast((x,y),(u,v))<\delta$, i.e., $\max\{d(x,u),d(y,v)\}<\delta\implies d(x,u)<\frac{\epsilon}{2}\text{ and }d(y,v)<\frac{\epsilon}{2}$. Then we have
+		\begin{equation}
+			d(u,v)\leq d(u,x)+d(x,y)+d(y,v)<\frac{\epsilon}{2}+d(x,y)+\frac{\epsilon}{2}=d(x,y)+\epsilon
+		\end{equation}
+		and
+		\begin{equation}
+			d(x,y)\leq d(x,u)+d(u,v)+d(v,y)<\frac{\epsilon}{2}+d(x,y)+\frac{\epsilon}{2}=d(u,v)+\epsilon.
+		\end{equation}
+		Both (1) and (2) implies
+		\begin{displaymath}
+			d(u,v)-d(x,y)<\epsilon\quad\text{ and }\quad d(x,y)-d(u,v)<\epsilon.
+		\end{displaymath}
+		i.e.
+		\begin{displaymath}
+			\abs{d(x,y)-d(u,v)}<\epsilon.
+		\end{displaymath}
+		Thus $d$ is uniformly continuous by definition.
+		\item Since $E$ is a compact set, by HW5 1(b) $E\times E$ is a compact set as well. Since $d$ is uniformly continuous on $X\times X$, $d$ is also uniformly continuous on $E\times E$ which is a subset of $X\times X$. When $E\times E$ is compact, $d$ attains its maximum on $E\times E$, i.e. $\exists x,y\in E\ d(x,y)=\sup d(E\times E)=\delta$. 
+	\end{enumerate}
 	\newpage
 	
 	\subsection*{Q6}
-	
+	\begin{enumerate}[(a)]
+		\item First let's prove the hint. Let $x,y\in X$. Thus $\forall a\in A$
+		\begin{align*}
+			d(x,A) &= \inf\{d(x,a): a\in A\}\\
+				   &\leq d(x,a)\\
+				   &\leq d(x,y)+d(y,a),
+		\end{align*} 
+		where the last inequality comes from the triangular inequality of $d$. Thus we have $\forall a\in A\ d(y,a)\geq d(x,A)-d(x,y)$. Since $d(x,A)-d(x,y)$ is a lower bound of $\{d(x,a): a\in A\}$, $d(y,A)\geq d(x,A)-d(x,y)$, i.e., $d(x,A)-d(y,A)\leq d(x,y)$. Now let $\epsilon>0$ and let $\delta=\epsilon$, then $d(x,y)<\delta\implies \abs{f(x)-f(y)}=\abs{d(x,A)-d(y,A)}\leq d(x,y)<\epsilon$ which implies $f$ is uniformly continuous on $X$.
+		
+		\item From (a), $f$ is continuous on $X$, and hence $f$ is continuous on $E\subseteq X$. Since $E$ is compact, $f$ achieves its minimum on $E$. i.e. $\exists x_0\in E\ f(x_0)=\min\{f(x): x\in E\}=\inf\{d(x,A):x\in E\}$, as desired.\smallskip
+		
+		If $A=\{a\}$, then $\exists x_0\in E\ f(x_0)=\inf\{d(x,A):x\in E\}=\inf\{\inf\{d(x,y):y\in A\}: x\in E\}=\inf\{\inf\{d(x,a)\}: x\in E\}=\inf\{d(x,a): x\in E\}$, i.e. $x_0$ is the closet element in $E$ to $a$.
+		
+		\item First notice that since $d(x,a)\geq0$ for each $x\in E$ and $a\in A$, $\inf\{d(x,a): x\in E, a\in A\}\geq 0$. By part (b), since $E$ is a nonempty compact subset of $X$, there exists $x_0\in E$ such that $f(x_0)=\inf\{d(x,A): x\in E\}=\inf\{d(x,a): x\in E, a\in A\}$. Note that $f(x_0)\geq 0$. Suppose $f(x_0)=0$, then $\forall \epsilon>0\ \exists a_\epsilon\in A\ d(x_0,a_\epsilon)<\epsilon$. Since $E\cap A=\emptyset$, $a_\epsilon\neq x_0$. Thus we have $\forall\epsilon>0\ (B_\epsilon(x_0)\backslash\{x_0\})\cap A\neq\emptyset$, i.e. $x_0$ is a limit point of $A$. Since $A$ is closed, $x_0$ is in $A$, and hence $x_0\in E\cap A\implies E\cap A\neq\emptyset$ which is a contradiction. Thus $f(x_0)\neq 0$, i.e. $\inf\{d(x,a): x\in E, a\in A\}=f(x_0)>0$.
+		
+		\item Consider $(\R^2, \text{Euclidean Metric})$. Let $E=\{(x,y): x>0, y\geq\frac{1}{x}\}$ and $A=\{(x,y): x>0, y\leq-\frac{1}{x}\}$. Clearly $E$ and $A$ are both closed but not bounded, and $\inf\{d(x,a):x\in E, a\in A\}=0$ because as $x\rightarrow\infty$ the boundary lines of two sets approaches to x-axis infinitely but never actually reach to x-axis.
+	\end{enumerate}
 	\newpage
 	
 	\subsection*{Q7}
-
+	Consider an arbitrary open set $U$ in $Y$. By the well-known property of discrete metric space, any subset of $X$ is open. Let $f$ be an arbitrary function $f:X\rightarrow Y$. Since $f^{-1}(U)$ is in $X$, $f^{-1}(U)$ is open and hence $f$ is continuous.
 	\newpage
 	
 	\subsection*{Q8}
-
+	Let $x_0$ be an arbitrary fixed point in $X$. Define a sequence $(x_n)=(f(x_0),f(f(x_0)),\dots)$ such that for each $n\in\N\ x_n=f^n(x_0)$. If $d(f(x_0),x_0)=0$, then $f(x_0)=x_0$, and hence $x_0$ is a fixed point. Otherwise, since $c<1$, $\sum c^n$ converges, and hence for each $\epsilon>0\ \exists N\in\N\ m\geq n\geq N\implies\abs{\sum_{k=n}^{m-1}c^k}<\frac{\epsilon}{d(f(x_0),x_0)}$ by Cauchy criterion. Observe that
+	\begin{align*}
+		d(x_m,x_n)=d(f^m(x_0),f^n(x_0))&\leq d(f^m(x_0),f^{m-1}(x_0))+\cdots+d(f^{n+1}(x_0),f^n(x_0))\\
+									   &\leq c^{m-1}d(f(x_0),x_0)+\cdots+c^nd(f(x_0),x_0)\\
+									   &= \left(\sum_{k=n}^{m-1}c^k\right)d(f(x_0),x_0)\\
+									   &< \frac{\epsilon}{d(f(x_0),x_0)}\cdot d(f(x_0),x_0)\\
+									   &= \epsilon.
+	\end{align*}
+	Thus $(x_n)$ is Cauchy, and by completeness of $X$, $(x_n)$ converges to $x^\prime\in X$. Since $f$ is continuous on $X$, $f(x_n)$ converges to $f(x^\prime)$. Note that $f(x_n)$ is actually equivalent to $(x_{n+1})$, so $(x_{n+1})$ converges to the same limit of $(x_n)$. i.e. $f(x_n)\rightarrow x^\prime$. By the uniqueness of limit, $f(x^\prime)=x^\prime$, i.e. $x^\prime$ is a fixed point of $f$.\smallskip
+	
+	To prove the uniqueness of fixed point, suppose there are two distinct fixed points of $f$ which are $f(x_0)=x_0$ and $f(y_0)=y_0$. Notice that
+	\begin{displaymath}
+		d(x_0,y_0)=d(f(x_0),f(y_0))\leq c\cdot d(x_0,y_0)<d(x_0,y_0)
+	\end{displaymath}
+	when $c<1$, which is a contradiction. Thus, $f$ has a unique fixed point.
 	\newpage
 	
 	\subsection*{Q9}
+	By the definition of $Z(f)$, $Z(f)$ is a subset of $X$ trivially.\smallskip
 	
+	Let $x_0\in(Z(f))^\prime$. Since $x_0$ is a limit point of $Z(f)$, there exists a sequence $(x_n)$ of points in $Z(f)\backslash\{x_0\}$ such that $(x_n)$ converges to $x_0$. Since $f$ is continuous on $X$, $f(x_n)$ converges to $f(x_0)$. Because each term of $(x_n)$ is in $Z(f)$, $f(x_n)=0$ for each $n\in\N$, and hence $f(x_n)$ converges to $0$. Since the limit of a sequence is unique, $f(x_0)=0\implies x_0\in Z(f)\implies (Z(f))^\prime\subseteq Z(f)\implies Z(f)$ is closed, as desired.    
 	\newpage
 	
 	\subsection*{Q10}
-	
+	(Contradiction) Suppose $f$ is non-monotonic, i.e. WLOG $\exists x,y,z\in\R\text{ with } x<y<z\text{ such that } f(x)<f(y)\text{ and }f(y)>f(z)$. Since $[x,z]$ is closed and bounded in $\R$, $[x,z]$ is compact. We know $f$ is continuous on $[x,z]$, so $\exists a\in[x,z]$ such that $f(a)=\max f([x,z])$. Because $f(x)<f(y)$ and $f(y)>f(z)$, $a\neq x$ and $a\neq z$, and hence $a\in(x,z)$ which is open. By the assumption in the question, $f((x,z))$ is open in $\R$, and $f(a)=\max f((a,z))$. However, an open set $f((x,z))$ cannot have a maximum because if $f(a)$ actually exists, then at $f(a)$, for each $\epsilon>0$ there exists a number $c$ such that $f(a)<c<f(a)+\epsilon$, which means $f(a)$ is not an interior point of $f((x,z))$. Thus $f((x,z))$ is not open, which is a contradiction, completing the proof. 
 	\newpage
 	
 \end{document}
