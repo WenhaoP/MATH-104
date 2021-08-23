@@ -24,9 +24,13 @@
 \contentsline {section}{\numberline {4.1}Power Series}{72}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Uniform Convergence}{74}{section.4.2}%
 \contentsline {section}{\numberline {4.3}More on Uniform Convergence}{76}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Differentiation and Integration of Power Series}{81}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Differentiation}{83}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Basic Properties of the Derivative}{84}{section.5.1}%
-\contentsline {section}{\numberline {5.2}The Mean Value Theorem}{87}{section.5.2}%
-\contentsline {section}{\numberline {5.3}L'Hospital's Rule}{89}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Useful Tricks}{91}{chapter.6}%
+\contentsline {chapter}{\numberline {5}Differentiation}{81}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Basic Properties of the Derivative}{82}{section.5.1}%
+\contentsline {section}{\numberline {5.2}The Mean Value Theorem}{85}{section.5.2}%
+\contentsline {section}{\numberline {5.3}L'Hospital's Rule}{87}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Taylor's Theorem}{88}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Integration}{91}{chapter.6}%
+\contentsline {section}{\numberline {6.1}The Riemann Integral}{92}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Properties of the Riemann Integral}{95}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Fundamental Theorem of Calculus}{97}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Useful Tricks}{99}{chapter.7}%

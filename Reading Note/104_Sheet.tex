@@ -31,6 +31,9 @@
 \tcolorboxenvironment{thm}{
 	colframe=cyan, colback=cyan!5, before skip=10pt,after skip=10pt}
 
+\tcolorboxenvironment{nte}{
+	colframe=orange, colback=orange!5, before skip=10pt,after skip=10pt}
+
 \tcolorboxenvironment{dfn}{
 	colframe=orange, colback=orange!5, before skip=10pt,after skip=10pt}
 
@@ -51,6 +54,7 @@
 \newcommand{\dom}{\text{dom}\,}
 \newcommand{\com}{\mathsf{C}}
 \newcommand{\lline}{\noindent\rule{\textwidth}{1pt}}
+\DeclareMathOperator{\mesh}{mesh}
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
@@ -335,10 +339,16 @@
 				\item If $s_n\leq b$ for all but finitely many $n$, then $\lim s_n\leq b$.
 		\end{itemize}}
 	\end{thm}
+	\begin{rem}
+		Notice that $s_n$ need to converge so that the theorem can work.
+	\end{rem}
 	
 	\begin{thm}[Squeeze Lemma]\label{lem: squeeze}
 		\textcolor{red}{If $a_n\leq s_n\leq b_n$ for all $n$ and $\lim a_n=\lim b_n=s$, then $\lim s_n=s$.}
 	\end{thm}
+	\begin{rem}
+		Notice that $a_n$ and $b_n$ need to converge so that the theorem can work.
+	\end{rem}
 	
 	\newpage
 	
@@ -513,7 +523,7 @@
 		All bounded monotone sequences converge.
 	\end{thm}
 	\begin{rem}
-		From the proof procedure above, we can see that bounded monotone sequences \textbf{converge to its infimum or supremum}.
+		From the proof procedure above, we can see that bounded monotone sequences \textbf{converge to its infimum or supremum} of the set of all possible values.
 	\end{rem}
 	
 	\begin{thm}\label{def:unbounded monotone seq}
@@ -682,7 +692,7 @@
 	\begin{rem}
 		The positive definiteness can be also expressed as $\forall x,y\in X\ d(x,y)\geq 0$ and $d(x,y)=0\iff x=y$. The distance function cannot be $+\infty$.
 	\end{rem}
-	\begin{eg}
+	\begin{eg}[Discrete Metric Space]
 		Discrete metric space is defined as
 		\begin{displaymath}
 			\text{For any set $X$ with metric or distance function as}\begin{cases}
@@ -691,12 +701,22 @@
 		\end{displaymath}
 		Notice that all sets in discrete metric space are both open and closed.
 	\end{eg}
+	\begin{rem}
+		\begin{itemize}
+			\item Discrete metric space is complete but not compact.
+			\item Any set in discrete metric space is open because for each element there is an open ball only contains itself, so the open ball is just the element and hence trivially contained in the set.
+			\item Any set in discrete metric space is closed because it does not have any limit point. Then the set of limit points is empty and trivially contained in the set.
+		\end{itemize}
+	\end{rem}
 	
 	\begin{dfn}[Convergence]
-		A sequence $(x_n)$ in a metric space $(X,d)$ converges to $x$ in $X$ if $\lim_{n\rightarrow\infty}d(s_n,s)=0$.
+		A sequence $(x_n)$ in a metric space $(X,d)$ converges to $x$ in $X$ if $\lim_{n\rightarrow\infty}d(x_n,x)=0$.
 	\end{dfn}
 	\begin{rem}
-		In other words, a sequence $(x_n)$ converges to $x$ if for any $\epsilon>0$, there exists $N\in\N$ such that $n\geq N\implies d(x_n,x)<\epsilon$.
+		\begin{itemize}
+			\item In other words, a sequence $(x_n)$ converges to $x$ if for any $\epsilon>0$, there exists $N\in\N$ such that $n\geq N\implies d(x_n,x)<\epsilon$.
+			\item Convergent sequence is Cauchy.
+		\end{itemize}
 	\end{rem}
 	
 	\begin{dfn}[Cauchy]
@@ -707,10 +727,13 @@
 	\end{dfn}
 	
 	\begin{dfn}[Complete]
-		A metric space $(X,d)$ is \emph{complete} if every Cauchy sequence in $X$ converges.
+		A metric space $(X,d)$ is \emph{complete} if every Cauchy sequence in $X$ converges to a point in $X$.
 	\end{dfn}
 	\begin{rem}
-		Every convergent sequence $(x_n)$ in $X$ is Cauchy.
+		\begin{itemize}
+			\item Every convergent sequence $(x_n)$ in $X$ is Cauchy.
+			\item $\Q$ is not complete. 
+		\end{itemize}
 	\end{rem}
 	
 	\begin{dfn}[Open Ball]
@@ -751,16 +774,13 @@
 			\item[]
 			\item $(a,b),(a,\infty),(-\infty,a)$ are open sets.
 			\item In $\R$, $\Q$ is \emph{not} open since $B_r(q)$ may contain irrational numbers in $\R$ so $B_r(q)\nsubseteq\Q$.
-			\item In any metric space $(X,d)$, $X$ and $\Q$ are open trivially.
+			\item In any metric space $(X,d)$, $X$ and $\emptyset$ are open trivially.
 		\end{itemize}
 	\end{eg}
 	
 	\begin{thm}[Open ball is open]
 		Let $(X,d)$ be a metric space. Given $x\in X$ and $r>0$, $B_r(x)$ is an open set in $X$.
 	\end{thm}
-	\begin{proof}
-		Consider arbitrary $y\in B_r(x)$ and let $s=r-d(x,y)$. It is easy to show that $B_x(y)\subseteq B_r(x)$. Thus $y$ is an interior point of $B_r(x)$. Since $y$ is arbitrary, by the definition $B_r(x)$ is open.
-	\end{proof}
 	
 	\begin{thm}[Union and intersection of open sets]\label{thm: Union and intersection of open sets}
 		Let $(X,d)$ be a metric space.
@@ -769,15 +789,8 @@
 			\item If $\{\mathcal{U}_1,\dots,\mathcal{U}_n\}$ is a finite collection of open sets in $X$, then $\bigcap_{i=1}^{n}\mathcal{U}_i$ is open.
 		\end{enumerate}
 	\end{thm}
-	\begin{proof}
-		\begin{enumerate}[(i)]
-			\item[]
-			\item Consider $x\in\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$, then $\exists \beta\in\mathcal{A}$ such that $x\in\mathcal{U}_\beta$. Since $\mathcal{U}_\beta$ is open, $\exists r>0$ such that $B_r(x)\subseteq\mathcal{U}_\beta\subseteq\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$. Thus $x$ is interior to $\bigcup_{\alpha\in \mathcal{A}}\mathcal{U}_\alpha$, completing the proof.
-			\item Consider $x\in\bigcap_{i=1}^{n}\mathcal{U}_i$. Since $x\in\mathcal{U}_i$ for $i=1,\dots,n$, $\exists r_i>0$ such that $B_{r_i}(x)\subseteq\mathcal{U}_i$. Take $r=\min\{r_1,\dots,r_n\}$, then clearly $B_r(x)\subseteq\bigcap_{i=1}^{n}\mathcal{U}_i$.
-		\end{enumerate}
-	\end{proof}
 	\begin{rem}
-		The examples for infinite collection in (ii) is $\bigcap_{n=1}^{\infty}(1-\frac{1}{n}, 1+\frac{1}{n})=\{1\}$. Since $1$ is not an interior point of $\{1\}$, $\{1\}$ is not open.
+		The examples for infinite collection in (ii) is $\bigcap_{n=1}^{\infty}(1-\frac{1}{n}, 1+\frac{1}{n})=\{1\}$ in $\R$. Since any open ball of $1$ in $\R$ will contain points other than $1$, $1$ is not an interior point of $\{1\}$ in $\R$.  
 	\end{rem}
 	
 	\begin{dfn}[Complement]
@@ -809,9 +822,6 @@
 	\begin{thm}
 		A point $x$ is a limit point of a set $E\subseteq X$ if and only if $x=\lim x_n$ for some sequence $x_n$ of points in $E\backslash\{x\}$. 
 	\end{thm}
-	\begin{proof}
-		See homework 3.7.
-	\end{proof}
 	
 	\begin{dfn}[Isolated Point]
 		For a set $E\subseteq X$, $x\in E$ is called an \emph{isolated point} if $x$ is not a limit point of $E$
@@ -823,7 +833,7 @@
 		\begin{itemize}
 			\item[]
 			\item In $\R$, every integer is an isolated point of $\mathbb{Z}$.
-			\item In $\R$, the set $Q$ has no isolated point.
+			\item In $\R$, the set $\Q$ has no isolated point.
 			\item In $\R$, every element of $\{\frac{1}{n}: n\in\N\}$ is an isolated point. 
 		\end{itemize}
 	\end{eg}
@@ -859,11 +869,6 @@
 	\begin{thm}[The set of limit points is closed]
 		Let $(X,d)$ be a metric space. Let $E\subseteq X$, then $E^\prime$, (the set of limit points of $E$), is closed.
 	\end{thm}
-	\begin{proof}
-		We need to show for any limit point $x$ of $E^\prime$, $x$ is in $E^\prime$. Since $x$ is a limit point of $E^\prime$, $\forall r>0$, $(B_r(x)\backslash\{x\})\cap E^\prime\neq\emptyset$. i.e. there exists $y\in E^\prime$ such that $y\neq x$ and $y\in B_r(x)$. Take $s=\min\{r-d(x,y), d(x,y)\}$. Since $y\in E^\prime$, $(B_s(y)\backslash\{y\})\cap E\neq\emptyset$. i.e. $\exists z\in(B_s(y)\backslash\{y\})\cap E\neq\emptyset$.\smallskip
-		
-		Now since $s<r-d(x,y)$, $d(x,z)\leq d(x,y)+d(y,z)<d(x,y)+(r-d(x,y))=r\implies z\in B_r(x)$. Also since $s<d(x,y)$, $z\neq x$. Thus $z\in(B_r(x)\backslash\{x\})\cap E\implies (B_r(x)\backslash\{x\})\cap E\neq\emptyset$, which implies $x$ is a limit point of $E$. i.e. $x\in E^\prime$, completing the proof. 
-	\end{proof}
 	
 	\begin{thm}[Union and intersection of closed sets]
 		\begin{enumerate}[(i)]
@@ -872,13 +877,6 @@
 			\item If $\{\mathcal{E}_1,\dots,\mathcal{E}_n\}$ is a finite collection of closed sets in $X$, then $\bigcup_{i=1}^{n}\mathcal{E}_i$ is closed.
 		\end{enumerate}
 	\end{thm}
-	\begin{proof}
-		\begin{enumerate}[(i)]
-			\item[]
-			\item Observe that $\left(\bigcap_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha\right)^\com=\bigcup_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha^\com$. Since $\mathcal{E}_\alpha$ is closed, $\mathcal{E}_\alpha^\com$ is open. By \ref{thm: Union and intersection of open sets}, the union of open sets $\bigcup_{\alpha\in\mathcal{A}}\mathcal{E}_\alpha^\com$ is open, completing the proof.
-			\item Observe that $\left(\bigcup_{i=1}^{n}\mathcal{E}_i\right)^\com=\bigcap_{i=1}^{n}\mathcal{E}_i^\com$. Since $\mathcal{E}_i$ is closed, $\mathcal{E}_i^\com$ is open. By \ref{thm: Union and intersection of open sets}, the intersection of finite open sets $\bigcap_{i=1}^{n}\mathcal{E}_i^\com$ is open, completing the proof.
-		\end{enumerate}
-	\end{proof}
 	\begin{rem}
 		$\bigcup_{x\in(0,1)}\{x\}=(0,1)$ is an example to the union of infinite closed sets is open in (ii).
 	\end{rem}
@@ -888,30 +886,6 @@
 	\setcounter{equation}{0}
 	\begin{tcolorbox}[title=\textbf{DeMorgan's Laws for sets}]
 		Suppose a metric space $(X,d)$ and let $\forall\alpha\in\mathcal{A}\ U_\alpha\in X$. Then $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}=\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$.
-		\tcblower
-		\begin{proof}
-			We want to show both directions.
-			\begin{itemize}
-				\item[$\subseteq$:] Consider $u\in\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}$, then we have
-				\begin{align}
-					\forall\alpha\in\mathcal{A}\ u\in\mathcal{U}_{\alpha}^{\com}&\implies\forall\alpha\in\mathcal{A}\ u\notin\mathcal{U}_{\alpha}\\
-					&\implies u\notin \bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\\
-					&\implies u\in\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com.
-				\end{align}
-				(1) $\implies$ (2) because
-				\begin{displaymath}
-					\left(\neg\left(u\in\mathcal{U}_1\right)\right)\land\left(\neg\left(u\in\mathcal{U}_2\right)\right)\land\cdots=\neg\left((u\in\mathcal{U}_1\lor(u\in\mathcal{U}_2)\lor\cdots\right)=\neg\left(u\in\bigcup\mathcal{U}_i\right)
-				\end{displaymath} 
-				Thus $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}\subseteq\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$.
-				\item[$\supseteq$:] Consider $u\in\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$, then we have
-				\begin{align*}
-					u\notin\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha &\implies\forall\alpha\in\mathcal{A}\ u\notin\mathcal{U}_\alpha\\
-					&\implies\forall\alpha\in\mathcal{A}\ u\in\mathcal{U}_{\alpha}^{\com}\\
-					&\implies u\in\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}
-				\end{align*}
-				Thus $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}\supseteq\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$, and hence $\bigcap_{\alpha\in\mathcal{A}}\mathcal{U}_{\alpha}^{\com}=\left(\bigcup_{\alpha\in\mathcal{A}}\mathcal{U}_\alpha\right)^\com$.
-			\end{itemize}
-		\end{proof}
 	\end{tcolorbox}\medskip
 	
 	\begin{dfn}[Bounded Set]
@@ -923,7 +897,7 @@
 			\item In $\R^k$, $X\subseteq\R^k$ is bounded if there exists $M>0$ such that $\forall\mathbf{x}\in X\ d(\mathbf{x},\mathbf{0})=\sqrt{x_1^2+\cdots+x_k^2}\leq M$.
 			\item Finite union of bounded sets is bounded.
 			\item Intersection of bounded sets is bounded.
-			\item Contained in some open ball.
+			\item A set is bounded if it is contained in some open ball.
 		\end{itemize}
 	\end{rem}
 	
@@ -975,70 +949,16 @@
 			\item A sequence $(\mathbf{x}^{(n)})$ in $\mathbb{R}^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$ is a Cauchy sequence in $\mathbb{R}$.
 		\end{itemize}	
 	\end{lem}
-	\begin{proof}
-		First observe for $\textbf{x,y}\in\mathbb{R}^k$ and $j=1,\dots,k$
-		\begin{align}
-			|x_j-y_j|=\sqrt{(x_j-y_j)^2}\leq\sqrt{(x_1-y_1)^2+\cdots+(x_k-y_k)^2}&=d(\textbf{x,y})\notag\\
-			&\leq \sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}
-		\end{align}
-		First assertion: 
-		\begin{itemize}
-			\item[$\implies$:] Given that $(\textbf{x}^{(n)})$ converges to $\mathbf{x}$. For each $epsilon>0$ there exists $N\in\N$ such that $n\geq N\implies d(\textbf{x}^{(n)},\mathbf{x})<\epsilon$. Then by (1) for $j=1,\dots,k$
-			\begin{displaymath}
-				n\geq N\implies |x_j^{(n)}-x_j|\leq d(\textbf{x}^{(n)},\mathbf{x})<\epsilon,
-			\end{displaymath}
-			so $x_j^{(n)}\rightarrow x_j$.
-			\item[$\impliedby$:] For $j=1,\dots,k$, $\forall \epsilon>0$, there exists $N_j\in\N$ such that 
-			\begin{displaymath}
-				n\geq N_j\implies |x_j^{(n)}-x_j|<\frac{\epsilon}{\sqrt{k}}.
-			\end{displaymath}
-			Take $N=\max\{N_1,\dots,N_k\}$, then by (1) we have
-			\begin{displaymath}
-				n\geq N\implies d(\textbf{x}^{(n)},\mathbf{x})\leq\sqrt{k}\max\{|x_j-y_j|: j=1,\dots,k\}<\sqrt{k}\cdot\frac{\epsilon}{\sqrt{k}}=\epsilon.
-			\end{displaymath}
-			Thus $(\textbf{x}^{(n)})\rightarrow\mathbf{x}$
-		\end{itemize}
-		Second assertion:	
-		\begin{itemize}
-			\item[$\Rightarrow$]: Suppose $(\textbf{x}^{(n)})$ is a Cauchy sequence, from the definition we know
-			\begin{displaymath}
-				m,n>N\Rightarrow d(\textbf{x}^{(m)},\textbf{x}^{(n)})<\epsilon
-			\end{displaymath}
-			From (1) we see
-			\begin{displaymath}
-				m,n>N\Rightarrow|x_j^{(m)}-x_j^{(n)}|<\epsilon
-			\end{displaymath}
-			so $(x_j^{(n)})$ is a Cauchy sequence.
-			\item[$\Leftarrow$]: Suppose $(x_j^{(n)})$ is a Cauchy sequence, then for $j=1,\dots,k$
-			\begin{displaymath}
-				m,n>N_j\Rightarrow|x_j^{(m)}-x_j^{(n)}|<\frac{\epsilon}{\sqrt{k}}.
-			\end{displaymath}
-			If $N=\max\{N_1,N_2,\dots,N_k\}$, then by (1)
-			\begin{displaymath}
-				m,n>N\Rightarrow d(\textbf{x}^{(m)},\textbf{y}^{(n)})<\epsilon
-			\end{displaymath}
-			i.e. $(\textbf{x}^{(n)})$ is a Cauchy sequence.
-		\end{itemize}
-	\end{proof}
 	
 	\begin{thm}
 		Euclidean k-space $\mathbb{R}^k$ is complete.
 	\end{thm}
-	\begin{proof}
-		Consider a Cauchy sequence $(\textbf{x}^{(n)})$ in $\mathbb{R}^k$. By \ref{def:sequence in R^k}, each $(x_j^{(n)})$ is a Cauchy sequence. By \ref{def:cauchy iff convergent} each $(x_j^{(n)})$ converges. Thus by \ref{def:sequence in R^k} $(\textbf{x}^{(n)})$ converges.
-	\end{proof}
 	
 	\begin{thm}[Bolzano-Weierstrass in $\R^k$]
 		Every bounded sequence in $\mathbb{R}^k$ has a convergent subsequence.
 	\end{thm}
-	\begin{proof}
-		Since $(\textbf{x}^{(n)})$ is bounded, then each $(x_j^{(n)})$ is bounded in $\mathbb{R}$. By \ref{def:B-W}, we
-		could replace $(\textbf{x}^{(n)})$ by one of its subsequence, say $(\bar{\mathbf{x}}^{(n)})$, whose $(x_1^{(n)})$
-		converges. By \ref{def:B-W} again, we may replace $(\textbf{x}^{(n)})$ by a subsequence of $(\textbf{x}^{(n)})$ such
-		that both $(x_1^{(n)})$ and $(x_2^{(n)})$ converge. $(x_1^{(n)})$ still converges because \ref{def:subsequence converges to the same limit}. Repeating this argument by $k$ times, we obtain a new sequence $(\textbf{x}^{(n)})$ where each $(x_j^{(n)})$ converges, $j=1,\dots,k$, which is a subsequence of the original sequence, and it converges by \ref{def:sequence in R^k}. 
-	\end{proof}
 	\begin{rem}
-		In any general metric space $(X,d)$, it is not true that any bounded sequence has a convergent subsequence. E.g. $(\Q,d)$ and infinite discrete metric space
+		In any general metric space $(X,d)$, it is not true that any bounded sequence has a convergent subsequence. E.g. $(\Q,d)$ and infinite discrete metric space.
 	\end{rem}
 	
 	\begin{thm}
@@ -1079,11 +999,6 @@
 	\begin{thm}
 		Compact sets are closed in any metric space.
 	\end{thm}
-	\begin{proof}
-		Let $E\subseteq X$ be compact. To show $E$ is closed, we can show $E^\com$ is open. Consider $x\in E^\com$. For each $y\in E$, let $r_y:=\frac{1}{2}d(x,y)$. Clearly $\{B_{r_y}(y)\}_{y\in E}$ is an open cover of $E$ because each point in $E$ is a center of an open ball. By the assumption, $E$ is compact, so there is a finite subcover $\{B_{r_{y_1}}(y_1),\dots,B_{r_{y_n}}(y_n)\}$ such that $E\subseteq\bigcup_{i=1}^{n}B_{r_{y_i}}(y_i)$. 
-		
-		Now take $r=\min\{r_{y_1},\dots,r_{y_n}\}$, and hence $B_r(x)\cap(\bigcup_{i=1}^{n}B_{r_{y_i}}(y_i))=\emptyset$. Since $E\subseteq\bigcup_{i=1}^{n}B_{r_{y_i}}(y_i)$, $B_r(x)\cap E=\emptyset\implies B_r(x)\subseteq E^\com$. Thus $x$ is an interior point of $E^\com$, completing the proof.
-	\end{proof}
 	\begin{rem}
 		Non-closed sets are not compact in any metric space. Notice open set does not mean non-closed.
 	\end{rem}
@@ -1091,15 +1006,10 @@
 	\begin{thm}
 		Closed subsets of compact sets are compact.
 	\end{thm}
-	\begin{proof}
-		See worksheet 7.
-	\end{proof}
 	\begin{cor}
 		If $\{K_\alpha\}_{\alpha\in A}$ is a collection of compact sets, then $\bigcap_{\alpha\in\mathcal{A}}K_\alpha$ is compact.
 	\end{cor}
-	\begin{proof}
-		Since compact sets are closed, $\bigcap_{\alpha\in\mathcal{A}}K_\alpha$ is the intersection of closed sets, which is also closed. Since $\bigcap_{\alpha\in\mathcal{A}}K_\alpha$ is a subset of compact sets $U_\alpha$, it is compact.
-	\end{proof}
+
 	\begin{rem}
 		Finite union of compact sets in $X$ is compact.
 	\end{rem}
@@ -1107,13 +1017,13 @@
 	\begin{thm}
 		Every sequence in a compact set has a convergent subsequence.
 	\end{thm}
-	\begin{proof}
-		See worksheet 7.
-	\end{proof}
 	
 	\begin{thm}[Compact Set]
 		A set $E\subseteq X$ is compact if and only if every sequence in $E$ has a convergent subsequence converging to a point in $E$.
 	\end{thm}
+	\begin{rem}
+		By this definition, $\Q$ and infinite discrete metric space are not compact. In $\Q$, there exists a sequence converging to an irrational number, then all of its subsequences converging to irrational number which is not in $\Q$. In infinite discrete metric space, make a sequence with all distinct terms, then all of its subsequences have distinct terms. Thus all subsequences are not Cauchy and hence not convergent.
+	\end{rem}
 	
 	\begin{thm}[Nested Compact Sets Property]
 		Let $(F_n)$ be a sequence of closed, bounded, nonempty sets in $\R^k$ such that $F_1\supseteq F_2\supseteq\cdots$, then $F=\bigcap_{n=1}^{\infty}F_n\neq\emptyset$ and $F$ is closed and bounded.
@@ -1130,16 +1040,10 @@
 	\begin{thm}
 		Every k-cell $F$ in $\mathbb{R}^k$ is compact.
 	\end{thm}
-	\begin{proof}
-		TODO
-	\end{proof}
 	
 	\begin{thm}
 		A subset $E$ of $\mathbb{R}^k$ is compact if and only if it is closed and bounded.
 	\end{thm}
-	\begin{proof}
-		TODO
-	\end{proof}
 	\begin{rem}
 		The forward direction is true in any metric space.
 	\end{rem}
@@ -1172,7 +1076,7 @@
 			\item Every point in $\mathcal{C}$ is a limit point of $\mathcal{C}$.
 			\item Every point in $\mathcal{C}$ is a limit point of $\mathcal{C}^\com$.
 		\end{itemize}
-	\end{thm}
+	\end{thm}	
 	\newpage
 	
 	\section{Series}
@@ -1332,10 +1236,6 @@
 			\end{displaymath}
 		\end{cor}
 		
-		\begin{thm}
-			Let $f$ be a real-valued function with $\dom(f)\subseteq\R$. $f$ is continuous at $x_0$ if and only if for every monotonic sequence $(x_n)$ in $\dom(f)$ converging to $x_0$, we have $\lim f(x_n)=f(x_0)$.
-		\end{thm}
-		
 		\begin{thm}\label{def:17.3}
 			If $f$ is continuous at $x_0$ in $\dom(f)$, then $|f|$ and $kf$, for $k\in\R$, are continuous at $x_0$.
 		\end{thm}
@@ -1380,7 +1280,7 @@
 		\end{thm}
 		
 		\begin{thm}[Intermediate Value Theorem]\label{thm:18.2}
-			If $f$ is a continuous real-valued function on an interval $I$, then $f$ has the intermediate value property on I: Whenever $a,b\in I$, if $a<b$ and $y$ lies between $f(a)$ and $f(b)$ [i.e. $f(a)<y<f(b)$ or $f(b)<y<f(a)$], then there exists at least one $x$ in
+			If $f$ is a continuous real-valued function on a closed interval $I$, then $f$ has the intermediate value property on I: Whenever $a,b\in I$, if $a<b$ and $y$ lies between $f(a)$ and $f(b)$ [i.e. $f(a)<y<f(b)$ or $f(b)<y<f(a)$], then there exists at least one $x$ in
 			$(a,b)$ such that $f(x)=y$.
 		\end{thm}
 		\begin{cor}[Fixed Point Theorem]
@@ -1422,6 +1322,10 @@
 			We will say $f$ is uniformly continuous if $f$ is uniformly continuous on $\dom f$.
 		\end{dfn}
 		
+		\begin{thm}
+			If a real-valued function $f$ is uniformly continuous on an open interval $(a,b)$, then $f$ is \emph{bounded} on $(a,b)$.
+		\end{thm}
+		
 		\begin{thm}\label{def:19.2}
 			If $f$ is continuous on a closed interval $[a,b]$, then $f$ is uniformly continuous on $[a,b]$.
 		\end{thm}
@@ -1436,9 +1340,9 @@
 		\begin{cor}
 			If $f$ is uniformly continuous on $(a,b)$, then $f$ is a bounded function on $(a,b)$. i.e. If $f$ is an unbounded function on $(a,b)$, then $f$ is not uniformly continuous on $(a,b)$.
 		\end{cor}
-	
+		
 		\setcounter{equation}{0}
-		\begin{thm}\label{def:19.5}
+		\begin{thm}[Continuous Extension Theorem]\label{def:19.5}
 			A real-valued function $f$ on $(a,b)$ is uniformly continuous on $(a,b)$ if and only if it can be extended to
 			a continuous function $\tilde{f}$ on $[a,b]$.
 		\end{thm}
@@ -1449,7 +1353,837 @@
 			$I^\circ$ and if $f^\prime$ is bounded on $I^\circ$, then $f$ is uniformly continuous on $I$.
 		\end{thm}
 		\newpage
+		
+		\section{Continuity in Metric Space}
+		\begin{dfn}[Image and Preimage]
+			Let $X$ and $Y$ be two sets. Let a function $f: X\rightarrow Y$. Let $E\subseteq X$ and $U\subseteq Y$. We define the \emph{image of $E$ under $f$} as
+			\begin{displaymath}
+				f(E)=\{f(x): x\in E\};
+			\end{displaymath}
+			define the \emph{preimage of $A$ under $f$} as
+			\begin{displaymath}
+				f^{-1}(A)=\{x\in X: f(x)\in A\}.
+			\end{displaymath}
+		\end{dfn}
+		
+		\begin{thm}
+			Let $X$ and $Y$ be two sets, and let $f: X\rightarrow Y$, let $E\subseteq X$, and let $A,B\subseteq Y$. Thenthe following assertions are true:
+			\begin{enumerate}[(a)]
+				\item $f^{-1}(A\cap B)=f^{-1}(A)\cap f^{-1}(B)$.
+				\item $f^{-1}(A\cup B)=f^{-1}(A)\cup f^{-1}(B)$.
+				\item $f^{-1}(A^\com)=(f^{-1}(A))^\com$.
+				\item $f^{-1}(A)\subseteq f^{-1}B$ if $A\subseteq B$.
+				\item $E\subseteq f^{-1}(f(E))$.
+			\end{enumerate}
+		\end{thm}
+		
+		\begin{dfn}[Continuity]\label{def:continuity (Metrics)}
+			Let $(X, d_X)$ and $(Y, d_Y)$ be two metric spaces, and let $f: X\rightarrow Y$. The following are three \emph{equivalent} definitions of continuity at a point $x_0\in X$.
+			\begin{enumerate}
+				\item ($\epsilon$-$\delta$ definition) For any $\epsilon>0$, there exists $\delta>0$ such that $x\in X\text{ and }d_X(x,x_0)<\delta\implies d_Y(f(x),f(x_0))<\epsilon$.
+				\item (sequential definition) For any sequence $(x_n)$ in $X$ converging to $x_0$, the sequence $f(x_n)$ converges to $f(x_0)$.
+				\item (topological definition) For any open set $U$ in $Y$ such that $f(x_0)\in U$, there exists an open set $V$ in $X$ such that $x_0\in V\subseteq f^{-1}(U)$.
+			\end{enumerate}
+		\end{dfn}
+		\begin{rem}
+			See worksheet 12 for the proof of equivalence.
+		\end{rem}
+		`	
+		\begin{thm}\label{thm:preimage is open}
+			$f$ is continuous (on its domain) if and only if $f^{-1}(U)$ is open in $X$ for every open set $U$ in $Y$. i.e. a function is continuous if and only if the preimage of every open set is open.
+		\end{thm}
+		\begin{rem}
+		By considering the complement of an open set, we also have that ``$f:X\rightarrow Y$ is continuous if and only if $f^{-1}(E)$ is closed in $X$ for every closed set $E$ in $Y$".
+		\end{rem}
+		
+		\begin{dfn}[Uniform Continuity]
+			Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces. A function $f: X\rightarrow Y$ is \emph{uniformly continuous} on $E\subseteq X$ if for any $\epsilon>0$ there exists $\delta>0$ such that
+			\begin{displaymath}
+				x_1,x_2\in E\text{ and }d_X(x_1,x_2)<\delta\implies d_Y(f(x_1),f(x_2))<\epsilon.
+			\end{displaymath} 
+		\end{dfn}
+		
+		\begin{thm}
+			Let $(X,d_X)$ and $(Y,d_Y)$ be two metric spaces. Let a function $f:X\rightarrow Y$ be continuous. Suppose a subset $E\subseteq X$ is compact.
+			\begin{enumerate}[(i)]
+				\item $f(E)$ is compact. i.e., the image of a compact set under continuous function is still compact.
+				\item $f$ is uniformly continuous on $E$. i.e., a continuous function on a compact set is also uniformly continuous.
+			\end{enumerate}
+		\end{thm}
+		\begin{cor}
+			Let $f$ be a continuous function $f:X\rightarrow\R$. Suppose $E$ is a compact subset of $X$. Then
+			\begin{enumerate}[(i)]
+				\item $f(E)$ is closed and bounded;
+				\item There exists $u,v\in E$ such that $f(u)=\inf_{x\in E}f(x)=\inf f(E)$ and $f(v)=\sup_{x\in E}f(x)=\sup f(E)$. i.e. $f$ attains its \emph{maximum} and \emph{minimum} on $E$.
+			\end{enumerate}
+		\end{cor}
+		
+		\begin{thm}
+			Let $S$ be a subset of $\R$. Suppose a function $f:S\rightarrow\R$. If $f$ is continuous on an interval $I\subseteq S$ like $[a,b],(a,b),(a,b]$ where $a,b\in\R\cup\{\pm\infty\}$, then $f(I)$ is a singleton or an interval.
+		\end{thm}
+		\begin{rem}
+			Singleton is a set with exactly one element.
+		\end{rem}
+		
+		\begin{thm}[Continuous Extension Theorem]
+			Let $(X,d)$ be a metric space. Let $E\subseteq X$ and $f$ be a function $f:E\rightarrow R$
+			\begin{enumerate}[(i)]
+				\item If $f$ is uniformly continuous function on $E$, then $f$ can be extended to a (uniformly) continuous function on $\overline{E}=E\cup E^\prime$.
+				\item If $f$ can be extended to a uniformly continuous function on $\overline{E}=E\cup E^\prime$, then $f$ is uniformly continuous function on $E$.
+			\end{enumerate}
+		\end{thm}
+		\begin{rem}
+		\begin{itemize}
+			\item Be careful that if $f$ is \emph{only continuous} (not uniformly) on $\overline{E}$, then (ii) fails.
+			\item We can generalize the theorem further by replace the codomain $\R$ of $f$ by any complete metric space $(Y,d_Y)$.
+		\end{itemize}
+		\end{rem}
+		\newpage
+		
+		\section{Limits of Functions}
+		\begin{dfn}
+			Let $S\subset\R$ and $a\in\R$ or a symbol $\infty$ or $-\infty$ that is the limit of some sequence in $S$, and let $L$ be a real number or symbol $+\infty$ or $-\infty$. We write $\lim_{x\rightarrow a^S} f(x)=L$ if
+			\begin{displaymath}
+				\text{$f$ is a function defined on $S$,}
+			\end{displaymath}
+			and
+			\begin{displaymath}
+				\text{for every sequence $(x_n)$ in $S$ with limit $a$, we have $\lim_{n\rightarrow\infty}f(x_n)=L$}.
+			\end{displaymath}
+		\end{dfn}
+		Recall the definition of continuity, now we can say that a function $f$ is continuous at $a$ in $\dom(f)=S \iff \lim_{x\rightarrow a^S} f(x)=f(a)$. Also notice that when limits exist, they are unique. In other words, there
+		is only one $L$ equals to $\lim_{x\rightarrow a^S} f(x)$.  
+		
+		Now let's define the various standard limit concepts for functions.
+		\begin{dfn}
+			\begin{enumerate}[(a)]
+				\item[]
+				\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some set $S=J\backslash\{a\}$ where $J$ is an open interval containing $a$. Such a limit 
+				$\lim_{x\rightarrow a^S}$ is called the \emph{[two-sided]} limit of $f$ at $a$. Note that neither $f(a)$ needs to be defined or $\lim_{x\rightarrow a}f(x)$ needs to be equal $f(a)$, unless we want to say $f$ is continuous at $a$.
+				\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a^+}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some open interval $S=(a,b)$. This is called the \emph{[right-hand]} limit. Again $f$ need not
+				be defined at $a$.
+				\item For $a\in\R$ and a function $f$ we write $\lim_{x\rightarrow a^-}f(x)=L$ provided $\lim_{x\rightarrow a^S}f(x)=L$ for some open interval $S=(c,a)$. This is called the \emph{[left-hand]} limit.
+				\item For a function $f$ we write $\lim_{x\rightarrow\infty}f(x)=L$ provided $\lim_{x\rightarrow\infty^S}f(x)=L$ for some interval $S=(c,\infty)$. Likewise, For a function $f$ we write $\lim_{x\rightarrow-\infty}f(x)=L$ provided $\lim_{x\rightarrow-\infty^S}f(x)=L$ for some interval $S=(-\infty,b)$
+			\end{enumerate} 
+		\end{dfn}
+		
+		\begin{thm}\label{def:20.4}
+			Let $f_1$ and $f_2$ be functions for which the limits $L_1=\lim_{x\rightarrow a^S}f_1(x)$ and $L_2=\lim_{x\rightarrow a^S}f_2(x)$ exist and are finite. Then
+			\begin{enumerate}[(i)]
+				\item $\lim_{x\rightarrow a^S}(f_1+f_2)(x)$ exists and equals $L_1+L_2$;
+				\item $\lim_{x\rightarrow a^S}(f_1f_2)(x)$ exists and equals $L_1L_2$;
+				\item $\lim_{x\rightarrow a^S}(f_1/f_2)(x)$ exists and equals $L_1/L_2$ provided $L_2\neq0$ and $f_2(x)\neq0$ for $x\in S$.
+			\end{enumerate}
+		\end{thm}
+		
+		\begin{thm}\label{def:20.5}
+			Let $f$ be a function for which the limit $L=\lim_{x\rightarrow a^S}f(x)$ exists and is finite. If $g$ is a function defined on $\{f(x): x\in S\}\cup\{L\}$ that is continuous at $L$, then $\lim_{x\rightarrow a^S} g\circ f(x)$ exists and equals $g(L)$.
+		\end{thm}
+		Be careful that for this theorem to work, $g$ needs to be \textbf{continuous} at $L$.
+		
+		\setcounter{equation}{0}	
+		\begin{thm}\label{def:20.6}
+			Let $f$ be a function defined on a subset $S$ of $\R$, let a be a real number that is the limit of some sequence
+			in $S$, and let $L$ be a real number, then $\lim_{x\rightarrow a^S}f(x)=L$ if and only if
+			\begin{equation}
+				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $x\in S$ and $|x-a|<\delta$ imply $|f(x)-L|<\epsilon$}
+			\end{equation}
+		\end{thm}
+		
+		\setcounter{equation}{0}			
+		\begin{cor}\label{def:20.7}
+			Let $f$ be a function defined on $J\backslash\{a\}$ for some open interval $J$ containing $a$, and let $L$ be a
+			real number. Then  $\lim_{x\rightarrow a^S}f(x)=L$ if and only if
+			\begin{equation}
+				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $0<|x-a|<\delta\implies|f(x)-L|<\epsilon$}
+			\end{equation}
+		\end{cor}
+		
+		\setcounter{equation}{0}			
+		\begin{cor}\label{def:20.8}
+			Let $f$ be a function defined on some interval $(a,b)$, and let $L$ be a real number. Then $\lim_{x\rightarrow a^+}f(x)=L$ if and only if
+			\begin{equation}
+				\text{for each $\epsilon>0$ there exists $\delta>0$ such that $a<x<a+\delta\implies|f(x)-L|<\epsilon$}
+			\end{equation} 
+		\end{cor}
+		
+		Now let's give some general conditions for the limit of function in different situations: $\lim_{x\rightarrow s}f(x)=L \iff$
+		\begin{itemize}
+			\item $L$ is finite:
+			\begin{itemize}
+				\item $s=a$: for each $\epsilon>0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $|f(x)-L|<\epsilon$.
+				\item $s=a^+$: for each $\epsilon>0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $|f(x)-L|<\epsilon$.
+				\item $s=a^-$: for each $\epsilon>0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $|f(x)-L|<\epsilon$.
+				\item $s=\infty$: for each $\epsilon>0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $|f(x)-L|<\epsilon$.
+				\item $s=-\infty$: for each $\epsilon>0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $|f(x)-L|<\epsilon$.
+			\end{itemize}
+			\item $L=+\infty$:
+			\begin{itemize}
+				\item $s=a$: for each $M>0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)>M$.
+				\item $s=a^+$: for each $M>0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $f(x)>M$.
+				\item $s=a^-$: for each $M>0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $f(x)>M$.
+				\item $s=\infty$: for each $M>0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $f(x)>M$.
+				\item $s=-\infty$: for each $M>0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $f(x)>M$.
+			\end{itemize}
+			\item $L=-\infty$:
+			\begin{itemize}
+				\item $s=a$: for each $M<0$ there exists $\delta>0$ such that $0<|x-a|<\delta$ implies $f(x)<M$.
+				\item $s=a^+$: for each $M<0$ there exists $\delta>0$ such that $a<x<a+\delta$ implies $f(x)<M$.
+				\item $s=a^-$: for each $M<0$ there exists $\delta>0$ such that $a-\delta<x<a$ implies $f(x)<M$.
+				\item $s=\infty$: for each $N<0$ there exists $\alpha<\infty$ such that $x>\alpha$ implies $f(x)<N$.
+				\item $s=-\infty$: for each $N<0$ there exists $\alpha>-\infty$ such that $x<\alpha$ implies $f(x)<N$. 
+			\end{itemize}
+		\end{itemize}
+		
+		\begin{thm}\label{def:20.10}
+			Let $f$ be a function defined on $J\backslash\{a\}$ for some open interval $J$ containing $a$. Then $\lim_{x\rightarrow a}f(x)$ exists $\iff$ the limits $\lim_{x\rightarrow a^+}f(x)$ and $\lim_{x\rightarrow a^-}f(x)$ both exist and are equal to each other, thereby all three limits are equal.
+		\end{thm}
 	
+	\chapter{Sequences and Series of Functions}
+	\newpage
+		\section{Power Series}
+		\begin{dfn}
+			Given a sequence $(a_n)_{n=0}^{\infty}$ of real numbers and $x_0\in\R$, the series $\sum_{n=0}^{\infty}a_n(x-x_0)^n$ is called 
+			a power series, which is a function of $x$ provided it converges for some or all $x$. Note  that any power series always converges at $x=x_0$ (with convention $0^0=1$). One of the following
+			holds for a power series with coefficients $(a_n)$:
+			\begin{enumerate}[(a)]
+				\item The power series converge for all $x\in\R$;
+				\item The power series converges only for $x=x_0$;
+				\item The power series converges for all $x$ in some bounded interval centered at $x_0$; the interval may be
+				open, half-open, or closed.
+			\end{enumerate}
+		\end{dfn}
+		
+		\begin{thm}\label{def:23.1}
+			For the power series $\sum a_n(x-x_0)^n$, let
+			\begin{displaymath}
+				\beta=\lim\sup |a_n|^{1/n}
+			\end{displaymath}
+			and
+			\begin{displaymath}
+				R:=\begin{cases}
+					\frac{1}{\beta}\quad\text{if $0<\beta<\infty$,}\\
+					\infty\quad\text{if $\beta=0$,}\\
+					0\quad\text{if $\beta=\infty$.}
+				\end{cases}
+			\end{displaymath} Then
+			\begin{enumerate}[(i)]
+				\item The power series converges for $|x-x_0|<R$;
+				\item The power series diverges for $|x-x_0|>R$. 
+			\end{enumerate}
+			We call $R$ the \emph{radius of convergence} for the power series. Note that we need to check $|x-x_0|=R$ cases individually.
+		\end{thm}
+		
+		\begin{cor}
+			If $\lim\abs{\frac{a_n}{a_n+1}}$ exists, then it is equal to the radius of convergence of the power series.
+		\end{cor}
+		
+		\begin{dfn}[Interval of Convergence]
+			The interval of convergence of the power series $\sum a_n(x-x_0)^n$ is the set $\{x\in\R:$ the series of real numbers $\sum a_n(x-x_0)^n$ converges$\}$.
+		\end{dfn}
+		\newpage
+		\section{Uniform Convergence}
+		\begin{dfn}[Pointwise Convergence]
+			Let $(X,d)$ be a metric space. Let $(f_n)$ be a sequence of real-valued functions defined on a set $E\subseteq X$. The sequence $(f_n)$ \emph{converges pointwise} on $E$ to a function $f$ defined on $E$ if
+			\begin{displaymath}
+				\lim\limits_{n\rightarrow\infty}f_n(x)=f(x)\quad\text{for each}\quad x\in S.
+			\end{displaymath}
+			We often write $\lim f_n=f$ \emph{pointwise [on E]} or $f_n\rightarrow f$ \emph{pointwise [on E]}
+		\end{dfn}
+		Observe that saying $f_n\rightarrow f$ \emph{pointwise [on E]} is equivalent to the following:
+		\begin{displaymath}
+			\text{for each $\epsilon>0$ and $x$ in $E$ there exists $N$ such that $|f_n(x)-f(x)|<\epsilon$ for $n>N$.}
+		\end{displaymath}
+		
+		\begin{dfn}[Uniform Convergence (i)]
+			Let $(X,d)$ be a metric space. Let $(f_n)$ be a sequence of real-valued functions defined on a set $E\subseteq X$. The sequence $(f_n)$ \emph{converges uniformly} on $E$ to a function $f$ defined on $E$ if
+			\begin{align*}
+				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
+				\text{$|f_n(x)-f(x)|<\epsilon$ for all $x\in E$ and all $n\geq N$.}
+			\end{align*}
+			We write $\lim f_n=f$ \emph{uniformly [on E]} or $f_n\rightarrow f$ \emph{uniformly [on E]}
+		\end{dfn}
+		\begin{rem}
+			\begin{itemize}
+				\item Comparing to pointwise convergence, here for each $\epsilon>0$, $N$ works for all the $x\in E$.
+				\item Note that if $f_n\rightarrow f$ uniformly on $E$ and if $\epsilon>0$, then there exists $N$ such that $f(x)-\epsilon<f_n(x)<f(x)+\epsilon$ for \emph{all} $x\in E$ and $n\geq N$. i.e. for $n\geq N$ the graph of $f_n$ lies in the strip between the graphs of $f-\epsilon$ and $f+\epsilon$.
+			\end{itemize}
+		\end{rem}
+		
+		\begin{dfn}[Uniform Convergence (ii)]
+			Let $(X,d)$ be a metric space. Let $(f_n)$ be a sequence of real-valued functions defined on a set $E\subseteq X$. The sequence $(f_n)$ \emph{converges uniformly} on $E$ to a function $f$ defined on $E$ if
+			\begin{displaymath}
+				\lim\limits_{n\rightarrow\infty}\sup\{|f_n(x)-f(x)|: x\in E\}=0.
+			\end{displaymath}
+		\end{dfn}
+		\begin{rem}
+			This is an alternative definition to uniform convergence. See details in worksheet 14. We can decide whether a sequence $(f_n)$ converges uniformly to $f$ by calculating $\sup\{|f_n(x)-f(x)|: x\in X\}$ for each $n$. If $f_n-f$ is differentiable, we may use calculus to find these suprema.
+		\end{rem}
+		
+		\begin{eg}
+			$f_n(x)=x^n$ does not converge uniformly to $f(x)=\begin{cases}
+				0\quad x\in[0,1)\\1\quad x=1.
+			\end{cases}$
+		\end{eg}
+		
+		\setcounter{equation}{0}
+		\begin{thm}[Uniform Limit Theorem]\label{thm:24.3}
+			The uniform limit of a continuous function is continuous. More precisely, let $(f_n)$ be a sequence of real-valued functions
+			defined on $E\subseteq X$. Suppose $f_n\rightarrow f$ uniformly on $E$, and suppose $E=\dom(f)$. If $f_n$ is
+			continuous at $x_0$ in $E$ for each $n\in\N$, then $f$ is continuous at $x_0$. [so if each $f_n$ is continuous on $S$, then $f$ is continuous on $S$.]
+		\end{thm}
+		\begin{rem}
+			The contrapositive of this theorem is useful to show $f_n$ does not uniformly converge to $f$ on $E$:
+			If $f$ is not continuous at $x_0\in E$ but $f_n$ is continuous at $x_0$, then the statement that "$f_n\rightarrow f$ uniformly on $E$" is \textbf{incorrect}.
+		\end{rem}
+		
+		\newpage
+		
+		\section{More on Uniform Convergence}
+		\begin{comment}
+		Here are two important facts about integration
+		\begin{enumerate}
+		\item If $g$ and $h$ are integrable on $[a,b]$ and if $g(x)\leq h(x)$ for all $x\in[a,b]$, then $\int_{a}^{b}g(x)dx\leq\int_{a}^{b}h(x)dx$.
+		\item If $g$ is integrable on $[a,b]$, then
+		\begin{displaymath}
+		\abs{\int_{a}^{b}g(x)dx}\leq\int_{a}^{b}\abs{g(x)}dx.
+		\end{displaymath}
+		\end{enumerate}
+		Also continuous functions on closed intervals are integrable.
+		
+		\begin{thm}\label{thm:25.2}
+		Let $(f_n)$ be a sequence of continuous functions on $[a,b]$, and suppose $f_n\rightarrow f$ uniformly on $[a,b]$. Then
+		\begin{displaymath}
+		\lim\limits_{n\rightarrow\infty}\int_{a}^{b}f_n(x)dx=\int_{a}^{b}f(x)dx.
+		\end{displaymath}
+		\begin{proof}
+		By \ref{def:24.3} $f$is continuous, so $f_n-f$ are all integrable on $[a,b]$. Let $\epsilon>0$. Since $f_n\rightarrow f$ uniformly on $[a,b]$, there exists $N$ such that $\abs{f_n(x)-f(x)}<\frac{\epsilon}{b-a}$ for all $x\in[a,b]$ and all $n>N$. Consequently $n>N$ implies
+		\begin{align*}
+		\abs{\int_{a}^{b}f_n(x)dx-\int_{a}^{b}f(x)dx}&=\abs{\int_{a}^{b}[f_n(x)-f(x)]dx}\\
+		&\leq\int_{a}^{b}\abs{f_n(x)-f(x)}dx\\
+		&\leq\int_{a}^{b}\frac{\epsilon}{b-a}dx\\
+		&=\epsilon
+		\end{align*}
+		Thus $\lim\limits_{n\rightarrow\infty}\int_{a}^{b}f_n(x)dx=\int_{a}^{b}f(x)dx$.
+		\end{proof}
+		\end{thm}
+		\end{comment}
+		
+		\begin{dfn}[Uniformly Cauchy]
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A sequence $(f_n)$ of functions defined on a set $E$ is \emph{uniformly Cauchy on S} if
+			\begin{align*}
+				\text{for each $\epsilon>0$ there exists a number $N$ such that}\\
+				\text{$\abs{f_m(x)-f_n(x)}<\epsilon$ for all $x\in E$ and all $m,n\geq N$.}
+			\end{align*}
+		\end{dfn}
+		
+		\begin{dfn}[Uniform Convergence for Series of Functions]
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A series of functions $\sum_{n=1}^{\infty}g_n$ on $E$ is \emph{uniformly convergent to the function $G$ on $E$} if 
+			\begin{displaymath}
+				\forall\epsilon>0\ \exists N\in\N\ n\geq N\implies\abs{\sum_{k=1}^{n}g_k(x)-G(x)}<\epsilon\text{ for all $x\in E$.}
+			\end{displaymath}
+		\end{dfn}
+		
+		\begin{dfn}[Uniform Cauchy Criterion]
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A series of functions $\sum_{n=1}^{\infty}g_n$ on $E$ satisfy the \emph{uniform Cauchy criterion} if
+			\begin{displaymath}
+				\forall\epsilon>0\ \exists N\in\N\ n\geq m\geq N\implies \abs{\sum_{k=m}^{n}g_k(x)}<\epsilon\text{ for all $x\in E$.}
+			\end{displaymath} 
+		\end{dfn}
+		\begin{rem}
+			There is an analogue between the Cauchy criterion for a normal series $\sum a_k$ and the one for a series of functions $\sum g_k$: The sequence of partial sums of a series $\sum_{k=0}^{\infty}g_k$ of functions is uniformly Cauchy on a set $E$ $\iff$ the series satisfies the \emph{uniform Cauchy criterion} on $E$.
+		\end{rem}
+		
+		\setcounter{equation}{0}
+		\begin{thm}\label{thm:25.4}
+			Let $(X,d)$ be a metric space, and let $E\subseteq X$. A sequence of functions $(f_n)$ is \emph{uniformly Cauchy} if and only if $(f_n)$ converges uniformly.
+		\end{thm}
+	
+		\begin{cor}
+			$\sum_{k=0}^{\infty}g_k$ satisfies the uniform Cauchy criterion if and only if it converges (uniformly).
+		\end{cor}
+		
+		\begin{thm}\label{thm:25.5}
+			Consider a series $\sum_{k=0}^{\infty}g_k$ of functions on a set $S\subseteq\R$. Suppose each $g_k$ is continuous on $S$ and the series converges uniformly on $S$. Then the series $\sum_{k=0}^{\infty}g_k$ represents a continuous function on $S$.
+		\end{thm}
+		
+		\begin{thm}\label{thm:25.6}
+			If a series $\sum_{k=0}^{\infty}g_k$ of functions satisfies the Cauchy criterion uniformly on a set $S$, then the
+			series converges uniformly on $S$.
+		\end{thm}
+		
+		\begin{thm}[Weierstrass M-test]\label{thm:25.7}
+			Let $(M_k)$ be a sequence of nonnegative real numbers where $\sum M_k<\infty$, i.e., $\sum M_k$ converges. If $|g_k(x)|\leq M_k$ for all $x$ in a set $E$ and $k\in\N$, then $\sum g_k$ converges uniformly on $E$.
+		\end{thm}
+		
+		\begin{thm}
+			If the series $\sum g_n$ converges uniformly on a set $S$, then
+			\begin{displaymath}
+				\lim\limits_{n\rightarrow\infty}\sup\{|g_n(x)|: x\in S\}=0.
+			\end{displaymath}
+		\end{thm}
+		
+		\begin{thm}
+			Let $(f_n)$ be a sequnece of bounded functions on a set $S$. If $f_n\rightarrow f$ uniformly on $E$, then $f$ is a bounded function on $E$.
+		\end{thm}
+		
+		\begin{thm}\label{thm:26.1}
+			Let $\sum_{n=0}^{\infty}a_n(x-x_0)^n$ be a power series with radius of convergence $R>0$ [possibly $R=+\infty$]. If $0<R_0<R$, then the power series converges uniformly on $[x_0-R_0, x_0+R_0]$ to a continuous function.
+		\end{thm}
+
+		\begin{cor}\label{cor:26.2}
+			The power series $\sum a_n(x-x_0)^n$ with radius of convergence $R>0$ converges to a continuous function on the open interval $(x_0-R,x_0+R)$.
+		\end{cor}
+		
+		\begin{thm}[Dini's Theorem]
+			If $(f_n)$ is a sequence of continous functions on $[a,b]$ such that $(f_n(x))$ is nondecreasing for each $x\in[a,b]$ and $f_n\rightarrow f$ pointwise for some continuous function $f$, then $f_n\rightarrow f$ uniformly on $[a,b]$.
+		\end{thm}
+		
+		\begin{lem}
+			If $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $1$ and the series converges at $x=1$, then $f$ is continuous on $[0,1]$.
+		\end{lem}
+		
+		\setcounter{equation}{0}
+		\begin{thm}[Abel's Theorem]\label{thm:26.6}
+			Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ be a power series with finite positive radius of convergence $R$. If the series converges at $x=R$, then $f$ is continuous at $x=R$; if the series converges at $x=-R$, then $f$ is continuous at $x=-R$.
+		\end{thm}
+		
+		\newpage
+		
+		\begin{comment}
+		\section{Differentiation and Integration of Power Series}
+		\begin{lem}\label{lem:26.3}
+		If the power series $\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R$, then the power series
+		\begin{displaymath}
+		\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{and}\quad\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}
+		\end{displaymath} 
+		also have radius of convergence $R$.
+		\end{lem}
+		\begin{proof}
+		First observe the series $\sum na_nx^{n-1}$ and $\sum na_nx^n$ have the same radius of convergence. Same for $\sum\frac{a_n}{n+1}x^{n+1}$ and $\sum\frac{a_n}{n+1}x^n$. It is because one is $x$ multiple of the other.
+		
+		For the series $\sum na_nx^n$, because $\lim\sup(n|a_n|)^{1/n}=\lim\sup n^{1/n}|a_n|^{1/n}$ and $\lim n^{1/n}=1$, so $\lim\sup(n|a_n|)^{1/n}=\lim\sup|a_n|^{1/n}=\beta$. Hence $\sum na_nx^n$ has radius of convergence $R$.
+		
+		Similarly, for the series $\sum\frac{a_n}{n+1}x^n$, because $\lim\sup(\frac{|a_n|}{n+1})^{1/n}=\lim\sup(\frac{1}{n+1})^{1/n}\cdots|a_n|^{1/n}=1\cdot\lim\sup|a_n|^{1/n}=\beta$ by \ref{thm:12.1}, so the series $\sum\frac{a_n}{n+1}x^n$ has radius of convergence $R$.
+		\end{proof}
+		
+		\begin{thm}\label{thm:26.4}
+		Suppose $f(x)=\sum_{n=0}^{\infty}a_nx^n$ has radius of convergence $R>0$. Then
+		\begin{displaymath}
+		\int_{0}^{x}f(t)dx=\sum_{n=0}^{\infty}\frac{a_n}{n+1}x^{n+1}\quad\text{for}\quad |x|<R
+		\end{displaymath}
+		\end{thm}
+		\begin{proof}
+		Fix $x<0$. The case $x>0$ is similar. On the interval $[x,0]$, the sequence of partial sums $\sum_{k=0}^{n}a_kt^k$ converges uniformly to $f(t)$ by \ref{thm:26.1}. Consequently, by \ref{thm:25.2} we have
+		\begin{align*}
+		\int_{x}^{0}f(t)dt&=\lim_{n\rightarrow \infty}\int_{x}^{0}\left(\sum_{k=0}^{n}a_kt^k\right)dt\\
+		&=\lim_{n\rightarrow \infty}\sum_{k=0}^{n}a_k\int_{x}^{0}t^kdt\\
+		&=\lim_{n\rightarrow \infty}\sum_{k=0}^{n}a_k\left[\frac{0^{k+1}-x^{k+1}}{k+1}\right]\\
+		&=-\left(\sum_{k=0}^{\infty}\frac{a_k}{k+1}x^{k+1}\right)\\
+		&=-\left(\int_{0}^{x}f(t)dt\right)
+		\end{align*}
+		\end{proof}
+		The last theorem shows that a power series can be integrated term-by-term inside its interval of convergence. The next theorem shows that term-by-term differentiation is also legal
+		
+		\begin{thm}\label{thm:26.5}
+		Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$ have radius of convergence $R>0$. Then $f$ is differentiable on $(-R,R)$ and \begin{displaymath}
+		f^\prime(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|<R
+		\end{displaymath}
+		\end{thm}
+		\begin{proof}
+		We begin with the series $g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}$ and observe this series converges for $|x|<R$ by \ref{lem:26.3}. By \ref{thm:26.4}, we can integrate $g(x)$ term-by-term:
+		\begin{displaymath}
+		\int_{0}^{x}g(t)dt=\sum_{n=1}^{\infty}a_nx^n=f(x)-a_0\quad\text{for}\quad|x|<R.
+		\end{displaymath}
+		Thus if $0<R_1<R$, then
+		\begin{displaymath}
+		f(x)=\int_{-R_1}^{x}g(t)dt+k\quad\text{for}\quad|x|\leq R_1
+		\end{displaymath}
+		where $k=a_0-\int_{-R_1}^{0}g(t)dt$. Since $g$ is continuous, the Fundamental Theorem of Calculus shows $f$ is differentiable and $f^\prime(x)=g(x)$. Thus
+		\begin{displaymath}
+		f^\prime(x)=g(x)=\sum_{n=1}^{\infty}na_nx^{n-1}\quad\text{for}\quad|x|\leq R_1
+		\end{displaymath}
+		\end{proof}
+		\end{comment}
+	\chapter{Differentiation}
+		\newpage
+		\section{Basic Properties of the Derivative}
+		\subsection*{Limits of functions}
+		\begin{dfn}[Limit of function (i)]
+			We denote 
+			\begin{displaymath}
+				\lim_{x\rightarrow c}f(x)=L
+			\end{displaymath}
+			as that for every sequence $(x_n)\subseteq\dom(f)\backslash\{c\}$ such that $x_n\rightarrow c$ where $c\in\R\cup\{\pm\infty\}$, we have $f(x_n)\rightarrow L$.
+		\end{dfn}
+		\begin{rem}
+			Observe that followed by the definition above, $f$ is continuous at $c$ if and only if $\lim_{x\rightarrow c}f(x)=f(c)$.
+		\end{rem}
+		
+		\begin{dfn}[Limit of function (ii)]
+			Alternatively, we can also claim the $\epsilon$-$\delta$ definition of the limit of function as $\lim_{x\rightarrow c}f(x)=L$ if
+			\begin{displaymath}
+				\forall\epsilon>0\ \exists\delta>0\ 0<\abs{x-c}<\delta\implies\abs{f(x)-L}<\epsilon
+			\end{displaymath}	
+		\end{dfn}
+		
+		\begin{dfn}[Left-hand Limit]
+			We write $\lim_{x\rightarrow c^-}f(x)=L$ if there exists $a<c$ such that $(a,c)\subseteq\dom(f)$ and for any sequence $(x_n)\subseteq(a,c)$ such that $x_n\rightarrow c$, we have $f(x_n)\rightarrow L$.
+		\end{dfn}
+		
+		\begin{thm}
+			$\lim_{x\rightarrow c}f(x)$ exists if and only if $\lim_{x\rightarrow c^-}f(x)=\lim_{x\rightarrow c^+}f(x)$, in which case, all equal.
+		\end{thm}
+		\newpage
+		\lline
+		
+		\subsection*{Derivative}
+		\begin{dfn}\label{def:28.1}
+			Let $f$ be a real-valued function defined on an open interval containing a point $x$. Define \emph{difference quotient} on $\dom(f)\backslash\{x\}$ as 
+			\begin{displaymath}
+				\varphi_x(y)=\frac{f(y)-f(x)}{y-x}.
+			\end{displaymath}
+			We say $f$ is \emph{differentiable} at $x$, or $f$ has a derivative at $a$, if the limit
+			\begin{displaymath}
+				\lim_{y\rightarrow x}\varphi_x(y)=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}
+			\end{displaymath}
+			exists and is finite. We will write $f^\prime(x)$ for the derivative of $f$ at $x$:
+			\begin{displaymath}
+				f^\prime(x)=\lim_{y\rightarrow x}\varphi_x(y)=\lim_{y\rightarrow x}\frac{f(y)-f(x)}{y-x}
+			\end{displaymath}
+			whenever this limit exists and is finite.
+		\end{dfn}
+		\begin{rem}
+			\begin{itemize}
+				\item $f$ is \emph{differentiable on a set $E$} if $f$ is differentiable at every point $x\in E$.
+				\item $f$ is \emph{differentiable} if $f$ is differentiable at every point $x\in\dom(f)$.
+				\item We can consider $f^\prime$ as a function. The domain of $f^\prime$ is the set of points at which $f$ is differentiable; thus $\dom(f^\prime)\subseteq\dom(f)$.
+			\end{itemize}
+		\end{rem}
+		
+		\begin{thm}\label{thm:28.2}
+			If $f$ is differentiable at a point $x$, then $f$ is continuous at $x$.
+		\end{thm}
+		\newpage
+		
+		\begin{thm}\label{def:28.3}
+			Let $f$ and $g$ be functions that are differentiable at the point $a$. Each of the functions $cf$, $f+g$, $fg$, and $f/g$ is also differentiable at $a$, except $f/g$ is $g(a)=0$ since $f/g$ is not defined at $a$ in this case.
+			The formulas are:
+			\begin{enumerate}[(i)]
+				\item $(cf)^\prime(a)=c\cdot f^\prime(a)$;
+				\item $(f+g)^\prime(a)=f\prime(a)+g^\prime(a)$;
+				\item Product rule: $(fg)^\prime(a)=f(a)g^\prime(a)+f^\prime(a)g(a)$;
+				\item Quotient rule: $(f/g)^\prime(a)=\frac{[g(a)f^\prime(a)-f(a)g^\prime(a)]}{g^2(a)}$ if $g(a)\neq0$.
+			\end{enumerate}
+		\end{thm}
+		
+		\begin{thm}[Chain Rule]\label{def:28.4}
+			If $f$ is differentiable at $a$ and $g$ is differentiable at $f(a)$, then the composite function $g\circ f$ is differentiable at $a$ and we have $(g\circ f)^\prime(a)=g^\prime(f(a))\cdot f^\prime(a)$.
+		\end{thm}
+		If $f$ is differentiable on an interval $I$ and if $g$ is differentiable on $\{f(x): x\in I\}$, then $(g\circ f)^\prime$ is exactly $(g^\prime\circ f)\cdot f^\prime$ on $I$.
+		\newpage
+		
+		\section{The Mean Value Theorem}
+		\begin{lem}
+		Let $f$ be defined on an open interval $(a,b)$ containing $x$. If $f$ attains its maximum (or minimum) at $x\in(a,b)$ and $f$ is differentiable at $x$, then $f^\prime(x)=0$.
+		\end{lem}
+		\begin{itemize}
+			\item If $f^\prime(x)\neq0$, then $f$ does not attains its maximum nor minimum at $x$.
+			\item The theorem does not apply to endpoints of (half) closed intervals.
+		\end{itemize}
+		
+		\begin{thm}[Rolle's Theorem]\label{thm:29.2, Rolle}
+			Suppose $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, and that $f(a)=f(b)$. Then there exists $x\in(a,b)$ such that $f^\prime(x)=0$.
+		\end{thm}
+		
+		\begin{thm}[Mean Value Theorem]\label{thm:29.3, MVT}
+			Let $f$ be a continuous function on $[a,b]$ which is differentiable on $(a,b)$. Then there exists $x\in(a,b)$ such that $f^\prime(x)=\frac{f(b)-f(a)}{b-a}$.
+		\end{thm}
+
+		\begin{cor}
+			If $f$ is differentiable on $(a,b)$, and $f^\prime(x)=0$ for all $x\in(a,b)$, then $f$ is constant on $(a,b)$.
+		\end{cor}
+
+		\begin{cor}
+			If $f,g$ are differentiable on $(a,b)$ and $f^\prime(x)=g^\prime(x)$ for all $x\in(a,b)$, then $f=g+C$ for some $c\in\R$.
+		\end{cor}
+		\newpage
+		\begin{cor}
+			Let $f$ be a differentiable function on $(a,b)$.
+			\begin{enumerate}[(i)]
+				\item If $f^\prime(x)>0$ for all $x\in(a,b)$, then $f$ is strictly increasing;
+				\item If $f^\prime(x)<0$ for all $x\in(a,b)$, then $f$ is strictly decreasing; 
+			\end{enumerate}
+		\end{cor}
+		\begin{rem}
+			The converse is false generally. Consider $f(x)=x^3$ at $0$.
+		\end{rem}
+		
+		\begin{thm}[Generalized Mean Value Theorem]
+			Suppose $f$ and $g$ are continuous on $[a,b]$ and differentiable on $(a,b)$. Prove that there exists $x\in(a,b)$ such that
+			\begin{displaymath}
+				f^\prime(x)(g(b)-g(a))=g^\prime(x)(f(b)-f(a)).
+			\end{displaymath}
+		\end{thm}
+		
+		\begin{thm}
+			If $f$ is a differentiable function on $(a,b)$ with bounded derivative, then $f$ is uniformly continuous on $(a,b)$.
+		\end{thm}
+		\begin{rem}
+			The converse does not hold generally. For example, consider $f(x)=\sqrt{x}$ on $(0,1)$. 
+		\end{rem}
+		
+		\begin{thm}[Intermediate Value Theorem for Derivatives]
+			Let $f$ be a differentiable function on $(a,b)$. If $a<x<y<b$ and $c$ is between $f^\prime(x)$ and $f^\prime(y)$, then there exists $z\in(x,y)$ such that $f^\prime(z)=c$. 
+		\end{thm}
+		\newpage
+		
+		\section{L'Hospital's Rule}
+		\begin{thm}
+			Suppose $f,g$ are differentiable on $(a,b)$ and $g^\prime(x)\neq0$ for where $-\infty\leq a<b\leq\infty$. Let $s\in\{a,b\}$. If $\lim_{x\rightarrow s}\frac{f^\prime(x)}{g^\prime(x)}=L$ ($-\infty\leq L\leq \infty$) and either
+			\begin{enumerate}[(i)]
+				\item $\lim_{x\rightarrow s}f(x)=\lim_{x\rightarrow s}g(x)=0$; or
+				\item $\lim_{x\rightarrow s}g(x)=\pm\infty$,
+			\end{enumerate} 
+			then $\lim_{x\rightarrow s}\frac{f(x)}{g(x)}=L$.
+		\end{thm}
+		\newpage
+		\section{Taylor's Theorem}
+		\subsection*{Taylor Series}
+		\begin{nte}
+			$f^{(n)}$ denotes the $n^\text{th}$ derivative of $f$.
+		\end{nte}
+		
+		\begin{dfn}[Infinitely Differentiable]
+			$f$ is \emph{infinitely differentiable} at $x_0$ if $f^{(n)}(x_0)$ exists for all $n\in\N$.
+		\end{dfn}
+		\begin{rem}
+			The existence of $f^{(n)}(x_0)$ implies $f^{(n-1)}$ exists on an open interval containing $x_0$.
+		\end{rem}
+		
+		\begin{dfn}[Taylor Series]
+			Let $f$ be a function defined on an open interval $I$ containing $x_0$. If $f$ is infinitely differentiable at $x_0$, define the \emph{Taylor series for $f$ about $x_0$} as the power series
+			\begin{displaymath}
+				T^{f,x_0}(x):=\sum_{k=0}^{\infty}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k
+			\end{displaymath}
+			on the interval of convergence of the Taylor series.
+		\end{dfn}
+		
+		\begin{dfn}[$n^\text{th}$ Remainder]
+			The $n^\text{th}$ \emph{remainder} (of the above) is 
+			\begin{displaymath}
+				R_n^{f,x_0}(x)=f(x)-\sum_{k=0}^{n-1}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k.
+			\end{displaymath}
+		\end{dfn}
+		\begin{rem}
+			Observe that for any $x\in I$, $f(x)=\sum_{k=0}^{\infty}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k\iff R_n^{f,x_0}(x)\rightarrow0$ as $n\rightarrow\infty$.
+		\end{rem}
+		\lline
+		\newpage
+		\subsection*{Taylor's theorem}
+		\begin{thm}[Taylor's Theorem]
+			Let $f$ be defined on an open interval $I$ containing $x_0$ such that the $n^\text{th}$ derivative of $f$ exists (i.e. first $n$ derivatives of $f$ exist) at every point in $I$. Then for each $x\in I\backslash\{x_0\}$, there exists $\alpha_x$ between $x$ and $x_0$ such that
+			\begin{displaymath}
+				R_n^{f,x_0}(x)=\frac{f^{(n)}(\alpha_x)}{n!}(x-x_0)^n,
+			\end{displaymath}
+			i.e.
+			\begin{displaymath}
+				f(x)=\sum_{k=0}^{n-1}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+\frac{f^{(n)}(\alpha_x)}{n!}(x-x_0)^n
+			\end{displaymath}
+		\end{thm}
+		
+		\begin{cor}
+			If $f$ is infinitely differentiable on an interval $I$ containing $x_0$ and there exists $M>0$ such that $\abs{f^{(n)}(x)}\leq M$ for all $n\geq0, x\in I$. Then $f(x)=T^{f,x_0}(x)$, i.e. $R_n^{f,x_0}(x)\rightarrow0$, for all $x\in I$.
+		\end{cor}
+	
+	\chapter{Integration}
+	\newpage
+	\section{The Riemann Integral}
+	\begin{nte}
+		Let $f$ be a bounded function on a closed interval $[a,b]$. For $S\subseteq[a,b]$, define
+		\begin{displaymath}
+			M(f,S)=\sup\{f(x):x\in S\}\quad\text{and}\quad m(f,S)=\inf\{f(x):x\in S\}.
+		\end{displaymath}
+		i.e. $M(f,S)$ is the least upper bound of $f$ on $S$, and $m(f,S)$ is the greatest lower bound of $f$ on $S$.	
+	\end{nte}
+	
+	\begin{dfn}[Partition]
+		A \emph{partition} of $[a,b]$ is a finite ordered subset of the form
+		\begin{displaymath}
+			P=\{a=t_0<t_1<t_2<\cdots<t_n=b\}.
+		\end{displaymath}
+		e.g. $P=\{0,\frac{1}{4},\frac{1}{2},1\}$ is a partition of $[0,1]$.
+	\end{dfn}
+	
+	\begin{dfn}[Darboux Sum]
+		The \emph{upper Darboux sum} $U(f,P)$ of $f$ w.r.t. $P=\{t_0,\dots,t_n\}$ is
+		\begin{displaymath}
+			U(f,P)=\sum_{k=1}^{n}M(f,I_k)\cdot\ell(I_k)\quad\text{where $I_k=[t_{k-1},t_k]$,\ $\ell(I_k)=t_k-t_{k-1}$}.
+		\end{displaymath}
+		The \emph{lower Darboux sum} $L(f,P)$ of $f$ w.r.t. $P=\{t_0,\dots,t_n\}$ is
+		\begin{displaymath}
+			L(f,P)=\sum_{k=1}^{n}m(f,I_k)\cdot\ell(I_k)\quad\text{where $I_k=[t_{k-1},t_k]$,\ $\ell(I_k)=t_k-t_{k-1}$}.
+		\end{displaymath}
+	\end{dfn}
+	\begin{rem}
+		Observe that
+		\begin{displaymath}
+			-\infty<m(f,[a,b])(b-a)\leq L(f,P)\leq U(f,P)\leq M(f,[a,b])(b-a)<\infty
+		\end{displaymath}
+	\end{rem}
+	
+	\begin{dfn}[Darboux Integral]
+		The \emph{upper Darboux integral} $U(f)$ of $f$ over $[a,b]$ is
+		\begin{displaymath}
+			U(f)=\inf\{U(f,P):P\in\Pi_{[a,b]}\}\quad\text{where $\Pi_{[a,b]}$ is the set of all partitions of $[a,b]$}.
+		\end{displaymath}
+		The \emph{lower Darboux integral} $L(f)$ of $f$ over $[a,b]$ is
+		\begin{displaymath}
+			L(f)=\sup\{L(f,P):P\in\Pi_{[a,b]}\}\quad\text{where $\Pi_{[a,b]}$ is the set of all partitions of $[a,b]$}.
+		\end{displaymath}
+	\end{dfn}
+	\begin{rem}
+		By the previous observation, $U(f),L(f)\in\R$. 
+	\end{rem}
+	
+	\begin{dfn}[Refinement]
+		If partitions $P,P^\ast\in\Pi_{[a,b]}$ and $P\subseteq P^\ast$, $P^\ast$ is called a \emph{refinement} of $P$.
+	\end{dfn}
+	
+	\begin{lem}
+		Let $f$ be a bounded function. If $P^\ast$ is a refinement of $P$, then
+		\begin{displaymath}
+			L(f,P)\leq L(f,P^\ast)\leq U(f,P^\ast)\leq U(f,P).
+		\end{displaymath}
+	\end{lem}
+	
+	\begin{lem}
+		Let $f$ be a bounded function. If $P,Q\in\Pi_{[a,b]}$, then $L(f,P)\leq U(f,Q)$. 
+	\end{lem}
+	
+	\begin{thm}
+		$L(f)\leq U(f)$. 
+	\end{thm}
+	
+	\begin{dfn}[Integrable]
+		$f$ is \emph{integrable/Darboux Integrable/Riemann Integrable} if $L(f)=U(f)$. 
+	\end{dfn}
+	
+	\begin{lem}
+		Let $f$ and $g$ be two bounded functions on $[a,b]$. Then
+		\begin{enumerate}[(i)]
+			\item $\inf\{U(f,P)+U(g,P): P\in\Pi_{[a,b]}\} = \inf\{U(f,P): P\in\Pi_{[a,b]}\}+\inf\{U(g,P): P\in\Pi_{[a,b]}\};$   
+			\item $\sup\{L(f,P)+L(g,P): P\in\Pi_{[a,b]}\} = \sup\{U(f,P): P\in\Pi_{[a,b]}\}+\sup\{L(g,P): P\in\Pi_{[a,b]}\}$.
+		\end{enumerate}
+	\end{lem}
+	
+	\begin{nte}
+		We'll use better notations for $U_a^b(f)=U(f)$ meaning the upper Darboux integral of $f$ over $[a,b]$. Similarly for $L_a^b(f)=L(f)$. 
+	\end{nte}
+	
+	\begin{dfn}[Integral]
+		If $f$ is \emph{integrable} on $[a,b]$, we define the (Riemann or Darboux) \emph{integral of f} on $[a,b]$ as 
+	\end{dfn}
+	\begin{eg}
+		On $[0,1]$, $f(x)=\begin{cases}1\quad\text{$x\in\Q$}\\0\quad\text{$x\notin\Q$}\end{cases}$. For any partition $P\in\Pi_{[0,1]}$, $L(f,P)=0\implies L(f)=0$ and $U(f,P)=1\implies U(f)=1$, so $f$ is not Riemann/Darboux integrable. 
+	\end{eg}
+	
+	\begin{dfn}[Mesh]
+		The \emph{mesh} of a partition $P=\{a=t_0<t_1<\cdots<t_{n-1}t_n=b\}$ is
+		\begin{displaymath}
+			\text{mesh}(P)=\max\{t_1-t_0,t_2-t_1,\dots,t_n-t_{n-1}\}=\text{the length of the longest subinterval}
+		\end{displaymath}
+	\end{dfn}
+	
+	\begin{thm}
+		A bounded function $f$ on $[a,b]$ is integrable if and only if for each $\epsilon>0$ there exists a partition $P$ of $[a,b]$ such that
+		\begin{displaymath}
+			U(f,P)-L(f,P)<\epsilon.
+		\end{displaymath}
+	\end{thm}
+	
+	\begin{thm}
+		A bounded function $f$ on $[a,b]$ is integrable if and only if for each $\epsilon>0$ there exists a $\delta>0$ such that
+		\begin{displaymath}
+			\mesh(P)<\delta\implies U(f,P)-L(f,P)<\epsilon
+		\end{displaymath}
+		for all partitions $P$ of $[a,b]$.
+	\end{thm}
+	\newpage
+	
+	\section{Properties of the Riemann Integral}
+	\begin{thm}
+		Every monotonic function $f$ on $[a,b]$ is integrable.
+	\end{thm}
+
+	\begin{thm}
+		Every continuous function $f$ on $[a,b]$ is integrable.
+	\end{thm}
+	
+	\begin{thm}[Scalar Multiple and Sum]
+		Let $f,g$ be integrable functions on $[a,b]$ and let $c\in\R$. Then
+		\begin{enumerate}[(i)]
+			\item $cf$ is integrable and $\int_{a}^{b}(cf)(x)dx=c\int_{a}^{b}f(x)dx.$
+			\item $f+g$ is integrable and $\int_{a}^{b}(f+g)(x)dx=\int_{a}^{b}f(x)dx+\int_{a}^{b}g(x)dx.$
+		\end{enumerate}
+	\end{thm}
+	
+	\begin{thm}
+		If $f$ and $g$ are integrable on $[a,b]$, then $\max(f,g)$ is integrable on $[a,b]$.
+	\end{thm}
+	
+	\begin{thm}
+		\begin{enumerate}[(i)]
+			\item If $f$ and $g$ are integrable on $[a,b]$ and $f(x)\leq g(x)$ for all $x\in[a,b]$, then $\int_{a}^{b}f(x)dx\leq\int_{a}^{b}g(x)dx$.
+			\item If $g$ is continuous on $[a,b]$ and $g(x)\geq 0$ for all $x\in[a,b]$ and $\int_{a}^{b}g(x)dx=0$, then $g$ is the zero function on $[a,b]$.
+		\end{enumerate}
+	\end{thm}
+	\begin{rem}
+		An useful contrapositive of (ii) is that ``If $f$ is not a zero function on $[a,b]$ (i.e. not identically zero) but $f$ is continuous and nonnegative, then $\int_{a}^{b}f(x)dx>0$.  
+	\end{rem}
+	
+	\begin{thm}
+		If $f$ is integrable on $[a,b]$, then $|f|$ is integrable on $[a,b]$ and
+		\begin{displaymath}
+			\abs{\int_{a}^{b}f}\leq\int_{a}^{b}\abs{f}.
+		\end{displaymath}
+	\end{thm}
+	
+	\begin{thm}
+		If $f$ is integrable on $[a,b]$ and $f$ is integrable on $[b,c]$, then $f$ is integrable on $[a,c]$ and 
+		\begin{displaymath}
+			\int_{a}^{c}f(x)dx=\int_{a}^{b}f(x)dx+\int_{b}^{c}f(x)dx.
+		\end{displaymath}
+	\end{thm}
+	
+	\begin{thm}[Intermediate Value Theorem for Integrals]
+		If $f$ is continuous on $[a,b]$, then there exists $x_0\in(a,b)$ such that
+		\begin{displaymath}
+			f(x_0)=\frac{1}{b-a}\int_{a}^{b}f(x)dx.
+		\end{displaymath}
+	\end{thm}
+
+	\newpage
+	\section{Fundamental Theorem of Calculus}
+	\begin{dfn}
+		A bounded function $f$ on $(a,b)$ is \emph{integrable on $[a.b]$} if any extension of $f$ to $[a,b]$ is integrable.
+	\end{dfn}
+	
+	\begin{thm}[Fundamental Theorem of Calculus I]
+		If $f$ is integrable on $[a,b]$ and $F$ is continuous on $[a,b]$ and differentiable on $(a,b)$ and $F^\prime(x)=f(x)$ (i.e. $F$ is an antiderivative of $f$ on $(a,b)$) for all $x\in(a,b)$, then
+		\begin{displaymath}
+			\int_{a}^{b}f(x)=F(b)-F(a)
+		\end{displaymath}
+	\end{thm}
+	
+	\begin{thm}[Fundamental Theorem of Calculus II]
+		Let $f$ be integrable on $[a,b]$. For $x$ in $[a,b]$, let $F(x)=\int_{a}^{x}f(t)dt$. Then
+		\begin{enumerate}[(i)]
+			\item $F$ is continuous on $[a,b]$.
+			\item If $f$ is continuous at $x_0\in(a,b)$, then $F$ is differentiable at $x_0$ and $F^\prime(x_0)=f(x_0)$. i.e. $f$ is continuous on $[a,b]\implies F$ is an antiderivative of $f$ on $(a,b)$. 
+		\end{enumerate}
+	\end{thm}
+
 	\chapter{Useful Tricks}
 	\begin{enumerate}
 		\item Here is one of the most important techniques in real analysis.
@@ -1474,6 +2208,14 @@
 		\item The set $\mathbb{Q}$ of rational number can be listed as a sequence $(r_n)$. Given any real number $a$ there exists a subsequence $(r_{n_k})$ of $(r_n)$ converging to $a$.
 		\item Given two \textbf{convergent} sequences $(s_n)$ and $(t_n)$. If there exists $N\in\N$ such that $s_n\leq t_n$ for all $n\geq N$, then $\lim s_n\leq\lim t_n$.
 		\item In general, if $A\subseteq B$, then $\inf A\geq \inf B$ and $\sup A\leq \sup B$.
+		\item Classic artificial functions for questions related to Intermediate Value Theorem/Mean Value Theorem:
+		\begin{itemize}
+			\item $h(x)=(f(b)-f(a))g(x)-(g(b)-g(a))f(x)$.
+			\item $g(x)=f(x)-x$ for some $c\in\R$.
+			\item $g(x)=f(x+c)-f(x)$ for some $c\in\R$.
+		\end{itemize}
+		\item Take the function to the power of Euler's number $E$ and use L'Hospital's rule. e.g. $\lim_{x\rightarrow0^+}x^x=\lim_{x\rightarrow0^+}e^{x\log x}$.
+		\item To show the integration of an integrable function $f$ on $[a,b]$, $\int_{a}^{b}f$ is equal to some form like $F$, we can show that both $\int_{a}^{b}f$ and $F$ are between $L(f,P)$ and $U(f,P)$ since $U(f,P)-L(f,P)<\epsilon\implies \abs{\int_{a}^{b}f-F}<\epsilon$ for each $\epsilon>0$.
 	\end{enumerate}
 	
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.5.26)  6 AUG 2021 20:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.5.26)  6 AUG 2021 23:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -322,7 +322,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Here is how much of TeX's memory you used:
  2943 strings out of 478754
  37888 string characters out of 5858221
- 351490 words of memory out of 5000000
+ 352490 words of memory out of 5000000
  20667 multiletter control sequences out of 15000+600000
  408680 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -337,7 +337,7 @@ onts/type1/public/amsfonts/cm/cmr12.pfb><e:/texlive/2021/texmf-dist/fonts/type1
 fonts/cm/cmr8.pfb><e:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy10.pfb><e:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
 e:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw7.pdf (10 pages, 125225 bytes).
+Output written on hw7.pdf (10 pages, 125307 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream

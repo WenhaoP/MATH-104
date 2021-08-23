@@ -41,7 +41,7 @@
 		
 		Now let's generalize the assertion in part (a) to that ``if $f$ is uniformly continuous on $(-\infty,a]$ for some $a<0$, then $f$ is uniformly continuous on $(-\infty,0]$". Then we just need to show that $f(x)$ is uniformly continuous on both $(-\infty,-1]$ and $[1,\infty)$.\smallskip
 		
-		Since $x,\sin(x),1/x$ are differentiable on $[1,\infty)$, $f$ is differentiable on $[1,\infty)$. $f'(x)$ is equal to $\sin(1/x)-\cos(1/x)/x$ on $[1,\infty)$. Thus $|f'(x)|$ is bounded by $2$ on $[1,\infty)$. By theorem 19.6, $f$ is uniformly continuous on $[1,\infty)$. Thus by the assertion in (a), $f$ is uniformly continuous on $[0,\infty)$. Similarly, we can show $f$ is uniformly continuous on $(-\infty,-1]$, and hence by the generalized assertion, $f$ is uniformly continuous on $(-\infty,0]$. For any $x,y\in\R$, if both $x$ and $y$ are in $(-\infty,0]$ or $[0,\infty)$, thenIt follows that $f$ is uniformly continuous on $\R$. 
+		Since $x,\sin(x),1/x$ are differentiable on $[1,\infty)$, $f$ is differentiable on $[1,\infty)$. $f'(x)$ is equal to $\sin(1/x)-\cos(1/x)/x$ on $[1,\infty)$. Thus $|f'(x)|$ is bounded by $2$ on $[1,\infty)$. By theorem 19.6, $f$ is uniformly continuous on $[1,\infty)$. Thus by the assertion in (a), $f$ is uniformly continuous on $[0,\infty)$. Similarly, we can show $f$ is uniformly continuous on $(-\infty,-1]$, and hence by the generalized assertion, $f$ is uniformly continuous on $(-\infty,0]$. It follows that $f$ is uniformly continuous on $(-\infty,0]\cup[0,\infty)=\R$ by using triangular inequality and taking the minimum of $\delta$'s used in $(-\infty,0]$ and $[0,\infty)$ respectively in $\epsilon$-$\delta$ definition of uniform continuity. 
 		
 	\end{enumerate}
 	\newpage
@@ -99,7 +99,7 @@
 		
 		\item From HW6.2, we know $f^\prime$ is bounded on $(a,b)$, i.e. $\exists M>0\ \forall x\in(a,b)\ \abs{f^\prime(x)}\leq M$. Then for any $x,y\in[a,b]$, there exists $c\in(a,b)$ such that $M\geq \abs{f^\prime(c)}=\abs{f(x)-f(y)}/\abs{x-y}$, i.e. $\abs{f(x)-f(y)}\leq M\cdot\abs{x-y}$. It follows that $f$ satisfies the definition of Lipschitz function as desired.
 		
-		\item Negate the definition of Lipschitz function, we want to find a uniformly continuous real-valued function on $[0,1]$ but $\forall C>0\ \exists x,y\in[0,1] \abs{\frac{f(x)-f(y)}{x-y}}>C$. Thus $f(x)=\sqrt{x}$ should satisfies the condition.
+		\item Negate the definition of Lipschitz function, we want to find a uniformly continuous real-valued function on $[0,1]$ but $\forall C>0\ \exists x,y\in[0,1]\ \abs{\frac{f(x)-f(y)}{x-y}}>C$. Thus $f(x)=\sqrt{x}$ should satisfy the condition.
 	\end{enumerate}
 	\newpage
 	
